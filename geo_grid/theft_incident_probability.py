@@ -118,14 +118,37 @@ def main():
     gdf = create_geodataframe(df)
     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
     joined = perform_spatial_join(gdf, grid)
-    total_incidents = len(df)
-    incident_counts = calculate_incident_probabilities(joined, total_incidents)
+    
+    # Filter the data for theft from vehicles
+    theft_from_vehicle_data = joined[(joined['Incident Category'] == 'Larceny Theft') & (joined['Incident Subcategory'] == 'Larceny - From Vehicle')]
+    
+    total_theft_from_vehicle_incidents = len(theft_from_vehicle_data)
+    incident_counts_theft = calculate_incident_probabilities(theft_from_vehicle_data, total_theft_from_vehicle_incidents)
+    
+    # Calculate the total incident count per cell for theft from vehicles
+    total_incident_count_per_cell_theft = incident_counts_theft['incident_count'].sum()
+    
+    # Expected total incidents for theft from vehicles
+    expected_total_theft_incidents = 136938
+    
+    print("Total Incidents per Cell for Theft from Vehicles:", total_incident_count_per_cell_theft)
+    print("Expected Total Incidents for Theft from Vehicles:", expected_total_theft_incidents)
+    
+    # Compare the calculated total with the expected total for theft from vehicles
+    if total_incident_count_per_cell_theft == expected_total_theft_incidents:
+        print("Total Incidents per Cell for Theft from Vehicles is accurate.")
+    else:
+        print("Total Incidents per Cell for Theft from Vehicles is not accurate.")
+    
     aggregated_info = aggregate_info(joined)
     
-    # Uncomment the next line if I want to save the GeoJSON file
-    merge_and_save_data(grid, incident_counts, aggregated_info, 'sf_heatmap_detailed.geojson')
+    # Uncomment the next line if you want to save the GeoJSON file
+    merge_and_save_data(grid, incident_counts_theft, aggregated_info, 'sf_heatmap_detailed_v3.geojson')
 
-    plot_incident_map(grid.merge(incident_counts, on='cell_id', how='left'))
+    plot_incident_map(grid.merge(incident_counts_theft, on='cell_id', how='left'))
+
+
+
 
 
 if __name__ == "__main__":
