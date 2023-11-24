@@ -59,17 +59,35 @@ def get_theft_probability(nearest_cell, incident_counts):
 
     return probability
 
+def calculate_average_incidents_per_month(joined):
+    # Assuming theres a 'Date' column in incident data
+    joined['Date'] = pd.to_datetime(joined['Incident Date'])
+    joined['Month'] = joined['Date'].dt.month
+    monthly_incident_counts = joined.groupby(['cell_id', 'Month']).size().reset_index(name='incident_count')
+    average_monthly_incidents = monthly_incident_counts.groupby('cell_id')['incident_count'].mean().reset_index(name='average_incidents_per_month')
+    return average_monthly_incidents
 
 def aggregate_info(joined):
+    # Calculate average incidents per month
+    joined['Month'] = pd.to_datetime(joined['Incident Date']).dt.month
+    monthly_incident_counts = joined.groupby(['cell_id', 'Month']).size().reset_index(name='incident_count')
+    average_monthly_incidents = monthly_incident_counts.groupby('cell_id')['incident_count'].mean().reset_index(name='average_incidents_per_month')
+
+    # Perform other aggregations
     aggregated_info = joined.groupby('cell_id').agg({
         'Incident Date': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Incident Day of Week': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Incident Time': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Resolution': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Police District': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
-        # ... other aggregations ...
     }).reset_index()
+
+    # Merge the average incidents per month into aggregated_info
+    aggregated_info = aggregated_info.merge(average_monthly_incidents, on='cell_id', how='left')
+
     return aggregated_info
+
+
 
 
 def merge_and_save_data(grid, incident_counts, aggregated_info, filepath):
@@ -87,10 +105,11 @@ def plot_incident_map(grid_with_full_data):
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
     # Save the plot as a PNG before displaying it
-    plt.savefig('incident_map.png', dpi=300, bbox_inches='tight')
+    plt.savefig('incident_map2.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 def main():
+    print('hi')
     df = load_data('sfpd_incidents_clean.csv')
     gdf = create_geodataframe(df)
     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
@@ -98,9 +117,9 @@ def main():
     total_incidents = len(df)
     incident_counts = calculate_incident_probabilities(joined, total_incidents)
     aggregated_info = aggregate_info(joined)
-
+    
     # Uncomment the next line if I want to save the GeoJSON file
-    # merge_and_save_data(grid, incident_counts, aggregated_info, 'sf_heatmap.geojson')
+    merge_and_save_data(grid, incident_counts, aggregated_info, 'sf_heatmap_detailed.geojson')
 
     plot_incident_map(grid.merge(incident_counts, on='cell_id', how='left'))
 

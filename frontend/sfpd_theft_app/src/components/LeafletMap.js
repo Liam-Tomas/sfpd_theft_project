@@ -52,22 +52,25 @@ function LeafletMap() {
           // Log all properties to the console
           console.log("All Properties:", feature.properties);
 
-          var popupContent = "<b>Probability:</b> " + (feature.properties.probability * 100).toFixed(2) + "%";
+          let popupContent = "<b>Relative Risk:</b> " + (feature.properties.probability * 100).toFixed(2) + "%";
 
           // Access specific properties using dot notation
           popupContent += "<br><b>Total Incidents:</b> " + (feature.properties["incident_count"] || 'N/A');
-          popupContent += "<br><b>Date w/ Most Thefts:</b> " + (feature.properties["Incident Date"] || 'N/A');
+          popupContent += "<br><b>Avg per Month:</b> " + (Math.round(feature.properties["average_incidents_per_month"]) || 'N/A');
           popupContent += "<br><b>Day of Week w/ Most Thefts:</b> " + (feature.properties["Incident Day of Week"] || 'N/A');
-          popupContent += "<br><b>Avg. Time:</b> " + (feature.properties["Incident Time"] || 'N/A');
-          popupContent += "<br><b>Avg. Resolution:</b> " + (feature.properties["Resolution"] || 'N/A');
           popupContent += "<br><b>Police District:</b> " + (feature.properties["Police District"] || 'N/A');
+
+          // popupContent += "<br><b>Date w/ Most Thefts:</b> " + (feature.properties["Incident Date"] || 'N/A');
+          // popupContent += "<br><b>Avg. Time:</b> " + (feature.properties["Incident Time"] || 'N/A');
+          // popupContent += "<br><b>Avg. Resolution:</b> " + (feature.properties["Resolution"] || 'N/A');
+
 
           layer.bindPopup(popupContent);
         }
       }
 
       // Fetch the GeoJSON file and add the data to the heatmap layer
-      fetch('/sf_heatmap.geojson') // Relative path to the public directory
+      fetch('/sf_heatmap_detailed.geojson') // Relative path to the public directory
         .then(response => response.json())
         .then(data => {
 

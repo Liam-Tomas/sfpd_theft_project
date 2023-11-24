@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { categorizeRisk } from './RiskUtils';
 
 
 function RiskCalc() {
@@ -32,21 +33,42 @@ function RiskCalc() {
         }
     };
 
-    const categorizeRisk = (probability) => {
-        if (probability >= 0.02 && probability < 0.1) {
-            return "Very Low Risk";
-        } else if (probability >= 0.1 && probability < 0.3) {
-            return "Low Risk";
-        } else if (probability >= 0.3 && probability < 0.5) {
-            return "Moderate Risk";
-        } else if (probability >= 0.5 && probability < 0.5) {
-            return "High Risk";
-        } else if (probability >= 0.95 && probability <= 3.0) {
-            return "Very High Risk";
-        } else {
-            return "Unknown Risk";
+    // Function to get color based on risk category
+    const getRiskCategoryColor = (category) => {
+        switch (category) {
+            case "Very Low Risk":
+                return "#98FB98";
+            case "Low Risk":
+                return "#9ACD32";
+            case "Moderate Risk":
+                return "#FFD700";
+            case "High Risk":
+                return "orange";
+            case "Very High Risk":
+                return "red";
+            default:
+                return "grey";
         }
     };
+
+    const riskCategory = probability !== null ? categorizeRisk(parseFloat(probability)) : '';
+
+
+    // const categorizeRisk = (probability) => {
+    //     if (probability >= 0.02 && probability < 0.1) {
+    //         return "Very Low Risk";
+    //     } else if (probability >= 0.1 && probability < 0.3) {
+    //         return "Low Risk";
+    //     } else if (probability >= 0.3 && probability < 0.5) {
+    //         return "Moderate Risk";
+    //     } else if (probability >= 0.5 && probability < 0.5) {
+    //         return "High Risk";
+    //     } else if (probability >= 0.95 && probability <= 3.0) {
+    //         return "Very High Risk";
+    //     } else {
+    //         return "Unknown Risk";
+    //     }
+    // };
 
     return <div>
         <h1>SF Relative Risk of Vehicle Break-in by Address</h1>
@@ -82,7 +104,7 @@ function RiskCalc() {
             {probability !== null && !errorMessage && (
                 <div>
                     <p>Relative Risk: {probability}%</p>
-                    <p>Risk Category: {categorizeRisk(probability)}</p>
+                    <p> Risk Category: <span style={{ color: getRiskCategoryColor(riskCategory)}}>{riskCategory}</span></p>
                 </div>
             )}
             {/* ... */}
@@ -92,3 +114,4 @@ function RiskCalc() {
 }
 
 export default RiskCalc;
+
