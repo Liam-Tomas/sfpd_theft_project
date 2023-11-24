@@ -88,8 +88,6 @@ def aggregate_info(joined):
     return aggregated_info
 
 
-
-
 def merge_and_save_data(grid, incident_counts, aggregated_info, filepath):
     full_data = incident_counts.merge(
         aggregated_info, on='cell_id', how='left')

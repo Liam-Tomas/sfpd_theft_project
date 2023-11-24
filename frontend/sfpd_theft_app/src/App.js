@@ -6,8 +6,9 @@ function App() {
 
   return (
     <div>
-        <RiskCalc />
-        <LeafletMap /> 
+      <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
+      <RiskCalc />
+      <LeafletMap /> 
     </div>
   );
 }

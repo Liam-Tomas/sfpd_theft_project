@@ -14,18 +14,18 @@
     }
 };
 
-export const getRiskColor = (riskCategory) => {
+export const getRiskCategoryColor = (riskCategory) => {
     switch (riskCategory) {
         case "Very Low Risk":
-            return "#98FB98";
+            return "#15803d";
         case "Low Risk":
-            return "#9ACD32";
+            return "#4d7c0f";
         case "Moderate Risk":
-            return "#FFD700";
+            return "#a16207";
         case "High Risk":
-            return "#FFA500";
+            return "#9a3412";
         case "Very High Risk":
-            return "#FF0000";
+            return "#991b1b";
         default:
             return "#808080";
     }

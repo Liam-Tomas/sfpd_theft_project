@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)  # Configure CORS for your app
 
 # Load the pre-processed GeoJSON file
-grid = gpd.read_file('sf_heatmap.geojson')
+grid = gpd.read_file('sf_heatmap_detailed.geojson')
 
 # Initialize OpenCage Geocoder with API key
 geocoder = OpenCageGeocode("90989e6ade6247a7b36dde59f9b55adc")
@@ -17,8 +17,7 @@ geocoder = OpenCageGeocode("90989e6ade6247a7b36dde59f9b55adc")
 def test():
     """
     A test endpoint to check if the server is running.
-    Returns:
-        JSON response with a success message.
+    Returns: JSON response with a success message.
     """
     return jsonify({"message": "Test successful"})
 
@@ -26,8 +25,7 @@ def test():
 def get_probability():
     """
     Calculate the probability for a given location (latitude and longitude or address).
-    Returns:
-        JSON response with the calculated probability.
+    Returns: JSON response with the calculated probability.
     """
     print("Request received")  # Debug print
     data = request.json
@@ -55,12 +53,21 @@ def get_probability():
     # Find the nearest grid cell and its probability
     nearest_cell = grid.distance(user_location).idxmin()
     probability = grid.loc[nearest_cell, 'probability']
+    incident_count = grid.loc[nearest_cell, 'incident_count']
+    incident_day_of_week = grid.loc[nearest_cell, 'Incident Day of Week']
+    police_district = grid.loc[nearest_cell, 'Police District']
+    average_incidents_per_month = grid.loc[nearest_cell, 'average_incidents_per_month']
 
     return jsonify({
         "latitude": latitude,
         "longitude": longitude,
-        "probability": probability
+        "probability": probability,
+        "incident_count": incident_count,
+        "incident_day_of_week": incident_day_of_week,
+        "police_district": police_district,
+        "average_incidents_per_month": average_incidents_per_month
     })
 
 if __name__ == '__main__':
     app.run(debug=True)
+
