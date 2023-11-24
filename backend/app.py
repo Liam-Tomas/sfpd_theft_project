@@ -1,8 +1,15 @@
+"""
+Main flask app.py file w/ routes 
+"""
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS  
 from opencage.geocoder import OpenCageGeocode
 import geopandas as gpd
 from shapely.geometry import Point
+from db import get_db_connection
+from queries import get_top_theft_locations
+
 
 app = Flask(__name__)
 CORS(app)  # Configure CORS for your app
@@ -40,7 +47,6 @@ def get_probability():
             latitude, longitude = first_result['geometry']['lat'], first_result['geometry']['lng']
             city = first_result['components'].get('city', '').lower()
             state = first_result['components'].get('state', '').lower()
-            
             # Check if the address is in San Francisco
             if 'san francisco' not in city or 'california' not in state:
                 return jsonify({"error": "Address is not in San Francisco, CA. Please enter an address in San Francisco, CA."}), 400
@@ -67,6 +73,11 @@ def get_probability():
         "police_district": police_district,
         "average_incidents_per_month": average_incidents_per_month
     })
+    
+@app.route('/top-theft-locations', methods=['GET'])
+def top_theft_locations():
+    theft_locations = get_top_theft_locations()
+    return jsonify([dict(row) for row in theft_locations])
 
 if __name__ == '__main__':
     app.run(debug=True)

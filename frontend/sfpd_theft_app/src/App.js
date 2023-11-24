@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import LeafletMap from './components/LeafletMap'; // Import the LeafletMap component
-import RiskCalc from './components/RiskCalc';
+
+import HomePage from './pages/HomePage';
+
 
 function App() {
 
   return (
     <div>
-      <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
-      <RiskCalc />
-      <LeafletMap /> 
+
+      <HomePage />
+
     </div>
   );
 }

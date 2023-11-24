@@ -33,9 +33,9 @@ function RiskCalc() {
         // Combine address and zip code
         // const completeAddress = `${address}, San Francisco, CA ${zipcode}`;
         const completeAddress = `${address}, San Francisco, CA ${zipcode}`;
-
+        const api_route = 'http://127.0.0.1:5000/'
         try {
-            const response = await axios.post('http://127.0.0.1:5000/get_probability', { address: completeAddress });
+            const response = await axios.post(`${api_route}/get_probability`, { address: completeAddress });
             const probability = response.data.probability; // Assuming I have the probability value
             const avgPerMonth = response.data.average_incidents_per_month; // Assuming I have the probability value
             const roundedAvg = Math.round(avgPerMonth)
