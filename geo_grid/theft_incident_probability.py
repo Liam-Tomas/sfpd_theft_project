@@ -67,11 +67,16 @@ def calculate_average_incidents_per_month(joined):
     average_monthly_incidents = monthly_incident_counts.groupby('cell_id')['incident_count'].mean().reset_index(name='average_incidents_per_month')
     return average_monthly_incidents
 
+
 def aggregate_info(joined):
-    # Calculate average incidents per month
-    joined['Month'] = pd.to_datetime(joined['Incident Date']).dt.month
-    monthly_incident_counts = joined.groupby(['cell_id', 'Month']).size().reset_index(name='incident_count')
-    average_monthly_incidents = monthly_incident_counts.groupby('cell_id')['incident_count'].mean().reset_index(name='average_incidents_per_month')
+    # Assuming the data period is 5 years (2018-2022 inclusive)
+    total_months = 5 * 12
+
+    # Calculate total incidents for each cell
+    total_incident_counts = joined.groupby('cell_id').size().reset_index(name='total_incident_count')
+
+    # Calculate average incidents per month for each cell
+    total_incident_counts['average_incidents_per_month'] = total_incident_counts['total_incident_count'] / total_months
 
     # Perform other aggregations
     aggregated_info = joined.groupby('cell_id').agg({
@@ -80,10 +85,11 @@ def aggregate_info(joined):
         'Incident Time': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Resolution': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
         'Police District': lambda x: x[x != 'N/A'].mode().iloc[0] if not x[x != 'N/A'].empty else 'N/A',
+        # ... other aggregations ...
     }).reset_index()
 
     # Merge the average incidents per month into aggregated_info
-    aggregated_info = aggregated_info.merge(average_monthly_incidents, on='cell_id', how='left')
+    aggregated_info = aggregated_info.merge(total_incident_counts[['cell_id', 'average_incidents_per_month']], on='cell_id', how='left')
 
     return aggregated_info
 
