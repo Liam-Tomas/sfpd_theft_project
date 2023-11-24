@@ -58,7 +58,7 @@ function LeafletMap() {
           popupContent += "<br><b>Total Incidents:</b> " + (feature.properties["incident_count"] || 'N/A');
           popupContent += "<br><b>Date w/ Most Thefts:</b> " + (feature.properties["Incident Date"] || 'N/A');
           popupContent += "<br><b>Day of Week w/ Most Thefts:</b> " + (feature.properties["Incident Day of Week"] || 'N/A');
-          popupContent += "<br><b>Incident Time:</b> " + (feature.properties["Incident Time"] || 'N/A');
+          popupContent += "<br><b>Avg. Time:</b> " + (feature.properties["Incident Time"] || 'N/A');
           popupContent += "<br><b>Avg. Resolution:</b> " + (feature.properties["Resolution"] || 'N/A');
           popupContent += "<br><b>Police District:</b> " + (feature.properties["Police District"] || 'N/A');
 

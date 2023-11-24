@@ -32,39 +32,63 @@ function RiskCalc() {
         }
     };
 
+    const categorizeRisk = (probability) => {
+        if (probability >= 0.02 && probability < 0.1) {
+            return "Very Low Risk";
+        } else if (probability >= 0.1 && probability < 0.3) {
+            return "Low Risk";
+        } else if (probability >= 0.3 && probability < 0.5) {
+            return "Moderate Risk";
+        } else if (probability >= 0.5 && probability < 0.5) {
+            return "High Risk";
+        } else if (probability >= 0.95 && probability <= 3.0) {
+            return "Very High Risk";
+        } else {
+            return "Unknown Risk";
+        }
+    };
+
     return <div>
-                <h1>SF Relative Risk of Vehicle Break-in by Address</h1>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Enter SF Address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        style={{
-                            marginRight:"5px",
-                        }}
-                    />
-                    <input
-                        type="text"
-                        required
-                        placeholder="Enter Zip Code"
-                        value={zipcode}
-                        onChange={(e) => setZipcode(e.target.value)}
-                        style={{
-                            marginRight:"5px",
-                        }}
-                    />
-                    <button type="submit">Calculate Risk</button>
-                </form>
-                {errorMessage && (
-                    <p style={{ color: 'red' }}>{errorMessage}</p>
-                )}
-                {probability !== null && !errorMessage && (
-                    <p>Relative Risk: {probability}%**</p>
-                )}
-                <p>**Represents the chance of a vehicle break-in occurring in this area relative to all recorded vehicle break-ins in SF since 2018.
-                    In simpler terms, out of every 100 vehicle break-ins reported in the city, {probability} happened in this particular area from 2018-2023.</p>
-            </div>;
+        <h1>SF Relative Risk of Vehicle Break-in by Address</h1>
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                placeholder="Enter SF Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                style={{
+                    marginRight: "5px",
+                }}
+            />
+            <input
+                type="text"
+                required
+                placeholder="Enter Zip Code"
+                value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)}
+                style={{
+                    marginRight: "5px",
+                }}
+            />
+            <button type="submit">Calculate Risk</button>
+        </form>
+        {errorMessage && (
+            <p style={{ color: 'red' }}>{errorMessage}</p>
+        )}
+        <p>**Represents the chance of a vehicle break-in occurring in this area relative to all recorded vehicle break-ins in SF since 2018.
+            In simpler terms, out of every 100 vehicle break-ins reported in the city, {probability} happened in this particular area from 2018-2023.</p>
+        <div>
+            {/* ... */}
+            {probability !== null && !errorMessage && (
+                <div>
+                    <p>Relative Risk: {probability}%</p>
+                    <p>Risk Category: {categorizeRisk(probability)}</p>
+                </div>
+            )}
+            {/* ... */}
+        </div>
+    </div>;
+
 }
 
 export default RiskCalc;
