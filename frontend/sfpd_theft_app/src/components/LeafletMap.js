@@ -70,7 +70,7 @@ function LeafletMap() {
       }
 
       // Fetch the GeoJSON file and add the data to the heatmap layer
-      fetch('/sf_heatmap_detailed_v3.geojson') // Relative path to the public directory
+      fetch('/sf_heatmap_detailed_v5.geojson') // Relative path to the public directory
         .then(response => response.json())
         .then(data => {
 
