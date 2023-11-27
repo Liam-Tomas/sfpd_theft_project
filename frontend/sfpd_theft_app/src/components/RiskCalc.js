@@ -69,8 +69,8 @@ function RiskCalc() {
     const riskCategory = probability !== null ? categorizeRisk(parseFloat(probability)) : '';
 
     return <div>
-        <h2>SF Relative Risk of Vehicle Break-in by Address</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Relative Risk by Address Calculator</h2>
+        <form onSubmit={handleSubmit} style={{ paddingBottom: probability !== null ? '0' : '178px' }}>
             <input
                 type="text"
                 required

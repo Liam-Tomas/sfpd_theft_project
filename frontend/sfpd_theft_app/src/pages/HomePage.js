@@ -29,7 +29,10 @@ import React, { useState } from 'react';
 import LeafletMap from '../components/LeafletMap'; // Import the LeafletMap component
 import RiskCalc from '../components/RiskCalc';
 import TheftLocationsChart from '../components/TheftLocationsChart';
+import PriceBreakdownChart from '../components/PriceBreakdownChart';
+import YearChart from '../components/YearChart';
 import styled from 'styled-components';
+import ResolutionStatusChart from '../components/ResolutionStatusChart';
 
 const StyledGrid = styled.div`
   display: grid;
@@ -61,6 +64,9 @@ function HomePage() {
                 <RightColumn>
                     <LeafletMap />
                 </RightColumn>
+                <PriceBreakdownChart />
+                <YearChart />
+                <ResolutionStatusChart />
             </StyledGrid>
         </div>
     );

@@ -146,7 +146,7 @@ const TheftLocationsChart = () => {
 
     return (
         <div>
-            <h2>Some More Data</h2>
+            {/* <h2>Some More Data</h2> */}
             <StyledGrid>
                 <ChartContainer>
                     <h3 style={{marginTop:''}}>Most Common Locations of Theft in SF</h3>

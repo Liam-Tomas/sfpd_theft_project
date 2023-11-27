@@ -45,3 +45,37 @@ def get_price_breakdown():
     cursor.close()
     conn.close()
     return results
+
+def get_year_breakdown():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True) 
+    cursor.execute("""
+        SELECT Incident_Year, COUNT(*) AS Total_Incidents
+        FROM sfpd_incidents
+        WHERE Incident_Category = 'Larceny Theft' AND Incident_Subcategory = 'Larceny - From Vehicle'
+        GROUP BY Incident_Year
+        ORDER BY Incident_Year;
+    """)
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results
+
+def get_status_breakdown():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True) 
+    cursor.execute("""
+        SELECT
+        CASE
+            WHEN Resolution = 'Open or Active' THEN 'Unresolved'
+            ELSE 'Resolved'
+        END AS Resolution_Status,
+        COUNT(*) AS Total_Incidents
+        FROM sfpd_incidents
+        WHERE Incident_Category = 'Larceny Theft' AND Incident_Subcategory = 'Larceny - From Vehicle'
+        GROUP BY Resolution_Status;
+    """)
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results

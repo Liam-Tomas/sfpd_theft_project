@@ -8,7 +8,7 @@ from opencage.geocoder import OpenCageGeocode
 import geopandas as gpd
 from shapely.geometry import Point
 from db import get_db_connection
-from queries import get_top_theft_locations
+from queries import get_top_theft_locations, get_price_breakdown, get_year_breakdown, get_status_breakdown
 
 
 app = Flask(__name__)
@@ -79,6 +79,21 @@ def top_theft_locations():
     theft_locations = get_top_theft_locations()
     return jsonify([dict(row) for row in theft_locations])
 
+
+@app.route('/get-price-breakdown', methods=['GET'])
+def price_breakdown():
+    price = get_price_breakdown()
+    return jsonify([dict(row) for row in price])
+
+@app.route('/get-year-breakdown', methods=['GET'])
+def year_breakdown():
+    year = get_year_breakdown()
+    return jsonify([dict(row) for row in year])
+
+@app.route('/get-status-breakdown', methods=['GET'])
+def status_breakdown():
+    status = get_status_breakdown()
+    return jsonify([dict(row) for row in status])
+
 if __name__ == '__main__':
     app.run(debug=True)
-
