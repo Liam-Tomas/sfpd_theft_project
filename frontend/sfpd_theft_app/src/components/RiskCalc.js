@@ -38,7 +38,8 @@ function RiskCalc() {
             const response = await axios.post(`${api_route}/get_probability`, { address: completeAddress });
             const probability = response.data.probability; // Assuming I have the probability value
             const avgPerMonth = response.data.average_incidents_per_month; // Assuming I have the probability value
-            const roundedAvg = Math.round(avgPerMonth)
+            const roundedAvg = parseFloat(avgPerMonth).toFixed(2);
+
             // const incidentCount = response.data.incident_count; // Assuming I have the probability value
 
             const roundedProbability = parseFloat(probability * 100).toFixed(2);

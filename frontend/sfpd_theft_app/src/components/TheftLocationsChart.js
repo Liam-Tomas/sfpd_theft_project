@@ -154,8 +154,8 @@ const TheftLocationsChart = () => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={300} // You can also set the height as needed
-                            width={500} // Set the width to a larger value to make it wider
+                            height={450} // You can also set the height as needed
+                            width={600} // Set the width to a larger value to make it wider
                         />
                     )}
                 </ChartContainer>

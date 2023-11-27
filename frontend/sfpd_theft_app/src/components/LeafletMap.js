@@ -56,7 +56,7 @@ function LeafletMap() {
 
           // Access specific properties using dot notation
           popupContent += "<br><b>Total Incidents:</b> " + (feature.properties["incident_count"] || 'N/A');
-          popupContent += "<br><b>Avg per Month:</b> " + (Math.round(feature.properties["average_incidents_per_month"]) || 'N/A');
+          popupContent += "<br><b>Avg per Month:</b> " + (feature.properties["average_incidents_per_month"] !== null ? parseFloat(feature.properties["average_incidents_per_month"].toFixed(1)) : 'N/A');
           popupContent += "<br><b>Day of Week w/ Most Thefts:</b> " + (feature.properties["Incident Day of Week"] || 'N/A');
           popupContent += "<br><b>Police District:</b> " + (feature.properties["Police District"] || 'N/A');
 
@@ -70,7 +70,7 @@ function LeafletMap() {
       }
 
       // Fetch the GeoJSON file and add the data to the heatmap layer
-      fetch('/sf_heatmap_detailed_v5.geojson') // Relative path to the public directory
+      fetch('/sf_heatmap_detailed_v6.geojson') // Relative path to the public directory
         .then(response => response.json())
         .then(data => {
 
