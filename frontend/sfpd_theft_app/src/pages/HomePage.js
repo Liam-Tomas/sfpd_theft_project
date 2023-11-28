@@ -1,72 +1,129 @@
+// // import React, { useState } from 'react';
+// // import LeafletMap from '../components/LeafletMap'; // Import the LeafletMap component
+// // import RiskCalc from '../components/RiskCalc';
+// // import TheftLocationsChart from '../components/TheftLocationsChart';
+// // import styled from 'styled-components';
+
+// // const StyledGrid = styled.div`
+// //   display: grid;
+// //   grid-template-columns: 1fr 1fr;
+// //   gap: 100px;
+// // `
+// // function HomePage() {
+
+// //     return (
+// //         <div>
+// //             <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
+// //             <StyledGrid>
+// //                 <RiskCalc />
+// //                 <LeafletMap />
+// //             </StyledGrid>
+// //             <TheftLocationsChart />
+// //         </div>
+// //     );
+// // }
+
+// // export default HomePage;
+
 // import React, { useState } from 'react';
 // import LeafletMap from '../components/LeafletMap'; // Import the LeafletMap component
 // import RiskCalc from '../components/RiskCalc';
 // import TheftLocationsChart from '../components/TheftLocationsChart';
+// import PriceBreakdownChart from '../components/PriceBreakdownChart';
+// import YearChart from '../components/YearChart';
 // import styled from 'styled-components';
+// import ResolutionStatusChart from '../components/ResolutionStatusChart';
 
 // const StyledGrid = styled.div`
 //   display: grid;
-//   grid-template-columns: 1fr 1fr;
-//   gap: 100px;
-// `
-// function HomePage() {
+//   grid-template-columns: 1fr 1fr; 
+// `;
 
+// const LeftColumn = styled.div`
+// `;
+
+// const RightColumn = styled.div`
+// `;
+
+// const StyledFlex = styled.div`
+// display: grid;
+// grid-template-columns: repeat(3, 1fr);
+// `
+
+// function HomePage() {
 //     return (
 //         <div>
 //             <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
 //             <StyledGrid>
-//                 <RiskCalc />
-//                 <LeafletMap />
+//                 <LeftColumn>
+//                     <RiskCalc />
+//                     <TheftLocationsChart />
+//                 </LeftColumn>
+//                 <RightColumn>
+//                     <LeafletMap />
+//                 </RightColumn>
 //             </StyledGrid>
-//             <TheftLocationsChart />
+//             <StyledFlex>
+//                     <YearChart />
+//                     <PriceBreakdownChart />
+//                     <ResolutionStatusChart />
+//                 </StyledFlex>
 //         </div>
 //     );
 // }
 
 // export default HomePage;
-
-import React, { useState } from 'react';
-import LeafletMap from '../components/LeafletMap'; // Import the LeafletMap component
+import React from 'react';
+import LeafletMap from '../components/LeafletMap';
 import RiskCalc from '../components/RiskCalc';
 import TheftLocationsChart from '../components/TheftLocationsChart';
 import PriceBreakdownChart from '../components/PriceBreakdownChart';
 import YearChart from '../components/YearChart';
-import styled from 'styled-components';
 import ResolutionStatusChart from '../components/ResolutionStatusChart';
+import styled from 'styled-components';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  grid-template-rows: 1fr 1fr; /* Two rows */
-  gap: 20px; /* Adjust the gap as needed */
-  align-items: start; /* Align items at the start of rows */
+  grid-template-columns: repeat(10, 1fr); /* 6 columns for easier division */
+ `;
+
+const FirstRowLeft = styled.div`
+  grid-column: span 5; /* Span 3 columns */
 `;
 
-const LeftColumn = styled.div`
-  grid-column: 1 / 2; /* Left column spans the first column */
-  grid-row: 1 / 3; /* Left column spans two rows */
+const FirstRowRight = styled.div`
+  grid-column: span 5; /* Span 3 columns */
 `;
 
-const RightColumn = styled.div`
-  grid-column: 2 / 3; /* Right column spans the second column */
-  grid-row: 1 / 3; /* Right column spans two rows */
+const SecondRowItem = styled.div`
+  grid-column: span 4; /* Span 2 columns */
+`;
+
+const SecondRowItemSmall = styled.div`
+  grid-column: span 2; /* Span 2 columns */
 `;
 
 function HomePage() {
-    return (
+    return (  
         <div>
             <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
             <StyledGrid>
-                <LeftColumn>
+                <FirstRowLeft>
                     <RiskCalc />
-                    <TheftLocationsChart/>
-                </LeftColumn>
-                <RightColumn>
+                    <TheftLocationsChart />
+                </FirstRowLeft>
+                <FirstRowRight>
                     <LeafletMap />
-                </RightColumn>
-                <PriceBreakdownChart />
-                <YearChart />
-                <ResolutionStatusChart />
+                </FirstRowRight>
+                <SecondRowItem>
+                    <YearChart />
+                </SecondRowItem>
+                <SecondRowItem>
+                    <PriceBreakdownChart />
+                </SecondRowItem>
+                <SecondRowItemSmall>
+                    <ResolutionStatusChart />
+                </SecondRowItemSmall>
             </StyledGrid>
         </div>
     );

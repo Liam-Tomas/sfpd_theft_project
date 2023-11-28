@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
+import MainContainer from './MainContainer';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
@@ -67,19 +67,19 @@ const PriceBreakdownChart = () => {
     };
 
     return (
-        <div>
-            <h3>Incident Breakdown by Price Category</h3>
+        <MainContainer>
+            <h3>Breakdown by Price Category</h3>
             <ChartContainer>
                 {chartData && (
                     <Bar
                         data={chartData}
                         options={options}
-                        height={400}
-                        width={600}
+                        height={180}
+                        width={380}
                     />
                 )}
             </ChartContainer>
-        </div>
+        </MainContainer>
     );
 };
 

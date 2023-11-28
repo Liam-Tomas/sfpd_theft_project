@@ -2,14 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
-
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 const ChartWrapper = styled.div`
-    width: 400px;  // Set a specific width
-    height: 400px; // Set a specific height
     margin: auto;  // Center the chart
+    height=376px// You can also set the height as needed
+    width=576px // Set the width to a larger value to make it wider
+/>
 `;
+
+const  MainContainer = styled.div`
+    background-color: #f8fafc;
+    padding: 10px 25px 20px 25px;
+    margin: 0px 0px 20px 0px;
+    border-radius:5px;
+`
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -55,20 +62,20 @@ const ResolutionStatusChart = () => {
         plugins: {
             legend: {
                 display: true,
-                position: 'top'
+                position: 'bottom'
             }
         }
     };
 
     return (
-        <div>
-            <h3>Incident Resolution Status</h3>
+        <MainContainer>
+            <h3>Resolution Status</h3>
             <ChartWrapper>
                 {chartData && (
                     <Pie data={chartData} options={options} />
                 )}
             </ChartWrapper>
-        </div>
+        </MainContainer>
     );
 };
 

@@ -1,6 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import styled from 'styled-components';
+
+const  MainContainer = styled.div`
+    background-color: #f8fafc;
+    padding: 10px 25px 20px 25px;
+    margin: 0px 0px 20px 0px;
+    border-radius:5px;
+    z-index: 100;
+`
 
 function LeafletMap() {
   const mapRef = useRef(null);
@@ -79,12 +88,12 @@ function LeafletMap() {
     }
   }, []);
 
-  return <div>
+  return <MainContainer>
 
     <h2>Interactive Heat Map of Thefts</h2>
-    <div id="map" style={{ height: '600px', width: '100%' }}></div>
+    <div id="map" style={{ height: '70vh', width: '100%' }}></div>
 
-  </div>
+  </MainContainer>
 }
 
 export default LeafletMap;

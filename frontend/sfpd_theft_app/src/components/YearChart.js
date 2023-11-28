@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
+import MainContainer from './MainContainer';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
-
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
@@ -66,19 +66,19 @@ const YearChart = () => {
     };
 
     return (
-        <div>
-            <h3>Yearly Incident Breakdown</h3>
+        <MainContainer>
+            <h3>Yearly Breakdown</h3>
             <ChartContainer>
                 {chartData && (
                     <Line
                         data={chartData}
                         options={options}
-                        height={400}
-                        width={600}
+                        height={180}
+                        width={380}
                     />
                 )}
             </ChartContainer>
-        </div>
+        </MainContainer>
     );
 };
 

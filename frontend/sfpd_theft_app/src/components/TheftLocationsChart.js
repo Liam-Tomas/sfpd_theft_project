@@ -76,6 +76,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
+import MainContainer from './MainContainer'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -86,6 +87,8 @@ const StyledGrid = styled.div`
 
 const ChartContainer = styled.div`
 `;
+
+
 
 const TheftLocationsChart = () => {
     const [chartData, setChartData] = useState(null); // Initially null
@@ -145,7 +148,7 @@ const TheftLocationsChart = () => {
     };
 
     return (
-        <div>
+        <MainContainer>
             {/* <h2>Some More Data</h2> */}
             <StyledGrid>
                 <ChartContainer>
@@ -154,14 +157,13 @@ const TheftLocationsChart = () => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={450} // You can also set the height as needed
-                            width={600} // Set the width to a larger value to make it wider
+                            height={388} // You can also set the height as needed
+                            width={588} // Set the width to a larger value to make it wider
                         />
                     )}
                 </ChartContainer>
-                <div></div>
             </StyledGrid>
-        </div>
+        </MainContainer>
     );
 };
 
