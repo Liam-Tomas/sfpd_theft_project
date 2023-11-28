@@ -11,8 +11,8 @@ import styled from 'styled-components';
 
 const StyledGrid = styled.div`
   display: grid;
+  
   grid-template-columns: repeat(10, 1fr); /* 6 columns for easier division */
-  grid-auto-rows: minmax(0px, auto); /* Minimum height of 300px */
   @media (max-width: 1300px) {
     grid-template-columns: 1fr; /* Use a single column on smaller screens */
   }

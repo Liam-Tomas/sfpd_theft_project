@@ -97,7 +97,7 @@ const SupervisorChart = () => {
 
     return (
         <MainContainer>
-            <h3>Breakdown by Supervisor Dsitrict</h3>
+            <h3>Breakdown by Supervisor District</h3>
             <div style={{ height: 380 }}>
                 <ResponsiveTreeMap
                     data={data}

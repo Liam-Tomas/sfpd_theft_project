@@ -7,7 +7,7 @@ import MainContaineRight from './MainContainerRight';
 
 const ChartWrapper = styled.div`
     margin: auto;  // Center the chart
-    height: 253px; You can also set the height as needed
+    height: 250px; You can also set the height as needed
 />
 `;
 

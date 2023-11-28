@@ -3,6 +3,9 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import styled from 'styled-components';
 import MainContaineRight from './MainContainerRight';
+const ChartContainer = styled.div`
+max-height:100%;
+`;
 
 function LeafletMap() {
   const mapRef = useRef(null);
@@ -82,9 +85,11 @@ function LeafletMap() {
   }, []);
 
   return <MainContaineRight>
+                <ChartContainer>
 
-    <h2>Interactive Heat Map of Thefts</h2>
-    <div id="map" style={{ height: '539px' }}></div>
+    <h3>Interactive Heat Map of Thefts</h3>
+    <div id="map" style={{ height: '540px', width: '100%' }}></div>
+    </ChartContainer>
 
   </MainContaineRight>
 }

@@ -86,6 +86,7 @@ const StyledGrid = styled.div`
 `;
 
 const ChartContainer = styled.div`
+max-height:100%;
 `;
 
 
@@ -122,6 +123,8 @@ const TheftLocationsChart = () => {
     }, []);
 
     const options = {
+        responsive: false, // Disable responsiveness
+        maintainAspectRatio: false, // Allow custom aspect ratio
         indexAxis: 'y', // Set the index axis to 'y' for a horizontal bar chart
         scales: {
             x: {
@@ -157,8 +160,8 @@ const TheftLocationsChart = () => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={290} // You can also set the height as needed
-                            width={490} // Set the width to a larger value to make it wider
+                            height={370} // You can also set the height as needed
+                            width={600} // Set the width to a larger value to make it wider
                         />
                     )}
                 </ChartContainer>

@@ -206,7 +206,7 @@ function RiskCalc() {
     const riskCategory = probability !== null ? categorizeRisk(parseFloat(probability)) : '';
     // 178 pixels for bottom padding
     return <MainContainer>
-        <h2>Relative Risk by Address Calculator</h2>
+        <h3>Relative Risk by Address Calculator</h3>
         <StyledForm onSubmit={handleSubmit}>
                 <FormField>
                     <Input
