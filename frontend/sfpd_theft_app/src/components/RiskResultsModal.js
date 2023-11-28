@@ -143,6 +143,7 @@ const ResultItem = styled.div`
 
 const ResultNumber = styled.span`
   font-size: 1.5rem;
+  padding: 3px 0px;
   font-weight: 700;
   color: ${props => props.theme.text};
 `;
