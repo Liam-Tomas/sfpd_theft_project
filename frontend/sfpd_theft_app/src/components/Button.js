@@ -39,7 +39,7 @@ const RippleSpan = styled.span`
     position: absolute;
     border-radius: 40%;
     transform: translate(-50%, -50%) scale(0);
-    animation: ${rippleAnimation} 0.5s linear;
+    animation: ${rippleAnimation} 0.6s linear;
     background-color: rgba(255, 255, 255, 0.3);
     width: 100%;
     height: 100%;

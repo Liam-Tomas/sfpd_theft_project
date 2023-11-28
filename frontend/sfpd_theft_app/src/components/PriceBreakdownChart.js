@@ -74,8 +74,7 @@ const PriceBreakdownChart = () => {
                     <Bar
                         data={chartData}
                         options={options}
-                        height={200}
-                        width={400}
+
                     />
                 )}
             </ChartContainer>

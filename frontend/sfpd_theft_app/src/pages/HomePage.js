@@ -8,6 +8,7 @@ import ResolutionStatusChart from '../components/ResolutionStatusChart';
 import TimeOfDayChart from '../components/TimeOfDayChart';
 import SupervisorChart from '../components/SupervisorChart';
 import styled from 'styled-components';
+import Navbar from '../components/NavBar';
 
 const StyledGrid = styled.div`
   display: grid;
@@ -67,7 +68,6 @@ function HomePage() {
         <ThirdRowItem>
           <TimeOfDayChart />
         </ThirdRowItem>
-
       </StyledGrid>
     </div>
   );

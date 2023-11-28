@@ -7,7 +7,7 @@ import MainContaineRight from './MainContainerRight';
 
 const ChartWrapper = styled.div`
     margin: auto;  // Center the chart
-    height: 250px; You can also set the height as needed
+    height: 232px; You can also set the height as needed
 />
 `;
 
@@ -65,7 +65,7 @@ const ResolutionStatusChart = () => {
             <h3>Resolution Status</h3>
             <ChartWrapper>
                 {chartData && (
-                    <Pie height={500} width={500} data={chartData} options={options} />
+                    <Pie data={chartData} options={options} />
                 )}
             </ChartWrapper>
         </MainContaineRight>

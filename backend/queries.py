@@ -109,6 +109,7 @@ def get_supervisor_breakdown():
     cursor.execute("""
         SELECT Supervisor_District, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
+        WHERE Incident_Category = 'Larceny Theft' AND Incident_Subcategory = 'Larceny - From Vehicle'
         GROUP BY Supervisor_District
         ORDER BY Total_Incidents DESC;
     """)

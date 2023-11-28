@@ -1,81 +1,23 @@
-// import React, { useEffect, useState, useRef } from 'react';
-// import axios from 'axios';
-// import * as d3 from 'd3';
-
-// const SupervisorChart = () => {
-//     const [data, setData] = useState([]);
-//     const d3Container = useRef(null);
-//     const api_route = 'http://127.0.0.1:5000/get-supervisor-breakdown';
-
-//     useEffect(() => {
-//         axios.get(api_route)
-//             .then(response => {
-//                 setData(response.data);
-//             })
-//             .catch(error => {
-//                 console.error('Error fetching data:', error);
-//             });
-//     }, []);
-
-//     useEffect(() => {
-//         if (data.length && d3Container.current) {
-//             const svg = d3.select(d3Container.current);
-
-//             // Set dimensions and margins for the graph
-//             const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-//             const width = 450 - margin.left - margin.right;
-//             const height = 450 - margin.top - margin.bottom;
-
-//             // Create the treemap layout
-//             const root = d3.hierarchy({ children: data })
-//                 .sum(d => d.Total_Incidents)
-//                 .sort((a, b) => b.height - a.height || b.value - a.value); 
-
-//             d3.treemap()
-//                 .size([width, height])
-//                 .padding(1)
-//                 (root);
-
-//             // Draw rectangles for each node
-//             svg.selectAll("rect")
-//                 .data(root.leaves())
-//                 .enter().append("rect")
-//                 .attr("x", d => d.x0)
-//                 .attr("y", d => d.y0)
-//                 .attr("width", d => d.x1 - d.x0)
-//                 .attr("height", d => d.y1 - d.y0)
-//                 .style("fill", "#69b3a2");
-
-//             // Add text labels
-//             svg.selectAll("text")
-//                 .data(root.leaves())
-//                 .enter().append("text")
-//                 .attr("x", d => d.x0 + 5)
-//                 .attr("y", d => d.y0 + 20)
-//                 .text(d => `District ${d.data.Supervisor_District}: ${d.data.Total_Incidents}`)
-//                 .attr("font-size", "15px")
-//                 .attr("fill", "white");
-//         }
-//     }, [data]);
-
-//     return (
-//         <svg
-//             className="d3-component"
-//             width={900}
-//             height={500}
-//             ref={d3Container}
-//         />
-//     );
-// };
-
-// export default SupervisorChart;
-
-
-
 import React, { useState, useEffect } from 'react';
 import { ResponsiveTreeMap } from '@nivo/treemap';
 import axios from 'axios';
 import MainContainer from './MainContainer';
+
+// Hardcoded neighborhoods for each Supervisor District
+const neighborhoodsByDistrict = {
+  "6": ["Tenderloin", "South of Market", "Mission Bay"],
+  "3": ["North Beach", "Chinatown", "Financial District"],
+  "5": ["Haight-Ashbury", "Western Addition", "Panhandle"],
+  "9": ["Mission District", "Bernal Heights", "Portola"],
+  "10": ["Bayview", "Hunter's Point", "Visitacion Valley"],
+  "2": ["Marina", "Pacific Heights", "Presidio"],
+  "8": ["Castro", "Noe Valley", "Glen Park"],
+  "0": ["Out of SF"], 
+  "7": ["West of Twin Peaks", "Inner Sunset", "Golden Gate Park"],
+  "1": ["Richmond District", "Sea Cliff", "Lincoln Park"],
+  "11": ["Excelsior", "Outer Mission", "Oceanview"],
+  "4": ["Sunset District", "Parkside", "Outer Sunset"]
+};
 
 const SupervisorChart = () => {
     const [data, setData] = useState({ children: [] });
@@ -87,7 +29,7 @@ const SupervisorChart = () => {
                 setData({
                     name: 'All Districts',
                     children: response.data.map(item => ({
-                        name: `District ${item.Supervisor_District}`,
+                        name: `District ${item.Supervisor_District} - ${neighborhoodsByDistrict[item.Supervisor_District.toString()].join(', ')}`,
                         value: item.Total_Incidents
                     }))
                 });
@@ -103,8 +45,6 @@ const SupervisorChart = () => {
                     data={data}
                     identity="name"
                     value="value"
-                    // innerPadding={3}
-                    // outerPadding={3}
                     margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
                     labelSkipSize={12}
                     labelTextColor={{ from: 'color', modifiers: [['darker', 1.2]] }}
