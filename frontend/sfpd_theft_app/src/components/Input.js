@@ -21,25 +21,29 @@ import styled from "styled-components";
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
+    
 `;
 
 const Label = styled.label`
     font-size: 0.875rem;
     margin-bottom: 5px;
-    color: #333;
-`;
+    `;
 
 const StyledInput = styled.input`
     padding: 10px;
-    border: 1px solid ${props => props.error ? '#ff1744' : '#9e9e9e'};
+    border: 2px solid ${props => props.theme.cardLight};
     border-radius: 4px;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
-
+    background: ${props => props.theme.card};
+    color: ${props => props.theme.textAlt};
     &:focus {
         border-color: #1976d2; // Highlight color on focus
         box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); // Adds focus ring
+    }
+    &::placeholder {
+        // color: ${props => props.theme.textAlt};
     }
 `;
 

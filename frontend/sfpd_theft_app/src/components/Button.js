@@ -52,6 +52,7 @@ const StyledButton = styled.button`
     color: white;
     border: none;
     border-radius: 4px;
+    user-select: none;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;

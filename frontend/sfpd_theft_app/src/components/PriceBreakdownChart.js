@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from './MainContainer';
+import { ThemeContext } from 'styled-components';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -13,6 +14,7 @@ const ChartContainer = styled.div`
 const PriceBreakdownChart = () => {
     const [chartData, setChartData] = useState(null);
     const api_route = 'http://127.0.0.1:5000/';
+    const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,23 +46,41 @@ const PriceBreakdownChart = () => {
     const options = {
         scales: {
             x: {
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
+                },
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Price Category'
+                    text: 'Price Category',
+                    color: theme.textAlt, // Using text color from the theme
                 }
             },
             y: {
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
+                },
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 title: {
                     display: true,
-                    text: 'Total Incidents'
+                    text: 'Total Incidents',
+                    color: theme.textAlt, // Using text color from the theme
+
                 }
             }
         },
         plugins: {
             legend: {
                 display: true,
-                position: 'top'
+                position: 'top',
+                labels: {
+                    color: theme.textAlt, // Using text color from the theme for legend labels
+                }
             }
         },
         // Additional options can be added here

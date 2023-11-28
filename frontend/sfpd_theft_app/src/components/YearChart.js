@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from './MainContainer';
+import { ThemeContext } from 'styled-components';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
@@ -11,6 +13,7 @@ const ChartContainer = styled.div`
 `;
 
 const YearChart = () => {
+    const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null);
     const api_route = 'http://127.0.0.1:5000/';
 
@@ -44,23 +47,42 @@ const YearChart = () => {
     const options = {
         scales: {
             x: {
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 title: {
                     display: true,
-                    text: 'Year'
+                    text: 'Year',
+                    color: theme.textAlt, // Using text color from the theme
+
+                },
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
                 }
+                
             },
             y: {
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: 'Total Incidents'
+                    text: 'Total Incidents',
+                    color: theme.textAlt, // Using text color from the theme
+                },
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
                 }
             }
         },
         plugins: {
             legend: {
                 display: true,
-                position: 'top'
+                position: 'top',
+                labels: {
+                    color: theme.textAlt, // Using text color from the theme for legend labels
+                }
             }
         }
     };

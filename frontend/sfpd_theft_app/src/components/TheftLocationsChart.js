@@ -72,11 +72,13 @@
 
 // export default TheftLocationsChart;
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from './MainContainer'
+import { ThemeContext } from 'styled-components';
+
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -86,11 +88,13 @@ const StyledGrid = styled.div`
 `;
 
 const ChartContainer = styled.div`
+
 `;
 
 
 
 const TheftLocationsChart = () => {
+    const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null); // Initially null
     const api_route = 'http://127.0.0.1:5000/';
 
@@ -127,24 +131,47 @@ const TheftLocationsChart = () => {
         indexAxis: 'y', // Set the index axis to 'y' for a horizontal bar chart
         scales: {
             x: {
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 beginAtZero: true,
                 title: {
                     display: false,
                     text: 'Total Incidents'
+                },
+                title: {
+                    color: theme.textAlt, // Using text color from the theme
+                },
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
                 }
             },
             y: {
+                grid: {
+                    color: theme.cardLight, // Using text color from the theme
+                },
                 title: {
                     display: false,
                     text: 'Intersection'
+                },
+                title: {
+                    color: theme.textAlt, // Using text color from the theme
+                },
+                ticks: {
+                    color: theme.textAlt, // Using text color from the theme
                 }
             }
         },
         plugins: {
             legend: {
                 display: true,
-                position: 'top'
+                position: 'top',
+                labels: {
+                    color: theme.textAlt, // Using text color from the theme for legend labels
+                }
+                
             }
+            
         },
         // Additional options can be added here
     };

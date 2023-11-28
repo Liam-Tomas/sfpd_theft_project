@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import MainContaineRight from './MainContainerRight';
+import { ThemeContext } from 'styled-components';
 
 const ChartWrapper = styled.div`
     margin: auto;  // Center the chart
@@ -16,6 +17,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const ResolutionStatusChart = () => {
     const [chartData, setChartData] = useState(null);
     const api_route = 'http://127.0.0.1:5000/';
+    const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -55,7 +57,11 @@ const ResolutionStatusChart = () => {
         plugins: {
             legend: {
                 display: true,
-                position: 'bottom'
+                position: 'bottom',
+                labels: {
+                    color: theme.textAlt, // Using text color from the theme for legend labels
+                }
+                
             }
         }
     };

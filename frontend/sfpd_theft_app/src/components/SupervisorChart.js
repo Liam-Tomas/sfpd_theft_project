@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ResponsiveTreeMap } from '@nivo/treemap';
 import axios from 'axios';
 import MainContainer from './MainContainer';
+import { ThemeContext } from 'styled-components';
 
 // Hardcoded neighborhoods for each Supervisor District
 const neighborhoodsByDistrict = {
@@ -20,6 +21,7 @@ const neighborhoodsByDistrict = {
 };
 
 const SupervisorChart = () => {
+    const theme = useContext(ThemeContext);
     const [data, setData] = useState({ children: [] });
     const api_route = 'http://127.0.0.1:5000/get-supervisor-breakdown';
 
@@ -40,15 +42,15 @@ const SupervisorChart = () => {
     return (
         <MainContainer>
             <h3>Breakdown by Supervisor District</h3>
-            <div style={{ height: 380 }}>
+            <div style={{ height: 380, color: 'black' }}>
                 <ResponsiveTreeMap
                     data={data}
                     identity="name"
                     value="value"
                     margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
                     labelSkipSize={12}
-                    labelTextColor={{ from: 'color', modifiers: [['darker', 1.2]] }}
-                    parentLabelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+                    labelTextColor={'black'} // Use text color from theme
+                    parentLabelTextColor={theme.text} // Use text color from theme for parent labels
                     colors={{ scheme: 'nivo' }}
                     borderColor={{ from: 'color', modifiers: [['darker', 0.1]] }}
                     animate={true}
