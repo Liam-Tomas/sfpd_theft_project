@@ -31,7 +31,7 @@ const Label = styled.label`
 
 const StyledInput = styled.input`
     padding: 10px;
-    border: 1.5px solid ${props => props.error ? '#ff1744' : '#9e9e9e'};
+    border: 1px solid ${props => props.error ? '#ff1744' : '#9e9e9e'};
     border-radius: 4px;
     font-size: 1rem;
     outline: none;

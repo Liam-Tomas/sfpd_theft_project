@@ -80,6 +80,7 @@ import TheftLocationsChart from '../components/TheftLocationsChart';
 import PriceBreakdownChart from '../components/PriceBreakdownChart';
 import YearChart from '../components/YearChart';
 import ResolutionStatusChart from '../components/ResolutionStatusChart';
+import TimeOfDayChart from '../components/TimeOfDayChart';
 import styled from 'styled-components';
 
 const StyledGrid = styled.div`
@@ -103,30 +104,38 @@ const SecondRowItemSmall = styled.div`
   grid-column: span 2; /* Span 2 columns */
 `;
 
+const ThirdRowItem = styled.div`
+grid-column: span 10; /* Span 2 columns */
+
+`
+
 function HomePage() {
-    return (  
-        <div>
-            <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
-            <StyledGrid>
-                <FirstRowLeft>
-                    <RiskCalc />
-                    <TheftLocationsChart />
-                </FirstRowLeft>
-                <FirstRowRight>
-                    <LeafletMap />
-                </FirstRowRight>
-                <SecondRowItem>
-                    <YearChart />
-                </SecondRowItem>
-                <SecondRowItem>
-                    <PriceBreakdownChart />
-                </SecondRowItem>
-                <SecondRowItemSmall>
-                    <ResolutionStatusChart />
-                </SecondRowItemSmall>
-            </StyledGrid>
-        </div>
-    );
+  return (
+    <div>
+      <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
+      <StyledGrid>
+        <FirstRowLeft>
+          <RiskCalc />
+          <TheftLocationsChart />
+        </FirstRowLeft>
+        <FirstRowRight>
+          <LeafletMap />
+        </FirstRowRight>
+        <SecondRowItem>
+          <YearChart />
+        </SecondRowItem>
+        <SecondRowItem>
+          <PriceBreakdownChart />
+        </SecondRowItem>
+        <SecondRowItemSmall>
+          <ResolutionStatusChart />
+        </SecondRowItemSmall>
+        <ThirdRowItem>
+          <TimeOfDayChart />
+        </ThirdRowItem>
+      </StyledGrid>
+    </div>
+  );
 }
 
 export default HomePage;

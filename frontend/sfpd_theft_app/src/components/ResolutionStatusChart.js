@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import MainContaineRight from './MainContainerRight';
 
 const ChartWrapper = styled.div`
     margin: auto;  // Center the chart
@@ -10,13 +11,6 @@ const ChartWrapper = styled.div`
     width=576px // Set the width to a larger value to make it wider
 />
 `;
-
-const  MainContainer = styled.div`
-    background-color: #f8fafc;
-    padding: 10px 25px 20px 25px;
-    margin: 0px 0px 20px 0px;
-    border-radius:5px;
-`
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -68,14 +62,14 @@ const ResolutionStatusChart = () => {
     };
 
     return (
-        <MainContainer>
+        <MainContaineRight>
             <h3>Resolution Status</h3>
             <ChartWrapper>
                 {chartData && (
                     <Pie data={chartData} options={options} />
                 )}
             </ChartWrapper>
-        </MainContainer>
+        </MainContaineRight>
     );
 };
 
