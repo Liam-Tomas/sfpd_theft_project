@@ -51,7 +51,7 @@ const YearChart = () => {
                     color: theme.cardLight, // Using text color from the theme
                 },
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Year',
                     color: theme.textAlt, // Using text color from the theme
 
@@ -67,7 +67,7 @@ const YearChart = () => {
                 },
                 beginAtZero: true,
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Total Incidents',
                     color: theme.textAlt, // Using text color from the theme
                 },

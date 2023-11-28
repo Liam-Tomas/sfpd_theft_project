@@ -64,7 +64,7 @@ const TimeOfDayChart = () => {
                 },
                 beginAtZero: true,
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Total Incidents',
                     color: theme.textAlt, // Using text color from the theme
                 }
@@ -77,7 +77,7 @@ const TimeOfDayChart = () => {
                     color: theme.cardLight, // Using text color from the theme
                 },
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Time of Day',
                     color: theme.textAlt, // Using text color from the theme
                 }

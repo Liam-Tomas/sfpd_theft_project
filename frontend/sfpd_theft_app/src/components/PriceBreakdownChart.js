@@ -54,7 +54,7 @@ const PriceBreakdownChart = () => {
                 },
                 beginAtZero: true,
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Price Category',
                     color: theme.textAlt, // Using text color from the theme
                 }
@@ -67,7 +67,7 @@ const PriceBreakdownChart = () => {
                     color: theme.cardLight, // Using text color from the theme
                 },
                 title: {
-                    display: true,
+                    display: false,
                     text: 'Total Incidents',
                     color: theme.textAlt, // Using text color from the theme
 
@@ -88,7 +88,7 @@ const PriceBreakdownChart = () => {
 
     return (
         <MainContainer>
-            <h3>Breakdown by Price Category</h3>
+            <h3>Breakdown by Price of Stolen Item</h3>
             <ChartContainer>
                 {chartData && (
                     <Bar
