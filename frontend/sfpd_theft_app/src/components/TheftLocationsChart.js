@@ -81,8 +81,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const StyledGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
 `;
 
 const ChartContainer = styled.div`
@@ -157,8 +157,8 @@ const TheftLocationsChart = () => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={388} // You can also set the height as needed
-                            width={588} // Set the width to a larger value to make it wider
+                            height={290} // You can also set the height as needed
+                            width={490} // Set the width to a larger value to make it wider
                         />
                     )}
                 </ChartContainer>

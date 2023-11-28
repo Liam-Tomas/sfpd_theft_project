@@ -73,8 +73,8 @@ const YearChart = () => {
                     <Line
                         data={chartData}
                         options={options}
-                        height={180}
-                        width={380}
+                        height={200}
+                        width={400}
                     />
                 )}
             </ChartContainer>

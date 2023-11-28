@@ -84,7 +84,7 @@ function LeafletMap() {
   return <MainContaineRight>
 
     <h2>Interactive Heat Map of Thefts</h2>
-    <div id="map" style={{ height: '70vh', width: '100%' }}></div>
+    <div id="map" style={{ height: '539px' }}></div>
 
   </MainContaineRight>
 }

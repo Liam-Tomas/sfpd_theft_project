@@ -86,7 +86,7 @@ const TimeOfDayChart = () => {
                     <Bar
                         data={chartData}
                         options={options}
-                        height={380}
+                        height={390}
                     />
                 )}
             </ChartContainer>
