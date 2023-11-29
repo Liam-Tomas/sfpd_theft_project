@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
-import MainContainer from './MainContainer';
+import MainContainer from '../MainContainer';
 import { ThemeContext } from 'styled-components';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';

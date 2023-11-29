@@ -3,6 +3,13 @@ import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Toggle from './Toggler';
+import { Link } from 'react-router-dom';
+
+
+const NavbarLink = styled(Link)`
+  text-decoration: none;
+  color: inherit; // Ensures the link color matches your theme
+`;
 
 const rippleAnimation = keyframes`
   to {
@@ -96,11 +103,13 @@ const Navbar = ({ theme, toggleTheme }) => {
     return (
         <NavbarContainer>
             <NavbarItems>
-                <NavbarItem onClick={e => handleRipple(e, 'home')}>
-                    {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }} />}
-                    <FontAwesomeIcon icon={faHome} className="icon" />
-                    Home
-                </NavbarItem>
+                <NavbarLink to="/">
+                    <NavbarItem onClick={e => handleRipple(e, 'home')}>
+                        {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }} />}
+                        <FontAwesomeIcon icon={faHome} className="icon" />
+                        Home
+                    </NavbarItem>
+                </NavbarLink>
                 <NavbarItem onClick={e => handleRipple(e, 'about')}>
                     {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />}
                     <FontAwesomeIcon icon={faUser} className="icon" />

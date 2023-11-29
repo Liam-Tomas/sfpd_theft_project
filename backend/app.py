@@ -17,6 +17,8 @@ CORS(app)  # Configure CORS for your app
 # Load the pre-processed GeoJSON file
 grid = gpd.read_file('sf_heatmap_detailed_v6.geojson')
 
+# grid_mental_health = gpd.read_file('sf_heatmap_detailed_v6.geojson')
+
 # Initialize OpenCage Geocoder with API key
 geocoder = OpenCageGeocode("90989e6ade6247a7b36dde59f9b55adc")
 

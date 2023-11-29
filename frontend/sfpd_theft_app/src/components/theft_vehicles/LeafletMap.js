@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import styled from 'styled-components';
-import MainContaineRight from './MainContainerRight';
+import MainContaineRight from '../MainContainerRight';
 
 
 function LeafletMap() {

@@ -97,7 +97,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../Button';
 import { categorizeRisk, getRiskCategoryColor } from './RiskUtils';
 
 

@@ -10,6 +10,7 @@ export const lightTheme = {
     borderColor: '#e2e8f0',
     borderColor2: '#e2e8f0',
     hoverShadowColor: 'rgba(0, 0, 0, 0.2)',
+    buttonHoverBackground: '#e3f2fd', // light blue for light theme hover
 
 }
 
@@ -25,4 +26,6 @@ export const darkTheme = {
     borderColor: '#28292a',
     borderColor2: 'rgb(197 199 197)',
     hoverShadowColor: '#afb8c4', 
+    buttonHoverBackground: '#37474f', // darker shade for dark theme hover
+
 }

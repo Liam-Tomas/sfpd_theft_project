@@ -1,20 +1,3 @@
-// import styled from "styled-components";
-
-// const StyledInput = styled.input`
-//     padding: 10px;
-//     border: 1.5px solid #9e9e9e; // Neutral border color
-//     border-radius: 4px;
-//     font-size: 1rem;
-//     outline: none;
-//     transition: border-color 0.2s;
-
-//     &:focus {
-//         border-color: #1976d2; // Highlight color on focus
-//     }
-// `;
-
-// export default StyledInput;
-
 import React from 'react';
 import styled from "styled-components";
 
@@ -35,6 +18,7 @@ const StyledInput = styled.input`
     border-radius: 4px;
     font-size: 1rem;
     outline: none;
+    width: 170px;
     transition: border-color 0.2s, box-shadow 0.2s;
     background: ${props => props.theme.card};
     color: ${props => props.theme.textAlt};

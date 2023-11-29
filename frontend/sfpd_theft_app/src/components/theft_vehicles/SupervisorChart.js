@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ResponsiveTreeMap } from '@nivo/treemap';
 import axios from 'axios';
-import MainContainer from './MainContainer';
+import MainContainer from '../MainContainer';
 import { ThemeContext } from 'styled-components';
 
 // Hardcoded neighborhoods for each Supervisor District

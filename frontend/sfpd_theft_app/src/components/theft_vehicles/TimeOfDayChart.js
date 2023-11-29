@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
-import MainContainer from './MainContainer';
+import MainContaineRight from '../MainContainerRight';
 import { ThemeContext } from 'styled-components';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -11,7 +11,7 @@ const ChartContainer = styled.div`
     // Add styles here
 `;
 
-const PriceBreakdownChart = () => {
+const TimeOfDayChart = () => {
     const [chartData, setChartData] = useState(null);
     const api_route = 'http://127.0.0.1:5000/';
     const theme = useContext(ThemeContext);
@@ -19,16 +19,26 @@ const PriceBreakdownChart = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${api_route}/get-price-breakdown`);
+                const response = await axios.get(`${api_route}/get-time-breakdown`);
                 const data = response.data;
                 if (data && Array.isArray(data)) {
                     setChartData({
-                        labels: data.map(item => item.Price_Category),
+                        labels: data.map(item => item.Time_Slot),
                         datasets: [{
-                            label: 'Total Incidents by Price Category',
+                            label: 'Total Incidents by Time of Day',
                             data: data.map(item => item.Total_Incidents),
-                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)'
+                            ],
                             borderWidth: 1
                         }]
                     });
@@ -45,7 +55,7 @@ const PriceBreakdownChart = () => {
 
     const options = {
         scales: {
-            x: {
+            y: {
                 ticks: {
                     color: theme.textAlt, // Using text color from the theme
                 },
@@ -55,11 +65,11 @@ const PriceBreakdownChart = () => {
                 beginAtZero: true,
                 title: {
                     display: false,
-                    text: 'Price Category',
+                    text: 'Total Incidents',
                     color: theme.textAlt, // Using text color from the theme
                 }
             },
-            y: {
+            x: {
                 ticks: {
                     color: theme.textAlt, // Using text color from the theme
                 },
@@ -68,11 +78,10 @@ const PriceBreakdownChart = () => {
                 },
                 title: {
                     display: false,
-                    text: 'Total Incidents',
+                    text: 'Time of Day',
                     color: theme.textAlt, // Using text color from the theme
-
                 }
-            }
+            }, 
         },
         plugins: {
             legend: {
@@ -81,25 +90,28 @@ const PriceBreakdownChart = () => {
                 labels: {
                     color: theme.textAlt, // Using text color from the theme for legend labels
                 }
-            }
+            },
+
         },
-        // Additional options can be added here
+        responsive: true,
+        maintainAspectRatio: false
     };
 
     return (
-        <MainContainer>
-            <h3>Breakdown by Price of Stolen Item</h3>
+        <MainContaineRight>
+            <h3>Breakdown by Time of Day</h3>
             <ChartContainer>
                 {chartData && (
                     <Bar
                         data={chartData}
                         options={options}
-
+                        height={390}
+                        width={400}
                     />
                 )}
             </ChartContainer>
-        </MainContainer>
+        </MainContaineRight>
     );
 };
 
-export default PriceBreakdownChart;
+export default TimeOfDayChart;

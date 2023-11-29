@@ -3,7 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import MainContaineRight from './MainContainerRight';
+import MainContaineRight from '../MainContainerRight';
 import { ThemeContext } from 'styled-components';
 
 const ChartWrapper = styled.div`
