@@ -1,17 +1,14 @@
 import React from 'react';
-import MentalMap from '../components/metal_incidents/Mental_Leaflet';
-import RiskCalc from '../components/theft_vehicles/RiskCalc';
-import TheftLocationsChart from '../components/theft_vehicles/TheftLocationsChart';
-import PriceBreakdownChart from '../components/theft_vehicles/PriceBreakdownChart';
-import YearChart from '../components/theft_vehicles/YearChart';
-import ResolutionStatusChart from '../components/theft_vehicles/ResolutionStatusChart';
-import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
-import SupervisorChart from '../components/theft_vehicles/SupervisorChart';
 import styled from 'styled-components';
-import Navbar from '../components/NavBar';
+import LeafletMap from '../components/charts/LeafletMap';
+import RiskCalc from '../components/charts/RiskCalc';
+import YearChart from '../components/charts/YearChart';
+import TopLocationsChart from '../components/charts/TopLocationsChart';
+import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
+import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
 
 const MainContainer = styled.div`
-  padding: 5px 40px;
+    padding: 5px 37px;
 `
 
 const StyledGrid = styled.div`
@@ -51,26 +48,29 @@ function MentalPage() {
             <h1>San Francisco Mental Health Incident Analysis (2018 - 2023)</h1>
             <StyledGrid>
                 <FirstRowLeft>
-                    <div></div>
-                    <div></div>
+                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get_rate_mental_health" />
+                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-mental-locations" />
                 </FirstRowLeft>
                 <FirstRowRight>
-                    <MentalMap />
+                <LeafletMap geojsonUrl="/sf_mental_health_heatmap.geojson" />
                 </FirstRowRight>
                 <SecondRowItem>
-                    <div></div>
+                <YearChart
+            apiEndpoint= "http://127.0.0.1:5000/get-mental-year"
+            chartLabel="Total Incidents per Year"
+          />
                 </SecondRowItem>
                 <SecondRowItem>
                     <div></div>
                 </SecondRowItem>
                 <SecondRowItemSmall>
-                    <div></div>
+                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
                     <div></div>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <div></div>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>

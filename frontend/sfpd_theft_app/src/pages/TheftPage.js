@@ -1,19 +1,18 @@
 import React from 'react';
-import LeafletMap from '../components/theft_vehicles/LeafletMap';
-import RiskCalc from '../components/theft_vehicles/RiskCalc';
-import TheftLocationsChart from '../components/theft_vehicles/TheftLocationsChart';
+import LeafletMap from '../components/charts/LeafletMap';
+import RiskCalc from '../components/charts/RiskCalc';
+import TopLocationsChart from '../components/charts/TopLocationsChart';
 import PriceBreakdownChart from '../components/theft_vehicles/PriceBreakdownChart';
-import YearChart from '../components/theft_vehicles/YearChart';
-import ResolutionStatusChart from '../components/theft_vehicles/ResolutionStatusChart';
+import YearChart from '../components/charts/YearChart';
+import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
 import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
 import SupervisorChart from '../components/theft_vehicles/SupervisorChart';
 import styled from 'styled-components';
-import Navbar from '../components/NavBar';
 
 const MainContainer = styled.div`
-  padding: 5px 40px;
-
+  padding: 5px 37px;
 `
+
 const StyledGrid = styled.div`
   display: grid;
   
@@ -46,31 +45,35 @@ const ThirdRowItem = styled.div`
 `
 
 function HomePage() {
+  const apiURL = 'http://127.0.0.1:5000'
   return (
     <MainContainer>
       <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
       <StyledGrid>
         <FirstRowLeft>
-          <RiskCalc />
-          <TheftLocationsChart />
+          <RiskCalc apiEndpoint={`${apiURL}/get_probability`} />
+          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/top-theft-locations" />
         </FirstRowLeft>
         <FirstRowRight> 
-          <LeafletMap />
+          <LeafletMap geojsonUrl="/sf_heatmap_detailed_v6.geojson" />
         </FirstRowRight>
         <SecondRowItem>
-          <YearChart />
+          <YearChart
+            apiEndpoint={`${apiURL}/get-year-breakdown`}
+            chartLabel="Total Incidents per Year"
+          />
         </SecondRowItem>
         <SecondRowItem>
-          <PriceBreakdownChart />
+          <PriceBreakdownChart/>
         </SecondRowItem>
         <SecondRowItemSmall>
-          <ResolutionStatusChart />
+          <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-status-breakdown"/>
         </SecondRowItemSmall>
         <ThirdRowItem>
           <SupervisorChart />
         </ThirdRowItem>
         <ThirdRowItem>
-          <TimeOfDayChart />
+          <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-time-breakdown"/>
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>

@@ -38,5 +38,4 @@ gdf = gdf.to_crs('EPSG:3310')
 cell_area_m2 = gdf['geometry'].iloc[0].area
 cell_area_km2 = cell_area_m2 / 1e6  # Convert to square kilometers
 
-cell_area_km2
-
+print(cell_area_km2)

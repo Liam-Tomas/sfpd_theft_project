@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import styled from 'styled-components';
-import MainContaineRight from '../MainContainerRight';
+import MainContaineRight from '../utility/MainContainerRight';
 import { ThemeContext } from 'styled-components';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -11,15 +11,15 @@ const ChartContainer = styled.div`
     // Add styles here
 `;
 
-const TimeOfDayChart = () => {
+const TimeOfDayChart = ({ apiEndpoint }) => {
     const [chartData, setChartData] = useState(null);
-    const api_route = 'http://127.0.0.1:5000/';
+
     const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${api_route}/get-time-breakdown`);
+                const response = await axios.get(apiEndpoint);
                 const data = response.data;
                 if (data && Array.isArray(data)) {
                     setChartData({
@@ -51,7 +51,7 @@ const TimeOfDayChart = () => {
         };
 
         fetchData();
-    }, []);
+    }, [apiEndpoint]);
 
     const options = {
         scales: {
