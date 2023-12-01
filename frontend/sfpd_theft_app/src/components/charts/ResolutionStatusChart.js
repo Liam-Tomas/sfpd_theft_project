@@ -8,7 +8,7 @@ import { ThemeContext } from 'styled-components';
 
 const ChartWrapper = styled.div`
     margin: auto;  // Center the chart
-    height: 237px; You can also set the height as needed
+    height: 240px; You can also set the height as needed
 />
 `;
 

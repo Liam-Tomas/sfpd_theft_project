@@ -6,11 +6,11 @@ import PriceBreakdownChart from '../components/theft_vehicles/PriceBreakdownChar
 import YearChart from '../components/charts/YearChart';
 import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
 import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
-import SupervisorChart from '../components/theft_vehicles/SupervisorChart';
+import SupervisorChart from '../components/charts/SupervisorChart';
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
-  padding: 5px 37px;
+  padding: 5px 21px;
 `
 
 const StyledGrid = styled.div`
@@ -67,13 +67,13 @@ function HomePage() {
           <PriceBreakdownChart/>
         </SecondRowItem>
         <SecondRowItemSmall>
-          <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-status-breakdown"/>
+          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-status-breakdown"/>
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart />
+          <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-supervisor-breakdown"/>
         </ThirdRowItem>
         <ThirdRowItem>
-          <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-time-breakdown"/>
+          <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-time-breakdown"/>
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>

@@ -7,9 +7,10 @@ import TopLocationsChart from '../components/charts/TopLocationsChart';
 import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
 import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
+import AssaultTypesChart from '../components/charts/AssaultTypeCharts';
 
 const MainContainer = styled.div`
-    padding: 5px 21px;
+    padding: 5px 20px;
 `
 
 const StyledGrid = styled.div`
@@ -42,39 +43,39 @@ const ThirdRowItem = styled.div`
 
 `
 
-function MentalPage() {
+function AssaultPage() {
     return (
         <MainContainer>
-            <h1>San Francisco Mental Health Incident Analysis (2018 - 2023)</h1>
+            <h1>San Francisco Assault Incident Analysis (2018 - 2023)</h1>
             <StyledGrid>
                 <FirstRowLeft>
-                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get_rate_mental_health" />
-                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-mental-locations" />
+                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-assault" />
+                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-assault-locations" />
                 </FirstRowLeft>
                 <FirstRowRight>
-                <LeafletMap geojsonUrl="/sf_mental_health_heatmap.geojson" />
+                <LeafletMap geojsonUrl="/sf_assault_heatmap.geojson" />
                 </FirstRowRight>
                 <SecondRowItem>
                 <YearChart
-            apiEndpoint= "http://127.0.0.1:5000/get-mental-year"
+            apiEndpoint= "http://127.0.0.1:5000/get-assault-year"
             chartLabel="Total Incidents per Year"
           />
                 </SecondRowItem>
                 <SecondRowItem>
-                    <div></div>
+                    <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-assault-type"/>
                 </SecondRowItem>
                 <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution"/>
+                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-assault-resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
-                    <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-mental-supervisor"/>
+                    <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-assault-supervisor"/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"/>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-assault-time"/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>
     );
 }
 
-export default MentalPage;
+export default AssaultPage;

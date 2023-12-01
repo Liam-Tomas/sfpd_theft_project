@@ -5,6 +5,8 @@ import Navbar from './components/utility/NavBar';
 import HomePage from './pages/HomePage';
 import TheftPage from './pages/TheftPage';
 import MentalPage from './pages/MentalPage';
+import AssaultPage from './pages/AssaultPage';
+import AboutPage from './pages/AboutPage';
 import { GlobalStyles } from './components/theme/GlobalStyles';
 import { useDarkMode } from './components/theme/DarkMode';
 import { lightTheme, darkTheme } from './components/theme/CustomStyles'
@@ -35,6 +37,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
               <Route path="/vehicle-theft" element={<TheftPage />} />
               <Route path="/mental-health" element={<MentalPage />} />
+              <Route path="/assault" element={<AssaultPage />} />
+              <Route path="/about" element={<AboutPage />} />
+
               {/* Add more routes as needed */}
             </Routes>
           </MainContent>

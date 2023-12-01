@@ -12,10 +12,12 @@ import glassIMG from '../images/glassIMG.jpg'
 import { useTheme } from 'styled-components';
 
 const MainContainer = styled.div`
+  margin: 11px 11px 11px 11px;
+  padding-bottom: 47px;
+
   z-index: -100;
   min-height: 92vh;
   display: flex;
-  padding-bottom: 45px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -23,10 +25,8 @@ const MainContainer = styled.div`
     props.theme.mode === 'dark'
       ? `url(${rainDarkIMG})`
       : `url(${rainLightIMG})`};
-  border-radius: 50px;
+  border-radius: 25px;
   background-size: cover;
-  margin: 8px 8px 8px 23px;
-  /* Darken the background image */
   object-fit: contain;
 `;
 
@@ -38,7 +38,7 @@ const StyledLink = styled(Link)`
 const ButtonContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap:20px;
+  gap:15px;
 `;
 
 const Button = styled.div`
@@ -47,10 +47,9 @@ const Button = styled.div`
   gap: 20px;
   background-color: #1976D2; // Example blue color
   background: ${props => props.theme.backgroundColor};
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px 0px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
   padding: 30px 30px;
-  border-radius: 30px;
-
+  border-radius: 25px;
   transition: background-color 0.3s ease, border-radius 0.3s ease; // Added border-radius to transition
   &:hover {
     background: ${props => props.theme.backgroundColor};
@@ -97,7 +96,7 @@ const HomeSubText = styled.p`
     font-weight: 500;
     font-size: 1.4rem;
     line-height:1.5;
-
+    margin-top: 5px;
 
 `
 
@@ -138,7 +137,7 @@ function HomePage() {
                         </div>   
                     </Button>
                 </StyledLink>
-                <StyledLink to="/">
+                <StyledLink to="/assault">
                     <Button>
                         <IconContainer>
                             <FontAwesomeIcon icon={faChartBar} />                       

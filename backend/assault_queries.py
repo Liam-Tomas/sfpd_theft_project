@@ -1,13 +1,13 @@
 from db import get_db_connection
 
-def get_top_mental_locations():
+def get_top_assault_locations():
     """ Query for top 10 locations of mental health incidents in sf """
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
     cursor.execute("""
         SELECT Intersection, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
+        WHERE Incident_Category = 'Assault'
         GROUP BY Intersection
         ORDER BY Total_Incidents DESC
         LIMIT 10;
@@ -17,14 +17,14 @@ def get_top_mental_locations():
     conn.close()
     return results
 
-def get_mental_year():
+def get_assault_year():
     """ Query for top 10 locations of mental health incidents in sf """
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
     cursor.execute("""
         SELECT Incident_Year, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
+        WHERE Incident_Category = 'Assault'
         GROUP BY Incident_Year
         ORDER BY Incident_Year;
     """)
@@ -33,14 +33,14 @@ def get_mental_year():
     conn.close()
     return results
 
-def get_mental_resolution():
+def get_assault_resolution():
     """ Query for resolution status of mental health incidents in sf """
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
     cursor.execute("""
         SELECT Resolution, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
+        WHERE Incident_Category = 'Assault'
         GROUP BY Resolution;
     """)
     results = cursor.fetchall()
@@ -48,7 +48,7 @@ def get_mental_resolution():
     conn.close()
     return results
 
-def get_mental_time():
+def get_assault_time():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True) 
     cursor.execute("""
@@ -61,7 +61,7 @@ def get_mental_time():
             END AS Time_Slot,
             COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
+        WHERE Incident_Category = 'Assault'
         GROUP BY Time_Slot
         ORDER BY Total_Incidents DESC;
 
@@ -71,15 +71,30 @@ def get_mental_time():
     conn.close()
     return results
 
-def get_mental_supervisor():
+def get_assault_supervisor():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True) 
     cursor.execute("""
         SELECT Supervisor_District, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
+        WHERE Incident_Category = 'Assault'
         GROUP BY Supervisor_District
         ORDER BY Total_Incidents DESC;
+    """)
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results
+
+def get_assault_type():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True) 
+    cursor.execute("""
+        SELECT Incident_Description, COUNT(*) as Incident_Count
+        FROM sfpd_incidents
+        WHERE Incident_Description LIKE '%Assault%'
+        GROUP BY Incident_Description
+        ORDER BY Incident_Count DESC;
     """)
     results = cursor.fetchall()
     cursor.close()

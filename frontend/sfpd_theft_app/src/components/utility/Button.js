@@ -1,30 +1,3 @@
-// import styled from "styled-components";
-
-// const Button = styled.button`
-//     padding: 10px 15px;
-//     background-color: #1976d2; // MUI primary color
-//     color: white;
-//     border: none;
-//     border-radius: 4px;
-//     font-size: 1rem;
-//     cursor: pointer;
-//     transition: background-color 0.2s;
-//     position: relative; // Needed to position the ripple span correctly
-//     overflow: hidden; // Ensures the ripple effect is contained within the button borders
-
-//     &:hover {
-//         background-color: #1565c0; // Darken color on hover
-//     }
-
-//     &:disabled {
-//         background-color: #e0e0e0;
-//         color: #9e9e9e;
-//         cursor: not-allowed;
-//     }
-// `;
-
-// export default Button;
-
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 

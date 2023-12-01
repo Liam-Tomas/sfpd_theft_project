@@ -107,25 +107,51 @@ def plot_incident_map(grid_with_full_data):
     plt.savefig('incident_map2.png', dpi=300, bbox_inches='tight')
     plt.show()
 
+# def main():
+#     print('Starting analysis...')
+#     df = load_data('sfpd_incidents_clean.csv')  # Assuming you have latitude and longitude in this dataset
+#     gdf = create_geodataframe(df)
+#     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
+#     joined = perform_spatial_join(gdf, grid)
+    
+#     # Filter for 'Mental Health Detention'
+#     mental_health_data = joined[joined['Incident Description'] == 'Mental Health Detention']
+    
+#     # Total incidents for 'Mental Health Detention'
+#     total_mental_health_incidents = len(mental_health_data)
+
+#     incident_counts_mental_health = calculate_incident_probabilities(mental_health_data, total_mental_health_incidents)
+#     average_monthly_incidents_mental_health = calculate_average_incidents_per_month(mental_health_data)
+
+#     aggregated_info_mental_health = aggregate_info(mental_health_data)
+#     merge_and_save_data(grid, incident_counts_mental_health, average_monthly_incidents_mental_health, aggregated_info_mental_health, 'sf_mental_health_heatmap.geojson')
+#     plot_incident_map(grid.merge(incident_counts_mental_health, on='cell_id', how='left'))
+
+# if __name__ == "__main__":
+#     main()
+
+## FOR ASSAULT !
 def main():
     print('Starting analysis...')
-    df = load_data('sfpd_incidents_clean.csv')  # Assuming you have latitude and longitude in this dataset
+    df = load_data('sfpd_incidents_clean.csv')
     gdf = create_geodataframe(df)
     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
     joined = perform_spatial_join(gdf, grid)
-    
-    # Filter for 'Mental Health Detention'
-    mental_health_data = joined[joined['Incident Description'] == 'Mental Health Detention']
-    
-    # Total incidents for 'Mental Health Detention'
-    total_mental_health_incidents = len(mental_health_data)
 
-    incident_counts_mental_health = calculate_incident_probabilities(mental_health_data, total_mental_health_incidents)
-    average_monthly_incidents_mental_health = calculate_average_incidents_per_month(mental_health_data)
+    # Filter for Assault incidents
+    assault_data = joined[joined['Incident Category'] == 'Assault']
 
-    aggregated_info_mental_health = aggregate_info(mental_health_data)
-    merge_and_save_data(grid, incident_counts_mental_health, average_monthly_incidents_mental_health, aggregated_info_mental_health, 'sf_mental_health_heatmap.geojson')
-    plot_incident_map(grid.merge(incident_counts_mental_health, on='cell_id', how='left'))
+    # Total Assault incidents
+    total_assault_incidents = len(assault_data)
+
+    incident_counts_assault = calculate_incident_probabilities(assault_data, total_assault_incidents)
+    average_monthly_incidents_assault = calculate_average_incidents_per_month(assault_data)
+
+    # Aggregate information for Assault incidents
+    aggregated_info_assault = aggregate_info(assault_data)
+
+    merge_and_save_data(grid, incident_counts_assault, average_monthly_incidents_assault, aggregated_info_assault, 'sf_assault_heatmap.geojson')
+    plot_incident_map(grid.merge(incident_counts_assault, on='cell_id', how='left'))
 
 if __name__ == "__main__":
     main()
