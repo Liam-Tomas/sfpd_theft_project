@@ -17,6 +17,14 @@ const Paragraph = styled.p`
     font-size:1.05rem;
 `;
 
+const Footer = styled.div`
+font-size:1.05rem;
+margin-top: 7rem;
+
+
+`;
+
+
 function AboutPage() {
     return (
         <PageContainer>
@@ -29,8 +37,8 @@ function AboutPage() {
             <Paragraph>
                 <strong>Flask Backend:</strong> At the core of this project is a Flask backend, serving as the backbone for data processing, 
                 analysis, and retrieval. It powers various functionalities, including the calculation of crime incident probabilities and 
-                the retrieval of data for different types of analyses. The Flask API enables seamless communication between the frontend and 
-                backend, allowing for dynamic data updates and real-time interactions.
+                endpoints for use in frontend visualizations. The Flask API enables seamless communication between the frontend and 
+                backend, allowing for dynamic data updates and real-time interactions. 
             </Paragraph>
             <Paragraph>
                 <strong>Geospatial Analysis:</strong> One of the project's standout features is its geospatial analysis. Python scripts 
@@ -48,13 +56,13 @@ function AboutPage() {
             <Paragraph>
                 <strong>Comprehensive Visualization:</strong> The frontend of the project is built using React, providing an interactive and 
                 visually engaging UI. It dynamically renders heatmaps, data visualizations, and interactive maps sourced from the 
-                Flask API. The project uses MySQL for data management. Backend Python scripts perform SQL queries to process crime data, while 
-                the frontend dynamically visualizes this data. The integration of Leaflet for map visualization, Chart.js for dynamic charts, and treemaps 
+                Flask API. The project uses MySQL for data management. Backend Python scripts perform SQL queries 
+                to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization, Chart.js for dynamic charts, and treemaps 
                 for data representation enhances the user's ability to explore and comprehend crime data.
             </Paragraph>
-            <div>
+            <Footer>
                 © 2023 Liam Armstrong. All Rights Reserved.
-            </div>
+            </Footer>
         </PageContainer>
     );
 }

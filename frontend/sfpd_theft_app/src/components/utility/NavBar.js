@@ -248,7 +248,9 @@ const rippleAnimation = keyframes`
 const RippleSpan = styled.span`
   position: absolute;
   border-radius: 50%;
+  z-index: 1000;
   background-color: ${props => props.theme.buttonHoverBackground};
+  background-color: ${props => props.theme.cardLighter};
   transform: scale(0);
   animation: ${rippleAnimation} 600ms linear;
   width: 100%;
@@ -257,13 +259,13 @@ const RippleSpan = styled.span`
 
 const NavbarContainer = styled.div`
   z-index:1000;
-  padding: 18px 0px;
+  padding: 15px 0px;
   position:fixed;
   // left: 0;
   // top: 0;
   height: 100vh;
   background-color: #f8fafc;
-  background: ${props => props.theme.card};
+  background: ${props => props.theme.cardLighter};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -282,15 +284,18 @@ const NavbarItems = styled.div`
 
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1rem;
-  padding: 7px 18px;
-  border-radius: 10px;
+  padding: 7.5px 17.5px;
+  border-radius: 20px;
   background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
+  color: ${(props) => props.isActive ? props.theme.text : 'none'};
+
   transition: background-color 0.3s;
 
 `
 
 const NavbarItem = styled.div`
   position: relative;
+  gap: 1px;
   font-size: .8rem;
   align-items: center;
   font-weight: 500;
@@ -298,28 +303,33 @@ const NavbarItem = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  padding: 5px 16px;
+  padding: 4px 17px;
   transition: background-color 0.8s, box-shadow 0.3s;
   overflow: hidden;
   color: ${props => props.theme.textAlt};
   user-select: none;
+  color: ${(props) => props.isActive ? props.theme.text : 'none'};
   &:hover {
     color: ${props => props.theme.text};
-
-    // box-shadow: 0 0 3px ${props => props.theme.hoverShadowColor};
     ${StyledIcon} {
       background-color: ${props => props.theme.buttonHoverBackground};
     }
+  &:active {
+    color: ${props => props.theme.text};
+    
+    ${StyledIcon} {
+      transform: scale(.92);
+    }
+  }
 `;
 
 const SubMenu = styled.div`
   position: absolute;
   height:100vh;
-  background-color: ${props => props.theme.card};
+  background-color: ${props => props.theme.cardLighter};
   top: 0;
   left: 100%; // Adjust as needed to position correctly
-  width: 195px; 
+  width: 200px; 
   z-index: 100; 
   display: flex;
   flex-direction: column;
@@ -337,11 +347,13 @@ const SubMenuItem = styled(Link)`
   font-size: .95rem;
   color: inherit; // Ensures the link color matches your theme
   padding: 10px 15px;
-  font-weight: 400;
+  font-weight: 500;
   border-radius: 25px;
   &:hover {
     background-color: ${props => props.theme.buttonHoverBackground};
   }
+  &:active {
+    transform: scale(.98);
 `;
 
 
@@ -417,25 +429,24 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarItem
             onClick={handleHomeClick}
           >
-            {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}
-            />}
-            <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
-/>
+            {/* {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}/>} */}
+              <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
+              />
             Home
           </NavbarItem>
         </NavbarLink>
         <NavbarLink to="/about">
           <NavbarItem
             onClick={handleAboutClick}
-            >
-            {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />}
-            <StyledIcon icon={faUser} isActive={location.pathname === '/about'}/>
+          >
+            {/* {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />} */}
+            <StyledIcon icon={faUser} isActive={location.pathname === '/about'} />
             About
           </NavbarItem>
         </NavbarLink>
 
         <NavbarItem onClick={e => handleRipple(e, 'contact')}>
-          {rippleState.contact.active && <RippleSpan style={{ left: rippleState.contact.x, top: rippleState.contact.y }} />}
+          {/* {rippleState.contact.active && <RippleSpan style={{ left: rippleState.contact.x, top: rippleState.contact.y }} />} */}
           <StyledIcon icon={faEnvelope} isActive={location.pathname === '/contact'} />
           Contact
         </NavbarItem>
@@ -445,7 +456,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           onMouseLeave={handleMouseLeave}
           onClick={e => handleRipple(e, 'dashboard')}
         >
-          {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />}
+          {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
           <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health'} />
           D'board
 

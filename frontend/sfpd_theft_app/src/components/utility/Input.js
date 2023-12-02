@@ -15,7 +15,7 @@ const Label = styled.label`
 const StyledInput = styled.input`
     padding: 10px;
     border: 2px solid ${props => props.theme.cardLight};
-    border-radius: 4px;
+    border-radius: 7px;
     font-size: 1rem;
     outline: none;
     width: 170px;

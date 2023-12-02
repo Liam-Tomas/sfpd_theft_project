@@ -25,7 +25,7 @@ const StyledButton = styled.button`
     background-color: ${props => props.theme.primary}; // MUI primary color
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 7px;
     user-select: none;
     font-size: 1rem;
     cursor: pointer;
