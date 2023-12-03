@@ -465,6 +465,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             <SubMenuItem to="/vehicle-theft" onClick={closeSubmenu}>Car Break-in Analysis</SubMenuItem>
             <SubMenuItem to="/mental-health" onClick={closeSubmenu}>Mental Health Analysis</SubMenuItem>
             <SubMenuItem to="/assault" onClick={closeSubmenu}>Assault Analysis</SubMenuItem>
+            <SubMenuItem to="/drugs" onClick={closeSubmenu}>Drug Analysis</SubMenuItem>
             {/* More submenu items */}
           </SubMenu>
         )}

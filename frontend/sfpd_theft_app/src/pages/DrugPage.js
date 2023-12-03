@@ -46,10 +46,10 @@ const ThirdRowItem = styled.div`
 function AssaultPage() {
     return (
         <MainContainer>
-            <h1>San Francisco Assault Incident Analysis (2018 - 2023)</h1>
+            <h1>San Francisco Drug Arrest Analysis (2018 - 2023)</h1>
             <StyledGrid>
                 <FirstRowLeft>
-                    {/* <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-drug" /> */}
+                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-drugs" />
                     <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-drug-locations" />
                 </FirstRowLeft>
                 <FirstRowRight>

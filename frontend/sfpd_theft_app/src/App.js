@@ -40,7 +40,7 @@ function App() {
               <Route path="/mental-health" element={<MentalPage />} />
               <Route path="/assault" element={<AssaultPage />} />
               <Route path="/about" element={<AboutPage />} />
-              {/* <Route path="/drugs" element={<DrugsPage />} /> */}
+              <Route path="/drugs" element={<DrugsPage />} />
 
               {/* Add more routes as needed */}
             </Routes>
