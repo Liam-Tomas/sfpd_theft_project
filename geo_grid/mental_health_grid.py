@@ -131,6 +131,31 @@ def plot_incident_map(grid_with_full_data):
 #     main()
 
 ## FOR ASSAULT !
+# def main():
+#     print('Starting analysis...')
+#     df = load_data('sfpd_incidents_clean.csv')
+#     gdf = create_geodataframe(df)
+#     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
+#     joined = perform_spatial_join(gdf, grid)
+
+#     # Filter for Assault incidents
+#     assault_data = joined[joined['Incident Category'] == 'Assault']
+
+#     # Total Assault incidents
+#     total_assault_incidents = len(assault_data)
+
+#     incident_counts_assault = calculate_incident_probabilities(assault_data, total_assault_incidents)
+#     average_monthly_incidents_assault = calculate_average_incidents_per_month(assault_data)
+
+#     # Aggregate information for Assault incidents
+#     aggregated_info_assault = aggregate_info(assault_data)
+
+#     merge_and_save_data(grid, incident_counts_assault, average_monthly_incidents_assault, aggregated_info_assault, 'sf_assault_heatmap.geojson')
+#     plot_incident_map(grid.merge(incident_counts_assault, on='cell_id', how='left'))
+
+# if __name__ == "__main__":
+#     main()
+
 def main():
     print('Starting analysis...')
     df = load_data('sfpd_incidents_clean.csv')
@@ -138,20 +163,20 @@ def main():
     grid = load_grid('sf_finer_grid.geojson', gdf.crs)
     joined = perform_spatial_join(gdf, grid)
 
-    # Filter for Assault incidents
-    assault_data = joined[joined['Incident Category'] == 'Assault']
+    # Filter for Drug incidents
+    drug_data = joined[joined['Incident Subcategory'] == 'Drug Violation']
 
-    # Total Assault incidents
-    total_assault_incidents = len(assault_data)
+    # Total Drug incidents
+    total_drug_incidents = len(drug_data)
 
-    incident_counts_assault = calculate_incident_probabilities(assault_data, total_assault_incidents)
-    average_monthly_incidents_assault = calculate_average_incidents_per_month(assault_data)
+    incident_counts_drugs = calculate_incident_probabilities(drug_data, total_drug_incidents)
+    average_monthly_incidents_drug = calculate_average_incidents_per_month(drug_data)
 
-    # Aggregate information for Assault incidents
-    aggregated_info_assault = aggregate_info(assault_data)
+    # Aggregate information for Drug incidents
+    aggregated_info_drug = aggregate_info(drug_data)
 
-    merge_and_save_data(grid, incident_counts_assault, average_monthly_incidents_assault, aggregated_info_assault, 'sf_assault_heatmap.geojson')
-    plot_incident_map(grid.merge(incident_counts_assault, on='cell_id', how='left'))
+    merge_and_save_data(grid, incident_counts_drugs, average_monthly_incidents_drug, aggregated_info_drug, 'sf_drug_heatmap.geojson')
+    plot_incident_map(grid.merge(incident_counts_drugs, on='cell_id', how='left'))
 
 if __name__ == "__main__":
     main()

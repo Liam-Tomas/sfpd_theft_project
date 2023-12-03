@@ -262,5 +262,6 @@ def assault_type():
     return jsonify([dict(row) for row in assault])
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)

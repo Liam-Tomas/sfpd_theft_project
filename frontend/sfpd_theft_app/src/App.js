@@ -7,6 +7,7 @@ import TheftPage from './pages/TheftPage';
 import MentalPage from './pages/MentalPage';
 import AssaultPage from './pages/AssaultPage';
 import AboutPage from './pages/AboutPage';
+import DrugsPage from './pages/DrugPage';
 import { GlobalStyles } from './components/theme/GlobalStyles';
 import { useDarkMode } from './components/theme/DarkMode';
 import { lightTheme, darkTheme } from './components/theme/CustomStyles'
@@ -39,6 +40,7 @@ function App() {
               <Route path="/mental-health" element={<MentalPage />} />
               <Route path="/assault" element={<AssaultPage />} />
               <Route path="/about" element={<AboutPage />} />
+              {/* <Route path="/drugs" element={<DrugsPage />} /> */}
 
               {/* Add more routes as needed */}
             </Routes>

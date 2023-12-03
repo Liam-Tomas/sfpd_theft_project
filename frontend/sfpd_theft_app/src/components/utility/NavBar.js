@@ -261,8 +261,8 @@ const NavbarContainer = styled.div`
   z-index:1000;
   padding: 15px 0px;
   position:fixed;
-  // left: 0;
-  // top: 0;
+  left: 0;
+  top: 0;
   height: 100vh;
   background-color: #f8fafc;
   background: ${props => props.theme.cardLighter};
@@ -288,7 +288,6 @@ const StyledIcon = styled(FontAwesomeIcon)`
   border-radius: 20px;
   background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
   color: ${(props) => props.isActive ? props.theme.text : 'none'};
-
   transition: background-color 0.3s;
 
 `
@@ -305,7 +304,7 @@ const NavbarItem = styled.div`
   flex-direction: column;
   padding: 4px 17px;
   transition: background-color 0.8s, box-shadow 0.3s;
-  overflow: hidden;
+  // overflow: hidden;
   color: ${props => props.theme.textAlt};
   user-select: none;
   color: ${(props) => props.isActive ? props.theme.text : 'none'};
@@ -457,7 +456,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           onClick={e => handleRipple(e, 'dashboard')}
         >
           {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
-          <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health'} />
+          <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault'} />
           D'board
 
         </NavbarItem>

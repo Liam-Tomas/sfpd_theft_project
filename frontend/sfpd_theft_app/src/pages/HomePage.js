@@ -20,7 +20,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${(props) =>
+//   background: ${(props) =>
     props.theme.mode === 'dark'
       ? `url(${rainDarkIMG})`
       : `url(${rainLightIMG})`};
@@ -54,8 +54,8 @@ const Button = styled.div`
   align-items: center;
   gap: 10px;
   background-color: #1976D2; // Example blue color
-  background: ${props => props.theme.backgroundColor};
-//   box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
+  background: ${props => props.theme.card};
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
   padding: 24px 15px;
   border-radius: 24px;
   transition: background-color 0.2s ease, border-radius 0.3s ease; // Added border-radius to transition
@@ -70,7 +70,7 @@ const Button = styled.div`
         }
     }
     &:active {
-        border-radius: 45px; // Increased border-radius when active
+        border-radius: 30px; // Increased border-radius when active
         ${IconContainer} {
             border-radius: 20px; // Increased border-radius when active
         }
@@ -164,14 +164,14 @@ function HomePage() {
                         </div>   
                     </Button>
                 </StyledLink>
-                <StyledLink to="/">
+                <StyledLink to="/drugs">
                     <Button>
                         <IconContainer>
                             <FontAwesomeIcon icon={faSquarePollVertical} />                       
                              </IconContainer>
                         <div>
-                            <ItemHeader>Other Analysis</ItemHeader>
-                            <ItemText>Analysis of incidents of mental health detention.</ItemText>
+                            <ItemHeader>Drug Arrest Analysis</ItemHeader>
+                            <ItemText>Analysis of drug related arrests.</ItemText>
                         </div>   
                     </Button>
                 </StyledLink>
