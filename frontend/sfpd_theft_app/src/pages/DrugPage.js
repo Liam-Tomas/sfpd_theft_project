@@ -5,7 +5,7 @@ import RiskCalc from '../components/charts/RiskCalc';
 import YearChart from '../components/charts/YearChart';
 import TopLocationsChart from '../components/charts/TopLocationsChart';
 import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
-import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
+import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
 import AssaultTypesChart from '../components/charts/AssaultTypeCharts';
 
@@ -71,7 +71,7 @@ function AssaultPage() {
                     <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-drug-supervisor"/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-drug-time"/>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-drug-time"chartHeight={390} chartWidth={400}/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>

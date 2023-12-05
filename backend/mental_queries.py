@@ -85,3 +85,29 @@ def get_mental_supervisor():
     cursor.close()
     conn.close()
     return results
+
+
+def get_mental_seasons():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("""
+        SELECT 
+            CASE 
+                WHEN MONTH(Incident_Date) IN (3, 4, 5) THEN 'Spring'
+                WHEN MONTH(Incident_Date) IN (6, 7, 8) THEN 'Summer'
+                WHEN MONTH(Incident_Date) IN (9, 10, 11) THEN 'Fall'
+                ELSE 'Winter'
+            END AS Season,
+            YEAR(Incident_Date) AS Year,
+            COUNT(*) AS IncidentCount
+        FROM 
+            sfpd_incidents
+        GROUP BY 
+            Year, Season
+        ORDER BY 
+            Year, Season;
+     """   )
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results

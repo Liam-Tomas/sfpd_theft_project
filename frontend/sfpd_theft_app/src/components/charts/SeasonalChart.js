@@ -2,13 +2,22 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { ThemeContext } from 'styled-components';
+import MainContainer from '../utility/MainContainer';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import styled from 'styled-components';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const SeasonalIncidentsChart = ({ apiEndpoint }) => {
+const ChartWrapper = styled.div`
+    height: 422px;
+`;
+
+
+const SeasonalChart = ({ apiEndpoint }) => {
     const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null);
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,19 +28,26 @@ const SeasonalIncidentsChart = ({ apiEndpoint }) => {
                 // Assuming data is in the format: [{season: 'Spring', year: '2018', count: 37642}, ...]
 
                 // Extract unique years and seasons
-                const years = [...new Set(data.map(item => item.year))];
-                const seasons = [...new Set(data.map(item => item.season))];
+                const years = [...new Set(data.map(item => item.Year))];
+                const seasons = [...new Set(data.map(item => item.Season))];
 
+                // Define a fixed set of colors for seasons
+                const seasonColors = {
+                    'Spring': 'rgba(255, 99, 132, 0.6)',
+                    'Summer': 'rgba(54, 162, 235, 0.6)',
+                    'Fall': 'rgba(255, 206, 86, 0.6)',
+                    'Winter': 'rgba(75, 192, 192, 0.6)'
+                };
                 // Create datasets for each season
                 const datasets = seasons.map(season => {
                     return {
                         label: season,
                         data: years.map(year => {
-                            const entry = data.find(item => item.year === year && item.season === season);
-                            return entry ? entry.count : 0;
+                            const entry = data.find(item => item.Year === year && item.Season === season);
+                            return entry ? entry.IncidentCount : 0;
                         }),
-                        backgroundColor: `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 0.6)`,
-                        borderColor: `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 1)`,
+                        backgroundColor: seasonColors[season],
+                        borderColor: seasonColors[season].replace('0.6', '1'),
                         borderWidth: 1
                     };
                 });
@@ -50,15 +66,21 @@ const SeasonalIncidentsChart = ({ apiEndpoint }) => {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
             x: {
+                ticks: {
+                    color: theme.textAlt, 
+                },
                 grid: {
                     color: theme.cardLight
                 },
                 stacked: false,
             },
             y: {
+                ticks: {
+                    color: theme.textAlt, 
+                },
                 grid: {
                     color: theme.cardLight
                 },
@@ -78,18 +100,21 @@ const SeasonalIncidentsChart = ({ apiEndpoint }) => {
     };
 
     return (
-        <div>
-            <h3>Seasonal Incident Counts</h3>
-            {chartData && (
-                <Bar
-                    data={chartData}
-                    options={options}
-                    height={400}
-                    width={600}
-                />
-            )}
-        </div>
+        <MainContainer>
+            <ChartWrapper>
+                <h3>Seasonal Incident Counts</h3>
+                {chartData && (
+                    <Bar
+                        data={chartData}
+                        options={options}
+                        height={550}
+                        width={820}
+                    />
+                )}
+            </ChartWrapper>
+        </MainContainer>
+
     );
 };
 
-export default SeasonalIncidentsChart;
+export default SeasonalChart;

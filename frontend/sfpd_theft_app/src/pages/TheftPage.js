@@ -2,10 +2,10 @@ import React from 'react';
 import LeafletMap from '../components/charts/LeafletMap';
 import RiskCalc from '../components/charts/RiskCalc';
 import TopLocationsChart from '../components/charts/TopLocationsChart';
-import PriceBreakdownChart from '../components/theft_vehicles/PriceBreakdownChart';
+import PriceBreakdownChart from '../components/charts/PriceBreakdownChart';
 import YearChart from '../components/charts/YearChart';
 import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
-import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
+import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
 import styled from 'styled-components';
 
@@ -52,7 +52,7 @@ function HomePage() {
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiURL}/get_probability`} />
-          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/top-theft-locations" />
+          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/top-theft-locations"  />
         </FirstRowLeft>
         <FirstRowRight> 
           <LeafletMap geojsonUrl="/sf_heatmap_detailed_v6.geojson" />
@@ -73,7 +73,7 @@ function HomePage() {
           <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-supervisor-breakdown"/>
         </ThirdRowItem>
         <ThirdRowItem>
-          <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-time-breakdown"/>
+          <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-time-breakdown"  chartHeight={390} chartWidth={400}/>
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>

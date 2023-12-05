@@ -112,7 +112,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from '../utility/MainContainer';
 import { ThemeContext } from 'styled-components';
-
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
@@ -203,8 +202,8 @@ const YearChart = ({ apiEndpoint, chartLabel }) => {
                     <Line
                         data={chartData}
                         options={options}
-                        height={200}
-                        width={400}
+                        // height={200}
+                        // width={400}
                     />
                 )}
             </ChartContainer>

@@ -25,10 +25,10 @@ const TechSection = styled.div`
     gap: 20px;
     margin-bottom: 30px;
     * {
-        background-color: ${props => props.theme.card};
+        // background-color: ${props => props.theme.card};
         border-radius: 15px;
         margin:0px;
-        padding: 10px;
+        // padding: 10px;
 
     }
 `;
@@ -47,7 +47,11 @@ function AboutPage() {
             <Title>Geospatial Analysis and Visualization of SFPD Incident Data</Title>
             <SectionTitle>Project Overview</SectionTitle>
             <Paragraph>
-                This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD). While its initial focus was on thefts from vehicles, it has since evolved to encompass a broad spectrum of crime types. This project combines a variety of different technologies, including Flask for the backend, geospatial analysis, and interactive visualization techniques. The objective is to provide an in-depth understanding of the intricate dynamics of urban crime in San Francisco.
+                This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD). 
+                While its initial focus was on thefts from vehicles, it has since evolved to encompass a broad spectrum of crime types. This 
+                project combines a variety of different technologies, including Flask for the backend, geospatial analysis, and interactive 
+                visualization techniques. The objective is to provide an in-depth understanding of the dynamics of urban crime in
+                San Francisco.
             </Paragraph>
             <SectionTitle>Key Technical Highlights</SectionTitle>
             <TechSection>
@@ -55,8 +59,8 @@ function AboutPage() {
                 <TechTitle>Comprehensive Visualization:</TechTitle> The frontend of the project is built using React, providing an interactive and 
                 visually engaging UI. It dynamically renders heatmaps, data visualizations, and interactive maps sourced from the 
                 Flask API. Using MySQL for data management, backend Python scripts perform SQL queries 
-                to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization, Chart.js for dynamic charts, and treemaps 
-                for data representation enhances the user's ability to explore and comprehend crime data.
+                to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization, Chart.js 
+                for dynamic charts, and treemaps for data representation enhances the user's ability to explore and comprehend crime data.
             </Paragraph>
             {/* <Paragraph>
                 <TechTitle>Flask Backend:</TechTitle> The Flask backend powers various functionalities, including the calculation of crime incident probabilities and 
@@ -64,8 +68,8 @@ function AboutPage() {
             </Paragraph> */}
             <Paragraph>
                 <TechTitle>Geospatial Analysis:</TechTitle> One of the project's standout features is its geospatial analysis. Python scripts 
-                 generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for mapping and spatial
-                 analysis, offering insights into the spatial distribution of incidents. Using geopandas, the project leverages spatial 
+                 generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering 
+                 insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial 
                  data operations to create GeoDataFrames and calculate incident probabilities within each grid cell.
             </Paragraph>
             <Paragraph>

@@ -288,7 +288,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   border-radius: 20px;
   background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
   color: ${(props) => props.isActive ? props.theme.text : 'none'};
-  transition: background-color 0.3s;
+  transition: background-color 0.15s;
 
 `
 
@@ -303,7 +303,7 @@ const NavbarItem = styled.div`
   display: flex;
   flex-direction: column;
   padding: 4px 17px;
-  transition: background-color 0.8s, box-shadow 0.3s;
+  // transition: background-color 0.2s, box-shadow 0.3s;
   // overflow: hidden;
   color: ${props => props.theme.textAlt};
   user-select: none;
@@ -342,7 +342,7 @@ const SubMenu = styled.div`
 
 const SubMenuItem = styled(Link)`
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.15s;
   font-size: .95rem;
   color: inherit; // Ensures the link color matches your theme
   padding: 10px 15px;

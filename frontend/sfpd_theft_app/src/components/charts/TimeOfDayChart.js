@@ -8,10 +8,10 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
-    // Add styles here
+    // height: 240px; // Or any other fixed height
 `;
 
-const TimeOfDayChart = ({ apiEndpoint }) => {
+const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
     const [chartData, setChartData] = useState(null);
 
     const theme = useContext(ThemeContext);
@@ -105,8 +105,9 @@ const TimeOfDayChart = ({ apiEndpoint }) => {
                     <Bar
                         data={chartData}
                         options={options}
-                        height={390}
-                        width={400}
+                        height={chartHeight}
+                        width={chartWidth}
+                     
                     />
                 )}
             </ChartContainer>

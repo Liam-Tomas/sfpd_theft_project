@@ -5,8 +5,10 @@ import RiskCalc from '../components/charts/RiskCalc';
 import YearChart from '../components/charts/YearChart';
 import TopLocationsChart from '../components/charts/TopLocationsChart';
 import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
-import TimeOfDayChart from '../components/theft_vehicles/TimeOfDayChart';
+import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
+import SeasonalChart from '../components/charts/SeasonalChart';
+import PriceBreakdownChart from '../components/charts/PriceBreakdownChart';
 
 const MainContainer = styled.div`
     padding: 5px 21px;
@@ -15,7 +17,7 @@ const MainContainer = styled.div`
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 1fr); /* 6 columns for easier division */
-  @media (max-width: 1300px) {
+  @media (max-width: 1000px) {
     grid-template-columns: 1fr; /* Use a single column on smaller screens */
   }
 
@@ -32,6 +34,12 @@ const FirstRowRight = styled.div`
 const SecondRowItem = styled.div`
   grid-column: span 4; /* Span 2 columns */
 `;
+
+const SecondRowItem2 = styled.div`
+  grid-column: span 4; /* Span 2 columns */
+  margin-right: 20px;
+`;
+
 
 const SecondRowItemSmall = styled.div`
   grid-column: span 2; /* Span 2 columns */
@@ -56,13 +64,14 @@ function MentalPage() {
                 </FirstRowRight>
                 <SecondRowItem>
                 <YearChart
-            apiEndpoint= "http://127.0.0.1:5000/get-mental-year"
-            chartLabel="Total Incidents per Year"
-          />
+                  apiEndpoint= "http://127.0.0.1:5000/get-mental-year"
+                  chartLabel="Total Incidents per Year"
+                />
                 </SecondRowItem>
-                <SecondRowItem>
-                    <div></div>
-                </SecondRowItem>
+                <SecondRowItem2>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"  chartHeight={240} chartWidth={50}/>
+                  {/* <PriceBreakdownChart/> */}
+                </SecondRowItem2>
                 <SecondRowItemSmall>
                     <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution"/>
                 </SecondRowItemSmall>
@@ -70,7 +79,8 @@ function MentalPage() {
                     <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-mental-supervisor"/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"/>
+                <SeasonalChart apiEndpoint= "http://127.0.0.1:5000/get-mental-seasons"> </SeasonalChart>
+
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>

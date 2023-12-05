@@ -176,8 +176,6 @@ const TopLocationsChart = ({ apiEndpoint }) => {
 
     return (
         <MainContainer>
-            {/* <h2>Some More Data</h2> */}
-            <StyledGrid>
                 <ChartContainer>
                     <h3 style={{marginTop:''}}>Most Common Locations</h3>
                     {chartData && (
@@ -189,7 +187,6 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                         />
                     )}
                 </ChartContainer>
-            </StyledGrid>
         </MainContainer>
     );
 };

@@ -8,7 +8,7 @@ from opencage.geocoder import OpenCageGeocode
 import geopandas as gpd
 from shapely.geometry import Point
 from queries import get_top_theft_locations, get_price_breakdown, get_year_breakdown, get_status_breakdown, get_time_breakdown, get_supervisor_breakdown
-from mental_queries import get_top_mental_locations, get_mental_year, get_mental_resolution, get_mental_time, get_mental_supervisor
+from mental_queries import get_top_mental_locations, get_mental_year, get_mental_resolution, get_mental_time, get_mental_supervisor, get_mental_seasons
 from assault_queries import get_top_assault_locations, get_assault_year, get_assault_resolution, get_assault_time, get_assault_supervisor, get_assault_type
 from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution, get_drug_time, get_drug_supervisor
 
@@ -276,6 +276,11 @@ def mental_time():
 @app.route('/get-mental-supervisor', methods=['GET'])
 def mental_supervisor():
     mental = get_mental_supervisor()
+    return jsonify([dict(row) for row in mental])
+
+@app.route('/get-mental-seasons', methods=['GET'])
+def mental_seasons():
+    mental = get_mental_seasons()
     return jsonify([dict(row) for row in mental])
 
 # Assault  Incident Routes

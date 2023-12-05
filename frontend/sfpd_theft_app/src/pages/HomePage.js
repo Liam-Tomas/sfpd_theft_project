@@ -46,7 +46,7 @@ const IconContainer = styled.h1`
     background: ${props => props.theme.card};
     padding: 8px 13px;
     border-radius:15px;
-    transition: 0.25s ease;
+    transition: 0.15s ease;
 `
 
 const Button = styled.div`
@@ -58,7 +58,7 @@ const Button = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
   padding: 24px 15px;
   border-radius: 24px;
-  transition: background-color 0.2s ease, border-radius 0.3s ease; // Added border-radius to transition
+  transition: background-color 0.15s ease, border-radius 0.3s ease; // Added border-radius to transition
   &:hover {
     background: ${props => props.theme.backgroundColor};
     }
