@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2'; // Import Bar chart type
 import axios from 'axios';
-import MainContainer from '../utility/MainContainer';
+import MainContainerRight from '../utility/MainContainerRight';
 import styled from 'styled-components';
-
+import { ThemeContext } from 'styled-components';
 
 const ChartContainer = styled.div`
-width: 420px;
-height: 250px;
-margin: 20px;
+    width: 580px;
+    height: 370px;
+    margin-left:20px;
+    padding-bottom: 62px;
 `
 
 const AssaultTypesChart = ({ apiEndpoint }) => {
     const [chartData, setChartData] = useState(null);
+    const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,9 +32,9 @@ const AssaultTypesChart = ({ apiEndpoint }) => {
                     'Non-Aggravated',
                 ];
                 // Extract the top 5 categories and create chart data
-                const topCategories = data.slice(0, 5);
+                const topCategories = data.slice(0, 10);
                 const chartData = {
-                    labels: customLabels,
+                    labels: topCategories.map(item => item['Incident_Description']), // Accessing 'Incident Description'
                     datasets: [{
                         label: 'Incident Count',
                         data: topCategories.map(item => item.Incident_Count),
@@ -58,31 +60,56 @@ const AssaultTypesChart = ({ apiEndpoint }) => {
     const options = {
         responsive: true,
         maintainAspectRatio: false,
+        indexAxis: 'y', // Make the chart horizontal
         scales: {
             x: {
+                ticks: {
+                    color: theme.textAlt, 
+                },
+                grid: {
+                    color: theme.cardLight
+                },
                 beginAtZero: true,
                 title: {
                     display: false,
                     text: 'Incident Count'
                 }
+            },
+            y: {
+                ticks: {
+                    color: theme.textAlt, 
+                },
+                grid: {
+                    color: theme.cardLight
+                },
             }
-        }
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    color: theme.textAlt, // Using text color from the theme for legend labels
+                }
+                
+            }
+            
+        },
     };
 
     return (
-        <MainContainer>
+        <MainContainerRight>
             <ChartContainer>
-            <h3>Top 5 Incident Categories</h3>
+            <h3>Top 10 Incident Categories</h3>
             {chartData && (
                 <Bar // Use Bar chart type
                     data={chartData}
                     options={options}
-                    height={200}
-                    width={400}
+
                 />
             )}
             </ChartContainer>
-        </MainContainer>
+        </MainContainerRight>
     );
 };
 

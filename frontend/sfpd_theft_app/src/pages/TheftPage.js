@@ -67,7 +67,7 @@ function HomePage() {
           <PriceBreakdownChart/>
         </SecondRowItem>
         <SecondRowItemSmall>
-          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-status-breakdown"/>
+          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-status-breakdown" resolutionField="Resolution_Status"/>
         </SecondRowItemSmall>
         <ThirdRowItem>
           <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-supervisor-breakdown"/>

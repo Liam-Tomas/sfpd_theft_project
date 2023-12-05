@@ -10,7 +10,7 @@ from shapely.geometry import Point
 from queries import get_top_theft_locations, get_price_breakdown, get_year_breakdown, get_status_breakdown, get_time_breakdown, get_supervisor_breakdown
 from mental_queries import get_top_mental_locations, get_mental_year, get_mental_resolution, get_mental_time, get_mental_supervisor, get_mental_seasons
 from assault_queries import get_top_assault_locations, get_assault_year, get_assault_resolution, get_assault_time, get_assault_supervisor, get_assault_type
-from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution, get_drug_time, get_drug_supervisor
+from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution, get_drug_time, get_drug_supervisor, get_drug_type
 
 app = Flask(__name__)
 CORS(app)  # Configure CORS for your app
@@ -342,6 +342,10 @@ def drug_supervisor():
     drug = get_drug_supervisor()
     return jsonify([dict(row) for row in drug])
 
+@app.route('/get-drug-type', methods=['GET'])
+def drug_type():
+    drug = get_drug_type()
+    return jsonify([dict(row) for row in drug])
 
 
 if __name__ == '__main__':

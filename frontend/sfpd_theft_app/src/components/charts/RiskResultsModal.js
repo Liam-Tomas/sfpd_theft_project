@@ -16,12 +16,16 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  
 `;
 
 const ResultGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top:10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    gap: 20px;
+
 `
 
 const ModalContent = styled.div`
@@ -41,13 +45,25 @@ const ModalHeader = styled.h1`
 const ResultItem = styled.div`
   display: flex;
   flex-direction: column;
-//   align-items: center;
   margin-bottom: 15px;
+  padding-left:20px;
+
+  position: relative; // Set position context for pseudo-element
+  &::before {
+    content: ''; 
+    position: absolute;
+    left: 0; // Adjust if necessary
+    top: 0; 
+    bottom: 0;
+    height: 60px;
+    width: 2px; // Make sure this is wide enough to be visible
+    background-color: ${props => props.theme.cardLight};
+  }
 `;
 
 const ResultNumber = styled.span`
   font-size: 1.5rem;
-  padding: 3px 0px;
+  padding: 0px 0px 3px 0px;
   font-weight: 700;
   color: ${props => props.theme.text};
 `;
@@ -63,6 +79,7 @@ const StyledButton = styled(Button)`
 
 const SubText = styled.p`
     color: ${props => props.theme.textAlt};
+    
 `;
 
 const RiskResultsModal = ({ isVisible, onClose, data }) => {

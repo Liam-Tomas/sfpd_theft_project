@@ -34,6 +34,13 @@ const SecondRowItem = styled.div`
   grid-column: span 4; /* Span 2 columns */
 `;
 
+const SecondRowItem2 = styled.div`
+  grid-column: span 4; /* Span 2 columns */
+  margin-right: 20px;
+
+`;
+
+
 const SecondRowItemSmall = styled.div`
   grid-column: span 2; /* Span 2 columns */
 `;
@@ -43,39 +50,43 @@ const ThirdRowItem = styled.div`
 
 `
 
-function AssaultPage() {
-    return (
-        <MainContainer>
-            <h1>San Francisco Drug Arrest Analysis (2018 - 2023)</h1>
-            <StyledGrid>
-                <FirstRowLeft>
-                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-drugs" />
-                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-drug-locations" />
-                </FirstRowLeft>
-                <FirstRowRight>
-                <LeafletMap geojsonUrl="/sf_drug_heatmap.geojson" />
-                </FirstRowRight>
-                <SecondRowItem>
-                <YearChart
-            apiEndpoint= "http://127.0.0.1:5000/get-drug-year"
+function DrugPage() {
+  return (
+    <MainContainer>
+      <h1>San Francisco Drug Arrest Analysis (2018 - 2023)</h1>
+      <StyledGrid>
+        <FirstRowLeft>
+          <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-drugs" />
+          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-drug-locations" />
+        </FirstRowLeft>
+        <FirstRowRight>
+          <LeafletMap geojsonUrl="/sf_drug_heatmap.geojson" />
+        </FirstRowRight>
+        <SecondRowItem>
+          <YearChart
+            apiEndpoint="http://127.0.0.1:5000/get-drug-year"
             chartLabel="Total Incidents per Year"
           />
-                </SecondRowItem>
-                <SecondRowItem>
-                    <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-drug-type"/>
-                </SecondRowItem>
-                <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-drug-resolution"/>
-                </SecondRowItemSmall>
-                <ThirdRowItem>
-                    <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-drug-supervisor"/>
-                </ThirdRowItem>
-                <ThirdRowItem>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-drug-time"chartHeight={390} chartWidth={400}/>
-                </ThirdRowItem>
-            </StyledGrid>
-        </MainContainer>
-    );
-}
+        </SecondRowItem>
+        <SecondRowItem2>
+          <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-drug-time"  chartHeight={240} chartWidth={50}/>
+          {/* <MainContainer>derp</MainContainer> */}
+        </SecondRowItem2>
+        <SecondRowItemSmall>
+          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-drug-resolution"resolutionField="Resolution"/>
+        </SecondRowItemSmall>
+        <ThirdRowItem>
+          <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-drug-supervisor" />
+        </ThirdRowItem>
+        <ThirdRowItem>
+          <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-drug-type" />
 
-export default AssaultPage;
+        </ThirdRowItem>
+      </StyledGrid>
+    </MainContainer>
+  );
+}
+{/* <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-drug-time" chartHeight={390} chartWidth={400} /> */}
+
+
+export default DrugPage;

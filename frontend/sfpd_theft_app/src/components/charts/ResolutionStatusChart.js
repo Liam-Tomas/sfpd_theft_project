@@ -14,7 +14,7 @@ const ChartWrapper = styled.div`
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ResolutionStatusChart = ({ apiEndpoint }) => {
+const ResolutionStatusChart = ({ apiEndpoint, resolutionField }) => {
     
     const [chartData, setChartData] = useState(null);
     // const api_route = 'http://127.0.0.1:5000/';
@@ -41,7 +41,7 @@ const ResolutionStatusChart = ({ apiEndpoint }) => {
                 if (data && Array.isArray(data)) {
                     const colorArray = generateColors(data.length);
                     setChartData({
-                        labels: data.map(item => item.Resolution),
+                        labels: data.map(item => item[resolutionField]), // Use resolutionField dynamically
                         datasets: [{
                             label: 'Incidents by Resolution Status',
                             data: data.map(item => item.Total_Incidents),
@@ -59,7 +59,7 @@ const ResolutionStatusChart = ({ apiEndpoint }) => {
         };
 
         fetchData();
-    }, [apiEndpoint]);
+    }, [apiEndpoint, resolutionField]);
 
     const options = {
         plugins: {

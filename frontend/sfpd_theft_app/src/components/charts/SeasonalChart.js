@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import { ThemeContext } from 'styled-components';
-import MainContainer from '../utility/MainContainer';
+import MainContainerRight from '../utility/MainContainerRight';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import styled from 'styled-components';
 
@@ -100,19 +100,19 @@ const SeasonalChart = ({ apiEndpoint }) => {
     };
 
     return (
-        <MainContainer>
+        <MainContainerRight>
             <ChartWrapper>
                 <h3>Seasonal Incident Counts</h3>
                 {chartData && (
                     <Bar
                         data={chartData}
                         options={options}
-                        height={550}
-                        width={820}
+                        height={430}
+                        width={700}
                     />
                 )}
             </ChartWrapper>
-        </MainContainer>
+        </MainContainerRight>
 
     );
 };

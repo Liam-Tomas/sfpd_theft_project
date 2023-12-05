@@ -73,7 +73,7 @@ function MentalPage() {
                   {/* <PriceBreakdownChart/> */}
                 </SecondRowItem2>
                 <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution"/>
+                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution" resolutionField="Resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
                     <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-mental-supervisor"/>

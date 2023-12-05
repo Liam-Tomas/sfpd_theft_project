@@ -17,6 +17,7 @@ export const lightTheme = {
     borderColor2: '#e2e8f0',
     hoverShadowColor: 'rgba(0, 0, 0, 0.2)',
     buttonHoverBackground: 'rgb(194 231 254)', // light blue for light theme hover
+    OppHoverBackground: '#004a77', // darker shade for dark theme hover
     homeBackground: 'rgb(194 231 254 / 40%)',
     backgroundIMG: `url(${flowerIMG})`, // Light mode background image URL
 
@@ -38,6 +39,7 @@ export const darkTheme = {
     borderColor2: 'rgb(197 199 197)',
     hoverShadowColor: '#afb8c4', 
     buttonHoverBackground: '#004a77', // darker shade for dark theme hover
+    OppHoverBackground: 'rgb(194 231 254)',
     homeBackground: '#262626',
     backgroundIMG: `url(${flowerDarkIMG})`, // Dark mode background image URL
 

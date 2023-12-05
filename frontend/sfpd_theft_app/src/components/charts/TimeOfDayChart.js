@@ -9,6 +9,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const ChartContainer = styled.div`
     // height: 240px; // Or any other fixed height
+    margin-right: 30px;
 `;
 
 const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {

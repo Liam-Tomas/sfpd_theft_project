@@ -34,6 +34,11 @@ const SecondRowItem = styled.div`
   grid-column: span 4; /* Span 2 columns */
 `;
 
+const SecondRowItem2 = styled.div`
+  grid-column: span 4; /* Span 2 columns */
+  margin-right: 20px;
+`;
+
 const SecondRowItemSmall = styled.div`
   grid-column: span 2; /* Span 2 columns */
 `;
@@ -53,25 +58,25 @@ function AssaultPage() {
                     <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-assault-locations" />
                 </FirstRowLeft>
                 <FirstRowRight>
-                <LeafletMap geojsonUrl="/sf_assault_heatmap.geojson" />
+                    <LeafletMap geojsonUrl="/sf_assault_heatmap.geojson" />
                 </FirstRowRight>
                 <SecondRowItem>
-                <YearChart
-            apiEndpoint= "http://127.0.0.1:5000/get-assault-year"
-            chartLabel="Total Incidents per Year"
-          />
+                    <YearChart
+                      apiEndpoint= "http://127.0.0.1:5000/get-assault-year"
+                      chartLabel="Total Incidents per Year"
+                    />
                 </SecondRowItem>
-                <SecondRowItem>
-                    <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-assault-type"/>
-                </SecondRowItem>
+                <SecondRowItem2>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-assault-time" chartHeight={240} chartWidth={50}/>
+                </SecondRowItem2>
                 <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-assault-resolution"/>
+                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-assault-resolution" resolutionField="Resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
                     <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-assault-supervisor"/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-assault-time"chartHeight={390} chartWidth={400}/>
+                    <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-assault-type"/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>

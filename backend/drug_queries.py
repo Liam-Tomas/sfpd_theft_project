@@ -86,17 +86,17 @@ def get_drug_supervisor():
     conn.close()
     return results
 
-# def get_drug_type():
-#     conn = get_db_connection()
-#     cursor = conn.cursor(dictionary=True) 
-#     cursor.execute("""
-#         SELECT Incident_Description, COUNT(*) as Incident_Count
-#         FROM sfpd_incidents
-#         WHERE Incident_Subcategory = 'Drug Violation'
-#         GROUP BY Incident_Description
-#         ORDER BY Incident_Count DESC;
-#     """)
-#     results = cursor.fetchall()
-#     cursor.close()
-#     conn.close()
-#     return results
+def get_drug_type():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True) 
+    cursor.execute("""
+        SELECT Incident_Description, COUNT(*) as Incident_Count
+        FROM sfpd_incidents
+        WHERE Incident_Subcategory = 'Drug Violation'
+        GROUP BY Incident_Description
+        ORDER BY Incident_Count DESC;
+    """)
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return results
