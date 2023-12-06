@@ -21,9 +21,9 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
 //   background: ${(props) =>
-    props.theme.mode === 'dark'
-      ? `url(${rainDarkIMG})`
-      : `url(${rainLightIMG})`};
+        props.theme.mode === 'dark'
+            ? `url(${rainDarkIMG})`
+            : `url(${rainLightIMG})`};
   border-radius: 25px;
   background-size: cover;
   object-fit: contain;
@@ -59,9 +59,6 @@ const Button = styled.div`
   padding: 24px 15px;
   border-radius: 24px;
   transition: background-color 0.15s ease, border-radius 0.3s ease; // Added border-radius to transition
-  &:hover {
-    background: ${props => props.theme.backgroundColor};
-    }
     &:hover {
         background: ${props => props.theme.buttonHoverBackground};
         ${IconContainer} {
@@ -70,7 +67,7 @@ const Button = styled.div`
         }
     }
     &:active {
-        border-radius: 30px; // Increased border-radius when active
+        // border-radius: 30px; // Increased border-radius when active
         ${IconContainer} {
             border-radius: 20px; // Increased border-radius when active
         }
@@ -118,7 +115,7 @@ const HomeSubText = styled.p`
 // const StyledIcon = styled.h1`
 //     color: ${props => props.theme.textAlt};
 //     font-size: 1.7rem;
-    
+
 // `
 
 function HomePage() {
@@ -134,45 +131,45 @@ function HomePage() {
                 <StyledLink to="/vehicle-theft">
                     <Button>
                         <IconContainer>
-                            <FontAwesomeIcon icon={faCar} /> 
+                            <FontAwesomeIcon icon={faCar} />
                         </IconContainer>
                         <div>
                             <ItemHeader>Theft From Vehicles Analysis</ItemHeader>
                             <ItemText>Analysis of car break-ins using SFPD Incident Reports.</ItemText>
-                        </div>           
+                        </div>
                     </Button>
                 </StyledLink>
                 <StyledLink to="/mental-health">
                     <Button>
                         <IconContainer>
-                            <FontAwesomeIcon icon={faHospital} />                       
+                            <FontAwesomeIcon icon={faHospital} />
                         </IconContainer>
                         <div>
                             <ItemHeader>Mental Health Incident Analysis</ItemHeader>
                             <ItemText>Analysis of incidents of mental health detention.</ItemText>
-                        </div>   
+                        </div>
                     </Button>
                 </StyledLink>
                 <StyledLink to="/assault">
                     <Button>
                         <IconContainer>
-                            <FontAwesomeIcon icon={faChartBar} />                       
-                             </IconContainer>
+                            <FontAwesomeIcon icon={faChartBar} />
+                        </IconContainer>
                         <div>
                             <ItemHeader>Assault Incident Analysis</ItemHeader>
                             <ItemText>Analysis of incidents of assault in SF.</ItemText>
-                        </div>   
+                        </div>
                     </Button>
                 </StyledLink>
                 <StyledLink to="/drugs">
                     <Button>
                         <IconContainer>
-                            <FontAwesomeIcon icon={faSquarePollVertical} />                       
-                             </IconContainer>
+                            <FontAwesomeIcon icon={faSquarePollVertical} />
+                        </IconContainer>
                         <div>
                             <ItemHeader>Drug Arrest Analysis</ItemHeader>
                             <ItemText>Analysis of drug related arrests.</ItemText>
-                        </div>   
+                        </div>
                     </Button>
                 </StyledLink>
             </ButtonContainer>

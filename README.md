@@ -2,11 +2,36 @@
 
 ## Overview
 
-The project presents an in-depth analysis of the San Francisco Police Department (SFPD) incident reports, focusing specifically on thefts from vehicles. This project integrates a range of technologies: SQL for efficient data extraction, Python for comprehensive data processing, geospatial analysis, and advanced visualization techniques, and modern web development technologies like Flask and React for interactive web integration.
+This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques with React. The objective is to provide an in-depth understanding of the dynamics of urban crime in San Francisco.
 
-A key feature of this project is its integration of geospatial analysis with statistical probability calculations, resulting in the creation of a detailed heatmap. This heatmap, generated through Python's robust data processing capabilities, is dynamically displayed on an interactive map within the `LeafletMap` React component. Central to the project's functionality is a Flask-based API, designed to calculate and return the relative risk of vehicle theft. This API works by analyzing the location against the generated heatmap data, thereby providing precise, location-specific risk assessments. The front-end React application interfaces seamlessly with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
+A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
+
+Another central feature is a Flask-based API, designed to calculate and return the relative risk of crime within a particular grid cell. This API works by analyzing the location against the generated heatmap data, thereby providing precise, location-specific risk assessments. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
 
 This comprehensive approach not only visualizes but also quantifies urban crime patterns across San Francisco, providing a rich, interactive experience that combines advanced data analysis with practical, user-centric applications.
+
+## Key Features
+
+### Technologies Used:
+
+- Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
+
+### Interactive Heatmap:
+
+Visualizes the relative rates of various crimes in an interactive heat map format, offering users a detailed view of crime distribution across the city.
+
+### Geospatial Analysis:
+Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident probabilities within each grid cell.
+
+### Localized Crime Data Analysis: 
+The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area
+Dynamic Data Presentation:
+Utilizes Chart.js to render JSON data returned from SQL queries, providing real-time data visualization.
+
+### Comprehensive Visualization:
+The frontend of the project is built using React, providing an interactive and visually engaging UI. It dynamically renders heatmaps, data visualizations, and interactive maps sourced from the Flask API. Using MySQL for data management, backend Python scripts perform SQL queries to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization and Chart.js for dynamic charts enhances the user's ability to explore and comprehend crime data.
+
+## Detailed Overview
 
 ### Data Preparation and Initial Analysis (SQL):
 
@@ -40,7 +65,7 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
     - **Database Initialization**: A new database named `sfpd_incidents_db` is created.
     - **Table Structure**: The `sfpd_incidents` table is designed with various fields to capture detailed information about each incident, such as date, time, type of incident, description, location, and resolution.
   - **Data Import**:
-    - The script includes a command to load data from a CSV file (`sfpd_incidents_clean.csv`) into the `sfpd_incidents` table. This command is structured to handle the specific formatting of the CSV file.
+    - The script includes a command to load data from a CSV file (`sfpd_incidents_clean.csv`) into the `sfpd_incidents` table. 
   - **Basic Data Exploration**:
     - Initial queries are included to view the structure of the data and to get a count of the total rows (incidents) available in the table.
   - **Focused Queries on Specific Incident Types**:

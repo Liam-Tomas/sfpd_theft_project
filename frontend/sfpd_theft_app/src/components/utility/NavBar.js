@@ -429,8 +429,8 @@ const Navbar = ({ theme, toggleTheme }) => {
             onClick={handleHomeClick}
           >
             {/* {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}/>} */}
-              <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
-              />
+            <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
+            />
             Home
           </NavbarItem>
         </NavbarLink>
@@ -443,12 +443,14 @@ const Navbar = ({ theme, toggleTheme }) => {
             About
           </NavbarItem>
         </NavbarLink>
+        <NavbarLink to="/contact">
 
-        <NavbarItem onClick={e => handleRipple(e, 'contact')}>
-          {/* {rippleState.contact.active && <RippleSpan style={{ left: rippleState.contact.x, top: rippleState.contact.y }} />} */}
-          <StyledIcon icon={faEnvelope} isActive={location.pathname === '/contact'} />
-          Contact
-        </NavbarItem>
+          <NavbarItem onClick={handleAboutClick}>
+            {/* {rippleState.contact.active && <RippleSpan style={{ left: rippleState.contact.x, top: rippleState.contact.y }} />} */}
+            <StyledIcon icon={faEnvelope} isActive={location.pathname === '/contact'} />
+            Contact
+          </NavbarItem>
+        </NavbarLink>
 
         <NavbarItem
           onMouseEnter={handleMouseEnter}
@@ -456,17 +458,17 @@ const Navbar = ({ theme, toggleTheme }) => {
           onClick={e => handleRipple(e, 'dashboard')}
         >
           {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
-          <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault'} />
+          <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'} />
           D'board
-
         </NavbarItem>
+
+
         {isSubmenuVisible && (
           <SubMenu ref={submenuRef} onMouseLeave={handleMouseLeave}>
             <SubMenuItem to="/vehicle-theft" onClick={closeSubmenu}>Car Break-in Analysis</SubMenuItem>
             <SubMenuItem to="/mental-health" onClick={closeSubmenu}>Mental Health Analysis</SubMenuItem>
             <SubMenuItem to="/assault" onClick={closeSubmenu}>Assault Analysis</SubMenuItem>
             <SubMenuItem to="/drugs" onClick={closeSubmenu}>Drug Analysis</SubMenuItem>
-            {/* More submenu items */}
           </SubMenu>
         )}
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../components/utility/Button';
+import { Link } from 'react-router-dom';
 
 const PageContainer = styled.div`
     padding: 2px 20px;
@@ -39,49 +41,45 @@ const TechTitle = styled.h3`
     padding: 5px 0px;
 `;
 
+const StyledLink = styled.a`
+    color: ${props => props.theme.OppHoverBackground};
+    font-weight: 500;
+`
 
 
 function AboutPage() {
     return (
         <PageContainer>
             <Title>Geospatial Analysis and Visualization of SFPD Incident Data</Title>
+            <Paragraph>The project github can be viewed here: <StyledLink href="https://github.com/Liam-Tomas/sfpd_theft_project" target="_blank" rel="noopener noreferrer">github.com/Liam-Tomas/sfpd-theft-project</StyledLink>
+            </Paragraph>
             <SectionTitle>Project Overview</SectionTitle>
             <Paragraph>
-                This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD). 
-                While its initial focus was on thefts from vehicles, it has since evolved to encompass a broad spectrum of crime types. This 
-                project combines a variety of different technologies, including Flask for the backend, geospatial analysis, and interactive 
-                visualization techniques. The objective is to provide an in-depth understanding of the dynamics of urban crime in
-                San Francisco.
+                This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques. The objective is to provide an in-depth understanding of the dynamics of urban crime in San Francisco.
             </Paragraph>
             <SectionTitle>Key Technical Highlights</SectionTitle>
             <TechSection>
-            <Paragraph>
-                <TechTitle>Comprehensive Visualization:</TechTitle> The frontend of the project is built using React, providing an interactive and 
-                visually engaging UI. It dynamically renders heatmaps, data visualizations, and interactive maps sourced from the 
-                Flask API. Using MySQL for data management, backend Python scripts perform SQL queries 
-                to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization, Chart.js 
-                for dynamic charts, and treemaps for data representation enhances the user's ability to explore and comprehend crime data.
-            </Paragraph>
-            {/* <Paragraph>
+                <Paragraph>
+                    <TechTitle>Technologies Used:</TechTitle>
+                    Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.                </Paragraph>
+                <Paragraph>
+                    <TechTitle>Interactive Heatmap:</TechTitle> The frontend of the project is built using React, providing an interactive and
+                    Visualizes crime data across San Francisco, offering users a comprehensive overview of crime distribution.                </Paragraph>
+                {/* <Paragraph>
                 <TechTitle>Flask Backend:</TechTitle> The Flask backend powers various functionalities, including the calculation of crime incident probabilities and 
                 endpoints for use in frontend visualizations. 
             </Paragraph> */}
-            <Paragraph>
-                <TechTitle>Geospatial Analysis:</TechTitle> One of the project's standout features is its geospatial analysis. Python scripts 
-                 generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering 
-                 insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial 
-                 data operations to create GeoDataFrames and calculate incident probabilities within each grid cell.
-            </Paragraph>
-            <Paragraph>
-                <TechTitle>Localized Crime Analysis:</TechTitle> 
-                The project introduces a feature that allows users to input their addresses, converting them to latitude and 
-                longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized 
-                insights into crime rates specific to that area. This localized analysis is a useful tool for both policymakers and 
-                the public to understand crime dynamics at a granular level.
-            </Paragraph>
-            </TechSection>
-            <Paragraph>The project github can be viewed here: github.com/Liam-Tomas</Paragraph>
-            <Footer>
+                <Paragraph>
+                    <TechTitle>Geospatial Analysis:</TechTitle> Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident probabilities within each grid cell.
+                </Paragraph>
+                <Paragraph>
+                    <TechTitle>Localized Crime Analysis:</TechTitle>
+                    Allows users to input an address, which is converted into coordinates to provide specific crime data for that location.
+                </Paragraph>
+                <Paragraph>
+                    <TechTitle>Dynamic Data Presentation:</TechTitle>
+                    Utilizes Chart.js to render JSON data returned from SQL queries, providing real-time data visualization.                </Paragraph>
+            </TechSection>            <Footer>
                 © 2023 Liam Armstrong. All Rights Reserved.
             </Footer>
         </PageContainer>
