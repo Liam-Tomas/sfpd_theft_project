@@ -1,12 +1,8 @@
-# San Francisco Police Department Incident Analysis
+# San Francisco Police Department Crime Data Geospatial Analysis
 
 ## Overview
 
 This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques with React. The objective is to provide an in-depth understanding of the dynamics of urban crime in San Francisco.
-
-A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
-
-Another central feature is a Flask-based API, designed to calculate and return the relative risk of crime within a particular grid cell. This API works by analyzing the location against the generated heatmap data, thereby providing precise, location-specific risk assessments. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
 
 This comprehensive approach not only visualizes but also quantifies urban crime patterns across San Francisco, providing a rich, interactive experience that combines advanced data analysis with practical, user-centric applications.
 
@@ -16,20 +12,21 @@ This comprehensive approach not only visualizes but also quantifies urban crime 
 
 - Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
 
+### Geospatial Analysis :
+
+Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident rates within each grid cell. A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
+
 ### Interactive Heatmap:
 
-Visualizes the relative rates of various crimes in an interactive heat map format, offering users a detailed view of crime distribution across the city.
-
-### Geospatial Analysis:
-Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident probabilities within each grid cell.
+A heatmap is dynamically overlayed over on an interactive map using Leaflet.js with React. Visualizes the relative rates of various crimes in SF, offering users a detailed view of crime distribution across the city. 
 
 ### Localized Crime Data Analysis: 
-The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area
-Dynamic Data Presentation:
-Utilizes Chart.js to render JSON data returned from SQL queries, providing real-time data visualization.
 
-### Comprehensive Visualization:
-The frontend of the project is built using React, providing an interactive and visually engaging UI. It dynamically renders heatmaps, data visualizations, and interactive maps sourced from the Flask API. Using MySQL for data management, backend Python scripts perform SQL queries to process crime data, while the frontend dynamically visualizes the data. The integration of Leaflet for map visualization and Chart.js for dynamic charts enhances the user's ability to explore and comprehend crime data.
+The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
+
+### Dynamic Data Presentation:
+
+Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
 
 ## Detailed Overview
 
