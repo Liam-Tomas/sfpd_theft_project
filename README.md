@@ -2,51 +2,33 @@
 
 ## Overview
 
-This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques with React.
-
-This comprehensive approach not only visualizes but also quantifies urban crime patterns across San Francisco, providing a rich, interactive experience that combines advanced data analysis with practical, user-centric applications.
-
-## Key Features
+This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand local crime dynamics. This comprehensive approach both visualizes and quantifies urban crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
 
 ### Technologies Used:
 
 - Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
 
-### Geospatial Analysis :
+## Key Technical Highlights
 
-- Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident rates within each grid cell. A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
+### Geospatial Grid Creation :
 
-### Interactive Heatmap:
+- Utilizing GeoPandas, the `sf_grid.py` script generates a geospatial grid over San Francisco. This involves defining the city's boundaries and subdividing the area into a 100x100 grid. Each grid cell is uniquely identified and represents a specific geographic area.
 
-- A heatmap is dynamically overlayed over on an interactive map using Leaflet.js with React. Visualizes the relative rates of various crimes in SF, offering users a detailed view of crime distribution across the city. 
+### Data Processing:
+
+- In `theft_incident_probability.py`, Incident data from the SFPD is loaded and processed. The data, containing latitude and longitude information for each incident, is transformed into a GeoDataFrame. This data is then spatially joined with the geospatial grid, allowing incidents to be mapped to specific grid cells.
+
+### Heatmap Layer Creation in Leaflet
+
+- In the React front-end, the `LeafletMap.js` component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer. A custom color-coding function dynamically styles each grid cell based on the relative crim rate, creating a visually intuitive heatmap. The Leaflet map is enhanced with interactivity. Users can click on different areas of the heatmap to view detailed information about crime probabilities and statistics in that specific grid cell.
 
 ### Localized Crime Data Analysis: 
 
-- The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
+- A key feature of the project enables users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
 
 ### Dynamic Data Presentation:
 
 - Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
-
-## Detailed Overview
-
-### Data Preparation and Initial Analysis (SQL):
-
-- The `sfpd_incidents.sql` script sets up the database and tables, imports data, and conducts initial analysis. It provides valuable insights into the nature and distribution of incidents, focusing on vehicle thefts.
-
-### Geospatial Grid Generation (Python):
-
-- The `sf_grid.py` script generates a fine-grained geospatial grid over San Francisco. This grid is essential for spatially mapping incident data and understanding geographic patterns. 
-
-### Incident Probability Calculation and Visualization (Python):
-
-- The `theft_incident_probability.py` script calculates the probability of theft incidents in each grid cell. It then visualizes these probabilities, offering a clear, intuitive understanding of theft hotspots in the city.
-
-### Interactive Risk Calculation and Mapping (React and Flask)
-
-- `RiskCalc`: A React component for users to calculate vehicle break-in risk based on a San Francisco address.
-- `LeafletMap`: A React component using Leaflet for interactive visualization of theft risk across San Francisco.
-- Flask Backend: Handles geolocation and probability calculation requests from the React front-end.
 
 Overall, the project leverages the strengths of SQL and Python to perform a multi-faceted analysis of SFPD data. It not only identifies patterns in vehicle theft incidents but also provides a visual representation of these patterns across San Francisco, thereby aiding in better understanding and potentially guiding preventive measures.
 
@@ -120,7 +102,7 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
 ### Flask Backend
 
 - **Endpoints**:
-  - `/get_probability`: A endpoint that calculates the probability of vehicle theft for a given location.
+  - `/get_probability`: A endpoint that calculates the relative rate of vehicle theft by a given location.
     - **Geocoding**: Transforms an address input into geographical coordinates (latitude and longitude) using the OpenCage Geocoder API.
     - **Probability Calculation**: Utilizes the pre-processed geospatial grid of San Francisco to determine the risk associated with the provided location.
     - **Robust Error Handling**: Manages various scenarios like non-San Francisco addresses or server-side errors, ensuring a stable user experience.
