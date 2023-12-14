@@ -14,7 +14,7 @@ This project represents an advanced analysis of incident data reported to the Sa
 
 - Utilizing GeoPandas, the `sf_grid.py` script generates a geospatial grid over San Francisco. This involves defining the city's boundaries and subdividing the area into a 100x100 grid. Each grid cell is uniquely identified and represents a specific geographic area.
 
-### Data Processing:
+### Spatial Data Integration:
 
 - In `theft_incident_probability.py`, Incident data from the SFPD is loaded and processed. The data, containing latitude and longitude information for each incident, is transformed into a GeoDataFrame. This data is then spatially joined with the geospatial grid, allowing incidents to be mapped to specific grid cells.
 
@@ -30,7 +30,7 @@ This project represents an advanced analysis of incident data reported to the Sa
 
 - Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
 
-Overall, the project leverages the strengths of SQL and Python to perform a multi-faceted analysis of SFPD data. It not only identifies patterns in vehicle theft incidents but also provides a visual representation of these patterns across San Francisco, thereby aiding in better understanding and potentially guiding preventive measures.
+Overall, the project leverages the strengths of SQL, Python and Reacht to perform a multi-faceted analysis of SFPD data. It not only identifies patterns of crime incidents but also provides a visual representation of these patterns across San Francisco, thereby aiding in better understanding and potentially guiding preventive measures.
 
 ## Repository Contents
 
@@ -38,16 +38,12 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
 
 #### `/geo_grid`
 - **Description**: Contains files for creating the geojson files for the heatmap grid over SF.
-- **Content**:
 #### `/backend`
-- **Description**: Contains main Flask app.py script. 
-- **Content**:
+- **Description**: Contains main Flask backend. 
 #### `/frontend`
-- **Description**: Contains sfpd_theft_app which is main React directory
-- **Content**:
+- **Description**: Contains React frontend.
 #### `/sql`
-- **Description**: Contains SQL queries for exploring and creating SPFD incident report database.
-- **Content**:
+- **Description**: Contains SQL queries for exploring and creating the SPFD incident report database.
 
 ### `/geo_grid`
 
