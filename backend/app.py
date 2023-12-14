@@ -1,10 +1,13 @@
 """
 Main flask app.py file w/ routes 
 """
+from dotenv import load_dotenv
+load_dotenv()  # This line loads environment variables from the .env file
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS  
 from opencage.geocoder import OpenCageGeocode
+import os
 import geopandas as gpd
 from shapely.geometry import Point
 from queries import get_top_theft_locations, get_price_breakdown, get_year_breakdown, get_status_breakdown, get_time_breakdown, get_supervisor_breakdown
@@ -25,7 +28,7 @@ grid_assault = gpd.read_file('heatmaps/sf_assault_heatmap.geojson')
 grid_drugs = gpd.read_file('heatmaps/sf_drug_heatmap.geojson')
 
 # Initialize OpenCage Geocoder with API key
-geocoder = OpenCageGeocode("90989e6ade6247a7b36dde59f9b55adc")
+geocoder = OpenCageGeocode(os.getenv('OPENCAGE_API_KEY'))
 
 @app.route('/test', methods=['GET'])
 def test():

@@ -1,3 +1,5 @@
 *.csv
 *.geojson
 backend/sfpd_incidents_db.sql
+.env
+venv/
