@@ -12,7 +12,6 @@ function LeafletMap({ geojsonUrl }) {
       const map = L.map('map').setView([37.7749, -122.4194], 13);
       mapRef.current = map;
 
-      
       // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,7 +52,7 @@ function LeafletMap({ geojsonUrl }) {
                probability > .020 ? '#d7301f' :
                probability > .015 ? '#ef6548' :
                probability > .010 ? '#fc8d59' :
-               probability > .008 ? '#fdad8f' : // New shade between .005 and .01
+               probability > .008 ? '#fdad8f' : 
                probability > .005 ? '#fdbb84' :  // Medium orange
                probability > .002 ? '#fdd49e' :
                probability > .001 ? '#fee8c8' :
@@ -85,11 +84,9 @@ function LeafletMap({ geojsonUrl }) {
           popupContent += "<br><b>Avg per Month:</b> " + (feature.properties["average_incidents_per_month"] !== null ? parseFloat(feature.properties["average_incidents_per_month"].toFixed(1)) : 'N/A');
           popupContent += "<br><b>Day of Week w/ Most:</b> " + (feature.properties["Incident Day of Week"] || 'N/A');
           popupContent += "<br><b>Police District:</b> " + (feature.properties["Police District"] || 'N/A');
-
           // popupContent += "<br><b>Date w/ Most Thefts:</b> " + (feature.properties["Incident Date"] || 'N/A');
           // popupContent += "<br><b>Avg. Time:</b> " + (feature.properties["Incident Time"] || 'N/A');
           // popupContent += "<br><b>Avg. Resolution:</b> " + (feature.properties["Resolution"] || 'N/A');
-
 
           layer.bindPopup(popupContent);
         }

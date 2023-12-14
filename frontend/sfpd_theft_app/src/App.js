@@ -22,6 +22,10 @@ const FlexContainer = styled.div`
 const MainContent = styled.div`
   flex-grow: 1;
   margin-left: 85px;
+
+  @media (max-width: 868px) {
+    margin-left: 0px;
+  }
 `;
 
 function App() {
@@ -43,7 +47,6 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/drugs" element={<DrugsPage />} />
               <Route path="/contact" element={<ContactPage />} />
-
               {/* Add more routes as needed */}
             </Routes>
           </MainContent>

@@ -5,9 +5,9 @@
         return "Low Risk";
     } else if (probability >= 0.3 && probability < 0.5) {
         return "Moderate Risk";
-    } else if (probability >= 0.5 && probability < 0.95) { // Corrected range for High Risk
+    } else if (probability >= 0.5 && probability < 0.95) {
         return "High Risk";
-    } else if (probability >= 0.95 && probability <= 3.0) {
+    } else if (probability >= 0.95 && probability <= 30.0) {
         return "Very High Risk";
     } else {
         return "Unknown Risk";

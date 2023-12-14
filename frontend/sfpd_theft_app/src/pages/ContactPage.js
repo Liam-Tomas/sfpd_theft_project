@@ -1,68 +1,131 @@
 import React from 'react';
-import styled from 'styled-components';
-import Button from '../components/utility/Button';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import MyButton from '../components/utility/Button';
+import { useTheme } from 'styled-components';
 
-const PageContainer = styled.div`
-    padding: 2px 20px;
+const MainContainer = styled.div`
+  margin: 11px 11px 11px 12px;
+  padding-left: 30px;
+  padding-right: 360px;
+  color: ${props => props.theme.text};
+  position: relative; // Needed for absolute positioning of overlay
+  min-height: 40vh;
+  margin-bottom: 60px;
+  display: flex; 
+  flex-direction: column;
+//   align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background-size: cover;
+  background: ${props => props.theme.card2};
+
+
+  @media (max-width: 768px) {
+    align-items: '';
+
+  }
+
 `;
 
-const Title = styled.h1`
-    margin-bottom: 16px;
+
+const ContentContainer = styled.div`
+  position: relative; // Position relative to stack above the overlay
+  z-index: 2; // Higher z-index than the overlay
+  display: flex;
+  flex-direction: column;
+
 `;
 
-const SectionTitle = styled.h2`
-`;
 
-const Paragraph = styled.p`
-    // font-size:1.05rem;
-`;
-
-const Footer = styled.div`
-`;
-
-const TechSection = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-    * {
-        // background-color: ${props => props.theme.card};
-        border-radius: 15px;
-        margin:0px;
-        // padding: 10px;
-
+const HomeHeader = styled.div`
+    margin: 0px 10px;
+    z-index: 2; // Add a higher z-index
+ 
+    @media (max-width: 868px) {
+        margin: 0px 0px;
+        text-align: left;
     }
-`;
+`
 
-const TechTitle = styled.h3`
-    text-align: left;
-    margin: 0px;
-    padding: 5px 0px;
-`;
-
-const StyledLink = styled.a`
-    color: ${props => props.theme.OppHoverBackground};
+const HomeTitle = styled.h1`
+    font-size: 60px;
+    letter-spacing: -1px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     font-weight: 500;
+    @media (max-width: 868px) {
+        font-size: 2.8rem;
+        margin-top: 20px;
+    }
+`
 
+const HomeSubText = styled.p`
+    color: ${props => props.theme.textAlt};
+    font-weight: 400;
+    font-size: 22px;
+    line-height:1.5;
+    letter-spacing: -1px;
+    margin: 10px 0px 25px 0px;
+
+    @media (max-width: 868px) {
+        font-size: 1.1rem;
+        margin-top: 15px;
+
+    }`
+
+const HomeTopText = styled.p`
+    color: ${props => props.theme.primary};
+    font-weight: 500;
+    font-size: 22px;
+    line-height:1.5;
+    letter-spacing: -1px;
+    margin: 0px;
+    margin-bottom: 20px;
+
+    @media (max-width: 868px) {
+        font-size: 1.1rem;
+        margin-top: 15px;
+
+}`
+
+const MyButtonContainer = styled.p`
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    gap: 10px
 `
 
 const StyledEmail = styled.span`
-    color: ${props => props.theme.OppHoverBackground};
-    font-weight: 500;
+    color: ${props => props.theme.primary};
+    font-weight: 600;
+
 `
+
 
 
 
 function ContactPage() {
+    const theme = useTheme();
+
     return (
-        <PageContainer>
-            <Title>Contact</Title>
-            <Paragraph>Feel free to reach out to me by email at <StyledEmail>ltarmstrong94@gmail.com</StyledEmail></Paragraph>
-            <Paragraph>The project github can be viewed here: <StyledLink href="https://github.com/Liam-Tomas/sfpd_theft_project" target="_blank" rel="noopener noreferrer">github.com/Liam-Tomas/sfpd-theft-project</StyledLink>            
-            </Paragraph>
-        </PageContainer>
+        <div>
+            <ContentContainer>
+                <MainContainer>
+                    <HomeHeader>
+                        {/* <HomeTopText>Hi, my name is</HomeTopText> */}
+                        <HomeTitle>Contact</HomeTitle>
+                        <HomeSubText>Feel free to reach out to me by email: <StyledEmail>ltarmstrong94@gmail.com</StyledEmail></HomeSubText>
+                        <MyButtonContainer>
+                            {/* <MyButton padding="16px 20px" fontSize="1.1rem" icon={faGithub}>
+                                Resume
+                            </MyButton> */}
+                        </MyButtonContainer>
+                    </HomeHeader>
+                </MainContainer>
+            </ContentContainer>
+        </div >
     );
 }
-
 export default ContactPage;
+

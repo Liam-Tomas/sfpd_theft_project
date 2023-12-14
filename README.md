@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques with React. The objective is to provide an in-depth understanding of the dynamics of urban crime in San Francisco.
+This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand localized crime dynamics. This project combines a variety of different technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive visualization techniques with React.
 
 This comprehensive approach not only visualizes but also quantifies urban crime patterns across San Francisco, providing a rich, interactive experience that combines advanced data analysis with practical, user-centric applications.
 
@@ -14,19 +14,19 @@ This comprehensive approach not only visualizes but also quantifies urban crime 
 
 ### Geospatial Analysis :
 
-Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident rates within each grid cell. A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
+- Python scripts generate a finely detailed geospatial grid over San Francisco. This grid serves as the foundation for creating the heatmap, offering insights into the spatial distribution of crime incidents. Using geopandas, the project leverages spatial data operations to create GeoDataFrames and calculate incident rates within each grid cell. A key feature of this project is its integration of geospatial analysis to create a detailed heatmap. This heatmap, generated through Python's GeoPandas, is dynamically displayed on an interactive map within the using Leaflet.js with React. 
 
 ### Interactive Heatmap:
 
-A heatmap is dynamically overlayed over on an interactive map using Leaflet.js with React. Visualizes the relative rates of various crimes in SF, offering users a detailed view of crime distribution across the city. 
+- A heatmap is dynamically overlayed over on an interactive map using Leaflet.js with React. Visualizes the relative rates of various crimes in SF, offering users a detailed view of crime distribution across the city. 
 
 ### Localized Crime Data Analysis: 
 
-The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
+- The project introduces a feature that allows users to input their addresses, converting them to latitude and longitude coordinates. This information is then used to identify the nearest grid cell, providing highly localized insights into crime rates specific to that area. The front-end React application interfaces with this Flask API, offering users an interactive platform to input locations and receive instant risk evaluations. 
 
 ### Dynamic Data Presentation:
 
-Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
+- Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
 
 ## Detailed Overview
 

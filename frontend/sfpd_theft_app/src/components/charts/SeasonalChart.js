@@ -9,7 +9,7 @@ import styled from 'styled-components';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartWrapper = styled.div`
-    height: 422px;
+    height: 431px;
 `;
 
 
@@ -26,7 +26,6 @@ const SeasonalChart = ({ apiEndpoint }) => {
                 const data = response.data;
 
                 // Assuming data is in the format: [{season: 'Spring', year: '2018', count: 37642}, ...]
-
                 // Extract unique years and seasons
                 const years = [...new Set(data.map(item => item.Year))];
                 const seasons = [...new Set(data.map(item => item.Season))];

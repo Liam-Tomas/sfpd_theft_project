@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Bar } from 'react-chartjs-2'; // Import Bar chart type
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 import MainContainerRight from '../utility/MainContainerRight';
 import styled from 'styled-components';
@@ -89,11 +89,9 @@ const AssaultTypesChart = ({ apiEndpoint }) => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, // Using text color from the theme for legend labels
-                }
-                
+                    color: theme.textAlt,
+                }    
             }
-            
         },
     };
 
@@ -102,7 +100,7 @@ const AssaultTypesChart = ({ apiEndpoint }) => {
             <ChartContainer>
             <h3>Top 10 Incident Categories</h3>
             {chartData && (
-                <Bar // Use Bar chart type
+                <Bar
                     data={chartData}
                     options={options}
 

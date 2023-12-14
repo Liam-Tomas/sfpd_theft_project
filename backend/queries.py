@@ -118,25 +118,4 @@ def get_supervisor_breakdown():
     conn.close()
     return results
 
-def get_mental_time():
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True) 
-    cursor.execute("""
-        SELECT 
-            CASE
-                WHEN HOUR(Incident_Time) BETWEEN 0 AND 5 THEN 'Night (12 AM - 5 AM)'
-                WHEN HOUR(Incident_Time) BETWEEN 6 AND 11 THEN 'Morning (6 AM - 11 AM)'
-                WHEN HOUR(Incident_Time) BETWEEN 12 AND 17 THEN 'Afternoon (12 PM - 5 PM)'
-                ELSE 'Evening (6 PM - 11 PM)'
-            END AS Time_Slot,
-            COUNT(*) AS Total_Incidents
-        FROM sfpd_incidents
-        WHERE Incident_Description = 'Mental Health Detention'
-        GROUP BY Time_Slot
-        ORDER BY Total_Incidents DESC;
 
-    """)
-    results = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return results

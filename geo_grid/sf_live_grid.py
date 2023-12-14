@@ -7,10 +7,11 @@ import matplotlib.pyplot as plt
 def fetch_data_from_api():
     client = Socrata("data.sfgov.org", None)  # Replace None with your app token if required
     # Adjust query to get relevant fields and filter data as needed
-    query = "SELECT latitude, longitude, incident_datetime, incident_category, incident_subcategory, resolution, police_district WHERE incident_category = 'Larceny Theft'"
+    query = "SELECT * WHERE incident_category = 'Larceny Theft' AND Incident_Subcategory = 'Larceny - From Vehicle'"
+  
     results = client.get("wg3w-h783", query=query)  # Adjust the query as needed
        # Print the first few records in the list
-    for record in results[:5]:  # Print the first 5 records for example
+    for record in results[:10]:  # Print the first 5 records for example
         print(record)
     return pd.DataFrame.from_records(results)
 
@@ -18,6 +19,7 @@ def create_geodataframe(df):
     # Convert latitude and longitude to numeric types
     df['latitude'] = pd.to_numeric(df['latitude'])
     df['longitude'] = pd.to_numeric(df['longitude'])
+    
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['longitude'], df['latitude']))
     gdf.crs = 'EPSG:4326'
     return gdf
@@ -71,7 +73,7 @@ def calculate_average_incidents_per_month(joined, total_months=71):
 
 def aggregate_info(joined):
     # Create a dictionary to define aggregation functions for all columns
-    aggregation_functions = {col: lambda x: x.mode().iloc[0] if not x.empty else 'N/A' for col in joined.columns}
+    aggregation_functions = {col: lambda x: x.mode().iloc[0] if not x.empty and not x.mode().empty else 'N/A' for col in joined.columns}
     
     # Include cell_id in aggregation
     aggregation_functions['cell_id'] = 'first'

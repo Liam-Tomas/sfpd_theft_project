@@ -33,6 +33,9 @@ const StyledInput = styled.input`
     &::placeholder {
         // color: ${props => props.theme.textAlt};
     }
+    @media (max-width: 868px) {
+        width: 90%;
+    }
 `;
 
 const ErrorText = styled.span`

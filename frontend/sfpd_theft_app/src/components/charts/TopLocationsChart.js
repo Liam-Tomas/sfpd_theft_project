@@ -1,77 +1,3 @@
-
-// import React, { useState, useEffect } from 'react';
-// import { Bar } from 'react-chartjs-2';
-// import axios from 'axios';
-// import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-// ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-// const TheftLocationsChart = () => {
-//     const [chartData, setChartData] = useState(null); // Initially null
-//     const api_route = 'http://127.0.0.1:5000/';
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 const response = await axios.get(`${api_route}/top-theft-locations`);
-//                 const data = response.data;
-//                 if (data && Array.isArray(data)) {
-//                     setChartData({
-//                         labels: data.map(item => item.Intersection),
-//                         datasets: [{
-//                             label: 'Total Incidents',
-//                             data: data.map(item => item.Total_Incidents),
-//                             backgroundColor: 'rgba(54, 162, 235, 0.6)',
-//                             borderColor: 'rgba(54, 162, 235, 1)',
-//                             borderWidth: 1
-//                         }]
-//                     });
-//                 } else {
-//                     console.error('Data is not an array:', data);
-//                 }
-//             } catch (error) {
-//                 console.error('Error fetching data:', error);
-//             }
-//         };
-
-//         fetchData();
-//     }, []);
-
-//     const options = {
-//         scales: {
-//             x: {
-//                 type: 'category',
-//                 title: {
-//                     display: true,
-//                     text: 'Intersection'
-//                 }
-//             },
-//             y: {
-//                 type: 'linear',
-//                 title: {
-//                     display: true,
-//                     text: 'Total Incidents'
-//                 }
-//             }
-//         },
-//         plugins: {
-//             legend: {
-//                 display: true,
-//                 position: 'top'
-//             }
-//         },
-//         // Additional options can be added here
-//     };
-
-//     return (
-//         <div>
-//             <h2>Top Intersecrtions for Vehicle Break-ins</h2>
-//             {chartData && <Bar data={chartData} options={options} />}
-//         </div>
-//     );
-// };
-
-// export default TheftLocationsChart;
-
 import React, { useState, useEffect, useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
@@ -81,11 +7,6 @@ import { ThemeContext } from 'styled-components';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const StyledGrid = styled.div`
-    // display: grid;
-    // grid-template-columns: 1fr 1fr;
-`;
 
 const ChartContainer = styled.div`
 
@@ -105,7 +26,7 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                     setChartData({
                         labels: data.map(item => item.Intersection), // Use Intersection for x-axis
                         datasets: [{
-                            label: 'Total Incidents of Vehicle Break-ins',
+                            label: 'Total Incidents',
                             data: data.map(item => item.Total_Incidents), // Use Total_Incidents for y-axis
                             backgroundColor: 'rgba(54, 162, 235, 0.6)',
                             borderColor: 'rgba(54, 162, 235, 1)',
@@ -138,25 +59,25 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                     text: 'Total Incidents'
                 },
                 title: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt, 
                 },
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt, 
                 }
             },
             y: {
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight,
                 },
                 title: {
                     display: false,
                     text: 'Intersection'
                 },
                 title: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 },
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 }
             }
         },
@@ -165,13 +86,12 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, // Using text color from the theme for legend labels
+                    color: theme.textAlt,
                 }
                 
             }
             
         },
-        // Additional options can be added here
     };
 
     return (
@@ -182,8 +102,8 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={355} // You can also set the height as needed
-                            width={570} // Set the width to a larger value to make it wider
+                            height={355} 
+                            width={570} 
                         />
                     )}
                 </ChartContainer>

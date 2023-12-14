@@ -58,29 +58,29 @@ const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
         scales: {
             y: {
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 },
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight,
                 },
                 beginAtZero: true,
                 title: {
                     display: false,
                     text: 'Total Incidents',
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 }
             },
             x: {
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt, 
                 },
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight, 
                 },
                 title: {
                     display: false,
                     text: 'Time of Day',
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt, 
                 }
             }, 
         },
@@ -89,7 +89,7 @@ const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, // Using text color from the theme for legend labels
+                    color: theme.textAlt, 
                 }
             },
 

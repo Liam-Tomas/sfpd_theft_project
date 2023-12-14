@@ -69,7 +69,7 @@ function MentalPage() {
                 />
                 </SecondRowItem>
                 <SecondRowItem2>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"  chartHeight={240} chartWidth={50}/>
+                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"  chartHeight={245} chartWidth={50}/>
                   {/* <PriceBreakdownChart/> */}
                 </SecondRowItem2>
                 <SecondRowItemSmall>
