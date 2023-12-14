@@ -1,4 +1,4 @@
-# San Francisco Police Department Crime Data Geospatial Analysis
+# SFPD Crime Data Geospatial Analysis
 
 ## Overview
 
@@ -20,11 +20,11 @@ This project represents an advanced analysis of incident data reported to the Sa
 
 ### Heatmap Layer Creation in Leaflet
 
-- In the React front-end, the `LeafletMap.js` component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer. A custom color-coding function dynamically styles each grid cell based on the relative crim rate, creating a visually intuitive heatmap. The Leaflet map is enhanced with interactivity. Users can click on different areas of the heatmap to view detailed information about crime probabilities and statistics in that specific grid cell.
+- In the React front-end, the `LeafletMap.js` component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer. A custom color-coding function dynamically styles each grid cell based on the relative crime rate, creating a visually intuitive heatmap. The Leaflet map is enhanced with interactivity. Users can click on different areas of the heatmap to view detailed information about crime probabilities and statistics in that specific grid cell.
 
 ### Localized Crime Data Analysis: 
 
-- A key feature of the project enables users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
+- The `RiskCalc.py` in conjuction w/ the backend function `calculate_rate` in `app.py`, enables a key feature of the project that allows users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
 
 ### Dynamic Data Presentation:
 
@@ -34,29 +34,26 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
 
 ## Repository Contents
 
-### SQL Scripts
+### Structure
 
-#### `sfpd_incidents.sql`
+#### `/geo_grid`
+- **Description**: Contains files for creating the geojson files for the heatmap grid over SF.
+- **Content**:
+#### `/backend`
+- **Description**: Contains main Flask app.py script. 
+- **Content**:
+#### `/frontend`
+- **Description**: Contains sfpd_theft_app which is main React directory
+- **Content**:
+#### `/sql`
+- **Description**: Contains SQL queries for exploring and creating SPFD incident report database.
+- **Content**:
 
-- **Description**: Contains SQL queries for exploring the SFPD incident report data, particularly theft from vehicles.
-- **Features**:
-  - **Database and Table Creation**:
-    - **Database Initialization**: A new database named `sfpd_incidents_db` is created.
-    - **Table Structure**: The `sfpd_incidents` table is designed with various fields to capture detailed information about each incident, such as date, time, type of incident, description, location, and resolution.
-  - **Data Import**:
-    - The script includes a command to load data from a CSV file (`sfpd_incidents_clean.csv`) into the `sfpd_incidents` table. 
-  - **Basic Data Exploration**:
-    - Initial queries are included to view the structure of the data and to get a count of the total rows (incidents) available in the table.
-  - **Focused Queries on Specific Incident Types**:
-    - The script contains queries to filter and analyze incidents related to mental health and vehicle theft. This includes counting the number of such incidents and examining their characteristics.
-  - **Aggregated Data Analysis**:
-    - There are queries to analyze vehicle theft incidents by various dimensions, such as the day of the week, police district, resolution status, and price categories of the thefts.
-
-### Python Scripts
+### `/geo_grid`
 
 #### `sf_grid.py`
 
-- **Description**: Generates a geospatial grid over San Francisco for mapping and spatial analysis. This methodology combines geospatial analysis with statistical probability calculation, providing a detailed understanding of the spatial distribution of vehicle theft risks across San Francisco.
+- **Description**: Generates a geospatial grid over San Francisco for mapping and spatial analysis, providing a detailed understanding of the spatial distribution of vehicle theft risks across San Francisco.
 - **Features**:
   - **Geospatial Boundary Definition**: It starts by defining the geographical boundaries of San Francisco using coordinates to create a polygon. This polygon represents the area of interest for the analysis.
   - **Grid Creation**: The script then divides this polygon into a grid. This grid consists of 100 rows and 100 columns, effectively creating 10,000 cells. Each cell in the grid is a smaller polygon within the larger San Francisco boundary.
@@ -66,7 +63,7 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
 
 #### `theft_incident_probability.py`
 
-- **Description**: Calculates and visualizes the probability of theft incidents within each grid cell of San Francisco. The key output of this script is a heatmap, which is later integrated into the `LeafletMap` React component for interactive web visualization.
+- **Description**: Calculates and visualizes the relative rate of theft incidents within each grid cell of San Francisco. The key output of this script is a heatmap, which is later integrated into the `LeafletMap` React component for interactive web visualization.
 - **Features**:
   - **Data Preparation**: It begins by loading the incident data from a CSV file into a pandas DataFrame. The script cleans the data, particularly focusing on latitude and longitude values, by dropping rows where these values are missing.
   - **Creation of GeoDataFrame**: The script converts the cleaned data into a GeoDataFrame. This is crucial for spatial analysis as it facilitates operations based on geographic location.
@@ -74,9 +71,8 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
   - **Incident Counting and Probability Calculation**: After the spatial join, the script counts the number of incidents in each grid cell. Using these counts, it calculates the probability of an incident occurring in each cell. This calculation is based on the ratio of incidents in a cell to the total number of incidents.
   - **Data Visualization**: The script uses `matplotlib` to plot the grid with each cell colored according to its probability value. This visualization provides a clear, intuitive way to understand the spatial distribution of theft incidents across San Francisco.
   - **Heatmap Generation**: Produces a heatmap based on incident probabilities, which serves as a foundational layer for the interactive map displayed in the `LeafletMap` component.
-
   
-### React Components
+### `/frontend/sfpd_theft_app`
 
 #### `RiskCalc`
 
@@ -99,7 +95,7 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
   - **Zoom and Pan Features**: Allows users to zoom in for a closer look at specific areas or pan across the city for a broader overview.
   - **Customizable Layers**: Offers the capability to toggle between different map layers for personalized viewing preferences.
 
-### Flask Backend
+### `/backend`
 
 - **Endpoints**:
   - `/get_probability`: A endpoint that calculates the relative rate of vehicle theft by a given location.
@@ -107,3 +103,19 @@ Overall, the project leverages the strengths of SQL and Python to perform a mult
     - **Probability Calculation**: Utilizes the pre-processed geospatial grid of San Francisco to determine the risk associated with the provided location.
     - **Robust Error Handling**: Manages various scenarios like non-San Francisco addresses or server-side errors, ensuring a stable user experience.
     - **Formatted Responses**: Delivers responses in a structured JSON format, including essential information such as calculated probability and geolocation coordinates for mapping purposes.
+
+### `/sql`
+
+#### `sfpd_incidsents.sql`
+
+- **Description**: Contains SQL queries for exploring the SFPD incident report data.
+- **Features**:
+  - **Database and Table Creation**:
+    - **Database Initialization**: A new database named `sfpd_incidents_db` is created.
+    - **Table Structure**: The `sfpd_incidents` table is designed with various fields to capture detailed information about each incident, such as date, time, type of incident, description, location, and resolution.
+  - **Data Import**:
+    - The script includes a command to load data from a CSV file (`sfpd_incidents_clean.csv`) into the `sfpd_incidents` table. 
+  - **Focused Queries on Specific Incident Types**:
+    - The script contains queries to filter and analyze incidents related to mental health, vehicle theft and others. This includes counting the number of such incidents and examining their characteristics.
+  - **Aggregated Data Analysis**:
+    - Contains queries to analyze crime incidents by various dimensions, such as the day of the week, police district, resolution status, and price categories of the thefts.
