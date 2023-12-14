@@ -16,6 +16,7 @@ const Title = styled.h1`
 const SectionTitle = styled.h2`
      font-size: 1.7rem;
      margin: 3px 0px;
+     font-weight: 500;
 `;
 
 const Paragraph = styled.p`
@@ -68,7 +69,7 @@ const MainContainer = styled.div`
     margin: 11px 11px 11px 12px;
     color: ${props => props.theme.text};
     position: relative; // Needed for absolute positioning of overlay
-
+    background: 
 
   @media (max-width: 768px) {
     align-items: '';
@@ -83,7 +84,7 @@ const ContentContainer = styled.div`
   z-index: 2; // Higher z-index than the overlay
   display: flex;
   flex-direction: column;
-//   background: ${props => props.theme.card};
+  background: ${props => props.theme.backgroundOpp};
 
 
 `;
@@ -98,7 +99,7 @@ const HomeHeader = styled.div`
     justify-content: center;
     border-radius: 25px;
     background-size: cover;
-    background: ${props => props.theme.card};
+    background: ${props => props.theme.cardOpp};
     gap: 10px;
 
     @media (max-width: 868px) {
@@ -108,13 +109,14 @@ const HomeHeader = styled.div`
 `
 
 const HomeTitle = styled.h1`
-    font-size: 40px;
+    font-size: 36px;
     margin: 0px;
     font-weight: 500;
     @media (max-width: 868px) {
         font-size: 2.8rem;
         margin-top: 20px;
     }
+    
 `
 
 const HomeSubText = styled.p`
@@ -122,6 +124,7 @@ const HomeSubText = styled.p`
     font-weight: 400;
     font-size: 20px;
     margin: 0px;
+    
     @media (max-width: 868px) {
         font-size: 1.1rem;
         margin-top: 15px;
@@ -200,9 +203,7 @@ function AboutPage() {
                         </TitleContainer>
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
-                            focusing on creating an interactive experience for users to understand local crime dynamics. This project uses
-                            a variety of technologies, including Flask for the backend, geopandas for geospatial analysis, and interactive
-                            visualization techniques with React.
+                            focusing on creating an interactive experience for users to understand local crime dynamics.
                             This comprehensive approach both visualizes and quantifies urban crime patterns across San Francisco,
                             providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
                         </Paragraph>

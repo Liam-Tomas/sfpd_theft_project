@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   padding-right: 360px;
   color: ${props => props.theme.text};
   position: relative; // Needed for absolute positioning of overlay
-  min-height: 40vh;
+  min-height: 30vh;
   margin-bottom: 60px;
   display: flex; 
   flex-direction: column;
@@ -18,7 +18,7 @@ const MainContainer = styled.div`
   justify-content: center;
   border-radius: 25px;
   background-size: cover;
-  background: ${props => props.theme.card2};
+  background: ${props => props.theme.cardOpp};
 
 
   @media (max-width: 768px) {
@@ -33,7 +33,9 @@ const ContentContainer = styled.div`
   position: relative; // Position relative to stack above the overlay
   z-index: 2; // Higher z-index than the overlay
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
+  background: ${props => props.theme.backgroundOpp};
 
 `;
 
@@ -49,11 +51,13 @@ const HomeHeader = styled.div`
 `
 
 const HomeTitle = styled.h1`
-    font-size: 60px;
+    font-size: 46px;
     letter-spacing: -1px;
     margin-top: 0px;
     margin-bottom: 0px;
     font-weight: 500;
+    margin: 15px 0px 0px 0px;
+
     @media (max-width: 868px) {
         font-size: 2.8rem;
         margin-top: 20px;
@@ -63,10 +67,10 @@ const HomeTitle = styled.h1`
 const HomeSubText = styled.p`
     color: ${props => props.theme.textAlt};
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     line-height:1.5;
     letter-spacing: -1px;
-    margin: 10px 0px 25px 0px;
+    margin: 15px 0px 0px 0px;
 
     @media (max-width: 868px) {
         font-size: 1.1rem;
@@ -74,20 +78,6 @@ const HomeSubText = styled.p`
 
     }`
 
-const HomeTopText = styled.p`
-    color: ${props => props.theme.primary};
-    font-weight: 500;
-    font-size: 22px;
-    line-height:1.5;
-    letter-spacing: -1px;
-    margin: 0px;
-    margin-bottom: 20px;
-
-    @media (max-width: 868px) {
-        font-size: 1.1rem;
-        margin-top: 15px;
-
-}`
 
 const MyButtonContainer = styled.p`
     display: flex;
@@ -97,7 +87,7 @@ const MyButtonContainer = styled.p`
 `
 
 const StyledEmail = styled.span`
-    color: ${props => props.theme.primary};
+    color: ${props => props.theme.secondary};
     font-weight: 600;
 
 `
@@ -109,7 +99,6 @@ function ContactPage() {
     const theme = useTheme();
 
     return (
-        <div>
             <ContentContainer>
                 <MainContainer>
                     <HomeHeader>
@@ -124,7 +113,6 @@ function ContactPage() {
                     </HomeHeader>
                 </MainContainer>
             </ContentContainer>
-        </div >
     );
 }
 export default ContactPage;

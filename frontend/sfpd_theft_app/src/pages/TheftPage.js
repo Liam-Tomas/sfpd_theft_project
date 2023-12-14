@@ -24,6 +24,7 @@ const StyledGrid = styled.div`
  `;
 
 const FirstRowLeft = styled.div`
+
   grid-column: span 5; /* Span 3 columns */
 `;
 

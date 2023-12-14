@@ -25,9 +25,9 @@ const NavbarContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 5px 0px;
 
   @media (max-width: 868px) {
-    width: 80px; // Adjust width as needed
+    width: 250px;
     transform: translateX(${props => props.isOpen ? '0' : '-100%'});
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
   }
 `;
 
@@ -91,11 +91,15 @@ const NavbarItem = styled.div`
   color: ${props => props.theme.textAlt};
   user-select: none;
   color: ${(props) => props.isActive ? props.theme.text : 'none'};
+
+
   &:hover {
     color: ${props => props.theme.text};
     ${StyledIcon} {
       background-color: ${props => props.theme.buttonHoverBackground};
     }
+  }
+    
   &:active {
     color: ${props => props.theme.text};
     
@@ -103,6 +107,18 @@ const NavbarItem = styled.div`
       transform: scale(.92);
     }
   }
+
+  @media (max-width: 1068px) {
+    border-radius: 20px;
+    padding: 4px 25px 4px 0px;
+    gap:5px;
+    font-size: 1rem;
+    flex-direction: row; // Change to row in mobile mode
+    &:hover {
+        background-color: ${props => props.theme.buttonHoverBackground};
+      }
+  
+
 `;
 
 const SubMenu = styled.div`
@@ -140,17 +156,17 @@ const SubMenuItem = styled(Link)`
 
 const HamburgerButton = styled.button`
   background: none;
-  color :red;
+  color: ${props => props.theme.textAlt};
   border: none;
   display: none; // Hidden by default
   cursor: pointer;
   font-size: 24px;
   position: fixed;
-  top: 10px; // Adjust the position as needed
-  left: 10px;
+  top: 25px; // Adjust the position as needed
+  left: 20px;
   z-index: 1100; // Make sure it's above other elements
 
-  @media (max-width: 768px) {
+  @media (max-width: 868px) {
     display: block; // Show only on mobile screens
   }
 `;

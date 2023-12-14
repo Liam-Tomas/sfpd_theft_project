@@ -74,8 +74,6 @@ function RiskCalc({ apiEndpoint }) {
         }
     };
 
-    // const riskCategory = probability !== null ? categorizeRisk(parseFloat(probability)) : '';
-
     return <MainContainer>
         <h3>Enter Your Address for Local Insights</h3>
         <StyledForm onSubmit={handleSubmit}>

@@ -29,7 +29,7 @@ const MainContent = styled.div`
 `;
 
 function App() {
-  const [theme, themeToggler] = useDarkMode(); // Use the custom hook
+  const [theme, themeToggler] = useDarkMode();
   const currentTheme = theme === 'light' ? lightTheme : darkTheme; // Determine the current theme
 
   return (

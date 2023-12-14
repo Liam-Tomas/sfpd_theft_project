@@ -47,29 +47,29 @@ const PriceBreakdownChart = () => {
         scales: {
             x: {
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 },
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight,
                 },
                 beginAtZero: true,
                 title: {
                     display: false,
                     text: 'Price Category',
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 }
             },
             y: {
                 ticks: {
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
                 },
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight,
                 },
                 title: {
                     display: false,
                     text: 'Total Incidents',
-                    color: theme.textAlt, // Using text color from the theme
+                    color: theme.textAlt,
 
                 }
             }
@@ -79,11 +79,10 @@ const PriceBreakdownChart = () => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, // Using text color from the theme for legend labels
+                    color: theme.textAlt,
                 }
             }
         },
-        // Additional options can be added here
     };
 
     return (

@@ -3,7 +3,7 @@ from db import get_db_connection
 def get_top_mental_locations():
     """ Query for top 10 locations of mental health incidents in sf """
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
+    cursor = conn.cursor(dictionary=True)  # 'dictionary=True' to get results as dictionaries
     cursor.execute("""
         SELECT Intersection, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
@@ -20,7 +20,7 @@ def get_top_mental_locations():
 def get_mental_year():
     """ Query for top 10 locations of mental health incidents in sf """
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
+    cursor = conn.cursor(dictionary=True)  
     cursor.execute("""
         SELECT Incident_Year, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents
@@ -36,7 +36,7 @@ def get_mental_year():
 def get_mental_resolution():
     """ Query for resolution status of mental health incidents in sf """
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)  # Use 'dictionary=True' to get results as dictionaries
+    cursor = conn.cursor(dictionary=True)
     cursor.execute("""
         SELECT Resolution, COUNT(*) AS Total_Incidents
         FROM sfpd_incidents

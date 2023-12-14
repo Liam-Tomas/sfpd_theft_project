@@ -13,16 +13,16 @@ from assault_queries import get_top_assault_locations, get_assault_year, get_ass
 from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution, get_drug_time, get_drug_supervisor, get_drug_type
 
 app = Flask(__name__)
-CORS(app)  # Configure CORS for your app
+CORS(app) 
 
 # Load the pre-processed GeoJSON file
-grid = gpd.read_file('sf_heatmap_detailed_v6.geojson')
+grid = gpd.read_file('heatmaps/sf_heatmap_detailed_v6.geojson')
 
-grid_mental_health = gpd.read_file('sf_mental_health_heatmap.geojson')
+grid_mental_health = gpd.read_file('heatmaps/sf_mental_health_heatmap.geojson')
 
-grid_assault = gpd.read_file('sf_assault_heatmap.geojson')
+grid_assault = gpd.read_file('heatmaps/sf_assault_heatmap.geojson')
 
-grid_drugs = gpd.read_file('sf_drug_heatmap.geojson')
+grid_drugs = gpd.read_file('heatmaps/sf_drug_heatmap.geojson')
 
 # Initialize OpenCage Geocoder with API key
 geocoder = OpenCageGeocode("90989e6ade6247a7b36dde59f9b55adc")
@@ -48,11 +48,11 @@ def calculate_rate(grid, data):
             city = first_result['components'].get('city', '').lower()
             state = first_result['components'].get('state', '').lower()
             if 'san francisco' not in city or 'california' not in state:
-                return {"error": "Address is not in San Francisco, CA."}  # Removed status code
+                return {"error": "Address is not in San Francisco, CA."}  
         else:
-            return {"error": "Address could not be geocoded."}  # Removed status code
+            return {"error": "Address could not be geocoded."}  
     else:
-        return {"error": "Missing latitude and longitude or address."}  # Removed status code
+        return {"error": "Missing latitude and longitude or address."} 
 
     user_location = Point(longitude, latitude)
     nearest_cell = grid.distance(user_location).idxmin()
@@ -92,197 +92,11 @@ def get_rate_assault():
 def get_rate_drugs():
     data = request.json
     return jsonify(calculate_rate(grid_drugs, data))
-
-
-# @app.route('/get_probability', methods=['POST'])
-# def get_probability():
-#     """
-#     Calculate the probability for a given location (latitude and longitude or address).
-#     Returns: JSON response with the calculated probability.
-#     """
-#     print("Request received")  # Debug print
-#     data = request.json
-#     print("Data received:", data)  # Debug print
-#     if 'latitude' in data and 'longitude' in data:
-#         latitude, longitude = data['latitude'], data['longitude']
-#     elif 'address' in data:
-#         address = data['address']
-#         location_results = geocoder.geocode(address)
-#         if location_results:
-#             first_result = location_results[0]
-#             latitude, longitude = first_result['geometry']['lat'], first_result['geometry']['lng']
-#             city = first_result['components'].get('city', '').lower()
-#             state = first_result['components'].get('state', '').lower()
-#             # Check if the address is in San Francisco
-#             if 'san francisco' not in city or 'california' not in state:
-#                 return jsonify({"error": "Address is not in San Francisco, CA. Please enter an address in San Francisco."}), 400
-#         else:
-#             return jsonify({"error": "Address could not be geocoded."}), 400
-#     else:
-#         return jsonify({"error": "Missing latitude and longitude or address."}), 400
-
-#     user_location = Point(longitude, latitude)
-#     # Find the nearest grid cell and its probability
-#     nearest_cell = grid.distance(user_location).idxmin()
-#     probability = grid.loc[nearest_cell, 'probability']
-#     incident_count = grid.loc[nearest_cell, 'incident_count']
-#     incident_day_of_week = grid.loc[nearest_cell, 'Incident Day of Week']
-#     police_district = grid.loc[nearest_cell, 'Police District']
-#     average_incidents_per_month = grid.loc[nearest_cell, 'average_incidents_per_month']
-
-#     return jsonify({
-#         "latitude": latitude,
-#         "longitude": longitude,
-#         "probability": probability,
-#         "incident_count": incident_count,
-#         "incident_day_of_week": incident_day_of_week,
-#         "police_district": police_district,
-#         "average_incidents_per_month": average_incidents_per_month
-#     })
-    
-# @app.route('/get_rate_mental_health', methods=['POST'])
-# def get_rate_mental_health():
-#     """
-#     Calculate the relative rate of mental health incidents for a given location (latitude and longitude or address).
-#     Returns: JSON response with the calculated probability.
-#     """
-#     print("Request received")  # Debug print
-#     data = request.json
-#     print("Data received:", data)  # Debug print
-#     if 'latitude' in data and 'longitude' in data:
-#         latitude, longitude = data['latitude'], data['longitude']
-#     elif 'address' in data:
-#         address = data['address']
-#         location_results = geocoder.geocode(address)
-#         if location_results:
-#             first_result = location_results[0]
-#             latitude, longitude = first_result['geometry']['lat'], first_result['geometry']['lng']
-#             city = first_result['components'].get('city', '').lower()
-#             state = first_result['components'].get('state', '').lower()
-#             # Check if the address is in San Francisco
-#             if 'san francisco' not in city or 'california' not in state:
-#                 return jsonify({"error": "Address is not in San Francisco, CA. Please enter an address in San Francisco."}), 400
-#         else:
-#             return jsonify({"error": "Address could not be geocoded."}), 400
-#     else:
-#         return jsonify({"error": "Missing latitude and longitude or address."}), 400
-
-#     user_location = Point(longitude, latitude)
-#     # Find the nearest grid cell and its probability
-#     nearest_cell = grid_mental_health.distance(user_location).idxmin()
-#     probability = grid_mental_health.loc[nearest_cell, 'probability']
-#     incident_count = grid_mental_health.loc[nearest_cell, 'incident_count']
-#     incident_day_of_week = grid_mental_health.loc[nearest_cell, 'Incident Day of Week']
-#     police_district = grid_mental_health.loc[nearest_cell, 'Police District']
-#     average_incidents_per_month = grid_mental_health.loc[nearest_cell, 'average_incidents_per_month']
-
-#     return jsonify({
-#         "latitude": latitude,
-#         "longitude": longitude,
-#         "probability": probability,
-#         "incident_count": incident_count,
-#         "incident_day_of_week": incident_day_of_week,
-#         "police_district": police_district,
-#         "average_incidents_per_month": average_incidents_per_month
-#     })
-    
-# @app.route('/get-rate-assault', methods=['POST'])
-# def get_rate_assault():
-#     """
-#     Calculate the relative rate of mental health incidents for a given location (latitude and longitude or address).
-#     Returns: JSON response with the calculated probability.
-#     """
-#     print("Request received")  # Debug print
-#     data = request.json
-#     print("Data received:", data)  # Debug print
-#     if 'latitude' in data and 'longitude' in data:
-#         latitude, longitude = data['latitude'], data['longitude']
-#     elif 'address' in data:
-#         address = data['address']
-#         location_results = geocoder.geocode(address)
-#         if location_results:
-#             first_result = location_results[0]
-#             latitude, longitude = first_result['geometry']['lat'], first_result['geometry']['lng']
-#             city = first_result['components'].get('city', '').lower()
-#             state = first_result['components'].get('state', '').lower()
-#             # Check if the address is in San Francisco
-#             if 'san francisco' not in city or 'california' not in state:
-#                 return jsonify({"error": "Address is not in San Francisco, CA. Please enter an address in San Francisco."}), 400
-#         else:
-#             return jsonify({"error": "Address could not be geocoded."}), 400
-#     else:
-#         return jsonify({"error": "Missing latitude and longitude or address."}), 400
-
-#     user_location = Point(longitude, latitude)
-#     # Find the nearest grid cell and its probability
-#     nearest_cell = grid_assault.distance(user_location).idxmin()
-#     probability = grid_assault.loc[nearest_cell, 'probability']
-#     incident_count = grid_assault.loc[nearest_cell, 'incident_count']
-#     incident_day_of_week = grid_assault.loc[nearest_cell, 'Incident Day of Week']
-#     police_district = grid_assault.loc[nearest_cell, 'Police District']
-#     average_incidents_per_month = grid_assault.loc[nearest_cell, 'average_incidents_per_month']
-
-#     return jsonify({
-#         "latitude": latitude,
-#         "longitude": longitude,
-#         "probability": probability,
-#         "incident_count": incident_count,
-#         "incident_day_of_week": incident_day_of_week,
-#         "police_district": police_district,
-#         "average_incidents_per_month": average_incidents_per_month
-#     })
-    
-# @app.route('/get-rate-drugs', methods=['POST'])
-# def get_rate_drugs():
-#     """
-#     Calculate the relative rate of mental health incidents for a given location (latitude and longitude or address).
-#     Returns: JSON response with the calculated probability.
-#     """
-#     print("Request received")  # Debug print
-#     data = request.json
-#     print("Data received:", data)  # Debug print
-#     if 'latitude' in data and 'longitude' in data:
-#         latitude, longitude = data['latitude'], data['longitude']
-#     elif 'address' in data:
-#         address = data['address']
-#         location_results = geocoder.geocode(address)
-#         if location_results:
-#             first_result = location_results[0]
-#             latitude, longitude = first_result['geometry']['lat'], first_result['geometry']['lng']
-#             city = first_result['components'].get('city', '').lower()
-#             state = first_result['components'].get('state', '').lower()
-#             # Check if the address is in San Francisco
-#             if 'san francisco' not in city or 'california' not in state:
-#                 return jsonify({"error": "Address is not in San Francisco, CA. Please enter an address in San Francisco."}), 400
-#         else:
-#             return jsonify({"error": "Address could not be geocoded."}), 400
-#     else:
-#         return jsonify({"error": "Missing latitude and longitude or address."}), 400
-
-#     user_location = Point(longitude, latitude)
-#     # Find the nearest grid cell and its probability
-#     nearest_cell = grid_drugs.distance(user_location).idxmin()
-#     probability = grid_drugs.loc[nearest_cell, 'probability']
-#     incident_count = grid_drugs.loc[nearest_cell, 'incident_count']
-#     incident_day_of_week = grid_drugs.loc[nearest_cell, 'Incident Day of Week']
-#     police_district = grid_drugs.loc[nearest_cell, 'Police District']
-#     average_incidents_per_month = grid_drugs.loc[nearest_cell, 'average_incidents_per_month']
-
-#     return jsonify({
-#         "latitude": latitude,
-#         "longitude": longitude,
-#         "probability": probability,
-#         "incident_count": incident_count,
-#         "incident_day_of_week": incident_day_of_week,
-#         "police_district": police_district,
-#         "average_incidents_per_month": average_incidents_per_month
-#     })
     
 @app.route('/top-theft-locations', methods=['GET'])
 def top_theft_locations():
     theft_locations = get_top_theft_locations()
     return jsonify([dict(row) for row in theft_locations])
-
 
 @app.route('/get-price-breakdown', methods=['GET'])
 def price_breakdown():
@@ -303,7 +117,6 @@ def status_breakdown():
 def time_breakdown():
     time = get_time_breakdown()
     return jsonify([dict(row) for row in time])
-
 
 @app.route('/get-supervisor-breakdown', methods=['GET'])
 def supervisor_breakdown():
@@ -405,7 +218,6 @@ def drug_supervisor():
 def drug_type():
     drug = get_drug_type()
     return jsonify([dict(row) for row in drug])
-
 
 if __name__ == '__main__':
     app.run(debug=True)

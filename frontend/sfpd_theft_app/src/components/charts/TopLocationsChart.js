@@ -9,13 +9,19 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
+    height: 356px;
+    width: 570px;
+    padding-bottom: 40px;
 
+    @media (max-width: 868px) {
+        width: 300px;
+    }
 `;
 
 
 const TopLocationsChart = ({ apiEndpoint }) => {
     const theme = useContext(ThemeContext);
-    const [chartData, setChartData] = useState(null); // Initially null
+    const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,13 +51,13 @@ const TopLocationsChart = ({ apiEndpoint }) => {
     }, [apiEndpoint]);
 
     const options = {
-        responsive: false, // Disable responsiveness
-        maintainAspectRatio: true, // Allow custom aspect ratio
+        responsive: true, // Disable responsiveness
+        maintainAspectRatio: false, // Allow custom aspect ratio
         indexAxis: 'y', // Set the index axis to 'y' for a horizontal bar chart
         scales: {
             x: {
                 grid: {
-                    color: theme.cardLight, // Using text color from the theme
+                    color: theme.cardLight,
                 },
                 beginAtZero: true,
                 title: {
@@ -102,8 +108,8 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                         <Bar
                             data={chartData}
                             options={options}
-                            height={355} 
-                            width={570} 
+                            // height={300} 
+                            // width={570} 
                         />
                     )}
                 </ChartContainer>
