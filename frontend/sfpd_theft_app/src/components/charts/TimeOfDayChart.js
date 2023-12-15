@@ -9,7 +9,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
-    height: 390px;
+    min-height: 240px;
     margin-right: 30px;
 `;
 

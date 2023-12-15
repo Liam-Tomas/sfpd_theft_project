@@ -190,6 +190,7 @@ def mental_seasons():
 @cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_locations():
     assault = get_top_assault_locations()
+    app.logger.info("Fetched top theft locations")
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-year', methods=['GET'])
