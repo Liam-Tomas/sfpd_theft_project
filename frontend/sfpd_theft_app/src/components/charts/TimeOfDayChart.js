@@ -4,24 +4,28 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MainContaineRight from '../utility/MainContainerRight';
 import { ThemeContext } from 'styled-components';
+import Loading from '../utility/Loading';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
-    // height: 240px;
+    height: 240px;
     margin-right: 30px;
 `;
 
 const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
     const [chartData, setChartData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get(apiEndpoint);
                 const data = response.data;
+                setIsLoading(false);
                 if (data && Array.isArray(data)) {
                     setChartData({
                         labels: data.map(item => item.Time_Slot),
@@ -45,9 +49,11 @@ const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
                     });
                 } else {
                     console.error('Data is not an array:', data);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
             }
         };
 
@@ -72,24 +78,24 @@ const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
             },
             x: {
                 ticks: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 },
                 grid: {
-                    color: theme.cardLight, 
+                    color: theme.cardLight,
                 },
                 title: {
                     display: false,
                     text: 'Time of Day',
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
-            }, 
+            },
         },
         plugins: {
             legend: {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
             },
 
@@ -102,14 +108,18 @@ const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {
         <MainContaineRight>
             <h3>Breakdown by Time of Day</h3>
             <ChartContainer>
-                {chartData && (
-                    <Bar
+                {isLoading ? (
+                    <Loading /> // Show loading spinner when data is being fetched
+                ) : (
+                    chartData && (
+                        <Bar
                         data={chartData}
                         options={options}
                         height={chartHeight}
                         width={chartWidth}
-                     
+
                     />
+                    )
                 )}
             </ChartContainer>
         </MainContaineRight>

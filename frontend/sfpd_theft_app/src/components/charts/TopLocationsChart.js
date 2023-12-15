@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from '../utility/MainContainer'
 import { ThemeContext } from 'styled-components';
+import Loading from '../utility/Loading';
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -20,14 +21,18 @@ const ChartContainer = styled.div`
 
 
 const TopLocationsChart = ({ apiEndpoint }) => {
+    const [isLoading, setIsLoading] = useState(true); // New loading state
+
     const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true); // Start loading
             try {
                 const response = await axios.get(apiEndpoint);
                 const data = response.data;
+                setIsLoading(false); // Stop loading after fetching data
                 if (data && Array.isArray(data)) {
                     setChartData({
                         labels: data.map(item => item.Intersection), // Use Intersection for x-axis
@@ -41,9 +46,11 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                     });
                 } else {
                     console.error('Data is not an array:', data);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
             }
         };
 
@@ -65,10 +72,10 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                     text: 'Total Incidents'
                 },
                 title: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 },
                 ticks: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
             },
             y: {
@@ -94,26 +101,29 @@ const TopLocationsChart = ({ apiEndpoint }) => {
                 labels: {
                     color: theme.textAlt,
                 }
-                
+
             }
-            
+
         },
     };
 
     return (
         <MainContainer>
-                <ChartContainer>
-                    <h3 style={{marginTop:''}}>Most Common Locations</h3>
-                    {chartData && (
+            <ChartContainer>
+                <h3 style={{ marginTop: '' }}>Most Common Locations</h3>
+                {isLoading ? (
+                    <Loading /> // Show loading spinner when data is being fetched
+                ) : (
+                    chartData && (
                         <Bar
                             data={chartData}
                             options={options}
-                            // height={300} 
-                            // width={570} 
                         />
-                    )}
-                </ChartContainer>
+                    )
+                )}
+            </ChartContainer>
         </MainContainer>
+
     );
 };
 

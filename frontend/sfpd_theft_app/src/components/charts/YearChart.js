@@ -4,22 +4,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 import MainContainer from '../utility/MainContainer';
 import { ThemeContext } from 'styled-components';
+import Loading from '../utility/Loading';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 const ChartContainer = styled.div`
-    // 
+    height: 234px;
 `;
 
 const YearChart = ({ apiEndpoint, chartLabel }) => {
     const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
+            setIsLoading(true);
             try {
                 const response = await axios.get(apiEndpoint);
                 const data = response.data;
+                setIsLoading(false);
                 if (data && Array.isArray(data)) {
                     setChartData({
                         labels: data.map(item => item.Incident_Year.toString()),
@@ -33,9 +37,11 @@ const YearChart = ({ apiEndpoint, chartLabel }) => {
                     });
                 } else {
                     console.error('Data is not an array:', data);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
             }
         };
 
@@ -46,31 +52,31 @@ const YearChart = ({ apiEndpoint, chartLabel }) => {
         scales: {
             x: {
                 grid: {
-                    color: theme.cardLight, 
+                    color: theme.cardLight,
                 },
                 title: {
                     display: false,
                     text: 'Year',
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
 
                 },
                 ticks: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
-                
+
             },
             y: {
                 grid: {
-                    color: theme.cardLight, 
+                    color: theme.cardLight,
                 },
                 beginAtZero: true,
                 title: {
                     display: false,
                     text: 'Total Incidents',
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 },
                 ticks: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
             }
         },
@@ -79,7 +85,7 @@ const YearChart = ({ apiEndpoint, chartLabel }) => {
                 display: true,
                 position: 'top',
                 labels: {
-                    color: theme.textAlt, 
+                    color: theme.textAlt,
                 }
             }
         }
@@ -88,14 +94,16 @@ const YearChart = ({ apiEndpoint, chartLabel }) => {
     return (
         <MainContainer>
             <h3>Yearly Breakdown</h3>
-            <ChartContainer>
-                {chartData && (
-                    <Line
-                        data={chartData}
-                        options={options}
-                        // height={200}
-                        // width={400}
-                    />
+            <ChartContainer>         
+            {isLoading ? (
+                    <Loading /> // Show loading spinner when data is being fetched
+                ) : (
+                    chartData && (
+                        <Line
+                            data={chartData}
+                            options={options}
+                        />
+                    )
                 )}
             </ChartContainer>
         </MainContainer>

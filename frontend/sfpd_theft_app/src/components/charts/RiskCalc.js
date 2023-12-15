@@ -31,6 +31,7 @@ function RiskCalc({ apiEndpoint }) {
     const [incidentDay, setIncidentDay] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleCloseModal = () => {
         setIsModalVisible(false);
@@ -38,6 +39,8 @@ function RiskCalc({ apiEndpoint }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Start loading
+
         // Combine address and zip code
         const completeAddress = `${address}, San Francisco, CA ${zipcode}`;
 
@@ -56,6 +59,7 @@ function RiskCalc({ apiEndpoint }) {
             setAvgPerMonth(roundedAvg)
             setErrorMessage('');
             setIsModalVisible(true); // Show modal on successful data fetch
+            setLoading(false); // Stop loading
 
         } catch (error) {
             console.error('Error:', error);
@@ -95,7 +99,7 @@ function RiskCalc({ apiEndpoint }) {
                         onChange={(e) => setZipcode(e.target.value)}
                     />
                 </FormField>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" loading={loading}>Submit</Button>
             </StyledForm>
         {errorMessage && (
             <p style={{ color: 'red' }}>{errorMessage}</p>

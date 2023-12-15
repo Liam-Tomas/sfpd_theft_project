@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+
+const spin = keyframes`
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+`;
+
+const LoadingSpinner = styled.div`
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top: 2px solid white; // Spinner color
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: ${spin} 1s linear infinite;
+`;
+
 const rippleAnimation = keyframes`
     to {
         transform: translate(-50%, -50%) scale(4);
@@ -22,6 +37,10 @@ const StyledButton = styled.button`
     padding: 10px 15px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 84px; 
     background-color: ${props => props.theme.primary}; // MUI primary color
     color: white;
     border: none;
@@ -44,7 +63,7 @@ const StyledButton = styled.button`
     }
 `;
 
-const Button = ({ children, ...props }) => {
+const Button = ({ children, loading, ...props }) => {
     const [coords, setCoords] = useState({ x: -1, y: -1 });
     const [isRippling, setIsRippling] = useState(false);
 
@@ -57,9 +76,11 @@ const Button = ({ children, ...props }) => {
     };
 
     return (
-        <StyledButton onClick={handleClick} {...props}>
-            {isRippling && <RippleSpan style={{ left: `${coords.x}px`, top: `${coords.y}px` }} />}
-            {children}
+        <StyledButton {...props}>
+            {loading ? <LoadingSpinner /> : children}
+            {isRippling && !loading && (
+                <RippleSpan style={{ left: `${coords.x}px`, top: `${coords.y}px` }} />
+            )}
         </StyledButton>
     );
 };

@@ -51,40 +51,42 @@ const ThirdRowItem = styled.div`
 `
 
 function MentalPage() {
-    return (
-        <MainContainer>
-            <h1>San Francisco Mental Health Incident Analysis (2018 - 2023)</h1>
-            <StyledGrid>
-                <FirstRowLeft>
-                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get_rate_mental_health" />
-                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-mental-locations" />
-                </FirstRowLeft>
-                <FirstRowRight>
-                <LeafletMap geojsonUrl="/sf_mental_health_heatmap.geojson" />
-                </FirstRowRight>
-                <SecondRowItem>
-                <YearChart
-                  apiEndpoint= "http://127.0.0.1:5000/get-mental-year"
-                  chartLabel="Total Incidents per Year"
-                />
-                </SecondRowItem>
-                <SecondRowItem2>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-mental-time"  chartHeight={245} chartWidth={50}/>
-                  {/* <PriceBreakdownChart/> */}
-                </SecondRowItem2>
-                <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-mental-resolution" resolutionField="Resolution"/>
-                </SecondRowItemSmall>
-                <ThirdRowItem>
-                    <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-mental-supervisor"/>
-                </ThirdRowItem>
-                <ThirdRowItem>
-                <SeasonalChart apiEndpoint= "http://127.0.0.1:5000/get-mental-seasons"> </SeasonalChart>
+  const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
 
-                </ThirdRowItem>
-            </StyledGrid>
-        </MainContainer>
-    );
+  return (
+    <MainContainer>
+      <h1>San Francisco Mental Health Incident Analysis (2018 - 2023)</h1>
+      <StyledGrid>
+        <FirstRowLeft>
+          <RiskCalc apiEndpoint={`${apiBaseUrl}/get_rate_mental_health`} />
+          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-mental-locations" />
+        </FirstRowLeft>
+        <FirstRowRight>
+          <LeafletMap geojsonUrl="/sf_mental_health_heatmap.geojson" />
+        </FirstRowRight>
+        <SecondRowItem>
+          <YearChart
+            apiEndpoint="http://127.0.0.1:5000/get-mental-year"
+            chartLabel="Total Incidents per Year"
+          />
+        </SecondRowItem>
+        <SecondRowItem2>
+          <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-mental-time" chartHeight={245} chartWidth={50} />
+          {/* <PriceBreakdownChart/> */}
+        </SecondRowItem2>
+        <SecondRowItemSmall>
+          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-mental-resolution" resolutionField="Resolution" />
+        </SecondRowItemSmall>
+        <ThirdRowItem>
+          <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-mental-supervisor" />
+        </ThirdRowItem>
+        <ThirdRowItem>
+          <SeasonalChart apiEndpoint="http://127.0.0.1:5000/get-mental-seasons"> </SeasonalChart>
+
+        </ThirdRowItem>
+      </StyledGrid>
+    </MainContainer>
+  );
 }
 
 export default MentalPage;

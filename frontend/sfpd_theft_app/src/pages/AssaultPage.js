@@ -49,34 +49,38 @@ const ThirdRowItem = styled.div`
 `
 
 function AssaultPage() {
+
+    const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
+    const apiUrl = 'http://127.0.0.1:5000';
+
     return (
         <MainContainer>
             <h1>San Francisco Assault Incident Analysis (2018 - 2023)</h1>
             <StyledGrid>
                 <FirstRowLeft>
-                    <RiskCalc apiEndpoint="http://127.0.0.1:5000/get-rate-assault" />
-                    <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-assault-locations" />
+                    <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-assault`} />
+                    <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-assault-locations`} />
                 </FirstRowLeft>
                 <FirstRowRight>
                     <LeafletMap geojsonUrl="/sf_assault_heatmap.geojson" />
                 </FirstRowRight>
                 <SecondRowItem>
                     <YearChart
-                      apiEndpoint= "http://127.0.0.1:5000/get-assault-year"
+                      apiEndpoint= {`${apiBaseUrl}/get-assault-year`}
                       chartLabel="Total Incidents per Year"
                     />
                 </SecondRowItem>
                 <SecondRowItem2>
-                    <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-assault-time" chartHeight={245} chartWidth={50}/>
+                    <TimeOfDayChart apiEndpoint = {`${apiBaseUrl}/get-assault-time`} chartHeight={245} chartWidth={50}/>
                 </SecondRowItem2>
                 <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = "http://127.0.0.1:5000/get-assault-resolution" resolutionField="Resolution"/>
+                    <ResolutionStatusChart apiEndpoint = {`${apiUrl}/get-assault-resolution`} resolutionField="Resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
-                    <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-assault-supervisor"/>
+                    <SupervisorChart apiEndpoint={`${apiUrl}/get-assault-supervisor`}/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-assault-type"/>
+                    <AssaultTypesChart apiEndpoint={`${apiUrl}/get-assault-type`}/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>

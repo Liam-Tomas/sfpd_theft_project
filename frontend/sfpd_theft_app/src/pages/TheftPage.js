@@ -47,12 +47,14 @@ const ThirdRowItem = styled.div`
 
 function HomePage() {
   const apiURL = 'http://127.0.0.1:5000'
+  const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
+
   return (
     <MainContainer>
       <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
       <StyledGrid>
         <FirstRowLeft>
-          <RiskCalc apiEndpoint={`${apiURL}/get_probability`} />
+          <RiskCalc apiEndpoint={`${apiBaseUrl}/get_probability`} />
           <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/top-theft-locations"  />
         </FirstRowLeft>
         <FirstRowRight> 
