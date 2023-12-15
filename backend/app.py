@@ -14,9 +14,15 @@ from queries import get_top_theft_locations, get_price_breakdown, get_year_break
 from mental_queries import get_top_mental_locations, get_mental_year, get_mental_resolution, get_mental_time, get_mental_supervisor, get_mental_seasons
 from assault_queries import get_top_assault_locations, get_assault_year, get_assault_resolution, get_assault_time, get_assault_supervisor, get_assault_type
 from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution, get_drug_time, get_drug_supervisor, get_drug_type
+from flask_caching import Cache
 
 app = Flask(__name__)
 CORS(app) 
+
+cache = Cache(app, config={'CACHE_TYPE': 'SimpleCache'})  # Consider using 'Redis' or 'Memcached'
+
+# Calculate timeout for 90 days
+NINETY_DAYS_IN_SECONDS = 90 * 24 * 60 * 60
 
 @app.route('/')
 def index():
@@ -42,6 +48,10 @@ def test():
     """
     return jsonify({"message": "Test successful"})
 
+@app.route('/clear-cache', methods=['POST'])
+def clear_cache():
+    cache.clear()
+    return jsonify({"message": "Cache cleared"})
 
 def calculate_rate(grid, data):
     if 'latitude' in data and 'longitude' in data:
@@ -101,31 +111,37 @@ def get_rate_drugs():
     return jsonify(calculate_rate(grid_drugs, data))
     
 @app.route('/top-theft-locations', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def top_theft_locations():
     theft_locations = get_top_theft_locations()
     return jsonify([dict(row) for row in theft_locations])
 
 @app.route('/get-price-breakdown', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def price_breakdown():
     price = get_price_breakdown()
     return jsonify([dict(row) for row in price])
 
 @app.route('/get-year-breakdown', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def year_breakdown():
     year = get_year_breakdown()
     return jsonify([dict(row) for row in year])
 
 @app.route('/get-status-breakdown', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def status_breakdown():
     status = get_status_breakdown()
     return jsonify([dict(row) for row in status])
 
 @app.route('/get-time-breakdown', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def time_breakdown():
     time = get_time_breakdown()
     return jsonify([dict(row) for row in time])
 
 @app.route('/get-supervisor-breakdown', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def supervisor_breakdown():
     supervisor = get_supervisor_breakdown()
     return jsonify([dict(row) for row in supervisor])
@@ -133,31 +149,37 @@ def supervisor_breakdown():
 # !!!!!! Mental Health Incidents Routes !!!!!!
 
 @app.route('/get-mental-locations', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_locations():
     mental = get_top_mental_locations()
     return jsonify([dict(row) for row in mental])
 
 @app.route('/get-mental-year', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_year():
     mental = get_mental_year()
     return jsonify([dict(row) for row in mental])
 
 @app.route('/get-mental-resolution', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_resolution():
     mental = get_mental_resolution()
     return jsonify([dict(row) for row in mental])
 
 @app.route('/get-mental-time', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_time():
     mental = get_mental_time()
     return jsonify([dict(row) for row in mental])
 
 @app.route('/get-mental-supervisor', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_supervisor():
     mental = get_mental_supervisor()
     return jsonify([dict(row) for row in mental])
 
 @app.route('/get-mental-seasons', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def mental_seasons():
     mental = get_mental_seasons()
     return jsonify([dict(row) for row in mental])
@@ -165,31 +187,37 @@ def mental_seasons():
 # !!!!!! Assault Incident Routes !!!!!!!!
 
 @app.route('/get-assault-locations', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_locations():
     assault = get_top_assault_locations()
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-year', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_year():
     assault = get_assault_year()
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-resolution', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_resolution():
     assault = get_assault_resolution()
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-time', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_time():
     assault = get_assault_time()
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-supervisor', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_supervisor():
     assault = get_assault_supervisor()
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-type', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_type():
     assault = get_assault_type()
     return jsonify([dict(row) for row in assault])
@@ -197,31 +225,37 @@ def assault_type():
 # !!!!!! Drug Incident Routes !!!!!!
 
 @app.route('/get-drug-locations', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_locations():
     drug = get_drug_locations()
     return jsonify([dict(row) for row in drug])
 
 @app.route('/get-drug-year', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_year():
     drug = get_drug_year()
     return jsonify([dict(row) for row in drug])
 
 @app.route('/get-drug-resolution', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_resolution():
     drug = get_drug_resolution()
     return jsonify([dict(row) for row in drug])
 
 @app.route('/get-drug-time', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_time():
     drug = get_drug_time()
     return jsonify([dict(row) for row in drug])
 
 @app.route('/get-drug-supervisor', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_supervisor():
     drug = get_drug_supervisor()
     return jsonify([dict(row) for row in drug])
 
 @app.route('/get-drug-type', methods=['GET'])
+@cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def drug_type():
     drug = get_drug_type()
     return jsonify([dict(row) for row in drug])
