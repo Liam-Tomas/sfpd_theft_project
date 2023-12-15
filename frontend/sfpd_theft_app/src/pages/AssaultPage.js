@@ -74,13 +74,13 @@ function AssaultPage() {
                     <TimeOfDayChart apiEndpoint = {`${apiBaseUrl}/get-assault-time`} chartHeight={245} chartWidth={50}/>
                 </SecondRowItem2>
                 <SecondRowItemSmall>
-                    <ResolutionStatusChart apiEndpoint = {`${apiUrl}/get-assault-resolution`} resolutionField="Resolution"/>
+                    <ResolutionStatusChart apiEndpoint = {`${apiBaseUrl}/get-assault-resolution`} resolutionField="Resolution"/>
                 </SecondRowItemSmall>
                 <ThirdRowItem>
-                    <SupervisorChart apiEndpoint={`${apiUrl}/get-assault-supervisor`}/>
+                    <SupervisorChart apiEndpoint={`${apiBaseUrl}/get-assault-supervisor`}/>
                 </ThirdRowItem>
                 <ThirdRowItem>
-                    <AssaultTypesChart apiEndpoint={`${apiUrl}/get-assault-type`}/>
+                    <AssaultTypesChart apiEndpoint={`${apiBaseUrl}/get-assault-type`}/>
                 </ThirdRowItem>
             </StyledGrid>
         </MainContainer>
