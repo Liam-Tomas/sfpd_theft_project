@@ -189,8 +189,15 @@ def mental_seasons():
 @app.route('/get-assault-locations', methods=['GET'])
 @cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
 def assault_locations():
+    cache_key = 'assault_locations'
+    cached_data = cache.get(cache_key)
+    if cached_data:
+        app.logger.info("Serving from cache: assault locations")
+        return jsonify(cached_data)
+
     assault = get_top_assault_locations()
-    app.logger.info("Fetched top theft locations")
+    cache.set(cache_key, [dict(row) for row in assault], timeout=NINETY_DAYS_IN_SECONDS)
+    app.logger.info("Fetched and cached top assault locations")
     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-year', methods=['GET'])
