@@ -32,3 +32,4 @@ Werkzeug==3.0.1
 python-dotenv==0.20.0
 gunicorn==20.1.0
 flask-caching
+redis
