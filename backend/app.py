@@ -18,6 +18,10 @@ from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution,
 app = Flask(__name__)
 CORS(app) 
 
+@app.route('/')
+def index():
+    return "Welcome to the SFPD Theft Analysis Project!"
+
 # Load the pre-processed GeoJSON file
 grid = gpd.read_file('heatmaps/sf_heatmap_detailed_v6.geojson')
 
