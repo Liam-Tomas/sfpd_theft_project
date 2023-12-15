@@ -10,16 +10,16 @@ import SupervisorChart from '../components/charts/SupervisorChart';
 import AssaultTypesChart from '../components/charts/AssaultTypeCharts';
 
 const MainContainer = styled.div`
-    padding: 5px 20px;
-`
+  padding: 5px 20px;
+`;
 
 const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 1fr); /* 6 columns for easier division */
+  
   @media (max-width: 1300px) {
     grid-template-columns: 1fr; /* Use a single column on smaller screens */
   }
-
  `;
 
 const FirstRowLeft = styled.div`

@@ -1,5 +1,8 @@
 *.csv
-*.geojson
+backend/heatmaps/sf_heatmap_detailed_v2_all_crime.geojson
+backend/heatmaps/sf_heatmap_detailed_v5.geojson
+frontend/dump
 backend/sfpd_incidents_db.sql
 .env
 venv/
+frontend/leaflet_map

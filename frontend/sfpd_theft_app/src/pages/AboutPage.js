@@ -159,8 +159,8 @@ const TechIcons = styled.div`
 `;
 
 const HashTag = styled(FontAwesomeIcon)`
-    font-size: 1.8rem;
-    margin-right: 10px;
+    font-size: 1.5rem;
+    margin-right: 8px;
     color: ${props => props.theme.secondary};
     
 `
@@ -203,9 +203,8 @@ function AboutPage() {
                         </TitleContainer>
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
-                            focusing on creating an interactive experience for users to understand local crime dynamics.
-                            This comprehensive approach both visualizes and quantifies urban crime patterns across San Francisco,
-                            providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
+                            focusing on creating an interactive application for users to understand local crime dynamics.
+                            My approach both visualizes and quantifies urban crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application.
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>
@@ -245,7 +244,7 @@ function AboutPage() {
                             </SmallTitleContainer>
                             <Paragraph>
                                 In the React front-end, the LeafletMap component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer.
-                                A custom color-coding function dynamically styles each grid cell based on the relative crim rate, creating a visually intuitive heatmap.
+                                A custom color-coding function dynamically styles each grid cell based on the relative crime rate, creating a visually intuitive heatmap.
                             </Paragraph>
                             <SmallTitleContainer>
                                 <ArrowIcon icon={faArrowRightLong} />
