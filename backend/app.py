@@ -93,7 +93,7 @@ def calculate_rate(grid, data):
         "average_incidents_per_month": average_incidents_per_month
     }  # Only returning response data
 
-    
+# Risk Rate Calculator Routes
 @app.route('/get_probability', methods=['POST'])
 def get_probability():
     data = request.json
@@ -114,83 +114,178 @@ def get_rate_drugs():
     data = request.json
     return jsonify(calculate_rate(grid_drugs, data))
     
+# !!! Vehicle Theft Routes !!!
 @app.route('/top-theft-locations', methods=['GET'])
 def top_theft_locations():
+    cache_key = 'top_theft_locations'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: top theft locations")
+        return jsonify(json.loads(cached_data))
+
     theft_locations = get_top_theft_locations()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in theft_locations]))
+    app.logger.info("Fetched and cached top theft locations")
     return jsonify([dict(row) for row in theft_locations])
 
 @app.route('/get-price-breakdown', methods=['GET'])
 def price_breakdown():
+    cache_key = 'price_breakdown'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: price breakdown")
+        return jsonify(json.loads(cached_data))
+
     price = get_price_breakdown()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in price]))
+    app.logger.info("Fetched and cached price breakdown")
     return jsonify([dict(row) for row in price])
+
 
 @app.route('/get-year-breakdown', methods=['GET'])
 def year_breakdown():
-    year = get_year_breakdown()
-    return jsonify([dict(row) for row in year])
+    cache_key = 'year_breakdown'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: year breakdown")
+        return jsonify(json.loads(cached_data))
+
+    year_data = get_year_breakdown()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in year_data]))
+    app.logger.info("Fetched and cached year breakdown data")
+    return jsonify([dict(row) for row in year_data])
 
 @app.route('/get-status-breakdown', methods=['GET'])
 def status_breakdown():
-    status = get_status_breakdown()
-    return jsonify([dict(row) for row in status])
+    cache_key = 'status_breakdown'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: status breakdown")
+        return jsonify(json.loads(cached_data))
+
+    status_data = get_status_breakdown()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in status_data]))
+    app.logger.info("Fetched and cached status breakdown data")
+    return jsonify([dict(row) for row in status_data])
 
 @app.route('/get-time-breakdown', methods=['GET'])
 def time_breakdown():
-    time = get_time_breakdown()
-    return jsonify([dict(row) for row in time])
+    cache_key = 'time_breakdown'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: time breakdown")
+        return jsonify(json.loads(cached_data))
+
+    time_data = get_time_breakdown()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in time_data]))
+    app.logger.info("Fetched and cached time breakdown data")
+    return jsonify([dict(row) for row in time_data])
 
 @app.route('/get-supervisor-breakdown', methods=['GET'])
 def supervisor_breakdown():
-    supervisor = get_supervisor_breakdown()
-    return jsonify([dict(row) for row in supervisor])
+    cache_key = 'supervisor_breakdown'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: supervisor breakdown")
+        return jsonify(json.loads(cached_data))
+
+    supervisor_data = get_supervisor_breakdown()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in supervisor_data]))
+    app.logger.info("Fetched and cached supervisor breakdown data")
+    return jsonify([dict(row) for row in supervisor_data])
 
 # !!!!!! Mental Health Incidents Routes !!!!!!
-
 @app.route('/get-mental-locations', methods=['GET'])
 def mental_locations():
-    mental = get_top_mental_locations()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_locations'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental locations")
+        return jsonify(json.loads(cached_data))
+
+    mental_data = get_top_mental_locations()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in mental_data]))
+    app.logger.info("Fetched and cached mental locations data")
+    return jsonify([dict(row) for row in mental_data])
 
 @app.route('/get-mental-year', methods=['GET'])
 def mental_year():
-    mental = get_mental_year()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_year'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental year")
+        return jsonify(json.loads(cached_data))
+
+    year_data = get_mental_year()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in year_data]))
+    app.logger.info("Fetched and cached mental year data")
+    return jsonify([dict(row) for row in year_data])
 
 @app.route('/get-mental-resolution', methods=['GET'])
 def mental_resolution():
-    mental = get_mental_resolution()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_resolution'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental resolution")
+        return jsonify(json.loads(cached_data))
+
+    resolution_data = get_mental_resolution()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in resolution_data]))
+    app.logger.info("Fetched and cached mental resolution data")
+    return jsonify([dict(row) for row in resolution_data])
 
 @app.route('/get-mental-time', methods=['GET'])
 def mental_time():
-    mental = get_mental_time()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_time'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental time")
+        return jsonify(json.loads(cached_data))
+
+    time_data = get_mental_time()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in time_data]))
+    app.logger.info("Fetched and cached mental time data")
+    return jsonify([dict(row) for row in time_data])
 
 @app.route('/get-mental-supervisor', methods=['GET'])
 def mental_supervisor():
-    mental = get_mental_supervisor()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_supervisor'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental supervisor")
+        return jsonify(json.loads(cached_data))
+
+    supervisor_data = get_mental_supervisor()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in supervisor_data]))
+    app.logger.info("Fetched and cached mental supervisor data")
+    return jsonify([dict(row) for row in supervisor_data])
 
 @app.route('/get-mental-seasons', methods=['GET'])
 def mental_seasons():
-    mental = get_mental_seasons()
-    return jsonify([dict(row) for row in mental])
+    cache_key = 'mental_seasons'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: mental seasons")
+        return jsonify(json.loads(cached_data))
+
+    seasons_data = get_mental_seasons()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in seasons_data]))
+    app.logger.info("Fetched and cached mental seasons data")
+    return jsonify([dict(row) for row in seasons_data])
 
 # !!!!!! Assault Incident Routes !!!!!!!!
-
-# @app.route('/get-assault-locations', methods=['GET'])
-# @cache.memoize(timeout=NINETY_DAYS_IN_SECONDS)
-# def assault_locations():
-#     cache_key = 'assault_locations'
-#     cached_data = cache.get(cache_key)
-#     if cached_data:
-#         app.logger.info("Serving from cache: assault locations")
-#         return jsonify(cached_data)
-
-#     assault = get_top_assault_locations()
-#     cache.set(cache_key, [dict(row) for row in assault], timeout=NINETY_DAYS_IN_SECONDS)
-#     app.logger.info("Fetched and cached top assault locations")
-#     return jsonify([dict(row) for row in assault])
 
 @app.route('/get-assault-locations', methods=['GET'])
 def assault_locations():
@@ -280,33 +375,87 @@ def assault_type():
 
 @app.route('/get-drug-locations', methods=['GET'])
 def drug_locations():
-    drug = get_drug_locations()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_locations'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug locations")
+        return jsonify(json.loads(cached_data))
+
+    drug_data = get_drug_locations()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in drug_data]))
+    app.logger.info("Fetched and cached drug locations data")
+    return jsonify([dict(row) for row in drug_data])
 
 @app.route('/get-drug-year', methods=['GET'])
 def drug_year():
-    drug = get_drug_year()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_year'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug year")
+        return jsonify(json.loads(cached_data))
+
+    year_data = get_drug_year()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in year_data]))
+    app.logger.info("Fetched and cached drug year data")
+    return jsonify([dict(row) for row in year_data])
 
 @app.route('/get-drug-resolution', methods=['GET'])
 def drug_resolution():
-    drug = get_drug_resolution()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_resolution'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug resolution")
+        return jsonify(json.loads(cached_data))
+
+    resolution_data = get_drug_resolution()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in resolution_data]))
+    app.logger.info("Fetched and cached drug resolution data")
+    return jsonify([dict(row) for row in resolution_data])
 
 @app.route('/get-drug-time', methods=['GET'])
 def drug_time():
-    drug = get_drug_time()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_time'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug time")
+        return jsonify(json.loads(cached_data))
+
+    time_data = get_drug_time()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in time_data]))
+    app.logger.info("Fetched and cached drug time data")
+    return jsonify([dict(row) for row in time_data])
 
 @app.route('/get-drug-supervisor', methods=['GET'])
 def drug_supervisor():
-    drug = get_drug_supervisor()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_supervisor'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug supervisor")
+        return jsonify(json.loads(cached_data))
+
+    supervisor_data = get_drug_supervisor()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in supervisor_data]))
+    app.logger.info("Fetched and cached drug supervisor data")
+    return jsonify([dict(row) for row in supervisor_data])
 
 @app.route('/get-drug-type', methods=['GET'])
 def drug_type():
-    drug = get_drug_type()
-    return jsonify([dict(row) for row in drug])
+    cache_key = 'drug_type'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: drug type")
+        return jsonify(json.loads(cached_data))
+
+    type_data = get_drug_type()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in type_data]))
+    app.logger.info("Fetched and cached drug type data")
+    return jsonify([dict(row) for row in type_data])
 
 if __name__ == '__main__':
     app.run(debug=True)

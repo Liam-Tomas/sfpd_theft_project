@@ -6,3 +6,4 @@ backend/sfpd_incidents_db.sql
 .env
 venv/
 frontend/leaflet_map
+backend/app_local.py
