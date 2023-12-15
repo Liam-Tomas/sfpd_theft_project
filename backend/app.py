@@ -9,6 +9,7 @@ from flask_cors import CORS
 from opencage.geocoder import OpenCageGeocode
 import os
 import redis
+import logging
 import geopandas as gpd
 from shapely.geometry import Point
 from queries import get_top_theft_locations, get_price_breakdown, get_year_breakdown, get_status_breakdown, get_time_breakdown, get_supervisor_breakdown
@@ -18,6 +19,8 @@ from drug_queries import get_drug_locations, get_drug_year, get_drug_resolution,
 
 app = Flask(__name__)
 CORS(app) 
+
+app.logger.setLevel(logging.INFO)
 
 # Redis configuration
 redis_host = os.getenv('REDIS_HOST')
@@ -205,28 +208,73 @@ def assault_locations():
 
 @app.route('/get-assault-year', methods=['GET'])
 def assault_year():
-    assault = get_assault_year()
-    return jsonify([dict(row) for row in assault])
+    cache_key = 'assault_year'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: assault year")
+        return jsonify(json.loads(cached_data))
+
+    assault_data = get_assault_year()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in assault_data]))
+    app.logger.info("Fetched and cached assault year data")
+    return jsonify([dict(row) for row in assault_data])
 
 @app.route('/get-assault-resolution', methods=['GET'])
 def assault_resolution():
-    assault = get_assault_resolution()
-    return jsonify([dict(row) for row in assault])
+    cache_key = 'assault_resolution'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: assault resolution")
+        return jsonify(json.loads(cached_data))
+
+    resolution_data = get_assault_resolution()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in resolution_data]))
+    app.logger.info("Fetched and cached assault resolution data")
+    return jsonify([dict(row) for row in resolution_data])
 
 @app.route('/get-assault-time', methods=['GET'])
 def assault_time():
-    assault = get_assault_time()
-    return jsonify([dict(row) for row in assault])
+    cache_key = 'assault_time'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: assault time")
+        return jsonify(json.loads(cached_data))
+
+    time_data = get_assault_time()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in time_data]))
+    app.logger.info("Fetched and cached assault time data")
+    return jsonify([dict(row) for row in time_data])
 
 @app.route('/get-assault-supervisor', methods=['GET'])
 def assault_supervisor():
-    assault = get_assault_supervisor()
-    return jsonify([dict(row) for row in assault])
+    cache_key = 'assault_supervisor'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: assault supervisor")
+        return jsonify(json.loads(cached_data))
+
+    supervisor_data = get_assault_supervisor()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in supervisor_data]))
+    app.logger.info("Fetched and cached assault supervisor data")
+    return jsonify([dict(row) for row in supervisor_data])
 
 @app.route('/get-assault-type', methods=['GET'])
 def assault_type():
-    assault = get_assault_type()
-    return jsonify([dict(row) for row in assault])
+    cache_key = 'assault_type'
+    cached_data = redis_client.get(cache_key)
+
+    if cached_data:
+        app.logger.info("Serving from cache: assault type")
+        return jsonify(json.loads(cached_data))
+
+    type_data = get_assault_type()
+    redis_client.setex(cache_key, NINETY_DAYS_IN_SECONDS, json.dumps([dict(row) for row in type_data]))
+    app.logger.info("Fetched and cached assault type data")
+    return jsonify([dict(row) for row in type_data])
 
 # !!!!!! Drug Incident Routes !!!!!!
 
