@@ -80,7 +80,7 @@ function MentalPage() {
         </SecondRowItem2>
         <SecondRowItemSmall>
           <ResolutionStatusChart 
-            apiEndpoint={`${apiBaseUrl}/get-mental-resolutio`} 
+            apiEndpoint={`${apiBaseUrl}/get-mental-resolution`} 
             resolutionField="Resolution" />
         </SecondRowItemSmall>
         <ThirdRowItem>

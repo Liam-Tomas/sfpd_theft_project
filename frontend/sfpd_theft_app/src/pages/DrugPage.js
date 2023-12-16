@@ -59,29 +59,36 @@ function DrugPage() {
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-drugs`} />
-          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/get-drug-locations" />
+          <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-drug-locations`} />
         </FirstRowLeft>
         <FirstRowRight>
           <LeafletMap geojsonUrl="/sf_drug_heatmap.geojson" />
         </FirstRowRight>
         <SecondRowItem>
           <YearChart
-            apiEndpoint="http://127.0.0.1:5000/get-drug-year"
+            apiEndpoint={`${apiBaseUrl}/get-drug-year`}
             chartLabel="Total Incidents per Year"
           />
         </SecondRowItem>
         <SecondRowItem2>
-          <TimeOfDayChart apiEndpoint = "http://127.0.0.1:5000/get-drug-time"  chartHeight={245} chartWidth={50}/>
+          <TimeOfDayChart 
+          apiEndpoint = {`${apiBaseUrl}/get-drug-time`}  
+          chartHeight={245} 
+          chartWidth={50}/>
           {/* <MainContainer>derp</MainContainer> */}
         </SecondRowItem2>
         <SecondRowItemSmall>
-          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-drug-resolution"resolutionField="Resolution"/>
+          <ResolutionStatusChart 
+            apiEndpoint={`${apiBaseUrl}/get-drug-resolution`}
+            resolutionField="Resolution"/>
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-drug-supervisor" />
+          <SupervisorChart 
+            apiEndpoint={`${apiBaseUrl}/get-drug-supervisor`} />
         </ThirdRowItem>
         <ThirdRowItem>
-          <AssaultTypesChart apiEndpoint="http://127.0.0.1:5000/get-drug-type" />
+          <AssaultTypesChart 
+            apiEndpoint={`${apiBaseUrl}/get-drug-type`} />
 
         </ThirdRowItem>
       </StyledGrid>

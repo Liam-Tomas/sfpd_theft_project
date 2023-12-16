@@ -11,15 +11,14 @@ const ChartContainer = styled.div`
     // Add styles here
 `;
 
-const PriceBreakdownChart = () => {
+const PriceBreakdownChart = ({ apiEndpoint }) => {
     const [chartData, setChartData] = useState(null);
-    const api_route = 'http://127.0.0.1:5000/';
     const theme = useContext(ThemeContext);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${api_route}/get-price-breakdown`);
+                const response = await axios.get(apiEndpoint);
                 const data = response.data;
                 if (data && Array.isArray(data)) {
                     setChartData({
@@ -41,7 +40,7 @@ const PriceBreakdownChart = () => {
         };
 
         fetchData();
-    }, []);
+    }, [apiEndpoint]);
 
     const options = {
         scales: {

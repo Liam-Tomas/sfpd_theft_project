@@ -55,28 +55,36 @@ function HomePage() {
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get_probability`} />
-          <TopLocationsChart apiEndpoint="http://127.0.0.1:5000/top-theft-locations"  />
+          <TopLocationsChart apiEndpoint={`${apiBaseUrl}/top-theft-locations`} />
         </FirstRowLeft>
         <FirstRowRight> 
           <LeafletMap geojsonUrl="/sf_heatmap_detailed_v6.geojson" />
         </FirstRowRight>
         <SecondRowItem>
           <YearChart
-            apiEndpoint={`${apiURL}/get-year-breakdown`}
+            apiEndpoint={`${apiBaseUrl}/get-year-breakdown`}
             chartLabel="Total Incidents per Year"
           />
         </SecondRowItem>
         <SecondRowItem>
-          <PriceBreakdownChart/>
+          <PriceBreakdownChart
+            apiEndpoint={`${apiBaseUrl}/get-price-breakdown`} 
+          />
         </SecondRowItem>
         <SecondRowItemSmall>
-          <ResolutionStatusChart apiEndpoint="http://127.0.0.1:5000/get-status-breakdown" resolutionField="Resolution_Status"/>
+          <ResolutionStatusChart 
+            apiEndpoint={`${apiBaseUrl}/get-status-breakdown`} 
+            resolutionField="Resolution_Status"/>
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart apiEndpoint="http://127.0.0.1:5000/get-supervisor-breakdown"/>
+          <SupervisorChart 
+            apiEndpoint={`${apiBaseUrl}/get-supervisor-breakdown`} />
         </ThirdRowItem>
         <ThirdRowItem>
-          <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-time-breakdown"  chartHeight={390} chartWidth={400}/>
+          <TimeOfDayChart 
+            apiEndpoint={`${apiBaseUrl}/get-time-breakdown`}  
+            chartHeight={390} 
+            chartWidth={400}/>
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>
