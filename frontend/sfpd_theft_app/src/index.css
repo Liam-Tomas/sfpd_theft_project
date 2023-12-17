@@ -10,7 +10,6 @@ body {
     sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   font-family: 'Inter','Roboto', sans-serif;
 }
 
@@ -23,14 +22,21 @@ code {
 
 h1 {
   font-weight: 700;
+  @media (max-width: 868px) {
+    font-size: 24px;
+  }
 }
 
 h2 {
   font-weight: 600;
+
 }
 
 h3 {
   font-weight: 600;
+  @media (max-width: 868px) {
+    font-size: 17px;
+  }
 }
 
 h4 {

@@ -25,7 +25,7 @@ const NavbarContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 5px 0px;
 
   @media (max-width: 868px) {
-    width: 250px;
+    width: 280px;
     transform: translateX(${props => props.isOpen ? '0' : '-100%'});
     transition: transform 0.2s ease;
   }
@@ -61,6 +61,11 @@ const NavbarItems = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 868px) {
+    align-items: flex-start; // Align items to the left
+    margin: 50px 0px 0px 40px;
+    width: 100%;
+  }
 `;
 
 
@@ -72,6 +77,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
   background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
   color: ${(props) => props.isActive ? props.theme.text : 'none'};
   transition: background-color 0.15s;
+  @media (max-width: 868px) {
+    font-size: 1.2rem;
+  }
+
 
 `
 
@@ -109,13 +118,16 @@ const NavbarItem = styled.div`
   }
 
   @media (max-width: 1068px) {
+    width: 215px;
+    background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
     border-radius: 20px;
     padding: 4px 25px 4px 0px;
     gap:5px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     flex-direction: row; // Change to row in mobile mode
     &:hover {
         background-color: ${props => props.theme.buttonHoverBackground};
+     
       }
   
 
@@ -163,7 +175,7 @@ const HamburgerButton = styled.button`
   font-size: 24px;
   position: fixed;
   top: 25px; // Adjust the position as needed
-  left: 20px;
+  left: 15px;
   z-index: 1100; // Make sure it's above other elements
 
   @media (max-width: 868px) {
@@ -171,12 +183,16 @@ const HamburgerButton = styled.button`
   }
 `;
 
+
+
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation(); // This line gets the current location
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
   let navbarContainerRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const [activeMenuItem, setActiveMenuItem] = useState(null);
+  
   let submenuRef = useRef(null);
 
   const handleMouseEnter = () => {
@@ -185,6 +201,16 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleDashboardClick = () => {
+    setIsSubmenuOpen(true);
+    setActiveMenuItem('dashboard');
+  };
+  
+  const handleBackClick = () => {
+    setIsSubmenuOpen(false);
+    setActiveMenuItem(null);
   };
 
   const handleMouseLeave = (e) => {
@@ -247,6 +273,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarLink to="/">
             <NavbarItem
               onClick={handleHomeClick}
+              isActive={location.pathname === '/'}
             >
               {/* {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}/>} */}
               <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
@@ -256,7 +283,8 @@ const Navbar = ({ theme, toggleTheme }) => {
           </NavbarLink>
           <NavbarLink to="/about">
             <NavbarItem
-              onClick={handleAboutClick}
+              onClick={handleHomeClick}
+              isActive={location.pathname === '/about'}
             >
               {/* {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />} */}
               <StyledIcon icon={faUser} isActive={location.pathname === '/about'} />
@@ -265,8 +293,10 @@ const Navbar = ({ theme, toggleTheme }) => {
           </NavbarLink>
           <NavbarLink to="/contact">
 
-            <NavbarItem onClick={handleAboutClick}>
-              {/* {rippleState.contact.active && <RippleSpan style={{ left: rippleState.contact.x, top: rippleState.contact.y }} />} */}
+            <NavbarItem
+              onClick={handleHomeClick}
+              isActive={location.pathname === '/contact'}
+            >
               <StyledIcon icon={faEnvelope} isActive={location.pathname === '/contact'} />
               Contact
             </NavbarItem>
@@ -275,7 +305,8 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarItem
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={e => handleRipple(e, 'dashboard')}
+            onClick={handleDashboardClick}          
+            isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'}
           >
             {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
             <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'} />

@@ -11,6 +11,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const ChartContainer = styled.div`
     min-height: 240px;
     margin-right: 30px;
+    @media (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 const TimeOfDayChart = ({ apiEndpoint, chartHeight, chartWidth }) => {

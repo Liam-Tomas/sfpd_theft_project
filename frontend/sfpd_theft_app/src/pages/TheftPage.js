@@ -45,13 +45,19 @@ const ThirdRowItem = styled.div`
 
 `
 
+const DashTitle = styled.h1`
+  @media (max-width: 880px) {
+    margin-top: 60px;
+  }
+`
+
 function HomePage() {
   const apiURL = 'http://127.0.0.1:5000'
   const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
 
   return (
     <MainContainer>
-      <h1>San Francisco Vehicle Break-in Analysis (2018 - 2023)</h1>
+      <DashTitle>San Francisco Vehicle Break-in Analysis</DashTitle>
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get_probability`} />

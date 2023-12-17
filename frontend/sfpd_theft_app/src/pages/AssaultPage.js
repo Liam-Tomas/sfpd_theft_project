@@ -48,6 +48,12 @@ const ThirdRowItem = styled.div`
 
 `
 
+const DashTitle = styled.h1`
+  @media (max-width: 880px) {
+    margin-top: 60px;
+  }
+`
+
 function AssaultPage() {
 
     const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
@@ -55,7 +61,7 @@ function AssaultPage() {
 
     return (
         <MainContainer>
-            <h1>San Francisco Assault Incident Analysis (2018 - 2023)</h1>
+            <DashTitle>San Francisco Assault Incident Analysis</DashTitle>
             <StyledGrid>
                 <FirstRowLeft>
                     <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-assault`} />

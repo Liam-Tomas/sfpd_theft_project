@@ -13,7 +13,7 @@ const StyledForm = styled.form`
 
     @media (max-width: 868px) {
         flex-direction: column;
-
+        width: 100%;
     }
 `;
 

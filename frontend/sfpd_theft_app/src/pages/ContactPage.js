@@ -21,10 +21,11 @@ const MainContainer = styled.div`
   background: ${props => props.theme.cardOpp};
 
 
-  @media (max-width: 768px) {
-    align-items: '';
+  @media (max-width: 900px) {
+    padding: 10px;
 
-  }
+
+}
 
 `;
 

@@ -50,13 +50,19 @@ const ThirdRowItem = styled.div`
 
 `
 
+const DashTitle = styled.h1`
+  @media (max-width: 880px) {
+    margin-top: 60px;
+  }
+`
+
 function MentalPage() {
   const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
   const apiLocalURL = 'http://127.0.0.1:5000'
 
   return (
     <MainContainer>
-      <h1>San Francisco Mental Health Incident Analysis (2018 - 2023)</h1>
+      <DashTitle>San Francisco Mental Health Incident Analysis</DashTitle>
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get_rate_mental_health`} />
