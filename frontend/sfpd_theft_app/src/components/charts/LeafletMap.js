@@ -8,8 +8,8 @@ const StyledLeaflet = styled.div`
   height: 527.8px;
   @media (max-width: 868px) {
     height: 387.8px;
-       
-}
+      
+  }
 `
 function LeafletMap({ geojsonUrl }) {
   const mapRef = useRef(null);
@@ -22,9 +22,21 @@ function LeafletMap({ geojsonUrl }) {
 
       // L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      //   maxZoom: 19,
+      //   attribution: '© OpenStreetMap contributors'
+      // }).addTo(map);
+
+      // Mapbox Tile Layer
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11', // You can change this to other Mapbox styles
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1IjoibHRhcm1zdHJvbmciLCJhIjoiY2xxYWtwZzdnMjFidDJrbzFyd3h2ZzF5ciJ9.1_OaoYb9KYnYACgcKNYohA' // Replace with your Mapbox access token
       }).addTo(map);
 
       // Function to determine color based on probability
@@ -57,16 +69,16 @@ function LeafletMap({ geojsonUrl }) {
       // }
       function getColor(probability) {
         return probability > .030 ? '#b30000' : // Dark red for the highest probabilities
-               probability > .020 ? '#d7301f' :
-               probability > .015 ? '#ef6548' :
-               probability > .010 ? '#fc8d59' :
-               probability > .008 ? '#fdad8f' : 
-               probability > .005 ? '#fdbb84' :  // Medium orange
-               probability > .002 ? '#fdd49e' :
-               probability > .001 ? '#fee8c8' :
-               '#fff7ec'; // Light off-white for the lowest probabilities
-    }
-    
+          probability > .020 ? '#d7301f' :
+            probability > .015 ? '#ef6548' :
+              probability > .010 ? '#fc8d59' :
+                probability > .008 ? '#fdad8f' :
+                  probability > .005 ? '#fdbb84' :  // Medium orange
+                    probability > .002 ? '#fdd49e' :
+                      probability > .001 ? '#fee8c8' :
+                        '#fff7ec'; // Light off-white for the lowest probabilities
+      }
+
       // Create a GeoJSON layer and add it to the map
       let heatmapLayer = L.geoJSON(null, {
         style: feature => ({
@@ -76,7 +88,7 @@ function LeafletMap({ geojsonUrl }) {
           color: '#f4f4f4bd',
           fillOpacity: .45
         }),
-        onEachFeature: onEachFeature 
+        onEachFeature: onEachFeature
       }).addTo(map);
 
       // Function to add interactivity to each feature
@@ -108,7 +120,7 @@ function LeafletMap({ geojsonUrl }) {
           heatmapLayer.addData(data);
         });
     }
-  }, []);
+  }, [geojsonUrl]);
 
   return <MainContaineRight>
 

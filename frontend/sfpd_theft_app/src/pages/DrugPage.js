@@ -61,14 +61,14 @@ function DrugPage() {
 
   return (
     <MainContainer>
-      <DashTitle>San Francisco Drug Arrest Analysis (2018 - 2023)</DashTitle>
+      <DashTitle>San Francisco Drug Arrest Analysis</DashTitle>
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-drugs`} />
           <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-drug-locations`} />
         </FirstRowLeft>
         <FirstRowRight>
-          <LeafletMap geojsonUrl="/sf_drug_heatmap.geojson" />
+          <LeafletMap geojsonUrl="/sf_heatmap_drugs_new.geojson" />
         </FirstRowRight>
         <SecondRowItem>
           <YearChart

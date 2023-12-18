@@ -69,7 +69,7 @@ function MentalPage() {
           <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-mental-locations`} />
         </FirstRowLeft>
         <FirstRowRight>
-          <LeafletMap geojsonUrl="/sf_mental_health_heatmap.geojson" />
+          <LeafletMap geojsonUrl="/sf_heatmap_mental_new.geojson" />
         </FirstRowRight>
         <SecondRowItem>
           <YearChart

@@ -220,7 +220,7 @@ function HomePage() {
             <HomeHeader>
                 <TextContent>
                 <HomeTitle>SFPD Crime Data Analysis</HomeTitle>
-                <HomeSubText>Explore detailed visualizations and analysis on various types of crime in San Francisco, using data from the official SFPD Incident Reports covering 2018 to present (updated monthly).</HomeSubText>
+                <HomeSubText>Explore dynamic visualizations and analysis on various types of crime in San Francisco, using data from the official SFPD Incident Reports covering 2018 to present (updated every week).</HomeSubText>
                 </TextContent>
             </HomeHeader>
             <ButtonContainer>
@@ -231,7 +231,7 @@ function HomePage() {
                         </IconContainer>
                         <div>
                             <ItemHeader>Vehicle Break-In Analysis</ItemHeader>
-                            <ItemText>Analysis of break-ins and theft from vehicles.</ItemText>
+                            <ItemText>Analysis of vehicle break-ins</ItemText>
                         </div>
                     </Button>
                 </StyledLink>
@@ -242,7 +242,7 @@ function HomePage() {
                         </IconContainer>
                         <div>
                             <ItemHeader>Mental Health Incident Analysis</ItemHeader>
-                            <ItemText>Analysis mental health detention</ItemText>
+                            <ItemText>Analysis of mental health detention</ItemText>
                         </div>
                     </Button>
                 </StyledLink>
@@ -264,7 +264,7 @@ function HomePage() {
                         </IconContainer>
                         <div>
                             <ItemHeader>Drug Arrest Analysis</ItemHeader>
-                            <ItemText>Analysis of drug related arrests</ItemText>
+                            <ItemText>Analysis of drug arrests</ItemText>
                         </div>
                     </Button>
                 </StyledLink>

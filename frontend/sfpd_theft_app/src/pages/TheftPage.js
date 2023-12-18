@@ -189,12 +189,12 @@ function HomePage() {
         </FirstRowLeft>
         {isMobile && (
           <FirstRowRight>
-            <LeafletMap geojsonUrl="/sf_heatmap_detailed_v6.geojson" />
+            <LeafletMap geojsonUrl="/sf_heatmap_theft_new.geojson" />
           </FirstRowRight>
         )}
         {!isMobile && (
           <FirstRowRight>
-            <LeafletMap geojsonUrl="/sf_heatmap_detailed_v6.geojson" />
+            <LeafletMap geojsonUrl="/sf_heatmap_theft_new.geojson" />
           </FirstRowRight>
         )}
         {isMobile && (

@@ -68,7 +68,7 @@ function AssaultPage() {
                     <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-assault-locations`} />
                 </FirstRowLeft>
                 <FirstRowRight>
-                    <LeafletMap geojsonUrl="/sf_assault_heatmap.geojson" />
+                    <LeafletMap geojsonUrl="/sf_heatmap_assault_new.geojson" />
                 </FirstRowRight>
                 <SecondRowItem>
                     <YearChart
