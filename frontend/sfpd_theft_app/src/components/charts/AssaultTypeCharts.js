@@ -10,6 +10,11 @@ const ChartContainer = styled.div`
     height: 370px;
     margin-left:20px;
     padding-bottom: 62px;
+
+    @media (max-width: 868px) {
+        width: 330px;
+        height: 270px;        
+    }
 `
 
 const AssaultTypesChart = ({ apiEndpoint }) => {

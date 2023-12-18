@@ -150,11 +150,11 @@ const SubMenuItem = styled(Link)`
 const HamBar = styled.div`
   display: none; // Hidden by default
   position: fixed;
-  top: 10;
+  top: 0;
   left: 0;
   width: 100%; // Full width
   background: ${props => props.theme.backgroundColor}; // Adjust the background as needed
-  padding: 15px 20px;
+  padding: 15px 15px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;
   z-index: 2100; // Ensure it is above the HamBar
   @media (max-width: 868px) {
@@ -178,9 +178,8 @@ const HamburgerButton = styled.button`
 const MobileHamburgerButton = styled(HamburgerButton)`
   display: none; // Hidden by default
   top: 0;
-
   left: 0;
-  padding: 15px 25px;
+  padding: 15px 15px;
   @media (max-width: 868px) {
     display: block; // Show only on mobile screens
     position: absolute; // Use static or adjust as needed within the container
