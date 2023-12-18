@@ -8,11 +8,10 @@ const  MainContainer = styled.div`
     box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px 0px;
 
     @media (max-width: 900px) {
-        margin: 0px 0px 10px 0px;
+        margin: 0px 0px 0px 0px;
         padding: 10px 0px 10px 0px;
         background-color:transparent;
         box-shadow: none;
-
 
     }
 `

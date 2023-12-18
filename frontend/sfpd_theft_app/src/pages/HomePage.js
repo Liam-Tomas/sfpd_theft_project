@@ -100,9 +100,6 @@ const Button = styled.div`
   gap: 10px;
   background-color: #1976D2; // Example blue color
   background: ${props => props.theme.card};
-//   box-shadow: rgba(0, 0, 0, 0.2) 1px 3px 7px 0px;
-//   box-shadow: rgba(0, 0, 0, 0.01s) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-//   padding: 24px 15px;
   padding: 25px 30px;
   border-radius: 24px;
   transition: background-color 0.15s ease, border-radius 0.3s ease; // Added border-radius to transition
@@ -123,6 +120,8 @@ const Button = styled.div`
     @media (max-width: 868px) {
         padding: 24px 20px;
         box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px 0px;  
+        &:hover {
+            background: none;
 
 
     }

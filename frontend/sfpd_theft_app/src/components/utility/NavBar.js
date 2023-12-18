@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -26,36 +26,18 @@ const NavbarContainer = styled.div`
 
   @media (max-width: 868px) {
     width: 280px;
+    z-index: 2500; // Ensure it is above the HamBar
     transform: translateX(${props => props.isOpen ? '0' : '-100%'});
     transition: transform 0.2s ease;
   }
 `;
 
+
+
 const NavbarLink = styled(Link)`
   text-decoration: none;
   color: inherit; // Ensures the link color matches your theme
 `;
-
-const rippleAnimation = keyframes`
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-`;
-
-const RippleSpan = styled.span`
-  position: absolute;
-  border-radius: 50%;
-  z-index: 1000;
-  background-color: ${props => props.theme.buttonHoverBackground};
-  background-color: ${props => props.theme.cardLighter};
-  transform: scale(0);
-  animation: ${rippleAnimation} 600ms linear;
-  width: 100%;
-  height: 100%;
-`;
-
-
 
 const NavbarItems = styled.div`
   display: flex;
@@ -68,8 +50,6 @@ const NavbarItems = styled.div`
   }
 `;
 
-
-
 const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1rem;
   padding: 7.5px 17.5px;
@@ -80,7 +60,6 @@ const StyledIcon = styled(FontAwesomeIcon)`
   @media (max-width: 868px) {
     font-size: 1.2rem;
   }
-
 
 `
 
@@ -148,7 +127,9 @@ const SubMenu = styled.div`
   padding: 25px 15px 15px 15px;
   box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.2); // Adjust as needed
   border-left: 1px solid ${props => props.theme.cardLight};
-
+  @media (max-width: 868px) {
+    display: none;
+  }
 `;
 
 const SubMenuItem = styled(Link)`
@@ -166,24 +147,79 @@ const SubMenuItem = styled(Link)`
     transform: scale(.98);
 `;
 
-const HamburgerButton = styled.button`
-  background: none;
-  color: ${props => props.theme.textAlt};
-  border: none;
+const HamBar = styled.div`
   display: none; // Hidden by default
-  cursor: pointer;
-  font-size: 24px;
   position: fixed;
-  top: 25px; // Adjust the position as needed
-  left: 15px;
-  z-index: 1100; // Make sure it's above other elements
-
+  top: 10;
+  left: 0;
+  width: 100%; // Full width
+  background: ${props => props.theme.backgroundColor}; // Adjust the background as needed
+  padding: 15px 20px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;
+  z-index: 2100; // Ensure it is above the HamBar
   @media (max-width: 868px) {
-    display: block; // Show only on mobile screens
+    display: flex; // Show only on mobile screens
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
+const HamburgerButton = styled.button`
+  background: none;
+  z-index: 2200; // Ensure it is above the HamBar
+  border: none;
+  color: ${props => props.theme.textAlt};
+  cursor: pointer;
+  font-size: 24px;
+`;
 
+
+
+const MobileHamburgerButton = styled(HamburgerButton)`
+  display: none; // Hidden by default
+  top: 0;
+
+  left: 0;
+  padding: 15px 25px;
+  @media (max-width: 868px) {
+    display: block; // Show only on mobile screens
+    position: absolute; // Use static or adjust as needed within the container
+  }
+`;
+
+const SubmenuOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: ${props => props.theme.cardLighter};
+  z-index: 3000; // Higher than the NavbarContainer
+  transform: translateX(${props => props.isSubmenuOpen ? '0' : '-100%'});
+  transition: transform 0.2s ease;
+  display: none; // Hidden by default
+
+  @media (max-width: 868px) {
+    display: flex; // Show only on mobile screens
+    flex-direction: column;
+  }
+`;
+
+const BackButton = styled.button`
+  background: none;
+  border: none;
+  text-align: left;
+  color: ${props => props.theme.primary};
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 15px;
+`;
+
+const MobileSubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation(); // This line gets the current location
@@ -192,22 +228,26 @@ const Navbar = ({ theme, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [activeMenuItem, setActiveMenuItem] = useState(null);
-  
+
   let submenuRef = useRef(null);
 
   const handleMouseEnter = () => {
     setIsSubmenuVisible(true);
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prevState => !prevState);
+  }, []);
+
+  const closeMenu = useCallback(() => {
+    setIsMenuOpen(false);
+  }, []);
 
   const handleDashboardClick = () => {
     setIsSubmenuOpen(true);
     setActiveMenuItem('dashboard');
   };
-  
+
   const handleBackClick = () => {
     setIsSubmenuOpen(false);
     setActiveMenuItem(null);
@@ -258,6 +298,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   const handleHomeClick = (e) => {
     handleRipple(e, 'home');
+    closeMenu(); // Add this line to close the menu
     closeSubmenu();
   };
 
@@ -266,9 +307,19 @@ const Navbar = ({ theme, toggleTheme }) => {
     closeSubmenu();
   };
 
+  // Handler to close both the submenu and the main menu
+  const handleSubmenuItem = () => {
+    setIsMenuOpen(false); // Close the main menu
+    setIsSubmenuOpen(false); // Close the submenu
+  };
+
+
   return (
     <div>
       <NavbarContainer isOpen={isMenuOpen} ref={navbarContainerRef}>
+        <MobileHamburgerButton onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faBars} />
+        </MobileHamburgerButton>
         <NavbarItems>
           <NavbarLink to="/">
             <NavbarItem
@@ -305,7 +356,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarItem
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onClick={handleDashboardClick}          
+            onClick={handleDashboardClick}
             isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'}
           >
             {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
@@ -327,9 +378,20 @@ const Navbar = ({ theme, toggleTheme }) => {
 
         <Toggle theme={theme} toggleTheme={toggleTheme} />
       </NavbarContainer>
-      <HamburgerButton onClick={toggleMenu}>
-        <FontAwesomeIcon icon={faBars} />
-      </HamburgerButton>
+      <SubmenuOverlay isSubmenuOpen={isSubmenuOpen}>
+        <BackButton onClick={handleBackClick}>Back</BackButton>
+        <MobileSubContainer>
+          <SubMenuItem to="/vehicle-theft" onClick={handleSubmenuItem}>Car Break-in Analysis</SubMenuItem>
+          <SubMenuItem to="/mental-health" onClick={handleSubmenuItem}>Mental Health Analysis</SubMenuItem>
+          <SubMenuItem to="/assault" onClick={handleSubmenuItem}>Assault Analysis</SubMenuItem>
+          <SubMenuItem to="/drugs" onClick={handleSubmenuItem}>Drug Analysis</SubMenuItem>
+        </MobileSubContainer>
+      </SubmenuOverlay>
+      <HamBar>
+        <HamburgerButton onClick={toggleMenu}>
+          <FontAwesomeIcon icon={faBars} />
+        </HamburgerButton>
+      </HamBar>
     </div>
   );
 };

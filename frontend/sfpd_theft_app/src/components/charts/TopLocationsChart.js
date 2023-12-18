@@ -11,18 +11,16 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const ChartContainer = styled.div`
     height: 356px;
-    width: 570px;
     padding-bottom: 40px;
 
     @media (max-width: 868px) {
-        width: 300px;
+        marin-bottom: 20px;
     }
 `;
 
 
 const TopLocationsChart = ({ apiEndpoint }) => {
-    const [isLoading, setIsLoading] = useState(true); // New loading state
-
+    const [isLoading, setIsLoading] = useState(true);
     const theme = useContext(ThemeContext);
     const [chartData, setChartData] = useState(null);
 
@@ -110,7 +108,7 @@ const TopLocationsChart = ({ apiEndpoint }) => {
     return (
         <MainContainer>
             <ChartContainer>
-                <h3 style={{ marginTop: '' }}>Most Common Locations</h3>
+                <h3>Most Common Locations</h3>
                 {isLoading ? (
                     <Loading /> // Show loading spinner when data is being fetched
                 ) : (
