@@ -26,6 +26,7 @@ const NavbarContainer = styled.div`
 
   @media (max-width: 868px) {
     width: 280px;
+
     z-index: 2500; // Ensure it is above the HamBar
     transform: translateX(${props => props.isOpen ? '0' : '-100%'});
     transition: transform 0.2s ease;
@@ -154,8 +155,7 @@ const HamBar = styled.div`
   left: 0;
   width: 100%; // Full width
   background: ${props => props.theme.backgroundColor}; // Adjust the background as needed
-  padding: 15px 15px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;
+  padding: 15px 10px;
   z-index: 2100; // Ensure it is above the HamBar
   @media (max-width: 868px) {
     display: flex; // Show only on mobile screens
@@ -179,7 +179,7 @@ const MobileHamburgerButton = styled(HamburgerButton)`
   display: none; // Hidden by default
   top: 0;
   left: 0;
-  padding: 15px 15px;
+  padding: 15px 20px;
   @media (max-width: 868px) {
     display: block; // Show only on mobile screens
     position: absolute; // Use static or adjust as needed within the container

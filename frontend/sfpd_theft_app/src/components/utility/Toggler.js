@@ -55,7 +55,10 @@ const ToggleContainer = styled.div`
     &:active {
         transform: scale(0.95);
     }
+    @media (max-width: 868px) {
+      margin-bottom: 80px;
 
+    }
 `;
 
 const Toggle = ({ theme, toggleTheme }) => {
