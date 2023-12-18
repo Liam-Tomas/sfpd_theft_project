@@ -147,7 +147,7 @@ const ThirdRowItem = styled.div`
 
 const DashTitle = styled.h1`
   @media (max-width: 880px) {
-    margin-top: 60px;
+    margin-top: 65px;
   }
 `;
 

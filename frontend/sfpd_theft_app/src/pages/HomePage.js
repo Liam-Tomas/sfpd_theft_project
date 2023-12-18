@@ -119,7 +119,7 @@ const Button = styled.div`
 
     @media (max-width: 868px) {
         padding: 24px 20px;
-        box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px 0px;  
+        // box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px 0px;  
         &:hover {
             background: ${props => props.theme.card};
 

@@ -17,22 +17,31 @@ const SectionTitle = styled.h2`
      font-size: 1.7rem;
      margin: 3px 0px;
      font-weight: 500;
+     @media (max-width: 868px) {
+        font-size: 1.4rem;
+    }
 `;
 
 const Paragraph = styled.p`
     font-size: 1.15rem;
     margin: 10px 0px;
+    @media (max-width: 868px) {
+        font-size: 1rem;
+    }
 `;
 
 const Footer = styled.div`
     padding: 20px 0px 10px 0px;
-    color: ${props => props.theme.textAlt};
-
+    color: ${props => props.theme.text};
+    font-size: 1.15rem;
+    @media (max-width: 868px) {
+        font-size: 1rem;
+    }
 `;
 
 const TechSection = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column; 
     gap: 10px;
     margin: 10px 0px;
     ${Paragraph} {
@@ -51,12 +60,6 @@ const TechTitle = styled.h3`
     padding: 5px 0px;
 `;
 
-const TechSubTitle = styled.h4`
-    text-align: left;
-    margin: 0px;
-    padding: 8px 0px;
-`;
-
 
 const StyledLink = styled.a`
     color: ${props => props.theme.OppHoverBackground};
@@ -71,10 +74,9 @@ const MainContainer = styled.div`
     position: relative; // Needed for absolute positioning of overlay
     background: 
 
-  @media (max-width: 768px) {
-    align-items: '';
-
-  }
+    @media (max-width: 880px) {
+        margin-top: 65px;
+      }
 
 `;
 
@@ -86,13 +88,16 @@ const ContentContainer = styled.div`
   flex-direction: column;
   background: ${props => props.theme.backgroundOpp};
 
-
+  @media (max-width: 868px) {
+    margin-top: 20px;
+    max-width: 390px;
+}
 `;
 
 
 const HomeHeader = styled.div`
     padding: 20px 40px;
-    z-index: 2; // Add a higher z-index
+    z-index: 2;
     min-height: 15vh;
     display: flex;
     flex-direction: column;
@@ -103,7 +108,8 @@ const HomeHeader = styled.div`
     gap: 10px;
 
     @media (max-width: 868px) {
-        margin: 0px 0px;
+        margin: 10px 0px;
+        padding: 10px 20px;
         text-align: left;
     }
 `
@@ -113,7 +119,7 @@ const HomeTitle = styled.h1`
     margin: 0px;
     font-weight: 500;
     @media (max-width: 868px) {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
         margin-top: 20px;
     }
     
@@ -129,7 +135,8 @@ const HomeSubText = styled.p`
         font-size: 1.1rem;
         margin-top: 15px;
 
-    }`
+    }
+    `
 
 
 const StyledEmail = styled.span`
@@ -141,17 +148,22 @@ const StyledEmail = styled.span`
 const ContentSection = styled.div`
     padding: 0px 40px;
     padding-right: 200px;
-    
-
+    @media (max-width: 868px) {
+        padding: 0 20px;  // Adjust padding
+        padding-right: 20px;  // Adjust padding
+    }
 `
 
 const TechIcons = styled.div`
     color: ${props => props.theme.textAlt};
     display: flex;
+    flex-wrap: wrap; 
     font-size: .95rem;
     gap: 10px;
+    width: 100%;
     margin: 15px 0px;
     * {
+        
         border: 1px solid  ${props => props.theme.cardLight};
         border-radius: 50px;
         padding: 5px 9px;

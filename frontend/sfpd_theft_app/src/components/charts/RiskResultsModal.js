@@ -29,6 +29,7 @@ const ResultGrid = styled.div`
     gap: 20px;
     @media (max-width: 868px) {
       grid-template-columns: 1fr 1fr;
+      gap: 10px;
 
     }
 
@@ -43,12 +44,18 @@ const ModalContent = styled.div`
   z-index: 1001;
   @media (max-width: 868px) {
     height: 100%;
-      }
+    padding-top: 200px;
+
+  }
 
 `;
 
 const ModalHeader = styled.h1`
   margin-top: 1rem;
+  @media (max-width: 868px) {
+    text-align: center;
+    margin-bottom: 30px;
+  }
 `;
 
 const ResultItem = styled.div`
@@ -75,19 +82,37 @@ const ResultNumber = styled.span`
   padding: 0px 0px 3px 0px;
   font-weight: 700;
   color: ${props => props.theme.text};
+  @media (max-width: 868px) {
+    font-size: 1.4rem;
+    padding: 0px 5px 5px 5px;
+
+
+  }
+  
 `;
 
 const ResultText = styled.span`
   font-size: 1rem;
   color: ${props => props.theme.textAlt};
+  @media (max-width: 868px) {
+    font-size: 1rem;
+
+  }
 `;
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
+  @media (max-width: 868px) {
+    margin: 0 auto;
+    margin-top: 30px;
+}
 `;
 
 const SubText = styled.p`
     color: ${props => props.theme.textAlt};
+    @media (max-width: 868px) {
+      font-size:.9rem;
+    }
     
 `;
 
