@@ -38,13 +38,13 @@ def index():
     return "Welcome to the SFPD Theft Analysis Project!"
 
 # Load the pre-processed GeoJSON file
-grid = gpd.read_file('heatmaps/sf_heatmap_detailed_v6.geojson')
+grid = gpd.read_file('heatmaps/sf_heatmap_theft_new.geojson')
 
-grid_mental_health = gpd.read_file('heatmaps/sf_mental_health_heatmap.geojson')
+grid_mental_health = gpd.read_file('heatmaps/sf_heatmap_mental_new.geojson')
 
-grid_assault = gpd.read_file('heatmaps/sf_assault_heatmap.geojson')
+grid_assault = gpd.read_file('heatmaps/sf_heatmap_assault_new.geojson')
 
-grid_drugs = gpd.read_file('heatmaps/sf_drug_heatmap.geojson')
+grid_drugs = gpd.read_file('heatmaps/sf_heatmap_drugs_new.geojson')
 
 # Initialize OpenCage Geocoder with API key
 geocoder = OpenCageGeocode(os.getenv('OPENCAGE_API_KEY'))
