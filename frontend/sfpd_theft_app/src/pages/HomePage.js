@@ -121,7 +121,7 @@ const Button = styled.div`
         padding: 24px 20px;
         box-shadow: rgba(0, 0, 0, 0.10) 0px 5px 15px 0px;  
         &:hover {
-            background: none;
+            background: ${props => props.theme.card};
 
 
     }

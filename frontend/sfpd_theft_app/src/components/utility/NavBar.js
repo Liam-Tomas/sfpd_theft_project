@@ -155,7 +155,7 @@ const HamBar = styled.div`
   left: 0;
   width: 100%; // Full width
   background: ${props => props.theme.backgroundColor}; // Adjust the background as needed
-  padding: 15px 10px;
+  padding: 18px 5px;
   z-index: 2100; // Ensure it is above the HamBar
   @media (max-width: 868px) {
     display: flex; // Show only on mobile screens
@@ -179,7 +179,7 @@ const MobileHamburgerButton = styled(HamburgerButton)`
   display: none; // Hidden by default
   top: 0;
   left: 0;
-  padding: 15px 20px;
+  padding: 18px 20px;
   @media (max-width: 868px) {
     display: block; // Show only on mobile screens
     position: absolute; // Use static or adjust as needed within the container

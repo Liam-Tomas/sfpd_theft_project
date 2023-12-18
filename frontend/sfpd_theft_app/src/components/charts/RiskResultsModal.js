@@ -25,6 +25,10 @@ const ResultGrid = styled.div`
     padding-top: 20px;
     padding-bottom: 10px;
     gap: 20px;
+    @media (max-width: 868px) {
+      grid-template-columns: 1fr 1fr;
+
+    }
 
 `
 
