@@ -56,7 +56,7 @@ const ToggleContainer = styled.div`
         transform: scale(0.95);
     }
     @media (max-width: 868px) {
-      margin-bottom: 80px;
+      margin-bottom: 120px;
 
     }
 `;

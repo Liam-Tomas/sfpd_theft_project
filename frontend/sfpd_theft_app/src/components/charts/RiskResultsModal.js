@@ -16,6 +16,8 @@ const ModalOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10000;
+
+
   
 `;
 
@@ -39,6 +41,9 @@ const ModalContent = styled.div`
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1001;
+  @media (max-width: 868px) {
+    height: 100%;
+      }
 
 `;
 

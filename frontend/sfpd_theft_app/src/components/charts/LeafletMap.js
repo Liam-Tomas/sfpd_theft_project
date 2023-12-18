@@ -2,7 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import MainContaineRight from '../utility/MainContainerRight';
+import styled from 'styled-components';
 
+const StyledLeaflet = styled.div`
+  height: 527.8px;
+  @media (max-width: 868px) {
+    height: 387.8px;
+       
+}
+`
 function LeafletMap({ geojsonUrl }) {
   const mapRef = useRef(null);
 
@@ -105,7 +113,7 @@ function LeafletMap({ geojsonUrl }) {
   return <MainContaineRight>
 
     <h3>Interactive Heat Map</h3>
-    <div id="map" style={{ height: '527.8px' }}></div>
+    <StyledLeaflet id="map"></StyledLeaflet>
 
   </MainContaineRight>
 }

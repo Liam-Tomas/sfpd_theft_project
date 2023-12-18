@@ -4,7 +4,7 @@ import styled from "styled-components";
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    
+
 `;
 
 const Label = styled.label`
@@ -34,7 +34,7 @@ const StyledInput = styled.input`
         // color: ${props => props.theme.textAlt};
     }
     @media (max-width: 868px) {
-        width: 90%;
+        width: 93%;
     }
 `;
 
