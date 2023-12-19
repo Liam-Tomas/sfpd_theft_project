@@ -70,7 +70,7 @@ const NavbarItem = styled.div`
   gap: 1px;
   font-size: .8rem;
   align-items: center;
-  font-weight: 500;
+  font-weight: 400;
   margin: 9px 0;
   cursor: pointer;
   display: flex;
