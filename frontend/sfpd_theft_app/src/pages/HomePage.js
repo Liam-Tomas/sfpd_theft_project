@@ -273,7 +273,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>Explore dashboards with a variety of dynamic visualizations. Search your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
+                <ProjectSub>Explore dashboards featuring dynamic visualizations. Search your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>
