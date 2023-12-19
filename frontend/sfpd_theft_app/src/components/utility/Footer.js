@@ -5,7 +5,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const FooterContainer = styled.footer`
-margin: 85px 110px 100px 110px;
+// margin: 30px 110px 0px 110px;
 `;
 
 const Divider = styled.div`

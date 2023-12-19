@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import aboutIMG from '../images/aboutIMG.jpg'
+import Footer from '../components/utility/Footer'
 
 const Title = styled.h1`
     margin-bottom: 16px;
@@ -30,14 +31,14 @@ const Paragraph = styled.p`
     }
 `;
 
-const Footer = styled.div`
-    padding: 20px 0px 10px 0px;
-    color: ${props => props.theme.text};
-    font-size: 1.15rem;
-    @media (max-width: 868px) {
-        font-size: 1rem;
-    }
-`;
+// const Footer = styled.div`
+//     padding: 20px 0px 10px 0px;
+//     color: ${props => props.theme.text};
+//     font-size: 1.15rem;
+//     @media (max-width: 868px) {
+//         font-size: 1rem;
+//     }
+// `;
 
 const TechSection = styled.div`
     display: flex;
@@ -216,8 +217,7 @@ function AboutPage() {
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
                             focusing on creating an interactive application for users to understand local crime dynamics.
-                            My approach both visualizes and quantifies crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application.
-                            Source of the data is DataSF: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer"> data.sfgov.org/Police-Department-Incident-Reports-2018-to-Present</StyledLink>
+                            The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.                            Source of the data is DataSF: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer"> data.sfgov.org/Police-Department-Incident-Reports-2018-to-Present</StyledLink>
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>

@@ -32,23 +32,23 @@ const MainContainer = styled.div`
         props.theme.mode === 'dark'
             ? `url(${sfLightIMGNew})`
             : `url(${sfLightIMGNew})`};
-//   background: ${props => props.theme.cardOpp};
+  background: ${props => props.theme.cardOpp};
   border-radius: 25px;
   background-size: cover;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: ${props => props.theme.mode === 'dark'
+//   &:before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+    // background: ${props => props.theme.mode === 'dark'
         ? 'rgba(0, 0, 0, 0.6)'
         : 'rgba(255, 255, 255, 0.3)'};  // Light overlay for light mode
-      border-radius: 25px;
-      z-index: 1;  // Ensure the overlay is above the background
-  }
+    //   border-radius: 25px;
+    //   z-index: 1;  // Ensure the overlay is above the background
+//   }
   
   @media (max-width: 868px) {
     background: ${props => props.theme.backgroundColor};
@@ -159,6 +159,7 @@ const HomeHeader = styled.div`
     margin: 0px 140px;
     position: relative; // Added for z-index context
     padding-top: 0px;
+    // margin: 30px 110px 0px 110px;
 
 `;
 
@@ -227,8 +228,11 @@ const HomeButtonContainer = styled.div`
 `
 
 const DashContainer = styled.div`
-    margin: 85px 110px 100px 110px;
+    margin: 85px 110px 85px 110px;
 
+`
+const FooterContainer = styled.div`
+    margin: 0px 100px 0px 100px;
 `
 
 function HomePage() {
@@ -319,7 +323,10 @@ function HomePage() {
                     </StyledLink>
                 </ButtonContainer>
             </DashContainer>
-            <Footer />
+            <FooterContainer>
+                <Footer />
+
+            </FooterContainer>
         </HomeContainer>
     );
 }
