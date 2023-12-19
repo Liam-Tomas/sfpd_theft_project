@@ -41,6 +41,7 @@ h2 {
 
 h3 {
   font-weight: 600;
+  font-family: 'Metropolis', sans-serif;
   @media (max-width: 868px) {
     font-size: 17px;
   }

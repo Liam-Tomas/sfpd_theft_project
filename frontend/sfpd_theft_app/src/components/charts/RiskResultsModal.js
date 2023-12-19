@@ -102,6 +102,7 @@ const ResultText = styled.span`
 
 const StyledButton = styled(Button)`
   margin-top: 20px;
+  height: 35px;
   @media (max-width: 868px) {
     margin: 0 auto;
     margin-top: 30px;

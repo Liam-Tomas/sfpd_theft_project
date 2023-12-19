@@ -17,9 +17,9 @@ const StyledInput = styled.input`
     border-radius: 7px;
     font-size: 1rem;
     outline: none;
-    width: ${props => props.width || '170px'}; // Use width from props or default
+    width: 94%;
     transition: border-color 0.2s, box-shadow 0.2s;
-    background: ${props => props.backgroundColor || props.theme.card}; // Use backgroundColor from props or default
+    background: ${props => props.backgroundColor || props.theme.backgroundColor}; // Use backgroundColor from props or default
     color: ${props => props.theme.textAlt};
 
     &:hover  {

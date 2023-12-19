@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import LeafletMap from '../components/charts/LeafletLarge';
 import ClusterMap from '../components/charts/ClusterMap';
+import RiskCalcMap from '../components/charts/RiskCalcMap'
 
 const FullPageContainer = styled.div`
   display: flex;
-  height: 95vh;
+  height: 100vh;
 `;
 
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 28%;
+  width: 30%;
   padding: 0px 50px;
 `;
 
@@ -36,7 +37,7 @@ const HomeTitle = styled.h1`
 const HomeSubText = styled.p`
   color: ${(props) => props.theme.textAlt};
   font-weight: 400;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.5;
   letter-spacing: -1px;
   @media (max-width: 868px) {
@@ -106,7 +107,15 @@ const TabButton = styled.div`
   }
 `;
 
+const RiskCalcMapContainer = styled.div`
+  margin-top: 20px;
+`
+
 const FullHeatmap = () => {
+
+    const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
+    const apiLocalURL = 'http://127.0.0.1:5000'
+
     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
 
@@ -156,10 +165,10 @@ const FullHeatmap = () => {
                 <HomeTitle>Interactive Map</HomeTitle>
                 <TabContainer>
                     <TabButton onClick={() => handleMapTypeSelection('HeatMap')} isActive={mapType === 'HeatMap'}>
-                        Heat Map
+                        Cluster Map
                     </TabButton>
                     <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} isActive={mapType === 'ClusterMap'}>
-                        Cluster Map
+                        Heat Map
                     </TabButton>
                 </TabContainer>
                 <HomeSubText>
@@ -190,13 +199,15 @@ const FullHeatmap = () => {
                 >
                     Drug Arrests
                 </MapButton>
-
+                <RiskCalcMapContainer>
+                    <RiskCalcMap apiEndpoint={`${apiBaseUrl}/get_probability`} />
+                </RiskCalcMapContainer>
             </TextContainer>
             <MapContainer>
                 {mapType === 'HeatMap' ? (
-                    <LeafletMap key={mapKey} geojsonUrl={getHeatmapGeoJsonUrl()} />
-                ) : (
                     <ClusterMap key={mapKey} geojsonUrl={getClusterGeoJsonUrl()} />
+                ) : (
+                    <LeafletMap key={mapKey} geojsonUrl={getHeatmapGeoJsonUrl()} />
                 )}
             </MapContainer>
         </FullPageContainer>

@@ -34,16 +34,15 @@ const RippleSpan = styled.span`
 `;
 
 const StyledButton = styled.button`
-    padding: 10px 15px;
-    font-family: 'Inter', sans-serif;
+    padding: ${props => props.padding || '10px 15px'}
     font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 84px; 
-    background-color: ${props => props.theme.primary}; // MUI primary color
+    width: 84px; 
+    background-color: ${props => props.backgroundColor || props.theme.primary}; // Use backgroundColor prop or theme primary color
     color: white;
-    border: none;
+    border: ${props => `2px solid ${props.borderColor || 'transparent'}`}; // Use borderColor prop or default to transparent
     border-radius: 7px;
     user-select: none;
     font-size: 1rem;
@@ -63,7 +62,7 @@ const StyledButton = styled.button`
     }
 `;
 
-const Button = ({ children, loading, ...props }) => {
+const Button = ({ children, loading, padding, ...props }) => {
     const [coords, setCoords] = useState({ x: -1, y: -1 });
     const [isRippling, setIsRippling] = useState(false);
 

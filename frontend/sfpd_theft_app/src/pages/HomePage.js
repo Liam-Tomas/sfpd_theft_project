@@ -9,6 +9,7 @@ import flowerDarkIMG from '../images/flowerDarkIMG.jpg'
 import rainLightIMG from '../images/rainLightIMG.jpg'
 import rainDarkIMG from '../images/rainDarkIMG.jpg'
 import glassIMG from '../images/glassIMG.jpg'
+import sfLightIMGNew from '../images/sfLightIMG_new.jpg'
 import { useTheme } from 'styled-components';
 import sfLightIMG from '../images/sfLightIMG.jpg'
 import sfDarkIMG from '../images/sfDarkIMG.jpg'
@@ -29,26 +30,25 @@ const MainContainer = styled.div`
   justify-content: center;
   background: ${(props) =>
         props.theme.mode === 'dark'
-            ? `url(${rainDarkIMG})`
-            : `url(${rainLightIMG})`};
+            ? `url(${sfLightIMGNew})`
+            : `url(${sfLightIMGNew})`};
 //   background: ${props => props.theme.cardOpp};
   border-radius: 25px;
   background-size: cover;
-  object-fit: contain;
 
-//   &:before {
-    // content: '';
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    // bottom: 0;
-    // left: 0;
-    // background: ${props => props.theme.mode === 'dark'
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: ${props => props.theme.mode === 'dark'
         ? 'rgba(0, 0, 0, 0.6)'
         : 'rgba(255, 255, 255, 0.3)'};  // Light overlay for light mode
-    //   border-radius: 25px;
-    //   z-index: 1;  // Ensure the overlay is above the background
-//   }
+      border-radius: 25px;
+      z-index: 1;  // Ensure the overlay is above the background
+  }
   
   @media (max-width: 868px) {
     background: ${props => props.theme.backgroundColor};
@@ -273,7 +273,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>Discover detailed dashboards. Search your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
+                <ProjectSub>Explore dashboards with a variety of dynamic visualizations. Search your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>

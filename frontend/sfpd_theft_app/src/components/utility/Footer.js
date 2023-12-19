@@ -6,13 +6,12 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const FooterContainer = styled.footer`
 margin: 85px 110px 100px 110px;
-text-align: center;
 `;
 
 const Divider = styled.div`
   height: 1px;
   background-color: ${props => props.theme.cardFaint};
-  margin: 10px 0px 25px 0px;
+  margin: 10px 0px 10px 0px;
 `;
 
 const FooterContent = styled.div`
@@ -26,6 +25,7 @@ const FooterFlex = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
 
 `;
 
