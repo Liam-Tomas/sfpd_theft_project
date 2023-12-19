@@ -2,11 +2,29 @@
 
 ## Overview
 
-This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand local crime dynamics. This comprehensive approach both visualizes and quantifies urban crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
+This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand local crime dynamics. The goal is to both visualizes and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
 
 ### Technologies Used:
 
-- Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
+Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
+
+## Key Features
+
+### Interactive Maps: 
+
+The project offers interactive cluster and heat maps showcasing different types of crime. The cluster map enables users to zoom in and explore geo-tagged incident locations in SF. Upon zooming, clusters disperse to show precise locations, and clicking on any point reveals detailed information about each reported incident.In the heat map, users can click on specific regions to view crime rates and statistics for the selected crime type within that grid cell. 
+
+### Local Crime Assessment: 
+
+A key feature of the project allows users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
+
+### Dynamic Dashboards:
+
+The platform hosts dynamic dashboards enriched with visualizations powered by Chart.js, including bar graphs, line charts and treemaps. Chart.js is used to dynamically visualize JSON data retrieved via SQL queries from the Flask API.
+
+### Real-Time Data Presentation:
+
+The data used for this project every week. Source of the data is DataSF: https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783 
 
 ## Key Technical Highlights
 
@@ -26,11 +44,7 @@ This project represents an advanced analysis of incident data reported to the Sa
 
 - The `RiskCalc.py` in conjuction w/ the backend function `calculate_rate` in `app.py`, enables a key feature of the project that allows users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
 
-### Dynamic Data Presentation:
-
-- Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualization. 
-
-Overall, the project leverages the strengths of SQL, Python and Reacht to perform a multi-faceted analysis of SFPD data. It not only identifies patterns of crime incidents but also provides a visual representation of these patterns across San Francisco, thereby aiding in better understanding and potentially guiding preventive measures.
+Overall, the project leverages the strengths of SQL, Python and Reacht to perform a multi-faceted analysis of SFPD data. It not only identifies patterns of crime incidents but also provides a visual representation of these patterns across the city, thereby aiding in better understanding and potentially guiding preventive measures.
 
 ## Repository Contents
 

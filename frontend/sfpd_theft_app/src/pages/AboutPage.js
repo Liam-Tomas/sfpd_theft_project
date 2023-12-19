@@ -217,6 +217,7 @@ function AboutPage() {
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
                             focusing on creating an interactive application for users to understand local crime dynamics.
                             My approach both visualizes and quantifies crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application.
+                            Source of the data is DataSF: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer"> data.sfgov.org/Police-Department-Incident-Reports-2018-to-Present</StyledLink>
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>
@@ -230,6 +231,37 @@ function AboutPage() {
                             <div>Geocoder</div>
                             <div>Matplotlib</div>
                         </TechIcons>
+                        <TitleContainer>
+                            <HashTag icon={faHashtag} />
+                            <SectionTitle>Key Features</SectionTitle>
+                        </TitleContainer>
+                        <TechSection>
+                            <SmallTitleContainer>
+                                <ArrowIcon icon={faArrowRightLong} />
+                                <TechTitle>Interactive Maps</TechTitle>
+                            </SmallTitleContainer>
+                            <Paragraph>
+                                The project offers interactive cluster and heat maps showcasing different types of crime. The cluster map enables users to zoom in and explore geo-tagged incident locations in SF. Upon zooming, clusters disperse to show precise locations, and clicking on any point reveals detailed information about each reported incident. In the heat map, users can click on specific regions to view crime rates and statistics for the selected crime type within that grid cell.
+                            </Paragraph>
+                            <SmallTitleContainer>
+                                <ArrowIcon icon={faArrowRightLong} />
+                                <TechTitle>Local Crime Assessment</TechTitle>
+                            </SmallTitleContainer>
+                            <Paragraph>
+                                A key feature of the project allows users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.                            </Paragraph>
+                            <SmallTitleContainer>
+                                <ArrowIcon icon={faArrowRightLong} />
+                                <TechTitle>Dynamic Dashboards</TechTitle>
+                            </SmallTitleContainer>
+                            <Paragraph>
+                            The platform hosts dynamic dashboards enriched with visualizations powered by Chart.js, including bar graphs, line charts and treemaps. Chart.js is used to dynamically visualize JSON data retrieved via SQL queries from the Flask API.                            </Paragraph>
+                            <SmallTitleContainer>
+                                <ArrowIcon icon={faArrowRightLong} />
+                                <TechTitle>Automated Weekly Data Refresh</TechTitle>
+                            </SmallTitleContainer>
+                            <Paragraph>
+                            The platform features an automated process, where Python scripts periodically download the latest CSV data from DataSF and convert it into GeoJSON format. This ensures that the application consistently displays the most current incident reports, updated on a weekly basis.                                </Paragraph>
+                        </TechSection>
                         <TitleContainer>
                             <HashTag icon={faHashtag} />
                             <SectionTitle>Key Technical Highlights</SectionTitle>
@@ -258,27 +290,7 @@ function AboutPage() {
                                 In the React front-end, the LeafletMap component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer.
                                 A custom color-coding function dynamically styles each grid cell based on the relative crime rate, creating a visually intuitive heatmap.
                             </Paragraph>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Interactive Map Features</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                The Leaflet map is enhanced with interactivity. Users can click on different areas of the heatmap to view detailed information about crime probabilities and statistics in that specific grid cell.
-                            </Paragraph>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Localized Crime Data Analysis</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                A key feature of the project enables users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.
-                            </Paragraph>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Dynamic Data Presentation</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                Utilizes Chart.js to render JSON data returned from SQL queries sourced from the Flask API, providing real-time data visualizations.
-                            </Paragraph>
+                           
                             <TitleContainer>
                                 <HashTag icon={faHashtag} />
                                 <SectionTitle>Project Significance</SectionTitle>

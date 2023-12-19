@@ -43,7 +43,6 @@ const Footer = () => {
                 <FooterFlex>
                     <p>&copy; {new Date().getFullYear()} Created and Designed by Liam Armstrong; ltarmstrong94@gmail.com</p>
                     <StyledIcon icon={faGithub} />
-                    <StyledIcon icon={faEnvelope} />
                 </FooterFlex>
             </FooterContent>
         </FooterContainer>

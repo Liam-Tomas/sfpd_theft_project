@@ -22,6 +22,7 @@ export const lightTheme = {
     cardLighter: '#f4f6fc',
     cardLighter: '#f8fafd',
     cardFaint: '#e1e3e1',
+    cardFaint: '#c4c6c4',
     // cardLighter: 'rgb(244 246 252)',
     borderColor: '#e2e8f0',
     borderColor2: '#e2e8f0',

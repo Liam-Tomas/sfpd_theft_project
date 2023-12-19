@@ -35,6 +35,7 @@ const RippleSpan = styled.span`
 
 const StyledButton = styled.button`
     padding: ${props => props.padding || '10px 15px'}
+    font-family: 'Metropolis', sans-serif;
     font-weight: 500;
     display: flex;
     justify-content: center;

@@ -228,8 +228,6 @@ const HomeButtonContainer = styled.div`
 
 const DashContainer = styled.div`
     margin: 85px 110px 100px 110px;
-    padding-bottom: 30px;
-
 
 `
 
