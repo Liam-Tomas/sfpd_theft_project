@@ -84,7 +84,7 @@ const MapButton = styled.div`
 const TabContainer = styled.div`
   display: flex;
   margin-top: 20px;
-  border: 1.5px solid ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.cardLighter};
   border-radius: 100px;
 `;
 
@@ -93,7 +93,7 @@ const TabButton = styled.div`
   flex: 1;
   border-radius: 100px;
   text-align: center;
-  padding: 10px 0;
+  padding: 15px 0;
   font-weight: 600;
   font-size: 1.35rem;
   color: ${(props) => (props.isActive ? props.theme.textOpp : props.theme.text)};
@@ -107,100 +107,100 @@ const TabButton = styled.div`
 `;
 
 const FullHeatmap = () => {
-  const [selectedMap, setSelectedMap] = useState('vehicle-theft');
-  const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
+    const [selectedMap, setSelectedMap] = useState('vehicle-theft');
+    const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
 
-  const handleMapSelection = (category) => {
-    setSelectedMap(category);
-  };
+    const handleMapSelection = (category) => {
+        setSelectedMap(category);
+    };
 
-  const handleMapTypeSelection = (type) => {
-    setMapType(type);
-  };
+    const handleMapTypeSelection = (type) => {
+        setMapType(type);
+    };
 
-  const getHeatmapGeoJsonUrl = () => {
-    switch (selectedMap) {
-      case 'vehicle-theft':
-        return '/sf_heatmap_theft_new.geojson';
-      case 'mental-health':
-        return '/sf_heatmap_mental_new.geojson';
-      case 'assault':
-        return '/sf_heatmap_assault_new.geojson';
-      case 'drugs':
-        return '/sf_heatmap_drugs_new.geojson';
-      default:
-        return '/sf_heatmap_theft_new.geojson';
-    }
-  };
+    const getHeatmapGeoJsonUrl = () => {
+        switch (selectedMap) {
+            case 'vehicle-theft':
+                return '/sf_heatmap_theft_new.geojson';
+            case 'mental-health':
+                return '/sf_heatmap_mental_new.geojson';
+            case 'assault':
+                return '/sf_heatmap_assault_new.geojson';
+            case 'drugs':
+                return '/sf_heatmap_drugs_new.geojson';
+            default:
+                return '/sf_heatmap_theft_new.geojson';
+        }
+    };
 
-  const getClusterGeoJsonUrl = () => {
-    switch (selectedMap) {
-      case 'vehicle-theft':
-        return '/sfpd_cluster_theft.geojson';
-      case 'mental-health':
-        return '/sfpd_cluster_mental_health.geojson';
-      case 'assault':
-        return '/sfpd_cluster_assault.geojson';
-      case 'drugs':
-        return '/sfpd_cluster_drugs.geojson';
-      default:
-        return '/sfpd_cluster_theft.geojson';
-    }
-  };
+    const getClusterGeoJsonUrl = () => {
+        switch (selectedMap) {
+            case 'vehicle-theft':
+                return '/sfpd_cluster_theft.geojson';
+            case 'mental-health':
+                return '/sfpd_cluster_mental_health.geojson';
+            case 'assault':
+                return '/sfpd_cluster_assault.geojson';
+            case 'drugs':
+                return '/sfpd_cluster_drugs.geojson';
+            default:
+                return '/sfpd_cluster_theft.geojson';
+        }
+    };
 
-  const mapKey = `leaflet-map-${selectedMap}`;
+    const mapKey = `leaflet-map-${selectedMap}`;
 
-  return (
-    <FullPageContainer>
-      <TextContainer>
-        <HomeTitle>Interactive Map</HomeTitle>
+    return (
+        <FullPageContainer>
+            <TextContainer>
+                <HomeTitle>Interactive Map</HomeTitle>
+                <TabContainer>
+                    <TabButton onClick={() => handleMapTypeSelection('HeatMap')} isActive={mapType === 'HeatMap'}>
+                        HeatMap
+                    </TabButton>
+                    <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} isActive={mapType === 'ClusterMap'}>
+                        Cluster Map
+                    </TabButton>
+                </TabContainer>
+                <HomeSubText>
+                    Select a type of crime to view its map, then click grid cells for insights into each 0.21 sq km area. The data,
+                    updated weekly, reflects rates reported by the SFPD since 2018.
+                </HomeSubText>
+                <MapButton
+                    onClick={() => handleMapSelection('vehicle-theft')}
+                    isActive={selectedMap === 'vehicle-theft'}
+                >
+                    Car Break-ins
+                </MapButton>
+                <MapButton
+                    onClick={() => handleMapSelection('mental-health')}
+                    isActive={selectedMap === 'mental-health'}
+                >
+                    Mental Health
+                </MapButton>
+                <MapButton
+                    onClick={() => handleMapSelection('assault')}
+                    isActive={selectedMap === 'assault'}
+                >
+                    Assault Incidents
+                </MapButton>
+                <MapButton
+                    onClick={() => handleMapSelection('drugs')}
+                    isActive={selectedMap === 'drugs'}
+                >
+                    Drug Arrests
+                </MapButton>
 
-        <HomeSubText>
-          Select a type of crime to view its map, then click grid cells for insights into each 0.21 sq km area. The data,
-          updated weekly, reflects rates reported by the SFPD since 2018.
-        </HomeSubText>
-        <MapButton
-          onClick={() => handleMapSelection('vehicle-theft')}
-          isActive={selectedMap === 'vehicle-theft'}
-        >
-          Car Break-ins
-        </MapButton>
-        <MapButton
-          onClick={() => handleMapSelection('mental-health')}
-          isActive={selectedMap === 'mental-health'}
-        >
-          Mental Health
-        </MapButton>
-        <MapButton
-          onClick={() => handleMapSelection('assault')}
-          isActive={selectedMap === 'assault'}
-        >
-          Assault Incidents
-        </MapButton>
-        <MapButton
-          onClick={() => handleMapSelection('drugs')}
-          isActive={selectedMap === 'drugs'}
-        >
-          Drug Arrests
-        </MapButton>
-        <TabContainer>
-          <TabButton onClick={() => handleMapTypeSelection('HeatMap')} isActive={mapType === 'HeatMap'}>
-            HeatMap
-          </TabButton>
-          <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} isActive={mapType === 'ClusterMap'}>
-            Cluster Map
-          </TabButton>
-        </TabContainer>
-      </TextContainer>
-      <MapContainer>
-        {mapType === 'HeatMap' ? (
-          <LeafletMap key={mapKey} geojsonUrl={getHeatmapGeoJsonUrl()} />
-        ) : (
-          <ClusterMap key={mapKey} geojsonUrl={getClusterGeoJsonUrl()} />
-        )}
-      </MapContainer>
-    </FullPageContainer>
-  );
+            </TextContainer>
+            <MapContainer>
+                {mapType === 'HeatMap' ? (
+                    <LeafletMap key={mapKey} geojsonUrl={getHeatmapGeoJsonUrl()} />
+                ) : (
+                    <ClusterMap key={mapKey} geojsonUrl={getClusterGeoJsonUrl()} />
+                )}
+            </MapContainer>
+        </FullPageContainer>
+    );
 };
 
 export default FullHeatmap;

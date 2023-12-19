@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext} from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from 'styled-components';
 
 const StyledLeaflet = styled.div`
   height: 100vh;
@@ -31,9 +32,16 @@ const StyledLink = styled(Link)`
   color: inherit;
 `;
 
+
+
 function ClusterMap({ geojsonUrl }) {
   const mapRef = useRef(null);
+  const theme = useContext(ThemeContext);
 
+// Function to determine the Mapbox tile layer ID based on the theme
+const getMapboxTileLayerId = () => {
+    return theme.mode === 'light' ? 'mapbox/light-v10' : 'mapbox/dark-v10';
+  };
   useEffect(() => {
     if (!mapRef.current) {
       const map = L.map('map', {
@@ -46,7 +54,7 @@ function ClusterMap({ geojsonUrl }) {
                      '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
-        id: 'mapbox/streets-v11',
+      id: getMapboxTileLayerId(), // Use the function to determine the tile layer ID
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoibHRhcm1zdHJvbmciLCJhIjoiY2xxYWtwZzdnMjFidDJrbzFyd3h2ZzF5ciJ9.1_OaoYb9KYnYACgcKNYohA' // Replace with your Mapbox access token

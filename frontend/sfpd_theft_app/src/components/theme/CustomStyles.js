@@ -40,6 +40,7 @@ export const darkTheme = {
     secondary:'#c2e7fe',
     text: '#e3e3e3',
     textOpp: '#072e6f',
+    textOpp: '#ffff',
     buttonColor: '#aeccfb',
     textAlt: 'rgb(197 199 197)',
     textGrey: '#afb8c4',
