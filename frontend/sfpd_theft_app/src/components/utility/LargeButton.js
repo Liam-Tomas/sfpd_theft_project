@@ -22,13 +22,13 @@ const RippleSpan = styled.span`
 const StyledButton = styled.button`
     padding: ${props => props.padding || '25px 35px'};
     font-family: 'Metropolis', sans-serif;
+    font-size: ${props => props.fontSize || '1.5rem'};
     font-weight: 500;
     background-color: ${props => props.backgroundColor || props.theme.buttonColor}; // Use backgroundColor prop
     color: ${props => props.color || props.theme.textOpp};
     border: none;
     border-radius: 50px;
     user-select: none;
-    font-size: ${props => props.fontSize || '1.4rem'};
     cursor: pointer;
     transition: background-color 0.2s;
     position: relative;

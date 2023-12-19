@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const FooterContainer = styled.footer`
 margin: 85px 110px 100px 110px;
@@ -14,20 +17,37 @@ const Divider = styled.div`
 
 const FooterContent = styled.div`
   padding: 10px 5px;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 16px;
   color: ${props => props.theme.cardFaint};
 `;
 
+const FooterFlex = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+`;
+
+const StyledIcon = styled(FontAwesomeIcon)`
+    font-size: 1.4rem;
+    color: ${props => props.theme.cardLight};
+
+`
+
 const Footer = () => {
-  return (
-    <FooterContainer>
-      <FooterContent>
-        <Divider /> 
-        <p>&copy; {new Date().getFullYear()} Created and Designed by Liam Armstrong; ltarmstrong94@gmail.com</p>
-      </FooterContent>
-    </FooterContainer>
-  );
+    return (
+        <FooterContainer>
+            <FooterContent>
+                <Divider />
+                <FooterFlex>
+                    <p>&copy; {new Date().getFullYear()} Created and Designed by Liam Armstrong; ltarmstrong94@gmail.com</p>
+                    <StyledIcon icon={faGithub} />
+                    <StyledIcon icon={faEnvelope} />
+                </FooterFlex>
+            </FooterContent>
+        </FooterContainer>
+    );
 };
 
 export default Footer;

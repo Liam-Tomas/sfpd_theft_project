@@ -93,9 +93,9 @@ const TabButton = styled.div`
   flex: 1;
   border-radius: 100px;
   text-align: center;
-  padding: 15px 0;
+  padding: 13px 0;
   font-weight: 600;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   color: ${(props) => (props.isActive ? props.theme.textOpp : props.theme.text)};
   background-color: ${(props) => (props.isActive ? props.theme.primary : 'transparent')};
   transition: 0.3s ease;
@@ -156,14 +156,14 @@ const FullHeatmap = () => {
                 <HomeTitle>Interactive Map</HomeTitle>
                 <TabContainer>
                     <TabButton onClick={() => handleMapTypeSelection('HeatMap')} isActive={mapType === 'HeatMap'}>
-                        HeatMap
+                        Heat Map
                     </TabButton>
                     <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} isActive={mapType === 'ClusterMap'}>
                         Cluster Map
                     </TabButton>
                 </TabContainer>
                 <HomeSubText>
-                    Select a type of crime to view its map, then click grid cells for insights into each 0.21 sq km area. The data,
+                    Choose a type of map from above. Then, pick a category of crime below. For heatmaps, click on grid cells for insights into each 0.21 sq km area. For the cluster map, zoom in for more precise data. The data,
                     updated weekly, reflects rates reported by the SFPD since 2018.
                 </HomeSubText>
                 <MapButton
