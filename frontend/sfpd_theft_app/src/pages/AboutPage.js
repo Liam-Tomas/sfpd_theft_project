@@ -216,7 +216,7 @@ function AboutPage() {
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
                             focusing on creating an interactive application for users to understand local crime dynamics.
-                            My approach both visualizes and quantifies urban crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application.
+                            My approach both visualizes and quantifies crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application.
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>

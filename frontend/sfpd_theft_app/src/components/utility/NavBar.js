@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { faChartBar, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faMap } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarContainer = styled.div`
   z-index:1000;
@@ -341,8 +342,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               About
             </NavbarItem>
           </NavbarLink>
-          <NavbarLink to="/contact">
 
+          <NavbarLink to="/contact">
             <NavbarItem
               onClick={handleHomeClick}
               isActive={location.pathname === '/contact'}
@@ -352,6 +353,17 @@ const Navbar = ({ theme, toggleTheme }) => {
             </NavbarItem>
           </NavbarLink>
 
+          <NavbarLink to="/full-heatmap">
+
+            <NavbarItem
+              onClick={handleHomeClick}
+              isActive={location.pathname === '/full-heatmap'}
+            >
+              <StyledIcon icon={faMap} isActive={location.pathname === '/full-heatmap'} />
+              Maps
+            </NavbarItem>
+          </NavbarLink>
+          
           <NavbarItem
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -362,7 +374,6 @@ const Navbar = ({ theme, toggleTheme }) => {
             <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'} />
             D'board
           </NavbarItem>
-
 
           {isSubmenuVisible && (
             <SubMenu ref={submenuRef} onMouseLeave={handleMouseLeave}>

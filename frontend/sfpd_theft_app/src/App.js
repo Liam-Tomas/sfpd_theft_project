@@ -9,6 +9,7 @@ import AssaultPage from './pages/AssaultPage';
 import AboutPage from './pages/AboutPage';
 import DrugsPage from './pages/DrugPage';
 import ContactPage from './pages/ContactPage';
+import FullHeatmap from './pages/FullHeatmap';
 import { GlobalStyles } from './components/theme/GlobalStyles';
 import { useDarkMode } from './components/theme/DarkMode';
 import { lightTheme, darkTheme } from './components/theme/CustomStyles'
@@ -47,6 +48,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/drugs" element={<DrugsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/full-heatmap" element={<FullHeatmap />} />
               {/* Add more routes as needed */}
             </Routes>
           </MainContent>

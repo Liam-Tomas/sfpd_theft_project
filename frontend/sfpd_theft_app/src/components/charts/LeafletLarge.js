@@ -1,34 +1,27 @@
 import React, { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import MainContaineRight from '../utility/MainContainerRight';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const StyledLeaflet = styled.div`
-  height: 527.8px;
+  height: 100vh;
   @media (max-width: 868px) {
-    height: 387.8px;
-      
+
   }
 `
 
 const TitleContainer = styled.div`
-  display: flex;
+    display: flex;
     align-items: center;
     justify-content: space-between
 `;
 
-const StyledIcon = styled(FontAwesomeIcon)`
-  font-size: 1.2rem
+const MapHeader = styled.div`
+  display: flex;
 `
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: inherit; // Ensures the link color matches your theme
-`;
 
 function LeafletMap({ geojsonUrl }) {
   const mapRef = useRef(null);
@@ -141,18 +134,18 @@ function LeafletMap({ geojsonUrl }) {
     }
   }, [geojsonUrl]);
 
-  return <MainContaineRight>
-
+  
+  return <div>
+    {/* <MapHeader>
+        <p>Hello</p>
+        <p>Hello</p>
+    </MapHeader> */}
     <TitleContainer>
-      <h3>Interactive Heat Map</h3>
-      <StyledLink to="/full-heatmap">
-        <StyledIcon icon={faExpand} />
-      </StyledLink>
     </TitleContainer>
 
     <StyledLeaflet id="map"></StyledLeaflet>
 
-  </MainContaineRight>
+  </div>
 }
 
 export default LeafletMap;
