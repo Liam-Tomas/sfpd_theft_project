@@ -1,3 +1,4 @@
+
 // import React, { useState } from 'react';
 // import styled from 'styled-components';
 // import LeafletMap from '../components/charts/LeafletLarge';
@@ -7,6 +8,13 @@
 // const FullPageContainer = styled.div`
 //   display: flex;
 //   height: 100vh;
+
+//   @media (max-width: 868px) {
+//     flex-direction: column;
+//     margin-top: 60px;
+//     padding: 20px;
+
+// }
 // `;
 
 // const TextContainer = styled.div`
@@ -15,6 +23,11 @@
 //   justify-content: center;
 //   width: 30%;
 //   padding: 0px 50px;
+//   @media (max-width: 868px) {
+//     width: 100%;
+//     padding: 0px;
+
+// }
 // `;
 
 // const MapContainer = styled.div`
@@ -29,7 +42,7 @@
 //   margin-bottom: 0px;
 //   font-weight: 600;
 //   @media (max-width: 868px) {
-//     font-size: 2.8rem;
+//     font-size: 2.6rem;
 //     margin-top: 20px;
 //   }
 // `;
@@ -85,7 +98,7 @@
 // const TabContainer = styled.div`
 //   display: flex;
 //   margin-top: 20px;
-//   background-color: ${(props) => props.theme.cardTab};
+//   background-color: ${(props) => props.theme.cardLighter};
 //   border-radius: 100px;
 // `;
 
@@ -97,13 +110,13 @@
 //   padding: 13px 0;
 //   font-weight: 600;
 //   font-size: 1.25rem;
-//   color: ${(props) => (props.isActive ? props.theme.textOpp : props.theme.text)};
-//   background-color: ${(props) => (props.isActive ? props.theme.primary : 'transparent')};
+//   color: ${(props) => (props.isActive ? props.theme.text : props.theme.text)};
+//   background-color: ${(props) => (props.isActive ? props.theme.buttonHoverBackground : 'transparent')};
 //   transition: 0.3s ease;
 
 //   &:hover {
-//     color: ${(props) => props.theme.textOpp};
-//     background-color: ${(props) => props.theme.primary};
+//     color: ${(props) => props.theme.text};
+//     background-color: ${(props) => props.theme.buttonHoverBackground};
 //   }
 // `;
 
@@ -145,15 +158,31 @@
 //     const getClusterGeoJsonUrl = () => {
 //         switch (selectedMap) {
 //             case 'vehicle-theft':
-//                 return '/sfpd_cluster_theft.geojson';
+//                 return '/sfpd_cluster_theft_total.geojson';
 //             case 'mental-health':
-//                 return '/sfpd_cluster_mental_health.geojson';
+//                 return '/sfpd_cluster_mental_health_total.geojson';
 //             case 'assault':
-//                 return '/sfpd_cluster_assault.geojson';
+//                 return '/sfpd_cluster_assault_total.geojson';
 //             case 'drugs':
-//                 return '/sfpd_cluster_drugs.geojson';
+//                 return '/sfpd_cluster_drugs_total.geojson';
 //             default:
-//                 return '/sfpd_cluster_theft.geojson';
+//                 return '/sfpd_cluster_theft_total.geojson';
+//         }
+//     };
+
+//     // Function to get the correct API endpoint based on the selected map
+//     const getApiEndpoint = () => {
+//         switch (selectedMap) {
+//             case 'vehicle-theft':
+//                 return `${apiBaseUrl}/get_probability`;
+//             case 'mental-health':
+//                 return `${apiBaseUrl}/get_rate_mental_health`;
+//             case 'assault':
+//                 return `${apiBaseUrl}/get-rate-assault`;
+//             case 'drugs':
+//                 return `${apiBaseUrl}/get-rate-drugs`;
+//             default:
+//                 return `${apiBaseUrl}/get_probability`;
 //         }
 //     };
 
@@ -173,7 +202,7 @@
 //                 </TabContainer>
 //                 <HomeSubText>
 //                     Choose a type of map from above. Then, pick a category of crime below. For heatmaps, click on grid cells for insights into each 0.21 sq km area. For the cluster map, zoom in for more precise data. The data,
-//                     updated weekly, reflects rates reported by the SFPD since 2018.
+//                     updated weekly, reflects incidents of the selected crime reported by the SFPD since 2018.
 //                 </HomeSubText>
 //                 <MapButton
 //                     onClick={() => handleMapSelection('vehicle-theft')}
@@ -200,7 +229,7 @@
 //                     Drug Arrests
 //                 </MapButton>
 //                 <RiskCalcMapContainer>
-//                     <RiskCalcMap apiEndpoint={`${apiBaseUrl}/get_probability`} />
+//                     <RiskCalcMap apiEndpoint={getApiEndpoint()} />
 //                 </RiskCalcMapContainer>
 //             </TextContainer>
 //             <MapContainer>
@@ -215,6 +244,15 @@
 // };
 
 // export default FullHeatmap;
+
+
+
+
+
+
+
+
+
 
 
 import React, { useState } from 'react';
@@ -327,7 +365,7 @@ const TabButton = styled.div`
   text-align: center;
   padding: 13px 0;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: ${(props) => (props.isActive ? props.theme.text : props.theme.text)};
   background-color: ${(props) => (props.isActive ? props.theme.buttonHoverBackground : 'transparent')};
   transition: 0.3s ease;
@@ -339,8 +377,41 @@ const TabButton = styled.div`
 `;
 
 const RiskCalcMapContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 0px;
 `
+
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+//   background-color: ${(props) => props.theme.card};
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+  margin-top: 20px;
+`;
+
+const SelectTitle = styled.span`
+  font-size: 16px;
+  
+  ${(props) => props.theme.text};  
+  margin-right: 16px;
+  font-weight: 500;
+`;
+
+const StyledSelect = styled.select`
+  border: 1px solid ${(props) => props.theme.card};
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+  flex-grow: 1;
+  color: ${(props) => props.theme.textAlt};
+  background-color: ${(props) => props.theme.cardLighter};
+  &:focus {
+    border-color: ${(props) => props.theme.primary};
+  }
+`;
 
 const FullHeatmap = () => {
 
@@ -349,6 +420,13 @@ const FullHeatmap = () => {
 
     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
+
+    const [timeFilter, setTimeFilter] = useState('total'); // New state for time filter
+
+    // Function to handle time filter selection
+    const handleTimeFilterSelection = (filter) => {
+        setTimeFilter(filter);
+    };
 
     const handleMapSelection = (category) => {
         setSelectedMap(category);
@@ -373,19 +451,40 @@ const FullHeatmap = () => {
         }
     };
 
+    const getGeoJsonFileName = (baseName) => {
+        switch (timeFilter) {
+            case 'last_week':
+                return `${baseName}_last_week.geojson`;
+            case 'last_30_days':
+                return `${baseName}_last_30_days.geojson`;
+            case 'last_year':
+                return `${baseName}_last_year.geojson`;
+            case 'total':
+            default:
+                return `${baseName}_total.geojson`;
+        }
+    };
+
+    // Updated function to get the correct GeoJSON URL based on the selected map and time filter
     const getClusterGeoJsonUrl = () => {
+        let baseName = '/sfpd_cluster_';
         switch (selectedMap) {
             case 'vehicle-theft':
-                return '/sfpd_cluster_theft.geojson';
+                baseName += 'theft';
+                break;
             case 'mental-health':
-                return '/sfpd_cluster_mental_health.geojson';
+                baseName += 'mental_health';
+                break;
             case 'assault':
-                return '/sfpd_cluster_assault.geojson';
+                baseName += 'assault';
+                break;
             case 'drugs':
-                return '/sfpd_cluster_drugs.geojson';
+                baseName += 'drugs';
+                break;
             default:
-                return '/sfpd_cluster_theft.geojson';
+                baseName += 'theft';
         }
+        return getGeoJsonFileName(baseName);
     };
 
     // Function to get the correct API endpoint based on the selected map
@@ -404,7 +503,7 @@ const FullHeatmap = () => {
         }
     };
 
-    const mapKey = `leaflet-map-${selectedMap}`;
+    const mapKey = `leaflet-map-${selectedMap}-${timeFilter}`;
 
     return (
         <FullPageContainer>
@@ -446,6 +545,15 @@ const FullHeatmap = () => {
                 >
                     Drug Arrests
                 </MapButton>
+                <InputContainer>
+                    <SelectTitle>Show me:</SelectTitle>
+                    <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
+                        <option value="total">Total Incidents</option>
+                        <option value="last_week">Last Week</option>
+                        <option value="last_30_days">Last 30 Days</option>
+                        <option value="last_year">Last Year</option>
+                    </StyledSelect>
+                </InputContainer>
                 <RiskCalcMapContainer>
                     <RiskCalcMap apiEndpoint={getApiEndpoint()} />
                 </RiskCalcMapContainer>

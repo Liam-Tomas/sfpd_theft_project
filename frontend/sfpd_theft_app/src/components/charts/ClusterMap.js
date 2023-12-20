@@ -422,8 +422,12 @@ function ClusterMap({ geojsonUrl }) {
           L.geoJSON(data, {
             onEachFeature: function (feature, layer) {
               const props = feature.properties;
+              // Parse the date string and format it
+              const incidentDate = new Date(props['Incident Date']);
+              const formattedDate = incidentDate.toLocaleDateString(); // Default locale date format
+
               let popupContent = `<b>Category:</b> ${props['Incident Category']}<br>` +
-                `<b>Date:</b> ${props['Incident Date']}<br>` +
+                `<b>Date:</b> ${formattedDate}<br>` + // Use formattedDate
                 `<b>Time:</b> ${props['Incident Time']}<br>` +
                 `<b>Resolution:</b> ${props['Resolution']}<br>` +
                 `<b>District:</b> ${props['Police District']}`;
