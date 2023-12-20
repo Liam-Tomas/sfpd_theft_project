@@ -33,6 +33,8 @@ export const lightTheme = {
     homeBackground: 'rgb(194 231 254 / 40%)',
     backgroundIMG: `url(${flowerIMG})`, // Light mode background image URL
     buttonHover: '#1565c0',
+    buttonSubtle: '#eaecf2',
+    buttonSubtleHover: '#e5e6eb',
 }
 
 export const darkTheme = {
@@ -65,6 +67,8 @@ export const darkTheme = {
     homeBackground: '#262626',
     backgroundIMG: `url(${flowerDarkIMG})`, // Dark mode background image URL
     buttonHover: '#1565c0',
+    buttonSubtle: '#36393b',
+    buttonSubtleHover: '#3d3f42',
 
 
 }

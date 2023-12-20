@@ -392,7 +392,7 @@ const FullHeatmap = () => {
                 </TabContainer>
                 <HomeSubText>
                     Choose a type of map from above. Then, pick a category of crime below. For heatmaps, click on grid cells for insights into each 0.21 sq km area. For the cluster map, zoom in for more precise data. The data,
-                    updated weekly, reflects rates reported by the SFPD since 2018.
+                    updated weekly, reflects incidents of the selected crime reported by the SFPD since 2018.
                 </HomeSubText>
                 <MapButton
                     onClick={() => handleMapSelection('vehicle-theft')}

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCircleInfo, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Toggle from './Toggler';
 import { Link } from 'react-router-dom';
 import { faChartBar, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
@@ -363,7 +363,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               isActive={location.pathname === '/about'}
             >
               {/* {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />} */}
-              <StyledIcon icon={faUser} isActive={location.pathname === '/about'} />
+              <StyledIcon icon={faCircleInfo} isActive={location.pathname === '/about'} />
               About
             </NavbarItem>
           </NavbarLink>
@@ -385,7 +385,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               isActive={location.pathname === '/full-heatmap'}
             >
               <StyledIcon icon={faMap} isActive={location.pathname === '/full-heatmap'} />
-              Maps
+              Map
             </NavbarItem>
           </NavbarLink>
 

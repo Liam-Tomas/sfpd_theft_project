@@ -262,9 +262,9 @@ function HomePage() {
                             <StyledLink to="/vehicle-theft">
 
                                 <LargeButton
-                                    backgroundColor="#aeccfb"
-                                    color="#072e6f"
-                                    hoverBackgroundColor="#c1dbfd"
+                                    backgroundColor={theme.buttonSubtle}
+                                    color={theme.text}
+                                    hoverBackgroundColor={theme.buttonSubtleHover}
                                 >Dashboards
                                 </LargeButton>
                             </StyledLink>
@@ -325,7 +325,6 @@ function HomePage() {
             </DashContainer>
             <FooterContainer>
                 <Footer />
-
             </FooterContainer>
         </HomeContainer>
     );
