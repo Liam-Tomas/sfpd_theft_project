@@ -12,7 +12,7 @@ const MainContainer = styled.div`
 
 const StyledForm = styled.form`
     display: flex;
-    gap: 25px;
+    gap: 22px;
 
     @media (max-width: 868px) {
         flex-direction: column;

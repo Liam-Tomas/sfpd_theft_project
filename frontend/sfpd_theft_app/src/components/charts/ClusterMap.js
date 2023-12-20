@@ -378,11 +378,13 @@ function ClusterMap({ geojsonUrl }) {
           // } else {
           //   color = 'rgba(220, 20, 60, 0.6)'; // Deep Crimson
           // }
-          if (childCount < 100) {
+          if (childCount < 20) {
             color = 'rgba(156, 204, 210, 0.7)'; // Darker Powder Blue
+          } else if (childCount < 100) {
+            color = 'rgba(72, 209, 204, 0.7)';
           } else if (childCount < 800) {
             color = 'rgba(107, 225, 182, 0.7)'; // Darker Muted Aqua
-          } else if (childCount < 3800) {
+          } else if (childCount < 3000) {
             color = 'rgba(0, 123, 167, 0.7)'; // Deep Cerulean
           } else {
             color = 'rgba(138, 43, 226, 0.6)'; // Violet
@@ -419,6 +421,7 @@ function ClusterMap({ geojsonUrl }) {
       fetch(geojsonUrl)
         .then(response => response.json())
         .then(data => {
+          
           L.geoJSON(data, {
             onEachFeature: function (feature, layer) {
               const props = feature.properties;

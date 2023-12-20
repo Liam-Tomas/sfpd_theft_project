@@ -23,6 +23,9 @@ code {
 
 /* index.css */
 
+p {
+  font-family: 'Inter', sans-serif;
+}
 h1 {
   font-weight: 700;
   font-family: 'Metropolis', sans-serif;

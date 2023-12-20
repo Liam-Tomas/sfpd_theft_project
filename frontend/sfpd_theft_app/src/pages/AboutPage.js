@@ -45,7 +45,7 @@ const TechSection = styled.div`
     gap: 10px;
     margin: 10px 0px;
     &:last-of-type {
-        margin-bottom: 50px; // Apply larger bottom margin to the last TechSection
+        margin-bottom: 30px; // Apply larger bottom margin to the last TechSection
     }
     ${Paragraph} {
         border-radius: 50px;

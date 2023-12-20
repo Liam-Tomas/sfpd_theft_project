@@ -186,7 +186,7 @@ const HomeTitle = styled.h1`
 `
 
 const HomeSubText = styled.p`
-    // color: ${props => props.theme.textAlt};
+    color: ${props => props.theme.textAlt};
     font-weight: 500;
     font-size: 1.35rem;
     line-height:1.5;

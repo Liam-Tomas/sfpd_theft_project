@@ -260,6 +260,8 @@ import styled from 'styled-components';
 import LeafletMap from '../components/charts/LeafletLarge';
 import ClusterMap from '../components/charts/ClusterMap';
 import RiskCalcMap from '../components/charts/RiskCalcMap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 const FullPageContainer = styled.div`
   display: flex;
@@ -292,7 +294,7 @@ const MapContainer = styled.div`
 `;
 
 const HomeTitle = styled.h1`
-  font-size: 36px;
+  font-size: 34px;
   letter-spacing: -1px;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -322,7 +324,7 @@ const MapButton = styled.div`
   transform: ${(props) => (props.isActive ? 'translateX(50px)' : 'translateX(20px)')};
   font-weight: 600;
   font-size: 1.35rem;
-  color: ${(props) => (props.isActive ? props.theme.secondary : props.theme.textAlt)};
+  color: ${(props) => (props.isActive ? props.theme.secondary : props.theme.text)};
   display: flex;
   align-items: center;
   transition: 0.3s ease;
@@ -387,30 +389,57 @@ const InputContainer = styled.div`
   padding: 8px 10px;
   border-radius: 8px;
   margin: 10px 0;
-  margin-top: 20px;
+  margin-top: 0px;
 `;
 
 const SelectTitle = styled.span`
   font-size: 16px;
-  
-  ${(props) => props.theme.text};  
+  color: ${(props) => props.theme.textAlt};  
   margin-right: 16px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
-const StyledSelect = styled.select`
-  border: 1px solid ${(props) => props.theme.card};
-  border-radius: 4px;
-  padding: 8px 10px;
+const SelectWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative; // Set the position to relative for the wrapper
   font-size: 16px;
   outline: none;
   cursor: pointer;
   flex-grow: 1;
+  border-radius: 8px;
+  margin: 10px 0;
+  margin-top: 20px;
+`;
+
+const StyledSelect = styled.select`
+  -webkit-appearance: none;
+  
+  -moz-appearance: none;
+  border-radius: 25px;
+  background-color: ${(props) => props.theme.card};
   color: ${(props) => props.theme.textAlt};
-  background-color: ${(props) => props.theme.cardLighter};
+  border: 1px solid ${(props) => props.theme.buttonSubtle};
+  outline: none;
+  font-weight: 500;
+
+  padding: 10px 20px 10px 20px; /* Adjusted padding to make space for the icon */
+  font-size: 16px;
+  flex-grow: 1;
+  // Rest of your styles
+  padding-right: 30px; // Increase padding to make space for the icon
   &:focus {
     border-color: ${(props) => props.theme.primary};
   }
+`;
+
+const IconContainer = styled.div`
+  position: absolute;
+  right: 20px; // Adjust as needed
+  top: 50%;
+  color: ${(props) => props.theme.textAlt};
+  transform: translateY(-50%); // Center vertically
+  pointer-events: none; // Makes the icon non-interactive
 `;
 
 const FullHeatmap = () => {
@@ -546,14 +575,20 @@ const FullHeatmap = () => {
                     Drug Arrests
                 </MapButton>
                 <InputContainer>
-                    <SelectTitle>Show me:</SelectTitle>
-                    <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
-                        <option value="total">Total Incidents</option>
-                        <option value="last_week">Last Week</option>
-                        <option value="last_30_days">Last 30 Days</option>
-                        <option value="last_year">Last Year</option>
-                    </StyledSelect>
+                    <SelectWrapper>
+                        <SelectTitle>Time Filter:</SelectTitle>
+                        <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
+                            <option value="total">Total Incidents</option>
+                            <option value="last_year">Last Year</option>
+                            <option value="last_30_days">Last 30 Days</option>
+                            <option value="last_week">Last Week</option>
+                        </StyledSelect>
+                        <IconContainer>
+                            <FontAwesomeIcon icon={faChevronDown} />
+                        </IconContainer>
+                    </SelectWrapper>
                 </InputContainer>
+
                 <RiskCalcMapContainer>
                     <RiskCalcMap apiEndpoint={getApiEndpoint()} />
                 </RiskCalcMapContainer>
@@ -565,7 +600,7 @@ const FullHeatmap = () => {
                     <LeafletMap key={mapKey} geojsonUrl={getHeatmapGeoJsonUrl()} />
                 )}
             </MapContainer>
-        </FullPageContainer>
+        </FullPageContainer >
     );
 };
 

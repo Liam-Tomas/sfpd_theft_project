@@ -7,6 +7,8 @@ export const GlobalStyles = createGlobalStyle`
         color: ${props => props.theme.text};
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        font-family: 'Metropolis', sans-serif;
+
     }
 
     

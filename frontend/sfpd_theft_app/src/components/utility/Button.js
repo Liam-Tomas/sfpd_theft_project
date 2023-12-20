@@ -11,8 +11,8 @@ const LoadingSpinner = styled.div`
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-top: 2px solid white; // Spinner color
     border-radius: 50%;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 13px;
     animation: ${spin} 1s linear infinite;
 `;
 
@@ -34,13 +34,13 @@ const RippleSpan = styled.span`
 `;
 
 const StyledButton = styled.button`
-    padding: ${props => props.padding || '10px 15px'}
+    // padding: ${props => props.padding || '10px 15px'}
+    padding: 10px 15px;
     font-family: 'Metropolis', sans-serif;
     font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 84px; 
     background-color: ${props => props.backgroundColor || props.theme.primary}; // Use backgroundColor prop or theme primary color
     color: white;
     border: ${props => `2px solid ${props.borderColor || 'transparent'}`}; // Use borderColor prop or default to transparent
