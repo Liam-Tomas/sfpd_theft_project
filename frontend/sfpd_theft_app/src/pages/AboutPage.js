@@ -256,13 +256,13 @@ function AboutPage() {
                                 <TechTitle>Dynamic Dashboards</TechTitle>
                             </SmallTitleContainer>
                             <Paragraph>
-                            The platform hosts dynamic dashboards enriched with visualizations powered by Chart.js, including bar graphs, line charts and treemaps. Chart.js is used to dynamically visualize JSON data retrieved via SQL queries from the Flask API.                            </Paragraph>
+                                The platform hosts dynamic dashboards enriched with visualizations powered by Chart.js, including bar graphs, line charts and treemaps. Chart.js is used to dynamically visualize JSON data retrieved via SQL queries from the Flask API.                            </Paragraph>
                             <SmallTitleContainer>
                                 <ArrowIcon icon={faArrowRightLong} />
                                 <TechTitle>Automated Weekly Data Refresh</TechTitle>
                             </SmallTitleContainer>
                             <Paragraph>
-                            The platform features an automated process, where Python scripts periodically download the latest CSV data from DataSF and convert it into GeoJSON format. This ensures that the application consistently displays the most current incident reports, updated on a weekly basis.                                </Paragraph>
+                                The platform features an automated process, where Python scripts periodically download the latest CSV data from DataSF and convert it into GeoJSON format. This ensures that the application consistently displays the most current incident reports, updated on a weekly basis.                                </Paragraph>
                         </TechSection>
                         <TitleContainer>
                             <HashTag icon={faHashtag} />
@@ -292,7 +292,7 @@ function AboutPage() {
                                 In the React front-end, the LeafletMap component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer.
                                 A custom color-coding function dynamically styles each grid cell based on the relative crime rate, creating a visually intuitive heatmap.
                             </Paragraph>
-                           
+
                             <TitleContainer>
                                 <HashTag icon={faHashtag} />
                                 <SectionTitle>Project Significance</SectionTitle>
@@ -325,10 +325,11 @@ function AboutPage() {
 
                         </TechSection>
 
-                        <Footer>
-                            © 2023 Liam Armstrong. All Rights Reserved.
-                        </Footer>
+
                     </ContentSection>
+                    <Footer>
+                        © 2023 Liam Armstrong. All Rights Reserved.
+                    </Footer>
                 </MainContainer>
 
             </ContentContainer>
