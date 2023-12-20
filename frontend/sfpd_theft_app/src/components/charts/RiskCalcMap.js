@@ -61,6 +61,13 @@ function RiskCalcMap({ apiEndpoint }) {
 
         try {
             const response = await axios.post(apiEndpoint, { address: completeAddress });
+            const data = response.data;
+
+            // Check if probability is undefined, null, NaN, or empty
+            if (data.probability === undefined || data.probability === null || isNaN(data.probability) || data.probability === '') {
+                throw new Error("Address is not in San Francisco, cannot be located, or is invalid.");
+            }
+
             const probability = response.data.probability; 
             const avgPerMonth = response.data.average_incidents_per_month; 
             const roundedAvg = parseFloat(avgPerMonth).toFixed(2);
@@ -78,10 +85,20 @@ function RiskCalcMap({ apiEndpoint }) {
 
         } catch (error) {
             console.error('Error:', error);
-            if (error.response && error.response.data && error.response.data.error) {
+    
+            // Check if the error is a custom error or an Axios error
+            if (error.message === "Address is not in San Francisco, cannot be located, or is invalid.") {
+                setErrorMessage(error.message);
+                setLoading(false); // Stop loading
+
+            } else if (error.response && error.response.data && error.response.data.error) {
                 setErrorMessage(error.response.data.error);
+                setLoading(false); // Stop loading
+
             } else {
                 setErrorMessage('An error occurred while processing your request.');
+                setLoading(false); // Stop loading
+
             }
             setProbability(null);
             setIncidentCount(null);

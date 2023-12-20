@@ -11,8 +11,8 @@ const LoadingSpinner = styled.div`
     border: 2px solid rgba(0, 0, 0, 0.1);
     border-top: 2px solid white; // Spinner color
     border-radius: 50%;
-    width: 18px;
-    height: 13px;
+    width: 14px;
+    height: 14px;
     animation: ${spin} 1s linear infinite;
 `;
 
