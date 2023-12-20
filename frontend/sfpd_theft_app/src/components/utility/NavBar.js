@@ -30,7 +30,7 @@ const NavbarContainer = styled.div`
     width: 280px;
 
     z-index: 2500; // Ensure it is above the HamBar
-    transform: translateX(${props => props.isOpen ? '0' : '-100%'});
+    transform: translateX(${({ $isOpen }) => $isOpen ? '0' : '-100%'});
     transition: transform 0.2s ease;
   }
 `;
@@ -57,37 +57,14 @@ const StyledIcon = styled(FontAwesomeIcon)`
   font-size: 1rem;
   padding: 7.5px 17.5px;
   border-radius: 20px;
-  background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
-  color: ${(props) => props.isActive ? props.theme.text : 'none'};
+  background-color: ${({ $isActive, theme }) => $isActive ? theme.buttonHoverBackground : 'none'};
+  color: ${({ $isActive, theme }) => $isActive ? theme.secondary : 'none'};
   transition: background-color 0.15s;
   @media (max-width: 868px) {
     font-size: 1.2rem;
   }
 
 `
-const StyledHomeIcon = styled(HomeIcon)`
-  font-size: 1rem;
-  padding: 7.5px 5px;
-  border-radius: 20px;
-  background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
-  color: ${(props) => props.isActive ? props.theme.text : 'none'};
-  transition: background-color 0.15s;
-  @media (max-width: 868px) {
-    font-size: 1.2rem;
-}
-`;
-
-const StyledMailIcon = styled(EnvelopeIcon)`
-  font-size: 1rem;
-  padding: 7.5px 17.5px;
-  border-radius: 20px;
-  background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
-  color: ${(props) => props.isActive ? props.theme.text : 'none'};
-  transition: background-color 0.15s;
-  @media (max-width: 868px) {
-    font-size: 1.2rem;
-  }
-`;
 
 const NavbarItem = styled.div`
   position: relative;
@@ -104,7 +81,7 @@ const NavbarItem = styled.div`
   // overflow: hidden;
   color: ${props => props.theme.textAlt};
   user-select: none;
-  color: ${(props) => props.isActive ? props.theme.text : 'none'};
+  color: ${({ $isActive, theme }) => $isActive ? theme.text : 'none'};
 
 
   &:hover {
@@ -124,7 +101,8 @@ const NavbarItem = styled.div`
 
   @media (max-width: 1068px) {
     width: 215px;
-    background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
+    background-color: ${({ $isActive, theme }) => $isActive ? theme.buttonHoverBackground : 'none'};
+
     border-radius: 20px;
     padding: 4px 25px 4px 0px;
     gap:5px;
@@ -219,7 +197,7 @@ const SubmenuOverlay = styled.div`
   height: 100vh;
   background-color: ${props => props.theme.cardLighter};
   z-index: 3000; // Higher than the NavbarContainer
-  transform: translateX(${props => props.isSubmenuOpen ? '0' : '-100%'});
+  transform: translateX(${({ $isSubmenuOpen }) => $isSubmenuOpen ? '0' : '-100%'});
   transition: transform 0.2s ease;
   display: none; // Hidden by default
 
@@ -340,7 +318,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
   return (
     <div>
-      <NavbarContainer isOpen={isMenuOpen} ref={navbarContainerRef}>
+      <NavbarContainer $isOpen={isMenuOpen} ref={navbarContainerRef}>
         <MobileHamburgerButton onClick={toggleMenu}>
           <FontAwesomeIcon icon={faBars} />
         </MobileHamburgerButton>
@@ -349,10 +327,10 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarLink to="/">
             <NavbarItem
               onClick={handleHomeClick}
-              isActive={location.pathname === '/'}
+              $isActive={location.pathname === '/'}
             >
               {/* {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}/>} */}
-              <StyledIcon icon={faHome} isActive={location.pathname === '/'} />
+              <StyledIcon icon={faHome} $isActive={location.pathname === '/'} />
               {/* <StyledHomeIcon  isActive={location.pathname === '/'}/> */}
               Home
             </NavbarItem>
@@ -360,10 +338,10 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarLink to="/about">
             <NavbarItem
               onClick={handleHomeClick}
-              isActive={location.pathname === '/about'}
+              $isActive={location.pathname === '/about'}
             >
               {/* {rippleState.about.active && <RippleSpan style={{ left: rippleState.about.x, top: rippleState.about.y }} />} */}
-              <StyledIcon icon={faCircleInfo} isActive={location.pathname === '/about'} />
+              <StyledIcon icon={faCircleInfo} $isActive={location.pathname === '/about'} />
               About
             </NavbarItem>
           </NavbarLink>
@@ -371,9 +349,9 @@ const Navbar = ({ theme, toggleTheme }) => {
           <NavbarLink to="/contact">
             <NavbarItem
               onClick={handleHomeClick}
-              isActive={location.pathname === '/contact'}
+              $isActive={location.pathname === '/contact'}
             >
-              <StyledIcon icon={faEnvelope} isActive={location.pathname === '/contact'} />
+              <StyledIcon icon={faEnvelope} $isActive={location.pathname === '/contact'} />
               Contact
             </NavbarItem>
           </NavbarLink>
@@ -382,9 +360,9 @@ const Navbar = ({ theme, toggleTheme }) => {
 
             <NavbarItem
               onClick={handleHomeClick}
-              isActive={location.pathname === '/full-heatmap'}
+              $isActive={location.pathname === '/full-heatmap'}
             >
-              <StyledIcon icon={faMap} isActive={location.pathname === '/full-heatmap'} />
+              <StyledIcon icon={faMap} $isActive={location.pathname === '/full-heatmap'} />
               Map
             </NavbarItem>
           </NavbarLink>
@@ -393,10 +371,10 @@ const Navbar = ({ theme, toggleTheme }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onClick={handleDashboardClick}
-            isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'}
+            $isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'}
           >
             {/* {rippleState.dashboard.active && <RippleSpan style={{ left: rippleState.dashboard.x, top: rippleState.dashboard.y }} />} */}
-            <StyledIcon icon={faChartBar} isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'} />
+            <StyledIcon icon={faChartBar} $isActive={location.pathname === '/vehicle-theft' || location.pathname === '/mental-health' || location.pathname === '/assault' || location.pathname === '/drugs'} />
             D'board
           </NavbarItem>
 
@@ -413,7 +391,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
         <Toggle theme={theme} toggleTheme={toggleTheme} />
       </NavbarContainer>
-      <SubmenuOverlay isSubmenuOpen={isSubmenuOpen}>
+      <SubmenuOverlay $isSubmenuOpen={isSubmenuOpen}>
         <BackButton onClick={handleBackClick}>Back</BackButton>
         <MobileSubContainer>
           <SubMenuItem to="/vehicle-theft" onClick={handleSubmenuItem}>Car Break-in Analysis</SubMenuItem>

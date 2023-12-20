@@ -51,8 +51,7 @@ const MainContainer = styled.div`
 //   }
   
   @media (max-width: 868px) {
-    background: ${props => props.theme.backgroundColor};
-    margin: 10px 15px 10px 15px;
+    margin: 60px 15px 10px 15px;
     &:before {
         display: none; // Remove the overlay for mobile devices
       }
@@ -84,7 +83,6 @@ const ButtonContainer = styled.div`
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    margin: 15px;
     width: 100%;
   }
 `;
@@ -159,7 +157,12 @@ const HomeHeader = styled.div`
     margin: 0px 140px;
     position: relative; // Added for z-index context
     padding-top: 0px;
-    // margin: 30px 110px 0px 110px;
+
+    @media (max-width: 868px) {
+        margin: 0px;
+        
+    }
+
 
 `;
 
@@ -204,8 +207,8 @@ const ProjectHeader = styled.h1`
     font-weight: 600;
 
     @media (max-width: 868px) {
-        font-size: 36px;
-        margin-bottom: 0px;
+        font-size: 32px;
+        margin-bottom: 10px;
     }
     
 `
@@ -216,7 +219,7 @@ const ProjectSub = styled.p`
     margin-bottom: 50px;
     font-size: 1.15rem;
     line-height: 1.5;
-    padding-right: 400px;
+    max-width: 700px;
     color: ${props => props.theme.textAlt};
 
 `
@@ -225,14 +228,29 @@ const HomeButtonContainer = styled.div`
     display: flex;
     gap: 10px;
     justify-content: center;
+
+    @media (max-width: 868px) {
+        flex-direction: column;
+        margin-top: 20px;
+      }
 `
 
 const DashContainer = styled.div`
     margin: 85px 110px 85px 110px;
 
+    @media (max-width: 868px) {
+        margin: 0px;
+        padding: 10px;
+      }
+
 `
 const FooterContainer = styled.div`
     margin: 0px 100px 0px 100px;
+    @media (max-width: 868px) {
+        margin: 0px;
+        padding: 10px;
+        font-size: .1rem;
+      }
 `
 
 function HomePage() {
@@ -275,7 +293,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>Explore dashboards featuring dynamic visualizations. Search your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
+                <ProjectSub>Discover interactive dashboards with detailed visualizations. Enter your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>
@@ -283,8 +301,8 @@ function HomePage() {
                                 <FontAwesomeIcon icon={faCar} />
                             </IconContainer>
                             <div>
-                                <ItemHeader>Vehicle Break-In Analysis</ItemHeader>
-                                <ItemText>Analysis of vehicle break-ins</ItemText>
+                                <ItemHeader>Vehicle Break-In Dashboard</ItemHeader>
+                                <ItemText>Analysis of car break-ins and theft</ItemText>
                             </div>
                         </Button>
                     </StyledLink>
@@ -294,7 +312,7 @@ function HomePage() {
                                 <FontAwesomeIcon icon={faHospital} />
                             </IconContainer>
                             <div>
-                                <ItemHeader>Mental Health Incident Analysis</ItemHeader>
+                                <ItemHeader>Mental Health Incident Dashboard</ItemHeader>
                                 <ItemText>Analysis of mental health detention</ItemText>
                             </div>
                         </Button>
@@ -305,7 +323,7 @@ function HomePage() {
                                 <FontAwesomeIcon icon={faChartBar} />
                             </IconContainer>
                             <div>
-                                <ItemHeader>Assault Incident Analysis</ItemHeader>
+                                <ItemHeader>Assault Incident Dashboard</ItemHeader>
                                 <ItemText>Analysis of assault incidents</ItemText>
                             </div>
                         </Button>
@@ -316,7 +334,7 @@ function HomePage() {
                                 <FontAwesomeIcon icon={faSquarePollVertical} />
                             </IconContainer>
                             <div>
-                                <ItemHeader>Drug Arrest Analysis</ItemHeader>
+                                <ItemHeader>Drug Arrest Dashboard</ItemHeader>
                                 <ItemText>Analysis of drug arrests</ItemText>
                             </div>
                         </Button>

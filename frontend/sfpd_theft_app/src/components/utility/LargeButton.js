@@ -20,12 +20,12 @@ const RippleSpan = styled.span`
 `;
 
 const StyledButton = styled.button`
-    padding: ${props => props.padding || '25px 35px'};
+    padding: ${({ $padding }) => $padding || '25px 35px'};
     font-family: 'Metropolis', sans-serif;
-    font-size: ${props => props.fontSize || '1.5rem'};
+    font-size: ${({ $fontSize }) => $fontSize || '1.5rem'};
     font-weight: 500;
-    background-color: ${props => props.backgroundColor || props.theme.buttonColor}; // Use backgroundColor prop
-    color: ${props => props.color || props.theme.textOpp};
+    background-color: ${({ $backgroundColor, theme }) => $backgroundColor || theme.buttonColor};
+    color: ${({ $color, theme }) => $color || theme.textOpp};
     border: none;
     border-radius: 50px;
     user-select: none;
@@ -35,7 +35,7 @@ const StyledButton = styled.button`
     overflow: hidden;
 
     &:hover {
-        background-color: ${props => props.hoverBackgroundColor || props.theme.buttonHover}; // Use backgroundColor prop
+        background-color: ${({ $hoverBackgroundColor, theme }) => $hoverBackgroundColor || theme.buttonHover};
 
         // background: ${props => props.theme.buttonHover};
     }
@@ -44,6 +44,12 @@ const StyledButton = styled.button`
         background-color: #e0e0e0;
         color: #9e9e9e;
         cursor: not-allowed;
+    }
+
+    @media (max-width: 868px) {
+        font-size: ${({ $fontSize }) => $fontSize || '1.2rem'};
+        padding: ${({ $padding }) => $padding || '20px 30px'};
+
     }
 `;
 
@@ -64,13 +70,13 @@ const LargeButton = ({ children, padding, fontSize, backgroundColor, color, hove
     };
 
     return (
-        <StyledButton 
-            onClick={handleClick} 
-            padding={padding}
-            fontSize={fontSize}
-            backgroundColor={backgroundColor}
-            color={color}
-            hoverBackgroundColor={hoverBackgroundColor}
+        <StyledButton
+            onClick={handleClick}
+            $padding={padding}
+            $fontSize={fontSize}
+            $backgroundColor={backgroundColor}
+            $color={color}
+            $hoverBackgroundColor={hoverBackgroundColor}
             {...props}
         >
             {icon && <StyledIcon icon={icon} />}

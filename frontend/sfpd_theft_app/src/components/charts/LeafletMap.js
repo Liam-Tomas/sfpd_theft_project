@@ -114,7 +114,6 @@ function LeafletMap({ geojsonUrl }) {
       function onEachFeature(feature, layer) {
         if (feature.properties) {
           // Log all properties to the console
-          console.log("All Properties:", feature.properties);
 
           let popupContent = "<b>Relative Risk:</b> " + (feature.properties.probability * 100).toFixed(2) + "%";
 

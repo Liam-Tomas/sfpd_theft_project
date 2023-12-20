@@ -19,6 +19,9 @@ const FooterContent = styled.div`
   font-weight: 400;
   font-size: 16px;
   color: ${props => props.theme.cardFaint};
+  @media (max-width: 868px) {
+    font-size: .8rem;
+  }
 `;
 
 const FooterFlex = styled.div`

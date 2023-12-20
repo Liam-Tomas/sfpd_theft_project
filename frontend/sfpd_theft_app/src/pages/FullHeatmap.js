@@ -226,6 +226,13 @@ import RiskCalcMap from '../components/charts/RiskCalcMap'
 const FullPageContainer = styled.div`
   display: flex;
   height: 100vh;
+
+  @media (max-width: 868px) {
+    flex-direction: column;
+    margin-top: 60px;
+    padding: 20px;
+
+}
 `;
 
 const TextContainer = styled.div`
@@ -234,6 +241,11 @@ const TextContainer = styled.div`
   justify-content: center;
   width: 30%;
   padding: 0px 50px;
+  @media (max-width: 868px) {
+    width: 100%;
+    padding: 0px;
+
+}
 `;
 
 const MapContainer = styled.div`
@@ -248,7 +260,7 @@ const HomeTitle = styled.h1`
   margin-bottom: 0px;
   font-weight: 600;
   @media (max-width: 868px) {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     margin-top: 20px;
   }
 `;
@@ -376,6 +388,22 @@ const FullHeatmap = () => {
         }
     };
 
+    // Function to get the correct API endpoint based on the selected map
+    const getApiEndpoint = () => {
+        switch (selectedMap) {
+            case 'vehicle-theft':
+                return `${apiBaseUrl}/get_probability`;
+            case 'mental-health':
+                return `${apiBaseUrl}/get_rate_mental_health`;
+            case 'assault':
+                return `${apiBaseUrl}/get-rate-assault`;
+            case 'drugs':
+                return `${apiBaseUrl}/get-rate-drugs`;
+            default:
+                return `${apiBaseUrl}/get_probability`;
+        }
+    };
+
     const mapKey = `leaflet-map-${selectedMap}`;
 
     return (
@@ -419,7 +447,7 @@ const FullHeatmap = () => {
                     Drug Arrests
                 </MapButton>
                 <RiskCalcMapContainer>
-                    <RiskCalcMap apiEndpoint={`${apiBaseUrl}/get_probability`} />
+                    <RiskCalcMap apiEndpoint={getApiEndpoint()} />
                 </RiskCalcMapContainer>
             </TextContainer>
             <MapContainer>

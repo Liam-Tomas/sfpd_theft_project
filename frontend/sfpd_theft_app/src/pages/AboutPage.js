@@ -72,7 +72,7 @@ const StyledLink = styled.a`
     }
 `
 const MainContainer = styled.div`
-    margin: 11px 11px 11px 12px;
+    margin: 11px 11px 0px 12px;
     color: ${props => props.theme.text};
     position: relative; // Needed for absolute positioning of overlay
     background: 
