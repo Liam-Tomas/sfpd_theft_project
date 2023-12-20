@@ -8,6 +8,7 @@ import { faChartBar, faSquarePollVertical } from '@fortawesome/free-solid-svg-ic
 import { useLocation } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
+import { HomeIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 const NavbarContainer = styled.div`
   z-index:1000;
@@ -64,6 +65,29 @@ const StyledIcon = styled(FontAwesomeIcon)`
   }
 
 `
+const StyledHomeIcon = styled(HomeIcon)`
+  font-size: 1rem;
+  padding: 7.5px 5px;
+  border-radius: 20px;
+  background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
+  color: ${(props) => props.isActive ? props.theme.text : 'none'};
+  transition: background-color 0.15s;
+  @media (max-width: 868px) {
+    font-size: 1.2rem;
+}
+`;
+
+const StyledMailIcon = styled(EnvelopeIcon)`
+  font-size: 1rem;
+  padding: 7.5px 17.5px;
+  border-radius: 20px;
+  background-color: ${(props) => props.isActive ? props.theme.buttonHoverBackground : 'none'};
+  color: ${(props) => props.isActive ? props.theme.text : 'none'};
+  transition: background-color 0.15s;
+  @media (max-width: 868px) {
+    font-size: 1.2rem;
+  }
+`;
 
 const NavbarItem = styled.div`
   position: relative;
@@ -320,6 +344,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         <MobileHamburgerButton onClick={toggleMenu}>
           <FontAwesomeIcon icon={faBars} />
         </MobileHamburgerButton>
+
         <NavbarItems>
           <NavbarLink to="/">
             <NavbarItem
@@ -327,8 +352,8 @@ const Navbar = ({ theme, toggleTheme }) => {
               isActive={location.pathname === '/'}
             >
               {/* {rippleState.home.active && <RippleSpan style={{ left: rippleState.home.x, top: rippleState.home.y }}/>} */}
-              <StyledIcon icon={faHome} isActive={location.pathname === '/'} // Correct prop syntax
-              />
+              <StyledIcon icon={faHome} isActive={location.pathname === '/'} />
+              {/* <StyledHomeIcon  isActive={location.pathname === '/'}/> */}
               Home
             </NavbarItem>
           </NavbarLink>
@@ -363,7 +388,7 @@ const Navbar = ({ theme, toggleTheme }) => {
               Maps
             </NavbarItem>
           </NavbarLink>
-          
+
           <NavbarItem
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

@@ -11,7 +11,6 @@ import aboutIMG from '../images/aboutIMG.jpg'
 import Footer from '../components/utility/Footer'
 
 const Title = styled.h1`
-    margin-bottom: 16px;
 `;
 
 const SectionTitle = styled.h2`
@@ -45,6 +44,9 @@ const TechSection = styled.div`
     flex-direction: column; 
     gap: 10px;
     margin: 10px 0px;
+    &:last-of-type {
+        margin-bottom: 50px; // Apply larger bottom margin to the last TechSection
+    }
     ${Paragraph} {
         border-radius: 50px;
         margin:0px;
