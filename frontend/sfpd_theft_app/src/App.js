@@ -15,6 +15,7 @@ import { useDarkMode } from './components/theme/DarkMode';
 import { lightTheme, darkTheme } from './components/theme/CustomStyles'
 import styled, { ThemeProvider } from 'styled-components';
 import ErrorBoundary from './components/utility/ErrorBoundary';
+import ScrollToTop from './components/utility/ScrollToTop';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ function App() {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <Router>
+        <ScrollToTop />
         <FlexContainer>
           <Navbar theme={theme} toggleTheme={themeToggler} />
           <MainContent>
