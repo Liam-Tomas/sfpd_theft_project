@@ -362,8 +362,28 @@ const MapButton = styled.div`
   }
   @media (max-width: 868px) {
     transform: none;
-
+    &::before {
+        content: '';
+        position: absolute;
+        left: ${(props) => (props.isActive ? '-50px' : '-20px')};
+        bottom: 50%;
+        width: ${(props) => (props.isActive ? '73px' : '45px')};
+        height: 2px;
+        background-color: ${(props) => (props.isActive ? props.theme.primary : props.theme.text)};
+        transition: 0.3s ease;
+      }
+    &:hover {
+    color: ${(props) => props.theme.secondary};
+    transform: none;
+    transition: 0.3s ease;
+    
+    &::before {
+      background-color: ${(props) => props.theme.primary};
+      width: 73px;
+      left: -50px;
+    }
   }
+
 `;
 
 const TabContainer = styled.div`
