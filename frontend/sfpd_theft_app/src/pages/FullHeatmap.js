@@ -388,7 +388,7 @@ const InputContainer = styled.div`
 //   background-color: ${(props) => props.theme.card};
   padding: 8px 10px;
   border-radius: 8px;
-  margin: 10px 0;
+  margin: 0px 0;
   margin-top: 0px;
 `;
 
@@ -547,8 +547,7 @@ const FullHeatmap = () => {
                     </TabButton>
                 </TabContainer>
                 <HomeSubText>
-                    Choose a type of map from above. Then, pick a category of crime below. For heatmaps, click on grid cells for insights into each 0.21 sq km area. For the cluster map, zoom in for more precise data. The data,
-                    updated weekly, reflects incidents of the selected crime reported by the SFPD since 2018.
+                    Select a map type above, then choose a crime category below. On heatmaps, click grid cells for insights into each 0.21 sq km area. For cluster maps, zoom in for detailed data and select a time filter below. Data is updated weekly, showing SFPD-reported crime incidents since 2018.
                 </HomeSubText>
                 <MapButton
                     onClick={() => handleMapSelection('vehicle-theft')}

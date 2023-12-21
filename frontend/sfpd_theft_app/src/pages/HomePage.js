@@ -154,7 +154,7 @@ const HomeHeader = styled.div`
     text-align: center;
     // padding: 2rem;
     z-index: 2; // Higher z-index than overlay
-    margin: 0px 140px;
+    margin: 0px 230px;
     position: relative; // Added for z-index context
     padding-top: 0px;
 
@@ -173,12 +173,11 @@ const TextContent = styled.div`
 `;
 
 const HomeTitle = styled.h1`
-    font-size: 5rem;
+    font-size: 112px;
     margin-top: 0px;
     margin-bottom: 0px;
     z-index: 2; // Higher z-index than overlay
     font-weight: 600;
-    letter-spacing: -.5px;
     @media (max-width: 868px) {
         font-size: 2.2rem;
         margin-top: 20px;
@@ -187,10 +186,12 @@ const HomeTitle = styled.h1`
 
 const HomeSubText = styled.p`
     color: ${props => props.theme.textAlt};
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1.35rem;
     line-height:1.5;
     margin: 5px 0px 25px 0px;
+    padding: 0px 40px 0px 40px;
+
     @media (max-width: 868px) {
         font-size: 1.1rem;
         margin: 0px;
@@ -263,11 +264,11 @@ function HomePage() {
 
                     <HomeHeader>
                         <TextContent>
-                            <HomeTitle>SFPD Crime Data Analysis</HomeTitle>
-                            <HomeSubText>Explore dynamic visualizations and analysis on crime in San Francisco, sourced from official SFPD Incident Reports covering 2018 to present (updated every week).</HomeSubText>
+                            <HomeTitle>SF Crime Map</HomeTitle>
+                            <HomeSubText>Explore dynamic visualizations and analysis on crime in San Francisco, sourced from official SFPD Reports covering 2018 to present (updated every week).</HomeSubText>
                         </TextContent>
                         <HomeButtonContainer>
-                            <StyledLink to="/full-heatmap">
+                            <StyledLink to="/map">
 
                                 <LargeButton
                                     backgroundColor="#2564d4"

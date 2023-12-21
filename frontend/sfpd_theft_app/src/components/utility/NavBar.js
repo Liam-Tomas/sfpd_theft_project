@@ -356,13 +356,13 @@ const Navbar = ({ theme, toggleTheme }) => {
             </NavbarItem>
           </NavbarLink>
 
-          <NavbarLink to="/full-heatmap">
+          <NavbarLink to="/map">
 
             <NavbarItem
               onClick={handleHomeClick}
-              $isActive={location.pathname === '/full-heatmap'}
+              $isActive={location.pathname === '/map'}
             >
-              <StyledIcon icon={faMap} $isActive={location.pathname === '/full-heatmap'} />
+              <StyledIcon icon={faMap} $isActive={location.pathname === '/map'} />
               Map
             </NavbarItem>
           </NavbarLink>

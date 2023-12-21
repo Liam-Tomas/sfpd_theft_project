@@ -48,7 +48,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/drugs" element={<DrugsPage />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="/full-heatmap" element={<FullHeatmap />} />
+              <Route path="/map" element={<FullHeatmap />} />
               {/* Add more routes as needed */}
             </Routes>
           </MainContent>

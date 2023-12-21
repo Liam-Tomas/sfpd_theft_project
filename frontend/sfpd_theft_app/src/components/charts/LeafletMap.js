@@ -144,7 +144,7 @@ function LeafletMap({ geojsonUrl }) {
 
     <TitleContainer>
       <h3>Interactive Heat Map</h3>
-      <StyledLink to="/full-heatmap">
+      <StyledLink to="/map">
         <StyledIcon icon={faExpand} />
       </StyledLink>
     </TitleContainer>
