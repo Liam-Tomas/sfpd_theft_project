@@ -290,12 +290,12 @@ const TextContainer = styled.div`
 `;
 
 const MapContainer = styled.div`
-  flex: 1;
-  height: 100%;
-@media (max-width: 868px) {
-    margin-top: 20px;
+    flex: 1;
+    height: 100%;
+    @media (max-width: 868px) {
+        margin-top: 20px;
 
-  }
+    }
 `;
 
 const HomeTitle = styled.h1`
@@ -307,6 +307,7 @@ const HomeTitle = styled.h1`
   @media (max-width: 868px) {
     font-size: 2.6rem;
     margin-top: 20px;
+    text-align: center;
   }
 `;
 
@@ -497,7 +498,7 @@ const FullHeatmap = () => {
     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
 
-    const [timeFilter, setTimeFilter] = useState('total'); // New state for time filter
+    const [timeFilter, setTimeFilter] = useState('last_year'); // Set initial state to 'last_year'
 
     // Function to handle time filter selection
     const handleTimeFilterSelection = (filter) => {
@@ -603,12 +604,6 @@ const FullHeatmap = () => {
                     Car Break-ins
                 </MapButton>
                 <MapButton
-                    onClick={() => handleMapSelection('mental-health')}
-                    isActive={selectedMap === 'mental-health'}
-                >
-                    Mental Health
-                </MapButton>
-                <MapButton
                     onClick={() => handleMapSelection('assault')}
                     isActive={selectedMap === 'assault'}
                 >
@@ -620,20 +615,29 @@ const FullHeatmap = () => {
                 >
                     Drug Arrests
                 </MapButton>
-                <InputContainer>
-                    <SelectWrapper>
-                        <SelectTitle>Time Filter:</SelectTitle>
-                        <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
-                            <option value="total">Total Incidents</option>
-                            <option value="last_year">Last Year</option>
-                            <option value="last_30_days">Last 30 Days</option>
-                            <option value="last_week">Last Week</option>
-                        </StyledSelect>
-                        <IconContainer>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                        </IconContainer>
-                    </SelectWrapper>
-                </InputContainer>
+                <MapButton
+                    onClick={() => handleMapSelection('mental-health')}
+                    isActive={selectedMap === 'mental-health'}
+                >
+                    Mental Health
+                </MapButton>
+                {mapType === 'HeatMap' && (
+
+                    <InputContainer>
+                        <SelectWrapper>
+                            <SelectTitle>Time Filter:</SelectTitle>
+                            <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
+                                <option value="last_year">Past Year</option>
+                                <option value="last_30_days">Past 30 Days</option>
+                                <option value="last_week">Past Week</option>
+                                <option value="total">Total Incidents (From 2018)</option>
+                            </StyledSelect>
+                            <IconContainer>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                            </IconContainer>
+                        </SelectWrapper>
+                    </InputContainer>
+                )}
 
                 <RiskCalcMapContainer>
                     <RiskCalcMap apiEndpoint={getApiEndpoint()} />

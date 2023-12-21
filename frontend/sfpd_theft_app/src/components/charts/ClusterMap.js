@@ -382,9 +382,9 @@ function ClusterMap({ geojsonUrl }) {
             color = 'rgba(156, 204, 210, 0.7)'; // Darker Powder Blue
           } else if (childCount < 100) {
             color = 'rgba(72, 209, 204, 0.7)';
-          } else if (childCount < 800) {
+          } else if (childCount < 500) {
             color = 'rgba(107, 225, 182, 0.7)'; // Darker Muted Aqua
-          } else if (childCount < 3000) {
+          } else if (childCount < 2000) {
             color = 'rgba(0, 123, 167, 0.7)'; // Deep Cerulean
           } else {
             color = 'rgba(138, 43, 226, 0.6)'; // Violet
