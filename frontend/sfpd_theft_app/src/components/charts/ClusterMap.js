@@ -283,6 +283,8 @@ const StyledLeaflet = styled.div`
   height: 100vh;
   @media (max-width: 868px) {
     height: 70vh;
+    padding: 10px;
+    border-radius: 0px 10px;
   }
 `;
 

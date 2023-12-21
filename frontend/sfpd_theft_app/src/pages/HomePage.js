@@ -245,7 +245,7 @@ const DashContainer = styled.div`
 
 `
 const FooterContainer = styled.div`
-    margin: 0px 100px 0px 100px;
+    // margin: 0px 100px 0px 100px;
     @media (max-width: 868px) {
         margin: 0px;
         padding: 10px;
