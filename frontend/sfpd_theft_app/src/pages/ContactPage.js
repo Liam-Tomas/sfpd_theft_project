@@ -23,7 +23,7 @@ const MainContainer = styled.div`
 
   @media (max-width: 900px) {
     padding: 10px;
-    margin-top: 60px;
+    margin-top: 70px;
     }
 
 `;

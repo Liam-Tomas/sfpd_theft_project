@@ -9,14 +9,16 @@ import { Link } from 'react-router-dom';
 const StyledLeaflet = styled.div`
   height: 100vh;
   @media (max-width: 868px) {
-
+    height: 70vh;
   }
+  
 `
 
 const TitleContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between
+    
 `;
 
 const MapHeader = styled.div`

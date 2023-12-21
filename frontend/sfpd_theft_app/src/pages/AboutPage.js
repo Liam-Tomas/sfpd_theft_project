@@ -20,6 +20,7 @@ const SectionTitle = styled.h2`
      @media (max-width: 868px) {
         font-size: 1.4rem;
     }
+    
 `;
 
 const Paragraph = styled.p`
@@ -77,9 +78,7 @@ const MainContainer = styled.div`
     position: relative; // Needed for absolute positioning of overlay
     background: 
 
-    @media (max-width: 880px) {
-        margin-top: 65px;
-      }
+
 
 `;
 
@@ -92,7 +91,7 @@ const ContentContainer = styled.div`
   background: ${props => props.theme.backgroundOpp};
 
   @media (max-width: 868px) {
-    margin-top: 20px;
+    margin-top: 60px;
     max-width: 390px;
 }
 `;
@@ -155,6 +154,7 @@ const ContentSection = styled.div`
         padding: 0 20px;  // Adjust padding
         padding-right: 20px;  // Adjust padding
     }
+    
 `
 
 const TechIcons = styled.div`

@@ -286,11 +286,16 @@ const TextContainer = styled.div`
     padding: 0px;
 
 }
+
 `;
 
 const MapContainer = styled.div`
   flex: 1;
   height: 100%;
+@media (max-width: 868px) {
+    margin-top: 20px;
+
+  }
 `;
 
 const HomeTitle = styled.h1`
@@ -314,6 +319,10 @@ const HomeSubText = styled.p`
   @media (max-width: 868px) {
     font-size: 1.1rem;
     margin-top: 15px;
+  }
+  @media (max-width: 868px) {
+    display: none;
+
   }
 `;
 
@@ -351,6 +360,10 @@ const MapButton = styled.div`
       left: -50px;
     }
   }
+  @media (max-width: 868px) {
+    transform: none;
+
+  }
 `;
 
 const TabContainer = styled.div`
@@ -358,6 +371,10 @@ const TabContainer = styled.div`
   margin-top: 20px;
   background-color: ${(props) => props.theme.cardLighter};
   border-radius: 100px;
+  @media (max-width: 868px) {
+    margin-bottom: 25px;
+
+  }
 `;
 
 const TabButton = styled.div`
@@ -380,6 +397,9 @@ const TabButton = styled.div`
 
 const RiskCalcMapContainer = styled.div`
   margin-top: 0px;
+  @media (max-width: 868px) {
+    display: none;
+  }
 `
 
 const InputContainer = styled.div`
@@ -405,11 +425,12 @@ const SelectWrapper = styled.div`
   position: relative; // Set the position to relative for the wrapper
   font-size: 16px;
   outline: none;
-  cursor: pointer;
   flex-grow: 1;
   border-radius: 8px;
   margin: 10px 0;
+
   margin-top: 20px;
+
 `;
 
 const StyledSelect = styled.select`
@@ -422,15 +443,21 @@ const StyledSelect = styled.select`
   border: 1px solid ${(props) => props.theme.buttonSubtle};
   outline: none;
   font-weight: 500;
-
+  cursor: pointer;
   padding: 10px 20px 10px 20px; /* Adjusted padding to make space for the icon */
   font-size: 16px;
   flex-grow: 1;
   // Rest of your styles
   padding-right: 30px; // Increase padding to make space for the icon
+
   &:focus {
     border-color: ${(props) => props.theme.primary};
   }
+
+  &:hover, &:focus {
+    background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
+  }
+
 `;
 
 const IconContainer = styled.div`

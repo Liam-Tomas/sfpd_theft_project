@@ -51,7 +51,7 @@ const MainContainer = styled.div`
 //   }
   
   @media (max-width: 868px) {
-    margin: 60px 15px 10px 15px;
+    margin: 70px 15px 10px 15px;
     &:before {
         display: none; // Remove the overlay for mobile devices
       }
@@ -179,8 +179,7 @@ const HomeTitle = styled.h1`
     z-index: 2; // Higher z-index than overlay
     font-weight: 600;
     @media (max-width: 868px) {
-        font-size: 2.2rem;
-        margin-top: 20px;
+        font-size: 42px;
     }
 `
 

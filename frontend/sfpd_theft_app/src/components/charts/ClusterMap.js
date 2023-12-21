@@ -282,7 +282,7 @@ import { createGlobalStyle } from 'styled-components';
 const StyledLeaflet = styled.div`
   height: 100vh;
   @media (max-width: 868px) {
-    // Your responsive CSS if needed
+    height: 70vh;
   }
 `;
 
