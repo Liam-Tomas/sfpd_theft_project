@@ -14,6 +14,7 @@ import { GlobalStyles } from './components/theme/GlobalStyles';
 import { useDarkMode } from './components/theme/DarkMode';
 import { lightTheme, darkTheme } from './components/theme/CustomStyles'
 import styled, { ThemeProvider } from 'styled-components';
+import ErrorBoundary from './components/utility/ErrorBoundary';
 
 const FlexContainer = styled.div`
   display: flex;
@@ -40,21 +41,22 @@ function App() {
         <FlexContainer>
           <Navbar theme={theme} toggleTheme={themeToggler} />
           <MainContent>
-            <Routes>
-            <Route path="/" element={<HomePage />} />
-              <Route path="/vehicle-theft" element={<TheftPage />} />
-              <Route path="/mental-health" element={<MentalPage />} />
-              <Route path="/assault" element={<AssaultPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/drugs" element={<DrugsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/map" element={<FullHeatmap />} />
-              {/* Add more routes as needed */}
-            </Routes>
+            <ErrorBoundary>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/vehicle-theft" element={<TheftPage />} />
+                <Route path="/mental-health" element={<MentalPage />} />
+                <Route path="/assault" element={<AssaultPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/drugs" element={<DrugsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/map" element={<FullHeatmap />} />
+              </Routes>
+            </ErrorBoundary>
           </MainContent>
         </FlexContainer>
       </Router>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }
 
