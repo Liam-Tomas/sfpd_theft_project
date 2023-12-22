@@ -19,7 +19,7 @@ const StyledInput = styled.input`
     outline: none;
     width: ${props => props.width || '170px'}; // Use width from props or default
     transition: border-color 0.2s, box-shadow 0.2s;
-    background: ${props => props.backgroundColor || props.theme.card}; // Use backgroundColor from props or default
+    background: ${props => props.$backgroundColor || props.theme.card}; // Use $backgroundColor from props or default
     color: ${props => props.theme.textAlt};
 
     &:hover  {
@@ -45,7 +45,7 @@ const Input = ({ label, error, errorMessage, width, backgroundColor, ...props })
     return (
         <InputContainer>
             {label && <Label>{label}</Label>}
-            <StyledInput error={error} width={width} backgroundColor={backgroundColor} {...props} />
+            <StyledInput error={error} width={width} $backgroundColor={backgroundColor} {...props} />
             {error && <ErrorText>{errorMessage}</ErrorText>}
         </InputContainer>
     );

@@ -118,7 +118,7 @@ function RiskCalcMap({ apiEndpoint }) {
                 <FormField>
                     <Input
                         width= "94%"
-                        backgroundColor= "transparent"
+                        $backgroundColor= "transparent"
                         type="text"
                         required
                         placeholder="Enter SF Address"
@@ -129,7 +129,7 @@ function RiskCalcMap({ apiEndpoint }) {
                 <FormField>
                     <Input
                         width="94%"
-                        backgroundColor= "transparent"
+                        $backgroundColor= "transparent"
                         type="text"
                         required
                         placeholder="Enter Zip Code"
@@ -138,7 +138,7 @@ function RiskCalcMap({ apiEndpoint }) {
                     />
                 </FormField>
                 <Button 
-                  backgroundColor=''
+                  $backgroundColor=''
                   type="submit" 
                   loading={loading}
                 >

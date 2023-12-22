@@ -41,7 +41,7 @@ const StyledButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.backgroundColor || props.theme.primary}; // Use backgroundColor prop or theme primary color
+    background-color: ${props => props.$backgroundColor || props.theme.primary}; // Use backgroundColor prop or theme primary color
     color: white;
     border: ${props => `2px solid ${props.borderColor || 'transparent'}`}; // Use borderColor prop or default to transparent
     border-radius: 7px;

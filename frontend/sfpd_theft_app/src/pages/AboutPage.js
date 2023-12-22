@@ -149,7 +149,7 @@ const StyledEmail = styled.span`
 
 const ContentSection = styled.div`
     padding: 0px 40px;
-    padding-right: 200px;
+    padding-right: 250px;
     @media (max-width: 868px) {
         padding: 0 20px;  // Adjust padding
         padding-right: 20px;  // Adjust padding
@@ -209,7 +209,7 @@ function AboutPage() {
                     <HomeHeader>
                         {/* <HomeTopText>Hi, my name is</HomeTopText> */}
                         <HomeTitle>Geospatial Analysis and Visualization of SFPD Incident Data</HomeTitle>
-                        <HomeSubText>The project github can be viewed here: <StyledLink href="https://github.com/Liam-Tomas/sfpd_theft_project" target="_blank" rel="noopener noreferrer">github.com/Liam-Tomas/sfpd-theft-project</StyledLink></HomeSubText>
+                        <HomeSubText>The project GitHub can be viewed here: <StyledLink href="https://github.com/Liam-Tomas/sfpd_theft_project" target="_blank" rel="noopener noreferrer">Project GitHub</StyledLink></HomeSubText>
                     </HomeHeader>
                     <ContentSection>
                         <TitleContainer>
@@ -219,7 +219,7 @@ function AboutPage() {
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
                             focusing on creating an interactive application for users to understand local crime dynamics.
-                            The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.                            Source of the data is DataSF: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer"> data.sfgov.org/Police-Department-Incident-Reports-2018-to-Present</StyledLink>
+                            The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application. The source of the data is DataSF, more information on the dataset can be found in their documentation: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer">Police Department Incident Reports: 2018 to Present</StyledLink>
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>

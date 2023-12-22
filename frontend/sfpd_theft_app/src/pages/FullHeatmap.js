@@ -64,6 +64,7 @@ const HomeSubText = styled.p`
   @media (max-width: 868px) {
     font-size: 1.1rem;
     margin-top: 15px;
+    
   }
   @media (max-width: 868px) {
     display: none;
@@ -75,10 +76,10 @@ const MapButton = styled.div`
   cursor: pointer;
   position: relative;
   padding: 10px 35px;
-  transform: ${(props) => (props.isActive ? 'translateX(50px)' : 'translateX(20px)')};
+  transform: ${({ $isActive }) => ($isActive ? 'translateX(50px)' : 'translateX(20px)')};
   font-weight: 600;
   font-size: 1.35rem;
-  color: ${(props) => (props.isActive ? props.theme.secondary : props.theme.text)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.secondary : theme.text)};
   display: flex;
   align-items: center;
   transition: 0.3s ease;
@@ -86,17 +87,17 @@ const MapButton = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: ${(props) => (props.isActive ? '-50px' : '-20px')};
+    left: ${({ $isActive }) => ($isActive ? '-50px' : '-20px')};
     bottom: 50%;
-    width: ${(props) => (props.isActive ? '73px' : '45px')};
+    width: ${({ $isActive }) => ($isActive ? '73px' : '45px')};
     height: 2px;
-    background-color: ${(props) => (props.isActive ? props.theme.primary : props.theme.text)};
+    background-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.text)};
     transition: 0.3s ease;
   }
 
   &:hover {
     color: ${(props) => props.theme.secondary};
-    transform: ${(props) => (props.isActive ? 'translateX(50px)' : 'translateX(50px)')};
+    transform: ${({ $isActive }) => ($isActive ? 'translateX(50px)' : 'translateX(50px)')};
     transition: 0.3s ease;
 
     &::before {
@@ -107,15 +108,20 @@ const MapButton = styled.div`
   }
   @media (max-width: 868px) {
     transform: none;
+    padding: 10px 20px;
+    font-size: ${({ $isActive }) => ($isActive ? '1.2rem' : '1.1rem')};
+    border: 2px solid ${(props) => props.theme.card};
+    border-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.card)};
+    border-radius: ${({ $isActive }) => ($isActive ? '1.2rem' : '0px')};
     &::before {
         content: '';
         position: absolute;
-        left: ${(props) => (props.isActive ? '250px' : '250px')};
+        left: ${({ $isActive }) => ($isActive ? '0px' : '0px')};
         bottom: 50%;
-        width: ${(props) => (props.isActive ? '90px' : '45px')};
+        width: ${({ $isActive }) => ($isActive ? '0px' : '0px')};
         // width: 80px;
-        height: 2px;
-        background-color: ${(props) => (props.isActive ? props.theme.primary : props.theme.text)};
+        height: 0px;
+        background-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.text)};
         transition: 0.3s ease;
       }
     &:hover {
@@ -126,7 +132,7 @@ const MapButton = styled.div`
     &::before {
       background-color: none;
       width: 45px;
-      left: 250px;
+      left: 225px;
     }
   }
 
@@ -151,8 +157,8 @@ const TabButton = styled.div`
   padding: 13px 0;
   font-weight: 600;
   font-size: 1.2rem;
-  color: ${(props) => (props.isActive ? props.theme.text : props.theme.text)};
-  background-color: ${(props) => (props.isActive ? props.theme.buttonHoverBackground : 'transparent')};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.text : theme.text)};
+  background-color: ${({ $isActive, theme }) => ($isActive ? theme.buttonHoverBackground : 'transparent')};
   transition: 0.3s ease;
 
   &:hover {
@@ -233,6 +239,13 @@ const IconContainer = styled.div`
   transform: translateY(-50%); // Center vertically
   pointer-events: none; // Makes the icon non-interactive
 `;
+
+const MapButtonContainer = styled.div`
+@media (max-width: 868px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+`
 
 const FullHeatmap = () => {
 
@@ -331,40 +344,42 @@ const FullHeatmap = () => {
             <TextContainer>
                 <HomeTitle>Interactive Map</HomeTitle>
                 <TabContainer>
-                    <TabButton onClick={() => handleMapTypeSelection('HeatMap')} isActive={mapType === 'HeatMap'}>
+                    <TabButton onClick={() => handleMapTypeSelection('HeatMap')} $isActive={mapType === 'HeatMap'}>
                         Cluster Map
                     </TabButton>
-                    <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} isActive={mapType === 'ClusterMap'}>
+                    <TabButton onClick={() => handleMapTypeSelection('ClusterMap')} $isActive={mapType === 'ClusterMap'}>
                         Heat Map
                     </TabButton>
                 </TabContainer>
                 <HomeSubText>
                     Select a map type above, then choose a crime category below. On heatmaps, click grid cells for insights into each 0.21 sq km area. For cluster maps, zoom in for detailed data and select a time filter below. Data is updated weekly, showing SFPD-reported crime incidents since 2018.
                 </HomeSubText>
-                <MapButton
-                    onClick={() => handleMapSelection('vehicle-theft')}
-                    isActive={selectedMap === 'vehicle-theft'}
-                >
-                    Car Break-ins
-                </MapButton>
-                <MapButton
-                    onClick={() => handleMapSelection('assault')}
-                    isActive={selectedMap === 'assault'}
-                >
-                    Assault Incidents
-                </MapButton>
-                <MapButton
-                    onClick={() => handleMapSelection('drugs')}
-                    isActive={selectedMap === 'drugs'}
-                >
-                    Drug Arrests
-                </MapButton>
-                <MapButton
-                    onClick={() => handleMapSelection('mental-health')}
-                    isActive={selectedMap === 'mental-health'}
-                >
-                    Mental Health
-                </MapButton>
+                <MapButtonContainer>
+                    <MapButton
+                        onClick={() => handleMapSelection('vehicle-theft')}
+                        $isActive={selectedMap === 'vehicle-theft'}
+                    >
+                        Car Break-ins
+                    </MapButton>
+                    <MapButton
+                        onClick={() => handleMapSelection('assault')}
+                        $isActive={selectedMap === 'assault'}
+                    >
+                        Assault
+                    </MapButton>
+                    <MapButton
+                        onClick={() => handleMapSelection('drugs')}
+                        $isActive={selectedMap === 'drugs'}
+                    >
+                        Drug Arrests
+                    </MapButton>
+                    <MapButton
+                        onClick={() => handleMapSelection('mental-health')}
+                        $isActive={selectedMap === 'mental-health'}
+                    >
+                        Mental Health
+                    </MapButton>
+                </MapButtonContainer>
                 {mapType === 'HeatMap' && (
 
                     <InputContainer>
