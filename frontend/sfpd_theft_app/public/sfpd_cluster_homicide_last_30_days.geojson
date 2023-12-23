@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-11-27T00:00:00", "Incident Time": "00:20", "Resolution": "Cite or Arrest Adult", "Police District": "Northern", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.43023323756816, 37.779782793235583 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-06T00:00:00", "Incident Time": "01:46", "Resolution": "Open or Active", "Police District": "Northern", "Incident Description": "Manslaughter, Vehicular" }, "geometry": { "type": "Point", "coordinates": [ -122.41945454389608, 37.784500842895952 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.45603759881044, 37.711407963272656 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.45603759881044, 37.711407963272656 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.456045432660275, 37.712319639752003 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-15T00:00:00", "Incident Time": "11:41", "Resolution": "Cite or Arrest Adult", "Police District": "Ingleside", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.444743292072474, 37.712622216695102 ] } }
+]
+}

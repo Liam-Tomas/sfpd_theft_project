@@ -127,13 +127,14 @@ const RiskResultsModal = ({ isVisible, onClose, data }) => {
         avgPerMonth,
         incidentDay,
         policeDistrict,
+        crimeType, // Destructure crimeType from data
         address
     } = data;
 
     return (
         <ModalOverlay>
             <ModalContent>
-                <ModalHeader>{address}</ModalHeader>
+                <ModalHeader>{crimeType} Report: {address}</ModalHeader>
                 <ResultGrid>
                 <ResultItem>
                         <ResultNumber><span style={{ color: getRiskCategoryColor(riskCategory) }}>{riskCategory}</span></ResultNumber>

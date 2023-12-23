@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { categorizeRisk, getRiskCategoryColor } from './RiskUtils';
 import styled from "styled-components";
-import Button from '../utility/Button'; 
-import Input from '../utility/Input'; 
+import Button from '../utility/Button';
+import Input from '../utility/Input';
 import InputMap from '../utility/InputMap'
 import RiskResultsModal from './RiskResultsModal';
 
@@ -36,13 +36,13 @@ const FormField = styled.div`
 
 `;
 
-function RiskCalcMap({ apiEndpoint }) {
+const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [probability, setProbability] = useState(null);
     const [incidentCount, setIncidentCount] = useState(null);
     const [policeDistrict, setPoliceDistrict] = useState(null);
-    const [avgPerMonth, setAvgPerMonth] = useState(null); 
+    const [avgPerMonth, setAvgPerMonth] = useState(null);
     const [incidentDay, setIncidentDay] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -68,12 +68,12 @@ function RiskCalcMap({ apiEndpoint }) {
                 throw new Error("Address is not in San Francisco, cannot be located, or is invalid.");
             }
 
-            const probability = response.data.probability; 
-            const avgPerMonth = response.data.average_incidents_per_month; 
+            const probability = response.data.probability;
+            const avgPerMonth = response.data.average_incidents_per_month;
             const roundedAvg = parseFloat(avgPerMonth).toFixed(2);
             // const incidentCount = response.data.incident_count; // Assuming I have the probability value
             const roundedProbability = parseFloat(probability * 100).toFixed(2);
-            
+
             setProbability(roundedProbability);
             setIncidentCount(response.data.incident_count); // Update incident count state
             setIncidentDay(response.data.incident_day_of_week)
@@ -85,7 +85,7 @@ function RiskCalcMap({ apiEndpoint }) {
 
         } catch (error) {
             console.error('Error:', error);
-    
+
             // Check if the error is a custom error or an Axios error
             if (error.message === "Address is not in San Francisco, cannot be located, or is invalid.") {
                 setErrorMessage(error.message);
@@ -110,41 +110,59 @@ function RiskCalcMap({ apiEndpoint }) {
         }
     };
 
+    const crimeTypeNames = {
+        "vehicle-theft": "Car Break-ins",
+        "assault": "Assault",
+        "drugs": "Drug Arrests",
+        "mental-health": "Mental Health",
+        "burglary": "Burglary",
+        "robbery": "Robbery",
+        "homicide": "Homicide",
+        "prostitution": "Prostitution",
+        "car-robbery": "Car Robbery",
+        "disorderly": "Disorderly Conduct"
+        // ... add the rest as needed
+      };
+    
+      const friendlyName = crimeTypeNames[selectedMap] || "Unknown Crime Type";
+    
+    
+
     return <MainContainer>
         <h3>Enter Your Address for Local Insights</h3>
         <HomeSubText>
         </HomeSubText>
         <StyledForm onSubmit={handleSubmit}>
-                <FormField>
-                    <Input
-                        width= "94%"
-                        $backgroundColor= "transparent"
-                        type="text"
-                        required
-                        placeholder="Enter SF Address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                </FormField>
-                <FormField>
-                    <Input
-                        width="94%"
-                        $backgroundColor= "transparent"
-                        type="text"
-                        required
-                        placeholder="Enter Zip Code"
-                        value={zipcode}
-                        onChange={(e) => setZipcode(e.target.value)}
-                    />
-                </FormField>
-                <Button 
-                  $backgroundColor=''
-                  type="submit" 
-                  loading={loading}
-                >
-                    Go
-                </Button>
-            </StyledForm>
+            <FormField>
+                <Input
+                    width="94%"
+                    $backgroundColor="transparent"
+                    type="text"
+                    required
+                    placeholder="Enter SF Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                />
+            </FormField>
+            <FormField>
+                <Input
+                    width="94%"
+                    $backgroundColor="transparent"
+                    type="text"
+                    required
+                    placeholder="Enter Zip Code"
+                    value={zipcode}
+                    onChange={(e) => setZipcode(e.target.value)}
+                />
+            </FormField>
+            <Button
+                $backgroundColor=''
+                type="submit"
+                loading={loading}
+            >
+                Go
+            </Button>
+        </StyledForm>
         {errorMessage && (
             <p style={{ color: 'red' }}>{errorMessage}</p>
         )}
@@ -160,7 +178,8 @@ function RiskCalcMap({ apiEndpoint }) {
                 avgPerMonth,
                 incidentDay,
                 policeDistrict,
-                getRiskCategoryColor 
+                crimeType: friendlyName,
+                getRiskCategoryColor
             }}
         />
 

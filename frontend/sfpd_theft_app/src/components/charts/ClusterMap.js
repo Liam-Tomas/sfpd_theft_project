@@ -97,7 +97,7 @@ function ClusterMap({ geojsonUrl }) {
             color = 'rgba(156, 204, 210, 0.8)'; // Darker Powder Blue
           } else if (childCount < 200) {
             color = 'rgba(72, 209, 204, 0.8)';
-          } else if (childCount < 400) {         
+          } else if (childCount < 400) {
             color = 'rgba(72, 209, 204, 0.8)';
           } else if (childCount < 2000) {
             color = 'rgba(0, 123, 167, 0.8)'; // Deep Cerulean
@@ -130,7 +130,9 @@ function ClusterMap({ geojsonUrl }) {
                 `<b>Date:</b> ${formattedDate}<br>` + // Use formattedDate
                 `<b>Time:</b> ${props['Incident Time']}<br>` +
                 `<b>Resolution:</b> ${props['Resolution']}<br>` +
-                `<b>District:</b> ${props['Police District']}`;
+                `<b>District:</b> ${props['Police District']}<br>` + 
+                `<b>Description:</b> ${props['Incident Description']}`; 
+
               layer.bindPopup(popupContent);
             },
             pointToLayer: function (feature, latlng) {

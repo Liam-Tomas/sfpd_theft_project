@@ -133,6 +133,10 @@ def main():
         'drugs': [
             '/Users/LiamA/portfolio_projects/sfpd_theft_project/frontend/sfpd_theft_app/public/sf_heatmap_drugs_new.geojson',
             '/Users/LiamA/portfolio_projects/sfpd_theft_project/backend/heatmaps/sf_heatmap_drugs_new.geojson'
+        ],
+        'robbery': [
+            '/Users/LiamA/portfolio_projects/sfpd_theft_project/frontend/sfpd_theft_app/public/sf_heatmap_robbery_new.geojson',
+            '/Users/LiamA/portfolio_projects/sfpd_theft_project/frontend/sfpd_theft_app/public/sf_heatmap_robbery_new.geojson'
         ]
     }
     
@@ -199,6 +203,23 @@ def main():
     for path in output_paths['drugs']:
         merge_and_save_data(grid, incident_counts_drugs, average_monthly_incidents_drug, aggregated_info_drug, path)
     plot_incident_map(grid.merge(incident_counts_drugs, on='cell_id', how='left'))
+    
+     # Filter for Robbery incidents
+    robbery_data = joined[joined['Incident Category'] == 'Robbery']
+
+    # Total Robbery incidents
+    total_robbery_incidents = len(robbery_data)
+
+    incident_counts_robbery = calculate_incident_probabilities(robbery_data, total_robbery_incidents)
+    average_monthly_incidents_robbery = calculate_average_incidents_per_month(robbery_data)
+
+    # Aggregate information for Robbery incidents
+    aggregated_info_robbery = aggregate_info(robbery_data)
+
+    output_path_robbery = 'your_output_path_here.geojson'
+    merge_and_save_data(grid, incident_counts_robbery, average_monthly_incidents_robbery, aggregated_info_robbery, output_path_robbery)
+    plot_incident_map(grid.merge(incident_counts_robbery, on='cell_id', how='left'))
+
 
     
 if __name__ == "__main__":

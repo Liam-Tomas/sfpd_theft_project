@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-11-30T00:00:00", "Incident Time": "23:00", "Resolution": "Cite or Arrest Adult", "Police District": "Mission", "Incident Description": "Soliciting or Engaging In Lewd Conduct" }, "geometry": { "type": "Point", "coordinates": [ -122.416719595040178, 37.757166641659978 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-12-01T00:00:00", "Incident Time": "01:05", "Resolution": "Cite or Arrest Adult", "Police District": "Mission", "Incident Description": "Soliciting or Engaging In Lewd Conduct" }, "geometry": { "type": "Point", "coordinates": [ -122.420506833954221, 37.758544720385714 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-11-26T00:00:00", "Incident Time": "12:58", "Resolution": "Open or Active", "Police District": "Richmond", "Incident Description": "Soliciting or Engaging In Lewd Conduct" }, "geometry": { "type": "Point", "coordinates": [ -122.480590016730403, 37.782212311601597 ] } }
+]
+}
