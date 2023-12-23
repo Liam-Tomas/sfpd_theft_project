@@ -116,7 +116,21 @@ const NavbarItem = styled.div`
 
 `;
 
+const slideIn = keyframes`
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
 const SubMenu = styled.div`
+animation: ${slideIn} 0.3s forwards;
+display: ${props => props.isVisible ? 'flex' : 'none'};
+opacity: 0;  // Start with the submenu invisible
   position: absolute;
   height:100vh;
   background-color: ${props => props.theme.cardLighter};
