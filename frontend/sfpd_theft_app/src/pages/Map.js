@@ -474,9 +474,9 @@ const HomeTitle = styled.h1`
   margin-bottom: 0px;
   font-weight: 600;
   @media (max-width: 868px) {
-    font-size: 2.6rem;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
     text-align: center;
   }
 `;
@@ -570,7 +570,7 @@ const TabContainer = styled.div`
   background-color: ${(props) => props.theme.cardLighter};
   border-radius: 100px;
   @media (max-width: 868px) {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 
   }
 `;
@@ -612,8 +612,11 @@ const InputContainer = styled.div`
 const SelectTitle = styled.span`
     font-size: 16px;
     color: ${(props) => props.theme.textAlt};  
-    margin-right: 16px;
+    margin-right: 10px;
     font-weight: 600;
+    @media (max-width: 868px) {
+        display: none;
+      }
 `;
 
 const SelectWrapper = styled.div`
@@ -625,8 +628,9 @@ const SelectWrapper = styled.div`
     flex-grow: 1;
     border-radius: 8px;
     margin: 10px 0;
-    margin-top: 20px;
-
+    @media (max-width: 868px) {
+        margin: 8px 0;
+    }
 `;
 
 const StyledSelect = styled.select`
@@ -653,7 +657,10 @@ const StyledSelect = styled.select`
   &:hover, &:focus {
     background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
   }
+  @media (max-width: 868px) {
+    font-size: 16px;
 
+}
 `;
 
 const IconContainer = styled.div`
@@ -802,7 +809,7 @@ const FullHeatmap = () => {
                     </TabButton>
                 </TabContainer>
                 <HomeSubText>
-                    Select a map type above, then choose a crime category below. On heatmaps, click grid cells for insights into each 0.21 sq km area. For cluster maps, zoom in for detailed data and select a time filter below. Data is updated weekly, showing SFPD-reported crime incidents since 2018.
+                    Select a map type above, then choose a crime category below. On heatmaps, click grid cells for insights into each 0.21 sq km area. For cluster maps, select a time filter below and zoom to see individual details. Data is updated weekly, showing SFPD-reported crime incidents since 2018.
                 </HomeSubText>
                 <InputContainer>
                     <SelectWrapper>
