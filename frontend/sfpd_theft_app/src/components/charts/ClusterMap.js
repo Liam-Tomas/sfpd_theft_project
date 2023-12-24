@@ -38,6 +38,24 @@ const LoadingOverlay = styled.div`
   color: red;
 `;
 
+const GlobalStyle = createGlobalStyle`
+  .leaflet-popup-content-wrapper {
+    background-color: ${props => props.theme.card}; /* Popup background */
+    border-radius: 8px; 
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4); 
+  }
+  
+  .leaflet-popup-content {
+    margin: 12px 20px; /* Adjust padding inside the popup */
+    color: ${props => props.theme.text}; /* Text color */
+  }
+  
+  .leaflet-popup-tip {
+    background-color: ${props => props.theme.card}; /* Popup background */
+  }
+`;
+
+
 function ClusterMap({ geojsonUrl }) {
   const mapRef = useRef(null);
   const theme = useContext(ThemeContext);
@@ -157,6 +175,8 @@ function ClusterMap({ geojsonUrl }) {
 
   return (
     <div>
+            <GlobalStyle />
+
       <TitleContainer>
         {/* Additional content can be placed here */}
       </TitleContainer>

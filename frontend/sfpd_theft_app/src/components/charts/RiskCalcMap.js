@@ -65,7 +65,7 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
 
             // Check if probability is undefined, null, NaN, or empty
             if (data.probability === undefined || data.probability === null || isNaN(data.probability) || data.probability === '') {
-                throw new Error("Address is not in San Francisco, cannot be located, or is invalid.");
+                throw new Error("Address is not in San Francisco, is invalid, or area has no recorded incidents.");
             }
 
             const probability = response.data.probability;
@@ -87,7 +87,7 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
             console.error('Error:', error);
 
             // Check if the error is a custom error or an Axios error
-            if (error.message === "Address is not in San Francisco, cannot be located, or is invalid.") {
+            if (error.message === "Address is not in San Francisco, is invalid, or area has no recorded incidents.") {
                 setErrorMessage(error.message);
                 setLoading(false); // Stop loading
 

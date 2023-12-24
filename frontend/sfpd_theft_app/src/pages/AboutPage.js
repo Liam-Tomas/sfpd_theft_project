@@ -31,15 +31,6 @@ const Paragraph = styled.p`
     }
 `;
 
-// const Footer = styled.div`
-//     padding: 20px 0px 10px 0px;
-//     color: ${props => props.theme.text};
-//     font-size: 1.15rem;
-//     @media (max-width: 868px) {
-//         font-size: 1rem;
-//     }
-// `;
-
 const TechSection = styled.div`
     display: flex;
     flex-direction: column; 
@@ -76,15 +67,12 @@ const MainContainer = styled.div`
     margin: 11px 11px 0px 12px;
     color: ${props => props.theme.text};
     position: relative; // Needed for absolute positioning of overlay
-    background: 
-
-
 
 `;
 
 
 const ContentContainer = styled.div`
-  position: relative; // Position relative to stack above the overlay
+  position: relative;
   z-index: 2; // Higher z-index than the overlay
   display: flex;
   flex-direction: column;
@@ -92,7 +80,6 @@ const ContentContainer = styled.div`
 
   @media (max-width: 868px) {
     margin-top: 60px;
-    max-width: 390px;
 }
 `;
 
@@ -218,8 +205,8 @@ function AboutPage() {
                         </TitleContainer>
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD),
-                            focusing on creating an interactive application for users to understand local crime dynamics.
-                            The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application. The source of the data is DataSF, more information on the dataset can be found in their documentation: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer">Police Department Incident Reports: 2018 to Present</StyledLink>
+                            focusing on creating an interactive application for users to understand local crime dynamics in close to real-time.
+                            The goal is to both visualize and quantify crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application. The source of the data is DataSF, more information on the dataset can be found in their documentation: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer">Police Department Incident Reports: 2018 to Present</StyledLink>
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>
@@ -243,14 +230,13 @@ function AboutPage() {
                                 <TechTitle>Interactive Maps</TechTitle>
                             </SmallTitleContainer>
                             <Paragraph>
-                                The project offers interactive cluster and heat maps showcasing different types of crime. The cluster map enables users to zoom in and explore geo-tagged incident locations in SF. Upon zooming, clusters disperse to show precise locations, and clicking on any point reveals detailed information about each reported incident. In the heat map, users can click on specific regions to view crime rates and statistics for the selected crime type within that grid cell.
-                            </Paragraph>
+                                The app utilizes geospatial data to create a heatmap and a cluster map. The heatmap provides an intuitive visual representation of crime distribution across the city, with grid cells colored based on relative crime rates. The cluster map groups nearby incidents using Leaflet's marker cluster plugin. Clusters dynamically change in size and color to reflect incident density and break down into smaller groups or individual markers upon zooming. Each marker or cluster is equipped with customized popups, offering detailed incident information upon interaction.                            </Paragraph>
                             <SmallTitleContainer>
                                 <ArrowIcon icon={faArrowRightLong} />
                                 <TechTitle>Local Crime Assessment</TechTitle>
                             </SmallTitleContainer>
                             <Paragraph>
-                                A key feature of the project allows users to input their addresses, which are converted into geographical coordinates. These coordinates are used to locate the nearest grid cell in the heatmap and provides users with detailed crime rates specific to that location.                            </Paragraph>
+                             The app generates a detailed local crime analysis for any given location in SF. Users can input an address, which is geocoded and matched to a pre-defined geospatial grid cell containing aggregated crime data. Leveraging GeoPandas for spatial analysis and Axios for client-server communication, the system calculates and displays detailed crime statistics for the specified location. This provides users with a quick and comprehensive understanding of crime rates in their area of interest.                                 </Paragraph>
                             <SmallTitleContainer>
                                 <ArrowIcon icon={faArrowRightLong} />
                                 <TechTitle>Dynamic Dashboards</TechTitle>
@@ -263,36 +249,7 @@ function AboutPage() {
                             </SmallTitleContainer>
                             <Paragraph>
                                 The platform features an automated process, where Python scripts periodically download the latest CSV data from DataSF and convert it into GeoJSON format. This ensures that the application consistently displays the most current incident reports, updated on a weekly basis.                                </Paragraph>
-                        </TechSection>
-                        <TitleContainer>
-                            <HashTag icon={faHashtag} />
-                            <SectionTitle>Key Technical Highlights</SectionTitle>
-                        </TitleContainer>
-                        <TechSection>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Geospatial Grid Generation</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                Utilizing GeoPandas, a geospatial grid over San Francisco is created. This involves defining the city's boundaries and subdividing the area into a fine grid. Each grid cell is uniquely identified and represents a specific geographic area.
-                            </Paragraph>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Data Processing</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                Incident data from the SFPD is loaded and processed. The data, containing latitude and longitude information for each incident, is transformed into a GeoDataFrame.
-                                This data is then spatially joined with the geospatial grid, allowing incidents to be mapped to specific grid cells.
-                            </Paragraph>
-                            <SmallTitleContainer>
-                                <ArrowIcon icon={faArrowRightLong} />
-                                <TechTitle>Heatmap Layer Creation in Leaflet</TechTitle>
-                            </SmallTitleContainer>
-                            <Paragraph>
-                                In the React front-end, the LeafletMap component uses the GeoJSON data (representing the grid and calculated crime rate) to create a heatmap layer.
-                                A custom color-coding function dynamically styles each grid cell based on the relative crime rate, creating a visually intuitive heatmap.
-                            </Paragraph>
-
+                           
                             <TitleContainer>
                                 <HashTag icon={faHashtag} />
                                 <SectionTitle>Project Significance</SectionTitle>

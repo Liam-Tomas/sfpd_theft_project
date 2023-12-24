@@ -12,8 +12,8 @@ const StyledForm = styled.form`
     gap: 10px;
 
     @media (max-width: 868px) {
-        flex-direction: column;
         width: 100%;
+        gap: 20px;
     }
 `;
 

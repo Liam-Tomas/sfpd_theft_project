@@ -99,7 +99,7 @@ const NavbarItem = styled.div`
     }
   }
 
-  @media (max-width: 1068px) {
+  @media (max-width: 868px) {
     width: 215px;
     background-color: ${({ $isActive, theme }) => $isActive ? theme.buttonHoverBackground : 'none'};
 

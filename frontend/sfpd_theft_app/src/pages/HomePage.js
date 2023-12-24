@@ -264,7 +264,7 @@ function HomePage() {
                     <HomeHeader>
                         <TextContent>
                             <HomeTitle>SF Crime Map</HomeTitle>
-                            <HomeSubText>Explore dynamic visualizations and analysis on crime in San Francisco, sourced from official SFPD Reports covering 2018 to present (updated every week).</HomeSubText>
+                            <HomeSubText>Explore dynamic visualizations on crime data in San Francisco, sourced from official SFPD Reports covering 2018 to present, updated every week.</HomeSubText>
                         </TextContent>
                         <HomeButtonContainer>
                             <StyledLink to="/map">
@@ -272,9 +272,10 @@ function HomePage() {
                                 <LargeButton
                                     backgroundColor="#2564d4"
                                     color="#ffff"
-                                    hoverBackgroundColor="#3b7ef5"
+                                    hoverBackgroundColor="#205ac1"
                                 >
                                     View Map
+
                                 </LargeButton>
                             </StyledLink>
                             <StyledLink to="/vehicle-theft">
@@ -293,7 +294,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>Explore dashboards with a variety of visualizations. Enter your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
+                <ProjectSub>View crime dashboards featuring a variety of visualizations. Enter your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>
@@ -302,7 +303,7 @@ function HomePage() {
                             </IconContainer>
                             <div>
                                 <ItemHeader>Vehicle Break-In Dashboard</ItemHeader>
-                                <ItemText>Analysis of car break-ins and theft</ItemText>
+                                <ItemText>Analysis of veihicle break-ins</ItemText>
                             </div>
                         </Button>
                     </StyledLink>
