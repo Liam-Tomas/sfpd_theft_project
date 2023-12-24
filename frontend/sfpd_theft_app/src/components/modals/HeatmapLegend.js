@@ -12,6 +12,13 @@ const LegendContainer = styled.div`
   z-index: 1001;
   width: auto;
   max-width: 300px;
+  @media (max-width: 868px) {
+    top: 340px;
+    right: 40px;
+    font-size: .9rem;
+    padding: 12px;
+
+  }
 `;
 
 const LegendTitle = styled.h4`
