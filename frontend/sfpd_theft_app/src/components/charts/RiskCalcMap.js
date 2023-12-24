@@ -159,6 +159,8 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
                 $backgroundColor=''
                 type="submit"
                 loading={loading}
+                width="60px"
+                height="40px"
             >
                 Go
             </Button>

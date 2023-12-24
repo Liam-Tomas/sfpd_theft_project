@@ -486,6 +486,7 @@ const HomeSubText = styled.p`
   font-weight: 400;
   font-size: 17px;
   line-height: 1.5;
+  margin: 22px 0px;
   letter-spacing: -1px;
   @media (max-width: 868px) {
     font-size: 1.1rem;
@@ -496,72 +497,6 @@ const HomeSubText = styled.p`
     display: none;
 
   }
-`;
-
-const MapButton = styled.div`
-  cursor: pointer;
-  position: relative;
-  padding: 10px 35px;
-  transform: ${({ $isActive }) => ($isActive ? 'translateX(50px)' : 'translateX(20px)')};
-  font-weight: 600;
-  font-size: 1.35rem;
-  color: ${({ $isActive, theme }) => ($isActive ? theme.secondary : theme.text)};
-  display: flex;
-  align-items: center;
-  transition: 0.3s ease;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: ${({ $isActive }) => ($isActive ? '-50px' : '-20px')};
-    bottom: 50%;
-    width: ${({ $isActive }) => ($isActive ? '73px' : '45px')};
-    height: 2px;
-    background-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.text)};
-    transition: 0.3s ease;
-  }
-
-  &:hover {
-    color: ${(props) => props.theme.secondary};
-    transform: ${({ $isActive }) => ($isActive ? 'translateX(50px)' : 'translateX(50px)')};
-    transition: 0.3s ease;
-
-    &::before {
-      background-color: ${(props) => props.theme.primary};
-      width: 73px;
-      left: -50px;
-    }
-  }
-  @media (max-width: 868px) {
-    transform: none;
-    padding: 10px 20px;
-    font-size: ${({ $isActive }) => ($isActive ? '1.2rem' : '1.1rem')};
-    border: 2px solid ${(props) => props.theme.card};
-    border-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.card)};
-    border-radius: ${({ $isActive }) => ($isActive ? '1.2rem' : '0px')};
-    &::before {
-        content: '';
-        position: absolute;
-        left: ${({ $isActive }) => ($isActive ? '0px' : '0px')};
-        bottom: 50%;
-        width: ${({ $isActive }) => ($isActive ? '0px' : '0px')};
-        // width: 80px;
-        height: 0px;
-        background-color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.text)};
-        transition: 0.3s ease;
-      }
-    &:hover {
-    color: ${(props) => props.theme.secondary};
-    transform: none;
-    transition: 0.3s ease;
-    
-    &::before {
-      background-color: none;
-      width: 45px;
-      left: 225px;
-    }
-  }
-
 `;
 
 const TabContainer = styled.div`
@@ -679,6 +614,27 @@ const MapButtonContainer = styled.div`
   }
 `
 
+const UpdateDate = styled.p`
+    color: ${(props) => props.theme.primary};
+    margin-bottom: 20px;
+
+`
+
+const TitleContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // gap: 20px;
+`
+
+const LegendLink = styled.div`
+    color: ${(props) => props.theme.secondary};
+    border: 1px solid ${(props) => props.theme.cardFaint};
+    border-radius: 50px;
+    padding: 8px 14px;
+    font-size: .95rem;
+`
+
 const FullHeatmap = () => {
 
     const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
@@ -719,6 +675,18 @@ const FullHeatmap = () => {
                 return '/sf_heatmap_assault_new.geojson';
             case 'drugs':
                 return '/sf_heatmap_drugs_new.geojson';
+            case 'burglary':
+                return '/sf_heatmap_burglary_new.geojson';
+            case 'robbery':
+                return '/sf_heatmap_robbery_new.geojson';
+            case 'homicide':
+                return '/sf_heatmap_homicide_new.geojson';
+            case 'prostitution':
+                return '/sf_heatmap_prostitution_new.geojson';
+            case 'car-robbery':
+                return '/sf_heatmap_car-robbery_new.geojson';
+            case 'disorderly':
+                return '/sf_heatmap_disorderly_new.geojson';
             default:
                 return '/sf_heatmap_theft_new.geojson';
         }
@@ -799,7 +767,11 @@ const FullHeatmap = () => {
     return (
         <FullPageContainer>
             <TextContainer>
-                <HomeTitle>Interactive Map</HomeTitle>
+                <UpdateDate>Last Updated: 12.21.2023</UpdateDate>
+                <TitleContainer>
+                    <HomeTitle>Interactive Map</HomeTitle>
+                    <LegendLink>View Legend</LegendLink>
+                </TitleContainer>
                 <TabContainer>
                     <TabButton onClick={() => handleMapTypeSelection('HeatMap')} $isActive={mapType === 'HeatMap'}>
                         Cluster Map
@@ -826,7 +798,6 @@ const FullHeatmap = () => {
                             <option value="prostitution">Prositution</option>
                             <option value="car-robbery">Car Robbery</option>
                             <option value="disorderly">Disorderly Conduct</option>
-
                         </StyledSelect>
                         <IconContainer>
                             <FontAwesomeIcon icon={faChevronDown} />
@@ -855,7 +826,7 @@ const FullHeatmap = () => {
                     <RiskCalcMap
                         apiEndpoint={getApiEndpoint()}
                         selectedMap={selectedMap} // Pass the selected crime type here
-                        />                </RiskCalcMapContainer>
+                    />                </RiskCalcMapContainer>
             </TextContainer>
             <MapContainer>
                 {mapType === 'HeatMap' ? (

@@ -116,7 +116,7 @@ function RiskCalc({ apiEndpoint }) {
                         onChange={(e) => setZipcode(e.target.value)}
                     />
                 </FormField>
-                <Button type="submit" loading={loading}>Submit</Button>
+                <Button type="submit" loading={loading} width="80px" height="42px">Submit</Button>
             </StyledForm>
         {errorMessage && (
             <p style={{ color: 'red' }}>{errorMessage}</p>
