@@ -39,12 +39,15 @@ def index():
 
 # Load the pre-processed GeoJSON file
 grid = gpd.read_file('heatmaps/sf_heatmap_theft_new.geojson')
-
 grid_mental_health = gpd.read_file('heatmaps/sf_heatmap_mental_new.geojson')
-
 grid_assault = gpd.read_file('heatmaps/sf_heatmap_assault_new.geojson')
-
 grid_drugs = gpd.read_file('heatmaps/sf_heatmap_drugs_new.geojson')
+grid_burglary = gpd.read_file('heatmaps/sf_heatmap_burglary_new.geojson')
+grid_robbery = gpd.read_file('heatmaps/sf_heatmap_robbery_new.geojson')
+grid_prostitution = gpd.read_file('heatmaps/sf_heatmap_prostitution_new.geojson')
+grid_disorderly = gpd.read_file('heatmaps/sf_heatmap_disorderly_new.geojson')
+grid_car_robbery = gpd.read_file('heatmaps/sf_heatmap_car-robbery_new.geojson')
+grid_homicide= gpd.read_file('heatmaps/sf_heatmap_homicide_new.geojson')
 
 # Initialize OpenCage Geocoder with API key
 geocoder = OpenCageGeocode(os.getenv('OPENCAGE_API_KEY'))
@@ -113,7 +116,38 @@ def get_rate_assault():
 def get_rate_drugs():
     data = request.json
     return jsonify(calculate_rate(grid_drugs, data))
-    
+
+@app.route('/get-rate-burglary', methods=['POST'])
+def get_rate_burglary():
+    data = request.json
+    return jsonify(calculate_rate(grid_burglary, data))
+
+@app.route('/get-rate-robbery', methods=['POST'])
+def get_rate_robbery():
+    data = request.json
+    return jsonify(calculate_rate(grid_robbery, data))
+
+@app.route('/get-rate-homicide', methods=['POST'])
+def get_rate_homicide():
+    data = request.json
+    return jsonify(calculate_rate(grid_homicide, data))
+
+@app.route('/get-rate-car-robbery', methods=['POST'])
+def get_rate_car_robbery():
+    data = request.json
+    return jsonify(calculate_rate(grid_car_robbery, data))
+
+@app.route('/get-rate-prostitution', methods=['POST'])
+def get_rate_prostitution():
+    data = request.json
+    return jsonify(calculate_rate(grid_prostitution, data))
+
+@app.route('/get-rate-disorderly', methods=['POST'])
+def get_rate_disorderly():
+    data = request.json
+    return jsonify(calculate_rate(grid_disorderly, data))
+
+
 # !!! Vehicle Theft Routes !!!
 @app.route('/top-theft-locations', methods=['GET'])
 def top_theft_locations():

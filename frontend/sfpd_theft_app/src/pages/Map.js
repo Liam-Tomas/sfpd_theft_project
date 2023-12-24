@@ -757,6 +757,18 @@ const FullHeatmap = () => {
                 return `${apiBaseUrl}/get-rate-assault`;
             case 'drugs':
                 return `${apiBaseUrl}/get-rate-drugs`;
+            case 'burglary':
+                return `${apiBaseUrl}/get-rate-burglary`;
+            case 'robbery':
+                return `${apiBaseUrl}/get-rate-robbery`;
+            case 'homicide':
+                return `${apiBaseUrl}/get-rate-homicide`;
+            case 'prostitution':
+                return `${apiBaseUrl}/get-rate-prostitution`;
+            case 'car-robbery':
+                return `${apiBaseUrl}/get-rate-car-robbery`;
+            case 'disorderly':
+                return `${apiBaseUrl}/get-rate-disorderly`;
             default:
                 return `${apiBaseUrl}/get_probability`;
         }
