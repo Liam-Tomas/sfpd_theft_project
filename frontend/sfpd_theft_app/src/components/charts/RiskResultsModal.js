@@ -37,17 +37,29 @@ const ResultGrid = styled.div`
 
 const ModalContent = styled.div`
   background: ${props => props.theme.card};
-  margin:280px;
+  margin: 280px;
   padding: 35px 50px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 1001;
+  /* Animation properties */
+  animation: slideIn 0.3s ease-out forwards;
+  
   @media (max-width: 868px) {
     height: 100%;
     padding-top: 200px;
-
   }
 
+  @keyframes slideIn {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 
 const ModalHeader = styled.h1`

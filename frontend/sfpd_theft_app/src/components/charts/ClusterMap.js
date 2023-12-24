@@ -42,10 +42,13 @@ const GlobalStyle = createGlobalStyle`
   .leaflet-popup-content-wrapper {
     background-color: ${props => props.theme.card}; /* Popup background */
     border-radius: 8px; 
+    width: 100%;
+
     box-shadow: 0 3px 14px rgba(0,0,0,0.4); 
   }
   
   .leaflet-popup-content {
+    font-size: .9rem;
     margin: 12px 20px; /* Adjust padding inside the popup */
     color: ${props => props.theme.text}; /* Text color */
   }

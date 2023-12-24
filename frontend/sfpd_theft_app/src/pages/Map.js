@@ -5,6 +5,8 @@ import ClusterMap from '../components/charts/ClusterMap';
 import RiskCalcMap from '../components/charts/RiskCalcMap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import MapLegend from '../components/modals/MapLegend';
+import HeatmapLegend from '../components/modals/HeatmapLegend';
 
 const FullPageContainer = styled.div`
   display: flex;
@@ -207,17 +209,24 @@ const LegendLink = styled.div`
     border-radius: 50px;
     padding: 8px 14px;
     font-size: .95rem;
+    user-select: none;
+    &:hover {
+        background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
+        cursor: pointer;
+    }
+    &:active {
+        transform: scale(.92);
+    }    
 `
 
 const FullHeatmap = () => {
 
     const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
     const apiLocalURL = 'http://127.0.0.1:5000'
-
     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
-
     const [timeFilter, setTimeFilter] = useState('last_year'); // Set initial state to 'last_year'
+    const [showLegend, setShowLegend] = useState(false);
 
     const handleDropdownSelection = (value) => {
         handleMapSelection(value);
@@ -237,7 +246,9 @@ const FullHeatmap = () => {
         setMapType(type);
     };
 
-
+    const toggleLegend = () => {
+        setShowLegend(!showLegend);
+    };
 
     const getHeatmapGeoJsonUrl = () => {
         switch (selectedMap) {
@@ -348,6 +359,19 @@ const FullHeatmap = () => {
         }
     };
 
+    // Function to render the appropriate legend based on the map type
+    const renderLegend = () => {
+        if (!showLegend) return null; // Don't render anything if the legend isn't toggled on
+        switch (mapType) {
+            case 'ClusterMap':
+                return <HeatmapLegend onClose={toggleLegend} />;
+            case 'Heatmap':
+                return <MapLegend onClose={toggleLegend} />;
+            default:
+                return null; // Or you can have a default legend if necessary
+        }
+    };
+
     const mapKey = `leaflet-map-${selectedMap}-${timeFilter}`;
 
     return (
@@ -356,7 +380,9 @@ const FullHeatmap = () => {
                 <UpdateDate>Last Updated: 12.21.2023</UpdateDate>
                 <TitleContainer>
                     <HomeTitle>Interactive Map</HomeTitle>
-                    <LegendLink>View Legend</LegendLink>
+                    <LegendLink onClick={toggleLegend}>View Legend</LegendLink>
+                    {showLegend && <MapLegend onClose={toggleLegend} />}
+
                 </TitleContainer>
                 <TabContainer>
                     <TabButton onClick={() => handleMapTypeSelection('HeatMap')} $isActive={mapType === 'HeatMap'}>
@@ -391,7 +417,6 @@ const FullHeatmap = () => {
                     </SelectWrapper>
                 </InputContainer>
                 {mapType === 'HeatMap' && (
-
                     <InputContainer>
                         <SelectWrapper>
                             <SelectTitle>Select Time Filter:</SelectTitle>
@@ -414,6 +439,7 @@ const FullHeatmap = () => {
                         selectedMap={selectedMap} // Pass the selected crime type here
                     />                </RiskCalcMapContainer>
             </TextContainer>
+            {renderLegend()}
             <MapContainer>
                 {mapType === 'HeatMap' ? (
                     <ClusterMap key={mapKey} geojsonUrl={getClusterGeoJsonUrl()} />
