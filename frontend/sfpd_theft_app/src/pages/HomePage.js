@@ -16,6 +16,7 @@ import sfDarkIMG from '../images/sfDarkIMG.jpg'
 import LargeButton from '../components/utility/LargeButton';
 import Footer from '../components/utility/Footer';
 import RiskCalcHome from '../components/charts/RiskCalcHome';
+import Select from 'react-select';
 
 const HomeContainer = styled.div`
     background: ${props => props.theme.backgroundOpp};
@@ -80,7 +81,7 @@ const StyledLink = styled(Link)`
 const ButtonContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap:20px;
+  gap:15px;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -100,14 +101,12 @@ const IconContainer = styled.h1`
 
 const Button = styled.div`
     z-index: 100;  // Ensure the overlay is above the background
-
     display: flex;
     align-items: center;
-    gap: 10px;
     background-color: #1976D2; // Example blue color
     background: ${props => props.theme.cardOpp};
 
-    padding: 25px 30px;
+    padding: 28px 25px;
     border-radius: 24px;
     transition: background-color 0.15s ease, border-radius 0.3s ease; // Added border-radius to transition
     &:hover {
@@ -137,9 +136,9 @@ const Button = styled.div`
 const ItemHeader = styled.h2`
     color: ${props => props.theme.text};
     margin: 0px;
-    
-    margin-bottom: 5px;
-    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 500;
     @media (max-width: 868px) {
         font-size: 1.3rem;
     }
@@ -149,6 +148,7 @@ const ItemHeader = styled.h2`
 const ItemText = styled.p`
     color: ${props => props.theme.textAlt};
     margin: 0px;
+    font-size: 18px;
 
 `
 const HomeHeader = styled.div`
@@ -187,10 +187,10 @@ const HomeTitle = styled.h1`
 const HomeSubText = styled.p`
     color: ${props => props.theme.textAlt};
     font-weight: 400;
-    font-size: 1.35rem;
+    font-size: 22px;
     line-height:1.5;
     margin: 5px 0px 25px 0px;
-    padding: 0px 40px 0px 40px;
+    padding: 0px 40px 0px 20px;
 
     @media (max-width: 868px) {
         font-size: 1.1rem;
@@ -217,8 +217,8 @@ const ProjectHeader = styled.h1`
 const ProjectSub = styled.p`
     margin: 0px;
     margin-left: 20px;
-    margin-bottom: 45px;
-    font-size: 20px;
+    margin-bottom: 40px;
+    font-size: 22px;
     line-height: 1.5;
     max-width: 700px;
     color: ${props => props.theme.textAlt};
@@ -282,13 +282,14 @@ function HomePage() {
                                 </LargeButton>
                             </StyledLink>
                             <StyledLink to="/vehicle-theft">
-
                                 <LargeButton
                                     backgroundColor={theme.buttonSubtle}
                                     color={theme.text}
                                     hoverBackgroundColor={theme.buttonSubtleHover}
                                 >Dashboards
                                 </LargeButton>
+                            </StyledLink>
+                            <StyledLink to="/vehicle-theft">
                             </StyledLink>
                         </HomeButtonContainer>
                     </HomeHeader>
@@ -306,7 +307,7 @@ function HomePage() {
                             </IconContainer>
                             <div>
                                 <ItemHeader>Vehicle Break-In Dashboard</ItemHeader>
-                                <ItemText>Analysis of veihicle break-ins</ItemText>
+                                <ItemText>Analysis of vehicle break-ins</ItemText>
                             </div>
                         </Button>
                     </StyledLink>
@@ -345,7 +346,7 @@ function HomePage() {
                     </StyledLink>
                 </ButtonContainer>
             </DashContainer>
-            <RiskCalcHome/>
+            <RiskCalcHome />
             <FooterContainer>
                 <Footer />
             </FooterContainer>

@@ -7,6 +7,7 @@
 // import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import MapLegend from '../components/modals/MapLegend';
 // import HeatmapLegend from '../components/modals/HeatmapLegend';
+// import Select from 'react-select';
 
 // const FullPageContainer = styled.div`
 //   display: flex;
@@ -67,7 +68,7 @@
 //   @media (max-width: 868px) {
 //     font-size: 1.1rem;
 //     margin-top: 15px;
-    
+
 //   }
 //   @media (max-width: 868px) {
 //     display: none;
@@ -78,7 +79,7 @@
 // const TabContainer = styled.div`
 //   display: flex;
 //   margin-top: 20px;
-//   background-color: ${(props) => props.theme.cardLighter};
+//   background-color: ${(props) => props.theme.card};
 //   border-radius: 100px;
 //   @media (max-width: 868px) {
 //     margin-bottom: 10px;
@@ -100,12 +101,11 @@
 
 //   &:hover {
 //     color: ${(props) => props.theme.text};
-//     background-color: ${(props) => props.theme.buttonHoverBackground};
+//     background-color: ${({ $isActive, theme }) => $isActive ? theme.activeTabHover : theme.tabHoverColor};
 //   }
 // `;
 
 // const RiskCalcMapContainer = styled.div`
-//   margin-top: 10px;
 //   @media (max-width: 868px) {
 //     display: none;
 //   }
@@ -146,7 +146,7 @@
 
 // const StyledSelect = styled.select`
 //   -webkit-appearance: none;
-  
+
 //   -moz-appearance: none;
 //   border-radius: 25px;
 //   background-color: ${(props) => props.theme.card};
@@ -204,20 +204,30 @@
 // `
 
 // const LegendLink = styled.div`
-//     color: ${(props) => props.theme.secondary};
+//     color: ${({ $isActive, theme }) => $isActive ? theme.secondary : theme.secondary}; 
 //     // border: 1px solid ${(props) => props.theme.cardFaint};
 //     border-radius: 50px;
 //     padding: 8px 14px;
-//     font-size: .95rem;
+//     font-size: .94rem;
 //     user-select: none;
+//     // font-weight: ${({ $isActive }) => $isActive ? '500' : '400'}; 
+//     background-color: ${({ $isActive, theme }) => $isActive ? theme.cardLighter : 'transparent'}; 
+//     transition: 0.3s ease;
+
 //     &:hover {
 //         background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
 //         cursor: pointer;
 //     }
 //     &:active {
-//         transform: scale(.92);
+//         transform: scale(.95);
 //     }    
 // `
+// const options = [
+//     { value: 'last_year', label: 'Past Year' },
+//     { value: 'last_30_days', label: 'Past 30 Days' },
+//     { value: 'last_week', label: 'Past Week' },
+//     { value: 'total', label: 'Total Incidents (From 2018)' }
+// ];
 
 // const FullHeatmap = () => {
 
@@ -226,7 +236,29 @@
 //     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
 //     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
 //     const [timeFilter, setTimeFilter] = useState('last_year'); // Set initial state to 'last_year'
-//     const [showLegend, setShowLegend] = useState(false);
+//     const [showHeatmapLegend, setShowHeatmapLegend] = useState(false);
+//     const [showClusterLegend, setShowClusterLegend] = useState(false);
+//     const [selectedOption, setSelectedOption] = React.useState(null);
+
+//     // Handle selection
+//     const handleChange = (option) => {
+//         setSelectedOption(option);
+//     };
+
+
+//     // Toggle functions for each legend
+//     const toggleHeatmapLegend = () => {
+//         console.log("Closing Heatmap Legend");
+
+//         setShowHeatmapLegend(!showHeatmapLegend);
+
+//     };
+
+//     const toggleClusterLegend = () => {
+//         console.log("Closing Heatmap Legend");
+
+//         setShowClusterLegend(!showClusterLegend);
+//     };
 
 //     const handleDropdownSelection = (value) => {
 //         handleMapSelection(value);
@@ -244,10 +276,6 @@
 
 //     const handleMapTypeSelection = (type) => {
 //         setMapType(type);
-//     };
-
-//     const toggleLegend = () => {
-//         setShowLegend(!showLegend);
 //     };
 
 //     const getHeatmapGeoJsonUrl = () => {
@@ -361,15 +389,14 @@
 
 //     // Function to render the appropriate legend based on the map type
 //     const renderLegend = () => {
-//         if (!showLegend) return null; // Don't render anything if the legend isn't toggled on
-//         switch (mapType) {
-//             case 'ClusterMap':
-//                 return <HeatmapLegend onClose={toggleLegend} />;
-//             case 'Heatmap':
-//                 return <MapLegend onClose={toggleLegend} />;
-//             default:
-//                 return null; // Or you can have a default legend if necessary
+//         if (mapType === 'ClusterMap' && showClusterLegend) {
+//             return <HeatmapLegend onClose={toggleClusterLegend} />;
+
+//         } else if (mapType === 'HeatMap' && showHeatmapLegend) {
+//             return <MapLegend onClose={toggleHeatmapLegend} />;
+
 //         }
+//         return null; // Return null if no legend should be displayed
 //     };
 
 //     const mapKey = `leaflet-map-${selectedMap}-${timeFilter}`;
@@ -380,9 +407,11 @@
 //                 <UpdateDate>Last Updated: 12.21.2023</UpdateDate>
 //                 <TitleContainer>
 //                     <HomeTitle>Interactive Map</HomeTitle>
-//                     <LegendLink onClick={toggleLegend}>View Legend</LegendLink>
-//                     {showLegend && <MapLegend onClose={toggleLegend} />}
-
+//                     {mapType === 'HeatMap' ? (
+//                         <LegendLink onClick={toggleHeatmapLegend} $isActive={showHeatmapLegend}>Toggle Legend</LegendLink>
+//                     ) : (
+//                         <LegendLink onClick={toggleClusterLegend} $isActive={showClusterLegend}>Toggle Legend</LegendLink>
+//                     )}
 //                 </TitleContainer>
 //                 <TabContainer>
 //                     <TabButton onClick={() => handleMapTypeSelection('HeatMap')} $isActive={mapType === 'HeatMap'}>
@@ -453,16 +482,6 @@
 
 // export default FullHeatmap;
 
-
-
-
-
-
-
-
-
-
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import LeafletMap from '../components/charts/LeafletLarge';
@@ -472,6 +491,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import MapLegend from '../components/modals/MapLegend';
 import HeatmapLegend from '../components/modals/HeatmapLegend';
+import Select from 'react-select';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 
 const FullPageContainer = styled.div`
   display: flex;
@@ -587,8 +609,8 @@ const InputContainer = styled.div`
 const SelectTitle = styled.span`
     font-size: 16px;
     color: ${(props) => props.theme.textAlt};  
-    margin-right: 10px;
-    font-weight: 600;
+    font-weight: 500;
+    width: 60%;
     @media (max-width: 868px) {
         display: none;
       }
@@ -607,52 +629,6 @@ const SelectWrapper = styled.div`
         margin: 8px 0;
     }
 `;
-
-const StyledSelect = styled.select`
-  -webkit-appearance: none;
-  
-  -moz-appearance: none;
-  border-radius: 25px;
-  background-color: ${(props) => props.theme.card};
-  color: ${(props) => props.theme.textAlt};
-  border: 1px solid ${(props) => props.theme.buttonSubtle};
-  outline: none;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 10px 20px 10px 20px; /* Adjusted padding to make space for the icon */
-  font-size: 16px;
-  flex-grow: 1;
-  // Rest of your styles
-  padding-right: 30px; // Increase padding to make space for the icon
-
-  &:focus {
-    border-color: ${(props) => props.theme.primary};
-  }
-
-  &:hover, &:focus {
-    background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
-  }
-  @media (max-width: 868px) {
-    font-size: 16px;
-
-}
-`;
-
-const IconContainer = styled.div`
-  position: absolute;
-  right: 20px; // Adjust as needed
-  top: 50%;
-  color: ${(props) => props.theme.textAlt};
-  transform: translateY(-50%); // Center vertically
-  pointer-events: none; // Makes the icon non-interactive
-`;
-
-const MapButtonContainer = styled.div`
-@media (max-width: 868px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-`
 
 const UpdateDate = styled.p`
     color: ${(props) => props.theme.primary};
@@ -687,7 +663,78 @@ const LegendLink = styled.div`
     }    
 `
 
+
+
+
+const crimeTypeOptions = [
+    { value: 'vehicle-theft', label: 'Car Break-ins' },
+    { value: 'assault', label: 'Assault' },
+    { value: 'drugs', label: 'Drug Arrests' },
+    { value: 'mental-health', label: 'Mental Health' },
+    { value: 'burglary', label: 'Burglary' },
+    { value: 'robbery', label: 'Robbery' },
+    { value: 'homicide', label: 'Homicide' },
+    { value: 'prostitution', label: 'Prostitution' },
+    { value: 'car-robbery', label: 'Car Robbery' },
+    { value: 'disorderly', label: 'Disorderly Conduct' }
+];
+
+const timeFilterOptions = [
+    { value: 'last_year', label: 'Past Year' },
+    { value: 'last_30_days', label: 'Past 30 Days' },
+    { value: 'last_week', label: 'Past Week' },
+    { value: 'total', label: 'Total Incidents (From 2018)' }
+];
+
 const FullHeatmap = () => {
+    const theme = useContext(ThemeContext);
+    const customStyles = {
+        control: (base, state) => ({
+            ...base,
+            width: '100%', // Make the select box fill the full container width
+            backgroundColor: theme.backgroundColor,
+
+            borderColor: theme.cardLight,
+            color: theme.text,
+            cursor: 'pointer', // Setting cursor here
+
+            "&:hover": {
+                borderColor: theme.buttonHoverBackground, // Change to the lighter color you want on hover
+                // backgroundColor: theme.card,
+            },
+            // other styles...
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isFocused ? theme.card2 : theme.card,
+            color: state.isSelected ? theme.primary : theme.text,
+            cursor: 'pointer', // Set cursor to pointer for options
+
+            // other styles...
+        }),
+        singleValue: (provided, state) => ({
+            ...provided,
+            color: theme.text,
+            // other styles...
+        }),
+        menuList: (provided, state) => ({
+            ...provided,
+            maxHeight: '212px', // Adjust this value to suit your needs
+            // Add other styles like padding, if necessary
+        }),
+        menu: (provided, state) => ({
+            ...provided,
+            zIndex: '10000',
+
+            cursor: 'pointer', // Setting cursor here
+
+            backgroundColor: theme.card,
+
+            // other styles...
+        }),
+        // Add other parts like menuList, indicatorsContainer, etc., if needed
+    };
+
 
     const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
     const apiLocalURL = 'http://127.0.0.1:5000'
@@ -696,6 +743,14 @@ const FullHeatmap = () => {
     const [timeFilter, setTimeFilter] = useState('last_year'); // Set initial state to 'last_year'
     const [showHeatmapLegend, setShowHeatmapLegend] = useState(false);
     const [showClusterLegend, setShowClusterLegend] = useState(false);
+    const [selectedOption, setSelectedOption] = React.useState(null);
+    const [selectedCrimeType, setSelectedCrimeType] = useState({ value: 'vehicle-theft', label: 'Car Break-ins' });
+    const [selectedTimeFilter, setSelectedTimeFilter] = useState({ value: 'last_year', label: 'Past Year' });
+    // Handle selection
+    const handleChange = (option) => {
+        setSelectedOption(option);
+    };
+
 
     // Toggle functions for each legend
     const toggleHeatmapLegend = () => {
@@ -711,15 +766,23 @@ const FullHeatmap = () => {
         setShowClusterLegend(!showClusterLegend);
     };
 
-    const handleDropdownSelection = (value) => {
-        handleMapSelection(value);
-        setSelectedMap(value); // Update the selected crime type
+
+    const handleDropdownSelection = (selectedOption) => {
+        if (selectedOption) {
+            setSelectedCrimeType(selectedOption); // Update the selectedCrimeType state
+            setSelectedMap(selectedOption.value); // Directly use the selected option's value
+        }
     };
 
+
     // Function to handle time filter selection
-    const handleTimeFilterSelection = (filter) => {
-        setTimeFilter(filter);
+    const handleTimeFilterSelection = (selectedOption) => {
+        if (selectedOption) {
+            setSelectedTimeFilter(selectedOption); // Update the state with the new selected option
+            setTimeFilter(selectedOption.value); // Update the time filter state with the new value
+        }
     };
+
 
     const handleMapSelection = (category) => {
         setSelectedMap(category);
@@ -878,37 +941,29 @@ const FullHeatmap = () => {
                 <InputContainer>
                     <SelectWrapper>
                         <SelectTitle>Select Crime Type:</SelectTitle>
-                        <StyledSelect onChange={(e) => handleDropdownSelection(e.target.value)}>
-                            {/* Options for each type of map */}
-                            <option value="vehicle-theft">Car Break-ins</option>
-                            <option value="assault">Assault</option>
-                            <option value="drugs">Drug Arrests</option>
-                            <option value="mental-health">Mental Health</option>
-                            <option value="burglary">Burglary</option>
-                            <option value="robbery">Robbery</option>
-                            <option value="homicide">Homicide</option>
-                            <option value="prostitution">Prositution</option>
-                            <option value="car-robbery">Car Robbery</option>
-                            <option value="disorderly">Disorderly Conduct</option>
-                        </StyledSelect>
-                        <IconContainer>
-                            <FontAwesomeIcon icon={faChevronDown} />
-                        </IconContainer>
+                        <div style={{ width: '100%' }}> {/* Use a div to enforce width */}
+                            <Select
+                                styles={customStyles} // 
+                                value={selectedCrimeType} // Make sure this matches the state you're updating
+                                onChange={handleDropdownSelection}
+                                options={crimeTypeOptions}
+                            />
+                        </div>
                     </SelectWrapper>
                 </InputContainer>
                 {mapType === 'HeatMap' && (
                     <InputContainer>
                         <SelectWrapper>
                             <SelectTitle>Select Time Filter:</SelectTitle>
-                            <StyledSelect onChange={(e) => handleTimeFilterSelection(e.target.value)}>
-                                <option value="last_year">Past Year</option>
-                                <option value="last_30_days">Past 30 Days</option>
-                                <option value="last_week">Past Week</option>
-                                <option value="total">Total Incidents (From 2018)</option>
-                            </StyledSelect>
-                            <IconContainer>
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </IconContainer>
+                            <div style={{ width: '100%' }}> {/* Use a div to enforce width */}
+                                <Select
+                                    styles={customStyles}
+                                    value={selectedTimeFilter} // State for this selection
+                                    onChange={handleTimeFilterSelection}
+                                    options={timeFilterOptions}
+
+                                />
+                            </div>
                         </SelectWrapper>
                     </InputContainer>
                 )}

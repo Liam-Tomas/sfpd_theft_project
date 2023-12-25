@@ -22,7 +22,7 @@ const StyledForm = styled.form`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     @media (max-width: 868px) {
         flex-direction: column;
         width: 100%;
@@ -52,8 +52,8 @@ const CalcTitle = styled.h1`
 `
 
 const CalcSub = styled.p`
-    margin: 0px 300px;
-    font-size: 20px;
+    margin: 0px 240px;
+    font-size: 22px;
     line-height: 1.5;
     color: ${props => props.theme.textAlt};
     @media (max-width: 868px) {
@@ -96,6 +96,12 @@ const TabButton = styled.div`
 
 
   }
+
+  ${({ $isActive }) => $isActive && `
+    &::before {
+      transform: scaleX(1);
+    }
+  `}
 `;
 
 const InputContainer = styled.div`
