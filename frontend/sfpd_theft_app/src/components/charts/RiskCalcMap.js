@@ -44,15 +44,18 @@ const Label = styled.label`
 
 const StyledInput = styled.input`
     padding: 10px;
-    border: 2px solid ${props => props.theme.cardLight};
-    border-radius: 7px;
+    border: 1px solid ${props => props.theme.cardLight};
+    border-radius: 4px;
     font-size: 1rem;
     outline: none;
     width: ${props => props.width || '170px'}; // Use width from props or default
     transition: border-color 0.2s, box-shadow 0.2s;
     background: ${props => props.$backgroundColor || props.theme.card}; // Use $backgroundColor from props or default
     color: ${props => props.theme.textAlt};
-
+    font-family: 'Metropolis', sans-serif;
+    &::placeholder {
+        color: ${props => props.theme.textAlt};
+    }
     &:hover  {
         border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
     }
@@ -175,7 +178,7 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
         </HomeSubText>
         <StyledForm onSubmit={handleSubmit}>
             <FormField>
-                <Input
+                <StyledInput
                     width="94%"
                     $backgroundColor="transparent"
                     type="text"
@@ -186,7 +189,7 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
                 />
             </FormField>
             <FormField>
-                <Input
+                <StyledInput
                     width="94%"
                     $backgroundColor="transparent"
                     type="text"

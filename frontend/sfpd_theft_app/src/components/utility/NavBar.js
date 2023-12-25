@@ -58,7 +58,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
   padding: 7.5px 17.5px;
   border-radius: 20px;
   background-color: ${({ $isActive, theme }) => $isActive ? theme.buttonHoverBackground : 'none'};
-  color: ${({ $isActive, theme }) => $isActive ? theme.secondary : 'none'};
+  color: ${({ $isActive, theme }) => $isActive ? theme.activeText : 'none'};
   transition: background-color 0.15s;
   @media (max-width: 868px) {
     font-size: 1.2rem;

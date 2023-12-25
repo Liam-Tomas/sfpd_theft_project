@@ -115,7 +115,7 @@ const Label = styled.label`
 `;
 
 const StyledInput = styled.input`
-    padding: 12px 14px;
+    padding: 13px 18px;
     border: 2px solid ${props => props.theme.cardLight};
     border-radius: 50px;
     font-size: 1rem;
@@ -131,6 +131,10 @@ const StyledInput = styled.input`
     &:focus {
         border-color: #1976d2; // Highlight color on focus
         box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); // Adds focus ring
+    }
+    font-family: 'Metropolis', sans-serif;
+    &::placeholder {
+        color: ${props => props.theme.textAlt};
     }
 
     @media (max-width: 868px) {

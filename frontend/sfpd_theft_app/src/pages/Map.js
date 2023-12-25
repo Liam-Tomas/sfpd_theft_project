@@ -947,6 +947,7 @@ const FullHeatmap = () => {
                                 value={selectedCrimeType} // Make sure this matches the state you're updating
                                 onChange={handleDropdownSelection}
                                 options={crimeTypeOptions}
+                                isSearchable={false} // Add this line to disable the text box on mobile
                             />
                         </div>
                     </SelectWrapper>
@@ -961,6 +962,7 @@ const FullHeatmap = () => {
                                     value={selectedTimeFilter} // State for this selection
                                     onChange={handleTimeFilterSelection}
                                     options={timeFilterOptions}
+                                    isSearchable={false} // Add this line to disable the text box on mobile
 
                                 />
                             </div>
