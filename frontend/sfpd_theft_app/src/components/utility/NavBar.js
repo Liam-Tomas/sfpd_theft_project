@@ -87,7 +87,7 @@ const NavbarItem = styled.div`
   &:hover {
     color: ${props => props.theme.text};
     ${StyledIcon} {
-      background-color: ${props => props.theme.buttonHoverBackground};
+      background-color: ${({ $isActive, theme }) => $isActive ? theme.buttonHoverBackground : theme.card2};
     }
   }
     

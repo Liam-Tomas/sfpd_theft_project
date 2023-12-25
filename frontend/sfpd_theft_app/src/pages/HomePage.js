@@ -203,7 +203,7 @@ const HomeSubText = styled.p`
 const ProjectHeader = styled.h1`
     margin-bottom: 10px;
     color: ${props => props.theme.text};
-    // font-size: 38px;
+    font-size: 45px;
     margin-left: 20px;
     font-weight: 600;
 
@@ -218,7 +218,7 @@ const ProjectSub = styled.p`
     margin: 0px;
     margin-left: 20px;
     margin-bottom: 45px;
-    font-size: 1.15rem;
+    font-size: 20px;
     line-height: 1.5;
     max-width: 700px;
     color: ${props => props.theme.textAlt};
@@ -297,7 +297,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>View comprehensive and dynamic crime dashboards.</ProjectSub>
+                <ProjectSub>View comprehensive dashboards on SF crime data.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>

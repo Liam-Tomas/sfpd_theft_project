@@ -10,7 +10,7 @@ import RiskResultsModal from './RiskResultsModal';
 const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 70vh;
+    min-height: 75vh;
     gap: 30px;
     align-items: center;
     justify-content: center;
@@ -41,8 +41,9 @@ const CalcHeader = styled.div`
 const CalcTitle = styled.h1`
     margin-bottom: 10px;
     color: ${props => props.theme.text};
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 600;
+    
     @media (max-width: 868px) {
         font-size: 32px;
         margin-bottom: 10px;
@@ -51,8 +52,8 @@ const CalcTitle = styled.h1`
 `
 
 const CalcSub = styled.p`
-    margin: 0px 320px;
-    font-size: 1.15rem;
+    margin: 0px 300px;
+    font-size: 20px;
     line-height: 1.5;
     color: ${props => props.theme.textAlt};
     @media (max-width: 868px) {
@@ -65,7 +66,7 @@ const TabContainer = styled.div`
   display: flex;
   width: 80%;
   margin: 0px;
-  background-color: ${(props) => props.theme.cardLighter};
+  background-color: ${(props) => props.theme.card};
   border-radius: 100px;
   @media (max-width: 868px) {
     width: 95%;
@@ -81,13 +82,13 @@ const TabButton = styled.div`
   padding: 17px 0;
   font-weight: 600;
   font-size: 1.rem;
-  color: ${({ $isActive, theme }) => ($isActive ? theme.text : theme.text)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.activeText : theme.text)};
   background-color: ${({ $isActive, theme }) => ($isActive ? theme.buttonHoverBackground : 'transparent')};
   transition: 0.3s ease;
 
   &:hover {
     color: ${(props) => props.theme.text};
-    background-color: ${(props) => props.theme.buttonHoverBackground};
+    background-color: ${({ $isActive, theme }) => $isActive ? theme.activeTabHover : theme.tabHoverColor};
   }
   @media (max-width: 868px) {
     font-size: .7rem;
@@ -264,8 +265,8 @@ function RiskCalcHome() {
 
     return <MainContainer>
         <CalcHeader>
-            <CalcTitle>SF Crime Risk Calculator</CalcTitle>
-            <CalcSub>Pick a type of crime from below and then enter your address to get a crime assessment for your immediate neighborhood, 0.2km around the entered address.</CalcSub>
+            <CalcTitle>Crime Risk Calculator</CalcTitle>
+            <CalcSub>Pick a type of crime from below and then enter an SF address to get a crime assessment for the immediate neighborhood, 0.2km around the entered address.</CalcSub>
         </CalcHeader>
         <TabContainer>
             <TabButton onClick={() => handleCrimeSelection('vehicle-theft')} $isActive={selectedCrime === 'vehicle-theft'}>

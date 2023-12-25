@@ -543,7 +543,7 @@ const HomeSubText = styled.p`
 const TabContainer = styled.div`
   display: flex;
   margin-top: 20px;
-  background-color: ${(props) => props.theme.cardLighter};
+  background-color: ${(props) => props.theme.card};
   border-radius: 100px;
   @media (max-width: 868px) {
     margin-bottom: 10px;
@@ -565,7 +565,7 @@ const TabButton = styled.div`
 
   &:hover {
     color: ${(props) => props.theme.text};
-    background-color: ${(props) => props.theme.buttonHoverBackground};
+    background-color: ${({ $isActive, theme }) => $isActive ? theme.activeTabHover : theme.tabHoverColor};
   }
 `;
 
@@ -672,7 +672,7 @@ const LegendLink = styled.div`
     // border: 1px solid ${(props) => props.theme.cardFaint};
     border-radius: 50px;
     padding: 8px 14px;
-    font-size: .95rem;
+    font-size: .94rem;
     user-select: none;
     // font-weight: ${({ $isActive }) => $isActive ? '500' : '400'}; 
     background-color: ${({ $isActive, theme }) => $isActive ? theme.cardLighter : 'transparent'}; 
@@ -859,9 +859,9 @@ const FullHeatmap = () => {
                 <TitleContainer>
                     <HomeTitle>Interactive Map</HomeTitle>
                     {mapType === 'HeatMap' ? (
-                        <LegendLink onClick={toggleHeatmapLegend} $isActive={showHeatmapLegend}>View Legend</LegendLink>
+                        <LegendLink onClick={toggleHeatmapLegend} $isActive={showHeatmapLegend}>Toggle Legend</LegendLink>
                     ) : (
-                        <LegendLink onClick={toggleClusterLegend} $isActive={showClusterLegend}>View Legend</LegendLink>
+                        <LegendLink onClick={toggleClusterLegend} $isActive={showClusterLegend}>Toggle Legend</LegendLink>
                     )}
                 </TitleContainer>
                 <TabContainer>

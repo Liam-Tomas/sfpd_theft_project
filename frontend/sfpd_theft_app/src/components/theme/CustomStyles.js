@@ -35,10 +35,16 @@ export const lightTheme = {
     buttonHover: '#1565c0',
     buttonSubtle: '#eaecf2',
     buttonSubtleHover: '#e5e6eb',
+    tabHoverColor: 'rgb(234 236 239)',
+    activeText: 'rgb(0 29 53)',
+    
+
 }
 
 export const darkTheme = {
     mode: 'dark',
+    backgroundColor: '#1f1f1f',
+
     primary:'#1976d2',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',
@@ -49,12 +55,12 @@ export const darkTheme = {
     buttonColorOpp: '#2564d4',
     textAlt: 'rgb(197 199 197)',
     textGrey: '#afb8c4',
-    backgroundColor: '#1f1f1f',
     homeBackground: '',
     backgroundOpp: '#1f1f1f',
     card: '#28292a',
     cardOpp: '#28292a',
     card2: '#28292a',
+    card2: '#383a3e',
     cardTab: '#2d2f31',
     cardLighter: '#2d2f31',
     cardLight: '#454746',
@@ -69,6 +75,14 @@ export const darkTheme = {
     buttonHover: '#1565c0',
     buttonSubtle: '#36393b',
     buttonSubtleHover: '#3d3f42',
-
-
+    tabHoverColor: 'rgb(52 54 54)',
+    activeText: '#c2e7fe',
+    // --mio-theme-color-surface-variant: #444746;
+    // --mio-theme-color-inverse-surface: #e3e3e3;
+    // --mio-theme-color-inverse-on-surface: #303030;
+    // --mio-theme-color-surface-1: #28292a;
+    // --mio-theme-color-surface-2: #2d2f31;
+    // --mio-theme-color-surface-3: #333438;
+    // --mio-theme-color-surface-4: #34363a;
+    // --mio-theme-color-surface-5: #383a3e;
 }
