@@ -570,7 +570,6 @@ const TabButton = styled.div`
 `;
 
 const RiskCalcMapContainer = styled.div`
-  margin-top: 10px;
   @media (max-width: 868px) {
     display: none;
   }
@@ -669,12 +668,13 @@ const TitleContainer = styled.div`
 `
 
 const LegendLink = styled.div`
-    color: ${(props) => props.theme.secondary};
+    color: ${({ $isActive, theme }) => $isActive ? theme.secondary : theme.secondary}; 
     // border: 1px solid ${(props) => props.theme.cardFaint};
     border-radius: 50px;
     padding: 8px 14px;
     font-size: .95rem;
     user-select: none;
+    // font-weight: ${({ $isActive }) => $isActive ? '500' : '400'}; 
     background-color: ${({ $isActive, theme }) => $isActive ? theme.cardLighter : 'transparent'}; 
     transition: 0.3s ease;
 

@@ -10,6 +10,7 @@ import RiskResultsModal from './RiskResultsModal';
 const StyledForm = styled.form`
     display: flex;
     gap: 10px;
+    align-items: center;
 
     @media (max-width: 868px) {
         width: 100%;

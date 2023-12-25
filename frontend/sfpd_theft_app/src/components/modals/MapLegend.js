@@ -70,15 +70,15 @@ const MapLegend = ({ onClose }) => {
       </LegendItem>
       <LegendItem>
         <ColorBox color="rgba(72, 209, 204, 0.8)" />
-        <Description>20 - 199 Incidents</Description>
+        <Description>20 - 399 Incidents</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="rgba(0, 123, 167, 0.8)" />
-        <Description>200 - 399 Incidents</Description>
+        <Description>400 - 1999 Incidents</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="rgba(0, 75, 112, 0.95)" />
-        <Description>400+ Incidents</Description>
+        <Description>2000+ Incidents</Description>
       </LegendItem>
       <SubText>
         Data sourced from DataSF covering 2018 to present.
@@ -86,5 +86,7 @@ const MapLegend = ({ onClose }) => {
     </LegendContainer>
   );
 };
+
+
 
 export default MapLegend;

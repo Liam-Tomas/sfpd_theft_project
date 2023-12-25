@@ -43,7 +43,6 @@ const ContentContainer = styled.div`
 const HomeHeader = styled.div`
     margin: 0px 10px;
     z-index: 2; // Add a higher z-index
- 
     @media (max-width: 868px) {
         margin: 0px 0px;
         text-align: left;
@@ -55,7 +54,7 @@ const HomeTitle = styled.h1`
     letter-spacing: -1px;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-weight: 500;
+    font-weight: 600;
     margin: 15px 0px 0px 0px;
 
     @media (max-width: 868px) {

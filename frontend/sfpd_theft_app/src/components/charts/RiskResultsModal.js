@@ -66,6 +66,7 @@ const ModalHeader = styled.h1`
   margin-top: 1rem;
   @media (max-width: 868px) {
     text-align: center;
+    font-size: 1.1rem;
     margin-bottom: 30px;
   }
 `;
@@ -95,7 +96,7 @@ const ResultNumber = styled.span`
   font-weight: 700;
   color: ${props => props.theme.text};
   @media (max-width: 868px) {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     padding: 0px 5px 5px 5px;
 
 
@@ -107,7 +108,7 @@ const ResultText = styled.span`
   font-size: 1rem;
   color: ${props => props.theme.textAlt};
   @media (max-width: 868px) {
-    font-size: 1rem;
+    font-size: .8rem;
 
   }
 `;
@@ -118,13 +119,14 @@ const StyledButton = styled(Button)`
   @media (max-width: 868px) {
     margin: 0 auto;
     margin-top: 30px;
+    
 }
 `;
 
 const SubText = styled.p`
     color: ${props => props.theme.textAlt};
     @media (max-width: 868px) {
-      font-size:.9rem;
+      font-size:.8rem;
     }
     
 `;

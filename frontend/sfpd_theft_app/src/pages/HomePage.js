@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,6 +15,7 @@ import sfLightIMG from '../images/sfLightIMG.jpg'
 import sfDarkIMG from '../images/sfDarkIMG.jpg'
 import LargeButton from '../components/utility/LargeButton';
 import Footer from '../components/utility/Footer';
+import RiskCalcHome from '../components/charts/RiskCalcHome';
 
 const HomeContainer = styled.div`
     background: ${props => props.theme.backgroundOpp};
@@ -216,7 +217,7 @@ const ProjectHeader = styled.h1`
 const ProjectSub = styled.p`
     margin: 0px;
     margin-left: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 45px;
     font-size: 1.15rem;
     line-height: 1.5;
     max-width: 700px;
@@ -236,7 +237,7 @@ const HomeButtonContainer = styled.div`
 `
 
 const DashContainer = styled.div`
-    margin: 85px 110px 85px 110px;
+    margin: 100px 110px 0px 110px;
 
     @media (max-width: 868px) {
         margin: 0px;
@@ -254,6 +255,8 @@ const FooterContainer = styled.div`
 `
 
 function HomePage() {
+
+
     const theme = useTheme();
 
     return (
@@ -294,7 +297,7 @@ function HomePage() {
             </MainContainer>
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
-                <ProjectSub>View dynamic and interactive crime dashboards. Enter your address and get a crime assessment for your immediate neighborhood.</ProjectSub>
+                <ProjectSub>View comprehensive and dynamic crime dashboards.</ProjectSub>
                 <ButtonContainer>
                     <StyledLink to="/vehicle-theft">
                         <Button>
@@ -342,6 +345,7 @@ function HomePage() {
                     </StyledLink>
                 </ButtonContainer>
             </DashContainer>
+            <RiskCalcHome/>
             <FooterContainer>
                 <Footer />
             </FooterContainer>

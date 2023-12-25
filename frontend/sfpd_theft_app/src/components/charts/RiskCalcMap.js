@@ -13,7 +13,7 @@ const MainContainer = styled.div`
 const StyledForm = styled.form`
     display: flex;
     gap: 22px;
-
+    align-items: center;
     @media (max-width: 868px) {
         flex-direction: column;
         width: 100%;
@@ -31,6 +31,47 @@ const HomeSubText = styled.p`
     margin-top: 15px;
   }
 `;
+
+const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Label = styled.label`
+    font-size: 0.875rem;
+    margin-bottom: 5px;
+`;
+
+const StyledInput = styled.input`
+    padding: 10px;
+    border: 2px solid ${props => props.theme.cardLight};
+    border-radius: 7px;
+    font-size: 1rem;
+    outline: none;
+    width: ${props => props.width || '170px'}; // Use width from props or default
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: ${props => props.$backgroundColor || props.theme.card}; // Use $backgroundColor from props or default
+    color: ${props => props.theme.textAlt};
+
+    &:hover  {
+        border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
+    }
+    &:focus {
+        border-color: #1976d2; // Highlight color on focus
+        box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); // Adds focus ring
+    }
+
+    @media (max-width: 868px) {
+        width: 93%;
+    }
+`;
+
+const ErrorText = styled.span`
+    font-size: 0.75rem;
+    color: #ff1744;
+    margin-top: 5px;
+`;
+
 
 const FormField = styled.div`
 

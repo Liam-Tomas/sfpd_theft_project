@@ -122,7 +122,7 @@ const StyledButton = styled.button`
   background-color: ${(props) => props.theme.primary};
   color: white; // Text color
   border: none;
-  border-radius: 5px;
+  border-radius: ${props => props.$borderRadius || '5px'};
   cursor: pointer;
   transition: background-color 0.2s;
   font-size: 1.05rem;
