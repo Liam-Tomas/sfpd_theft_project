@@ -136,6 +136,10 @@ const StyledButton = styled.button`
   &:disabled {
     cursor: not-allowed;
   }
+
+  @media (max-width: 868px) {
+    width: 85%;
+  }
 `;
 
 // Text inside the button

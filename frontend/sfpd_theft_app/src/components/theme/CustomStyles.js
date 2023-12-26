@@ -48,7 +48,7 @@ export const darkTheme = {
     primary:'#1976d2',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',
-    text: '#e3e3e3',
+    text: '#e3e3e4',
     textOpp: '#072e6f',
     textOpp: '#ffff',
     buttonColor: '#aeccfb',

@@ -46,6 +46,7 @@ const StyledInput = styled.input`
     padding: 10px;
     border: 1px solid ${props => props.theme.cardLight};
     border-radius: 4px;
+    height: 20px;
     font-size: 1rem;
     outline: none;
     width: ${props => props.width || '170px'}; // Use width from props or default

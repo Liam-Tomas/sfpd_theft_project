@@ -25,6 +25,7 @@ const ResultGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding-top: 20px;
+    
     padding-bottom: 10px;
     gap: 20px;
     @media (max-width: 868px) {
@@ -47,6 +48,8 @@ const ModalContent = styled.div`
   
   @media (max-width: 868px) {
     height: 100%;
+    width: 1000px;
+    margin: 0px;
     padding-top: 200px;
   }
 
@@ -61,13 +64,13 @@ const ModalContent = styled.div`
     }
   }
 `;
-
 const ModalHeader = styled.h1`
   margin-top: 1rem;
   @media (max-width: 868px) {
     text-align: center;
     font-size: 1.1rem;
     margin-bottom: 30px;
+
   }
 `;
 
@@ -84,7 +87,7 @@ const ResultItem = styled.div`
     left: 0; // Adjust if necessary
     top: 0; 
     bottom: 0;
-    height: 60px;
+    height: 48px;
     width: 2px; // Make sure this is wide enough to be visible
     background-color: ${props => props.theme.cardLight};
   }
@@ -92,6 +95,7 @@ const ResultItem = styled.div`
 
 const ResultNumber = styled.span`
   font-size: 1.5rem;
+  
   padding: 0px 0px 3px 0px;
   font-weight: 700;
   color: ${props => props.theme.text};
@@ -106,6 +110,7 @@ const ResultNumber = styled.span`
 
 const ResultText = styled.span`
   font-size: 1rem;
+  
   color: ${props => props.theme.textAlt};
   @media (max-width: 868px) {
     font-size: .8rem;
@@ -116,10 +121,10 @@ const ResultText = styled.span`
 const StyledButton = styled(Button)`
   margin-top: 20px;
   height: 35px;
+  
   @media (max-width: 868px) {
     margin: 0 auto;
     margin-top: 30px;
-    
 }
 `;
 

@@ -551,6 +551,7 @@ const HomeSubText = styled.p`
   line-height: 1.5;
   margin: 22px 0px;
   letter-spacing: -1px;
+
   @media (max-width: 868px) {
     font-size: 1.1rem;
     margin-top: 15px;
@@ -607,10 +608,11 @@ const InputContainer = styled.div`
 `;
 
 const SelectTitle = styled.span`
-    font-size: 16px;
-    color: ${(props) => props.theme.textAlt};  
-    font-weight: 500;
-    width: 60%;
+    font-size: 17px;
+    color: ${(props) => props.theme.text};  
+    width: 65%;
+    font-family: 'Inter','Roboto', sans-serif;
+
     @media (max-width: 868px) {
         display: none;
       }
@@ -644,15 +646,15 @@ const TitleContainer = styled.div`
 `
 
 const LegendLink = styled.div`
-    color: ${({ $isActive, theme }) => $isActive ? theme.secondary : theme.secondary}; 
+    color: ${({ $isActive, theme }) => $isActive ? theme.text : theme.secondary}; 
     // border: 1px solid ${(props) => props.theme.cardFaint};
     border-radius: 50px;
     padding: 8px 14px;
-    font-size: .94rem;
+    font-size: 16px;
     user-select: none;
     // font-weight: ${({ $isActive }) => $isActive ? '500' : '400'}; 
     background-color: ${({ $isActive, theme }) => $isActive ? theme.cardLighter : 'transparent'}; 
-    transition: 0.3s ease;
+    transition: 0.2s;
 
     &:hover {
         background-color: ${(props) => props.theme.cardLighter}; /* Change as needed */
@@ -692,16 +694,23 @@ const FullHeatmap = () => {
         control: (base, state) => ({
             ...base,
             width: '100%', // Make the select box fill the full container width
+            height: '40px',
             backgroundColor: theme.backgroundColor,
-
             borderColor: theme.cardLight,
             color: theme.text,
             cursor: 'pointer', // Setting cursor here
 
             "&:hover": {
-                borderColor: theme.buttonHoverBackground, // Change to the lighter color you want on hover
+                borderColor: theme.hoverShadowColor, // Change to the lighter color you want on hover
                 // backgroundColor: theme.card,
             },
+
+
+            ":focus": {
+                outline: 'none', // Remove default browser focus outline
+                backgroundColor: theme.card, // Change this to the color you want on focus
+            },
+    
             // other styles...
         }),
         option: (provided, state) => ({
@@ -709,7 +718,9 @@ const FullHeatmap = () => {
             backgroundColor: state.isFocused ? theme.card2 : theme.card,
             color: state.isSelected ? theme.primary : theme.text,
             cursor: 'pointer', // Set cursor to pointer for options
-
+            ':active': {
+                backgroundColor: theme.buttonHoverBackground, // Replace with your desired color
+              },
             // other styles...
         }),
         singleValue: (provided, state) => ({

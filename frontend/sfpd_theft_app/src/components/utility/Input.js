@@ -19,11 +19,11 @@ const StyledInput = styled.input`
     outline: none;
     width: ${props => props.width || '170px'}; // Use width from props or default
     transition: border-color 0.2s, box-shadow 0.2s;
-    background: ${props => props.$backgroundColor || props.theme.card}; // Use $backgroundColor from props or default
+    background: ${props => props.$backgroundColor || props.theme.card};
     color: ${props => props.theme.textAlt};
 
     &:hover  {
-        border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
+        border-color: ${props => props.theme.hoverShadowColor};
     }
     &:focus {
         border-color: #1976d2; // Highlight color on focus

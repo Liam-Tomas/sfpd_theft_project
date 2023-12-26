@@ -208,7 +208,7 @@ const ProjectHeader = styled.h1`
     font-weight: 600;
 
     @media (max-width: 868px) {
-        font-size: 32px;
+        font-size: 28px;
         margin-bottom: 10px;
     }
     
@@ -222,6 +222,11 @@ const ProjectSub = styled.p`
     line-height: 1.5;
     max-width: 700px;
     color: ${props => props.theme.textAlt};
+    @media (max-width: 868px) {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
 
 `
 

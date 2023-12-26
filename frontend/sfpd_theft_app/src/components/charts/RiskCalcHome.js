@@ -14,7 +14,10 @@ const MainContainer = styled.div`
     gap: 30px;
     align-items: center;
     justify-content: center;
-    
+    @media (max-width: 868px) {
+        min-height: 65vh;
+
+    }
 
 `
 const StyledForm = styled.form`
@@ -30,11 +33,19 @@ const StyledForm = styled.form`
 `;
 
 const FormField = styled.div`
-
+    @media (max-width: 868px) {
+        display: flex;
+        width: 85%;
+    }
 `;
 
 const CalcHeader = styled.div`
     text-align: center;
+    @media (max-width: 868px) {
+        text-align: left;
+        margin: 0px 30px
+
+    }
 
 `
 
@@ -45,7 +56,7 @@ const CalcTitle = styled.h1`
     font-weight: 600;
     
     @media (max-width: 868px) {
-        font-size: 32px;
+        font-size: 28px;
         margin-bottom: 10px;
     }
     
@@ -57,6 +68,7 @@ const CalcSub = styled.p`
     line-height: 1.5;
     color: ${props => props.theme.textAlt};
     @media (max-width: 868px) {
+        font-size: 18px;
         margin: 0px;
 
     }
@@ -66,12 +78,13 @@ const TabContainer = styled.div`
   display: flex;
   width: 80%;
   margin: 0px;
+  overflow-x: auto; // Allow horizontal scrolling
+  white-space: nowrap; // Keep all tabs in a single horizontal line
   background-color: ${(props) => props.theme.card};
   border-radius: 100px;
   @media (max-width: 868px) {
-    width: 95%;
-
-  }
+    width: 85%;
+}
 `;
 
 const TabButton = styled.div`
@@ -92,8 +105,8 @@ const TabButton = styled.div`
   }
   @media (max-width: 868px) {
     font-size: .7rem;
-    padding: 15px 0;
-
+    margin: 0px;
+    padding: 15px 7px;
 
   }
 
@@ -138,7 +151,8 @@ const StyledInput = styled.input`
     }
 
     @media (max-width: 868px) {
-        width: 93%;
+        width: 100%;
+
     }
 `;
 
