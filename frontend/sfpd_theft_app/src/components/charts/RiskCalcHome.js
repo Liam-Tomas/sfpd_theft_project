@@ -16,7 +16,8 @@ const MainContainer = styled.div`
     justify-content: center;
     @media (max-width: 868px) {
         min-height: 65vh;
-
+        gap: 10px;
+        margin: 0px 25px;
     }
 
 `
@@ -35,7 +36,7 @@ const StyledForm = styled.form`
 const FormField = styled.div`
     @media (max-width: 868px) {
         display: flex;
-        width: 85%;
+        width: 100%;
     }
 `;
 
@@ -43,8 +44,7 @@ const CalcHeader = styled.div`
     text-align: center;
     @media (max-width: 868px) {
         text-align: left;
-        margin: 0px 30px
-
+        margin: 10px 10px
     }
 
 `
@@ -63,10 +63,17 @@ const CalcTitle = styled.h1`
 `
 
 const CalcSub = styled.p`
-    margin: 0px 240px;
     font-size: 22px;
     line-height: 1.5;
+    margin: 0px 230px;
+
     color: ${props => props.theme.textAlt};
+
+    @media (max-width: 1268px) {
+        margin: 0px 115px;
+
+
+    }
     @media (max-width: 868px) {
         font-size: 18px;
         margin: 0px;
@@ -162,6 +169,19 @@ const ErrorText = styled.span`
     margin-top: 5px;
 `;
 
+const Dropdown = styled.select`
+    padding: 13px 18px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 2px solid ${props => props.theme.cardLight};
+    color: ${props => props.theme.textAlt};
+    width: 100%;
+    font-family: 'Metropolis', sans-serif;
+    @media (min-width: 868px) {
+        display: none;
+    }
+`;
+
 function RiskCalcHome() {
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
@@ -176,6 +196,18 @@ function RiskCalcHome() {
     const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
     const [selectedCrime, setSelectedCrime] = useState('vehicle-theft');
     const [apiEndpoint, setApiEndpoint] = useState('');
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 868);
+
+    const handleResize = () => {
+        setIsMobile(window.innerWidth < 868);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const getApiEndpoint = (crime) => {
         const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
@@ -290,28 +322,44 @@ function RiskCalcHome() {
     return <MainContainer>
         <CalcHeader>
             <CalcTitle>Crime Risk Calculator</CalcTitle>
-            <CalcSub>Pick a type of crime from below and then enter an SF address to get a crime assessment for the immediate neighborhood, 0.2km around the entered address.</CalcSub>
+            <CalcSub>
+                Select a type of crime from below, then enter an address in SF to recieve a crime assessment for the immediate neighborhood, within 0.2km (0.1mi) radius of the location.
+            </CalcSub>
         </CalcHeader>
-        <TabContainer>
-            <TabButton onClick={() => handleCrimeSelection('vehicle-theft')} $isActive={selectedCrime === 'vehicle-theft'}>
-                Car Break-ins
-            </TabButton>
-            <TabButton onClick={() => handleCrimeSelection('assault')} $isActive={selectedCrime === 'assault'}>
-                Assault
-            </TabButton>
-            <TabButton onClick={() => handleCrimeSelection('burglary')} $isActive={selectedCrime === 'burglary'}>
-                Burglary
-            </TabButton>
-            <TabButton onClick={() => handleCrimeSelection('drugs')} $isActive={selectedCrime === 'drugs'}>
-                Drugs
-            </TabButton>
-            <TabButton onClick={() => handleCrimeSelection('robbery')} $isActive={selectedCrime === 'robbery'}>
-                Robbery
-            </TabButton>
-            <TabButton onClick={() => handleCrimeSelection('car-robbery')} $isActive={selectedCrime === 'car-robbery'}>
-                Car Theft
-            </TabButton>
-        </TabContainer>
+        {
+            isMobile ? (
+                <Dropdown onChange={(e) => handleCrimeSelection(e.target.value)} value={selectedCrime}>
+                    <option value="vehicle-theft">Car Break-ins</option>
+                    <option value="assault">Assault</option>
+                    <option value="burglary">Burglary</option>
+                    <option value="drugs">Drugs</option>
+                    <option value="car-robbery">Car Theft</option>
+                    <option value="burglary">Robbery</option>
+                    <option value="burglary">Burglary</option>
+                </Dropdown>
+            ) : (
+                <TabContainer>
+                    <TabButton onClick={() => handleCrimeSelection('vehicle-theft')} $isActive={selectedCrime === 'vehicle-theft'}>
+                        Car Break-ins
+                    </TabButton>
+                    <TabButton onClick={() => handleCrimeSelection('assault')} $isActive={selectedCrime === 'assault'}>
+                        Assault
+                    </TabButton>
+                    <TabButton onClick={() => handleCrimeSelection('burglary')} $isActive={selectedCrime === 'burglary'}>
+                        Burglary
+                    </TabButton>
+                    <TabButton onClick={() => handleCrimeSelection('drugs')} $isActive={selectedCrime === 'drugs'}>
+                        Drugs
+                    </TabButton>
+                    <TabButton onClick={() => handleCrimeSelection('robbery')} $isActive={selectedCrime === 'robbery'}>
+                        Robbery
+                    </TabButton>
+                    <TabButton onClick={() => handleCrimeSelection('car-robbery')} $isActive={selectedCrime === 'car-robbery'}>
+                        Car Theft
+                    </TabButton>
+                </TabContainer>
+            )
+        }
         <StyledForm onSubmit={handleSubmit}>
             <FormField>
                 <StyledInput

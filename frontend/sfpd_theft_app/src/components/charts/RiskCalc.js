@@ -15,11 +15,15 @@ const StyledForm = styled.form`
     @media (max-width: 868px) {
         width: 100%;
         gap: 20px;
+        flex-direction: column;
     }
 `;
 
 const FormField = styled.div`
+    @media (max-width: 868px) {
+    width: 100%;
 
+    }
 `;
 
 function RiskCalc({ apiEndpoint }) {
@@ -56,7 +60,7 @@ function RiskCalc({ apiEndpoint }) {
             const probability = response.data.probability; 
             const avgPerMonth = response.data.average_incidents_per_month; 
             const roundedAvg = parseFloat(avgPerMonth).toFixed(2);
-            // const incidentCount = response.data.incident_count; // Assuming I have the probability value
+            // const incidentCount = response.data.incident_count; 
             const roundedProbability = parseFloat(probability * 100).toFixed(2);
             
             setProbability(roundedProbability);

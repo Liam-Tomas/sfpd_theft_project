@@ -89,6 +89,77 @@
 
 // export default Button;
 
+// import React from 'react';
+// import styled, { keyframes } from 'styled-components';
+
+// // Spinner animation
+// const spin = keyframes`
+//   0% { transform: rotate(0deg); }
+//   100% { transform: rotate(360deg); }
+// `;
+
+// // Loading spinner component
+// const LoadingSpinner = styled.div`
+//   border: 3px solid rgba(0, 0, 0, 0.1); // Light grey border
+//   border-top: 3px solid white; // White spinner
+//   border-radius: 50%;
+//   width: .8em; // Spinner size
+//   height: .8em; // Spinner size
+//   animation: ${spin} 2s linear infinite;
+//   position: absolute;
+//   transform: translate(-50%, -50%);
+// `;
+
+// // Button component
+// const StyledButton = styled.button`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: ${props => props.$width || '80px'}; // Default width
+//   height: ${props => props.$height || '35px'}; // Default height
+//   position: relative;
+//   overflow: hidden;
+//   background-color: ${(props) => props.theme.primary};
+//   color: white; // Text color
+//   border: none;
+//   border-radius: ${props => props.$borderRadius || '5px'};
+//   cursor: pointer;
+//   transition: background-color 0.2s;
+//   font-size: 1.05rem;
+//   font-weight: 500;
+//   font-family: 'Metropolis', sans-serif;
+
+//   &:hover {
+//      background-color: #1565c0; // Darken color on hover
+// }
+
+//   &:disabled {
+//     cursor: not-allowed;
+//   }
+
+//   @media (max-width: 868px) {
+//     width: 85%;
+//   }
+// `;
+
+// // Text inside the button
+// const ButtonText = styled.span`
+//   visibility: ${props => props.loading ? 'hidden' : 'visible'};
+// `;
+
+// // Button component with loading state
+// const Button = ({ children, loading, width, height, ...props }) => {
+//   const loadingStr = loading.toString();
+
+//   return (
+//     <StyledButton $width={width} $height={height} disabled={loading} {...props}>
+//       {loading && <LoadingSpinner />}
+//       <ButtonText isLoading={loadingStr}>{children}</ButtonText>
+//     </StyledButton>
+//   );
+// };
+
+// export default Button;
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -110,7 +181,7 @@ const LoadingSpinner = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-// Button component
+// Styled Button component
 const StyledButton = styled.button`
   display: flex;
   justify-content: center;
@@ -130,21 +201,21 @@ const StyledButton = styled.button`
   font-family: 'Metropolis', sans-serif;
 
   &:hover {
-     background-color: #1565c0; // Darken color on hover
-}
+    background-color: #1565c0; // Darken color on hover
+  }
 
   &:disabled {
     cursor: not-allowed;
   }
 
   @media (max-width: 868px) {
-    width: 85%;
+    width: 100%;
   }
 `;
 
 // Text inside the button
 const ButtonText = styled.span`
-  visibility: ${props => props.loading ? 'hidden' : 'visible'};
+visibility: ${props => (props.$isLoading ? 'hidden' : 'visible')};
 `;
 
 // Button component with loading state
@@ -152,7 +223,7 @@ const Button = ({ children, loading, width, height, ...props }) => {
   return (
     <StyledButton $width={width} $height={height} disabled={loading} {...props}>
       {loading && <LoadingSpinner />}
-      <ButtonText loading={loading}>{children}</ButtonText>
+      <ButtonText $isLoading={loading}>{children}</ButtonText>
     </StyledButton>
   );
 };

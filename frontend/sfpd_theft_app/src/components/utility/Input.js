@@ -32,6 +32,7 @@ const StyledInput = styled.input`
 
     @media (max-width: 868px) {
         width: 93%;
+        
     }
 `;
 
