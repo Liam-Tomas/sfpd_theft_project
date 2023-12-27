@@ -39,23 +39,27 @@ const LoadingOverlay = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
-  .leaflet-popup-content-wrapper {
-    background-color: ${props => props.theme.card}; /* Popup background */
-    border-radius: 8px; 
-    width: 100%;
-
-    box-shadow: 0 3px 14px rgba(0,0,0,0.4); 
-  }
-  
-  .leaflet-popup-content {
-    font-size: .9rem;
-    margin: 12px 20px; /* Adjust padding inside the popup */
-    color: ${props => props.theme.text}; /* Text color */
-  }
-  
   .leaflet-popup-tip {
     background-color: ${props => props.theme.card}; /* Popup background */
   }
+  .leaflet-popup-content-wrapper {
+    background-color: ${props => props.theme.card}; /* Popup background */
+    // border-radius: 8px; 
+    max-width: 250px; /* Set a fixed max-width */
+    min-height: 50px; /* Set a minimum height */
+    overflow: hidden; /* Hide overflow */
+    // box-shadow: 0 3px 14px rgba(0,0,0,0.4); 
+    
+  .leaflet-popup-content {
+    font-size: 14px;
+    // margin: 12px 20px; /* Adjust padding inside the popup */
+    color: ${props => props.theme.text}; /* Text color */
+    word-wrap: break-word; /* Ensure long words don't overflow */
+    overflow-y: auto; /* Add scroll for overflow */
+    max-height: 140px; /* Set a max-height */
+  }
+  
+
 `;
 
 
@@ -151,8 +155,8 @@ function ClusterMap({ geojsonUrl }) {
                 `<b>Date:</b> ${formattedDate}<br>` + // Use formattedDate
                 `<b>Time:</b> ${props['Incident Time']}<br>` +
                 `<b>Resolution:</b> ${props['Resolution']}<br>` +
-                `<b>District:</b> ${props['Police District']}<br>` + 
-                `<b>Description:</b> ${props['Incident Description']}`; 
+                `<b>District:</b> ${props['Police District']}<br>` +
+                `<b>Description:</b> ${props['Incident Description']}`;
 
               layer.bindPopup(popupContent);
             },
@@ -178,7 +182,7 @@ function ClusterMap({ geojsonUrl }) {
 
   return (
     <div>
-            <GlobalStyle />
+      <GlobalStyle />
 
       <TitleContainer>
         {/* Additional content can be placed here */}

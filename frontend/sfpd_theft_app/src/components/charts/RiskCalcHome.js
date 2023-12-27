@@ -222,6 +222,8 @@ function RiskCalcHome() {
                 return `${apiBaseUrl}/get-rate-drugs`;
             case 'burglary':
                 return `${apiBaseUrl}/get-rate-burglary`;
+            case 'robbery':
+                return `${apiBaseUrl}/get-rate-robbery`;
             case 'car-robbery':
                 return `${apiBaseUrl}/get-rate-car-robbery`;
             default:
@@ -231,11 +233,13 @@ function RiskCalcHome() {
 
     // Update API endpoint when the selected crime changes
     useEffect(() => {
+        console.log("Making API request to:", apiEndpoint);
         setApiEndpoint(getApiEndpoint(selectedCrime));
     }, [selectedCrime]);
 
     const handleCrimeSelection = (crime) => {
         setSelectedCrime(crime);
+        console.log(crime)
     };
     // Function to get the correct API endpoint based on the selected map
 
@@ -334,8 +338,7 @@ function RiskCalcHome() {
                     <option value="burglary">Burglary</option>
                     <option value="drugs">Drugs</option>
                     <option value="car-robbery">Car Theft</option>
-                    <option value="burglary">Robbery</option>
-                    <option value="burglary">Burglary</option>
+                    <option value="robbery">Robbery</option>
                 </Dropdown>
             ) : (
                 <TabContainer>
