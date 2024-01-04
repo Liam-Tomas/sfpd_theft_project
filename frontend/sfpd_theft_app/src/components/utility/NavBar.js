@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
 import { HomeIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import SFLogo from '../../images/sf_logo.png'
 
 const NavbarContainer = styled.div`
   z-index:1000;
@@ -34,8 +35,6 @@ const NavbarContainer = styled.div`
     transition: transform 0.2s ease;
   }
 `;
-
-
 
 const NavbarLink = styled(Link)`
   text-decoration: none;

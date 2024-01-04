@@ -5,17 +5,18 @@ import styled from "styled-components";
 import Button from '../utility/Button';
 import Input from '../utility/Input';
 import RiskResultsModal from './RiskResultsModal';
+import { useTheme } from 'styled-components';
 
 
 const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 75vh;
+    min-height: 60vh;
     gap: 30px;
     align-items: center;
     justify-content: center;
     @media (max-width: 868px) {
-        min-height: 65vh;
+        min-height: 60vh;
         gap: 10px;
         margin: 0px 25px;
     }
@@ -170,9 +171,10 @@ const ErrorText = styled.span`
 `;
 
 const Dropdown = styled.select`
-    padding: 13px 18px;
+    padding: 15px 18px;
     font-size: 16px;
     border-radius: 50px;
+    background-color:  ${props => props.theme.backgroundColor};
     border: 2px solid ${props => props.theme.cardLight};
     color: ${props => props.theme.textAlt};
     width: 100%;
@@ -182,7 +184,11 @@ const Dropdown = styled.select`
     }
 `;
 
+
+
+
 function RiskCalcHome() {
+    const theme = useTheme();
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
     const [probability, setProbability] = useState(null);
@@ -324,6 +330,7 @@ function RiskCalcHome() {
 
 
     return <MainContainer>
+
         <CalcHeader>
             <CalcTitle>Crime Risk Calculator</CalcTitle>
             <CalcSub>

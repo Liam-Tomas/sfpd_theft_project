@@ -178,7 +178,7 @@ const HomeTitle = styled.h1`
     margin-top: 0px;
     margin-bottom: 0px;
     z-index: 2; // Higher z-index than overlay
-    font-weight: 600;
+    font-weight: 500;
     @media (max-width: 868px) {
         font-size: 42px;
     }
@@ -242,10 +242,11 @@ const HomeButtonContainer = styled.div`
 `
 
 const DashContainer = styled.div`
-    margin: 100px 110px 0px 110px;
+    margin: 115px 110px 130px 110px;
 
     @media (max-width: 868px) {
         margin: 0px;
+        margin-bottom: 50px;
         padding: 10px;
       }
 
@@ -259,9 +260,13 @@ const FooterContainer = styled.div`
       }
 `
 
+const SquigglyLine = ({ color = 'black', width = 2 }) => (
+    <svg width="100%" height="20" viewBox="0 0 2000 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,10 Q25,-10 50,10 T100,10 T150,10 T200,10 T250,10 T300,10 T350,10 T400,10 T450,10 T500,10 T550,10 T600,10 T650,10 T700,10 T750,10 T800,10 T850,10 T900,10 T950,10 T1000,10 T1050,10 T1100,10 T1150,10 T1200,10 T1250,10 T1300,10 T1350,10 T1400,10 T1450,10 T1500,10 T1550,10 T1600,10 T1650,10 T1700,10 T1750,10 T1800,10 T1850,10 T1900,10 T1950,10 T2000,10" stroke={color} fill="none" strokeWidth={width} />
+    </svg>
+);
+
 function HomePage() {
-
-
     const theme = useTheme();
 
     return (
@@ -298,9 +303,9 @@ function HomePage() {
                             </StyledLink>
                         </HomeButtonContainer>
                     </HomeHeader>
-
                 </ContentContainer>
             </MainContainer>
+
             <DashContainer>
                 <ProjectHeader>Interactive Dashboards</ProjectHeader>
                 <ProjectSub>View comprehensive dashboards on SF crime data.</ProjectSub>
@@ -351,6 +356,9 @@ function HomePage() {
                     </StyledLink>
                 </ButtonContainer>
             </DashContainer>
+
+            <SquigglyLine color={theme.cardLight} />  {/* Squiggly line divider */}
+
             <RiskCalcHome />
             <FooterContainer>
                 <Footer />

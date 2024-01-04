@@ -44,7 +44,6 @@ export const lightTheme = {
 export const darkTheme = {
     mode: 'dark',
     backgroundColor: '#1f1f1f',
-
     primary:'#1976d2',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',

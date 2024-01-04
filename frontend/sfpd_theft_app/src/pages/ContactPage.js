@@ -23,19 +23,22 @@ const MainContainer = styled.div`
 
   @media (max-width: 900px) {
     padding: 10px;
+    min-height: 250px;
+
     margin-top: 70px;
+
     }
 
 `;
 
 
 const ContentContainer = styled.div`
-  position: relative; // Position relative to stack above the overlay
-  z-index: 2; // Higher z-index than the overlay
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background: ${props => props.theme.backgroundOpp};
+//   position: relative; // Position relative to stack above the overlay
+//   z-index: 2; // Higher z-index than the overlay
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+//   background: ${props => props.theme.backgroundOpp};
 
 `;
 
