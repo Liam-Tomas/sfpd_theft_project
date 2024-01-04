@@ -205,7 +205,7 @@ const ProjectHeader = styled.h1`
     color: ${props => props.theme.text};
     font-size: 45px;
     margin-left: 20px;
-    font-weight: 600;
+    font-weight: 500;
 
     @media (max-width: 868px) {
         font-size: 28px;
@@ -283,9 +283,8 @@ function HomePage() {
                             <StyledLink to="/map">
 
                                 <LargeButton
-                                    backgroundColor="#2564d4"
+                                    backgroundColor={theme.primary}
                                     color="#ffff"
-                                    hoverBackgroundColor="#205ac1"
                                 >
                                     View Map
 

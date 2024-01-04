@@ -51,7 +51,7 @@ const HomeTitle = styled.h1`
   letter-spacing: -1px;
   margin-top: 0px;
   margin-bottom: 0px;
-  font-weight: 600;
+  font-weight: 500;
   @media (max-width: 868px) {
     font-size: 1.7rem;
     margin-top: 0px;
@@ -441,7 +441,7 @@ const FullHeatmap = () => {
     return (
         <FullPageContainer>
             <TextContainer>
-                <UpdateDate>Last Updated: 12.21.2023</UpdateDate>
+                <UpdateDate>Last Updated: 01.04.2024</UpdateDate>
                 <TitleContainer>
                     <HomeTitle>Interactive Map</HomeTitle>
                     {mapType === 'HeatMap' ? (

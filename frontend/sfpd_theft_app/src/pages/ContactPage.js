@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   padding-right: 360px;
   color: ${props => props.theme.text};
   position: relative; // Needed for absolute positioning of overlay
-  min-height: 30vh;
+  min-height: 35vh;
   margin-bottom: 60px;
   display: flex; 
   flex-direction: column;
@@ -53,11 +53,11 @@ const HomeHeader = styled.div`
 `
 
 const HomeTitle = styled.h1`
-    font-size: 46px;
+    font-size: 60px;
     letter-spacing: -1px;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-weight: 600;
+    font-weight: 500;
     margin: 15px 0px 0px 0px;
 
     @media (max-width: 868px) {

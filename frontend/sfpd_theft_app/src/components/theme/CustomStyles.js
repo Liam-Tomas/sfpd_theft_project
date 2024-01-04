@@ -4,6 +4,7 @@ import flowerDarkIMG from '../../images/flowerDarkIMG.jpg'
 export const lightTheme = {
     mode: 'light',
     primary:'#1976d2',
+    // primary: '#0957d0',
     secondary: 'rgb(1 99 155)',
     text: 'rgb(31 31 31)',
     textOpp: '#ffffff',
@@ -45,6 +46,7 @@ export const darkTheme = {
     mode: 'dark',
     backgroundColor: '#1f1f1f',
     primary:'#1976d2',
+    // primary: '#0957d0',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',
     text: '#e3e3e4',

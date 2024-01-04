@@ -52,7 +52,7 @@ const StyledInput = styled.input`
     width: ${props => props.width || '170px'}; // Use width from props or default
     transition: border-color 0.2s, box-shadow 0.2s;
     background: ${props => props.$backgroundColor || props.theme.card}; // Use $backgroundColor from props or default
-    color: ${props => props.theme.textAlt};
+    color: ${props => props.theme.text};
     font-family: 'Metropolis', sans-serif;
     &::placeholder {
         color: ${props => props.theme.textAlt};
@@ -67,6 +67,9 @@ const StyledInput = styled.input`
 
     @media (max-width: 868px) {
         width: 93%;
+    }
+    &::placeholder {
+        color: ${props => props.theme.textAlt}; // This line sets the placeholder color
     }
 `;
 
@@ -167,14 +170,14 @@ const RiskCalcMap = ({ apiEndpoint, selectedMap }) => {
         "car-robbery": "Car Robbery",
         "disorderly": "Disorderly Conduct"
         // ... add the rest as needed
-      };
-    
-      const friendlyName = crimeTypeNames[selectedMap] || "Unknown Crime Type";
-    
-    
+    };
+
+    const friendlyName = crimeTypeNames[selectedMap] || "Unknown Crime Type";
+
+
 
     return <MainContainer>
-        <h3>Enter Your Address for Local Insights</h3>
+        <h3>Search Address for Local Insights</h3>
         <HomeSubText>
         </HomeSubText>
         <StyledForm onSubmit={handleSubmit}>

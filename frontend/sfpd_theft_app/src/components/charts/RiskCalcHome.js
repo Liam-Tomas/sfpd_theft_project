@@ -54,7 +54,7 @@ const CalcTitle = styled.h1`
     margin-bottom: 10px;
     color: ${props => props.theme.text};
     font-size: 45px;
-    font-weight: 600;
+    font-weight: 500;
     
     @media (max-width: 868px) {
         font-size: 28px;

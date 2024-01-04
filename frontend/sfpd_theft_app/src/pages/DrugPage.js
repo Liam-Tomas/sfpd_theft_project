@@ -61,7 +61,7 @@ function DrugPage() {
 
   return (
     <MainContainer>
-      <DashTitle>San Francisco Drug Arrest Analysis</DashTitle>
+      <DashTitle>San Francisco Drug Arrest Dashboard</DashTitle>
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-drugs`} />

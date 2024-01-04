@@ -64,23 +64,23 @@ const HeatmapLegend = ({ onClose }) => {
       <LegendTitle>Heatmap Legend</LegendTitle>
       <LegendItem>
         <ColorBox color="#b30000" />
-        <Description>&gt; 3.0% Relative Risk</Description>
+        <Description>&gt; 3.0% Relative Rate</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="#d7301f" />
-        <Description>2.0% - 3.0% Relative Risk</Description>
+        <Description>2.0% - 3.0% Relative Rate</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="#ef6548" />
-        <Description>1.5% - 2.0% Relative Risk</Description>
+        <Description>1.5% - 2.0% Relative Rate</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="#fc8d59" />
-        <Description>1.0% - 1.5% Relative Risk</Description>
+        <Description>1.0% - 1.5% Relative Rate</Description>
       </LegendItem>
       <LegendItem>
         <ColorBox color="#fdad8f" />
-        <Description>0.8% - 1.0% Relative Risk</Description>
+        <Description>0.8% - 1.0% Relative Rate</Description>
       </LegendItem>
       {/* Add more legend items as needed based on your getColor function */}
       <div>

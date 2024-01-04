@@ -2,9 +2,7 @@
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.45603759881044, 37.711407963272656 ] } },
-{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.45603759881044, 37.711407963272656 ] } },
-{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-13T00:00:00", "Incident Time": "00:00", "Resolution": "Open or Active", "Police District": "Taraval", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.456045432660275, 37.712319639752003 ] } },
-{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-15T00:00:00", "Incident Time": "11:41", "Resolution": "Cite or Arrest Adult", "Police District": "Ingleside", "Incident Description": "Homicide, W/ Gun" }, "geometry": { "type": "Point", "coordinates": [ -122.444743292072474, 37.712622216695102 ] } }
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2023-12-28T00:00:00", "Incident Time": "05:38", "Resolution": "Open or Active", "Police District": "Southern", "Incident Description": "Homicide, W/ Other Weapon" }, "geometry": { "type": "Point", "coordinates": [ -122.415127954098836, 37.775889702869158 ] } },
+{ "type": "Feature", "properties": { "Incident Category": "Homicide", "Incident Date": "2024-01-01T00:00:00", "Incident Time": "20:26", "Resolution": "Cite or Arrest Adult", "Police District": "Taraval", "Incident Description": "Manslaughter, Vehicular" }, "geometry": { "type": "Point", "coordinates": [ -122.470421704657539, 37.710653381296368 ] } }
 ]
 }
