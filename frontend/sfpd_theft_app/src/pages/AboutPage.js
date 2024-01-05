@@ -205,8 +205,8 @@ function AboutPage() {
                         </TitleContainer>
                         <Paragraph>
                             This project represents an advanced analysis of incident data reported by the San Francisco Police Department (SFPD),
-                            focusing on creating an interactive application for users to understand local crime dynamics in close to real-time.
-                            The goal is to both visualize and quantify crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application. The source of the data is DataSF. More information on the dataset can be found in the documentation: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer">Police Department Incident Reports: 2018 to Present</StyledLink>
+                            focusing on creating an interactive application for users to understand local crime dynamics.
+                            The goal is to both visualize and quantify crime patterns across San Francisco, combining advanced data analysis with a practical, user-centric application. The source of the data used in this project is DataSF. More information on the dataset can be found in the documentation: <StyledLink href=" https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener noreferrer">Police Department Incident Reports: 2018 to Present</StyledLink>
                         </Paragraph>
                         <TechIcons>
                             <div>Flask</div>

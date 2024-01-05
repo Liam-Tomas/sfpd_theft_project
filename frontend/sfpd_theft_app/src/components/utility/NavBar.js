@@ -10,6 +10,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
 import { HomeIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import SFLogo from '../../images/sf_logo.png'
+import SFLogo2 from '../../images/siteLogo.png'
+import SFLogo3 from '../../images/SFLogo3.png'
 
 const NavbarContainer = styled.div`
   z-index:1000;
@@ -236,6 +238,16 @@ const MobileSubContainer = styled.div`
   gap: 20px;
 `;
 
+const Logo = styled.div`
+  width: 45px;  // Set the width as needed
+  height: 45px;  // Set the height as needed
+  margin: 10px 0px;
+  background-image: url(${SFLogo});
+  background-size: cover;  // This will ensure the logo covers the entire div
+  background-position: center;  // This will center the logo in the div
+`;
+
+
 const Navbar = ({ theme, toggleTheme }) => {
   const location = useLocation(); // This line gets the current location
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
@@ -337,6 +349,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         </MobileHamburgerButton>
 
         <NavbarItems>
+          {/* <Logo/> */}
           <NavbarLink to="/">
             <NavbarItem
               onClick={handleHomeClick}

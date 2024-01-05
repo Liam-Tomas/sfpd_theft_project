@@ -277,7 +277,8 @@ function HomePage() {
                     <HomeHeader>
                         <TextContent>
                             <HomeTitle>SF Crime Map</HomeTitle>
-                            <HomeSubText>Explore dynamic visualizations of crime data in San Francisco, sourced from official SFPD Reports covering 2018 to present, updated every week.</HomeSubText>
+                            {/* <HomeSubText>Explore dynamic visualizations of crime data in San Francisco, sourced from official SFPD Reports covering 2018 to present, updated every week.</HomeSubText> */}
+                            <HomeSubText>Explore San Francisco crime data: View interactive maps, get neighborhood crime reports by address, and see detailed dashboards for various crime types.</HomeSubText>
                         </TextContent>
                         <HomeButtonContainer>
                             <StyledLink to="/map">

@@ -239,7 +239,6 @@ function RiskCalcHome() {
 
     // Update API endpoint when the selected crime changes
     useEffect(() => {
-        console.log("Making API request to:", apiEndpoint);
         setApiEndpoint(getApiEndpoint(selectedCrime));
     }, [selectedCrime]);
 

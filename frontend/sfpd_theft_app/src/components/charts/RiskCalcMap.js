@@ -55,8 +55,9 @@ const StyledInput = styled.input`
     color: ${props => props.theme.text};
     font-family: 'Metropolis', sans-serif;
     &::placeholder {
-        color: ${props => props.theme.textAlt};
-    }
+        color: ${props => props.theme.text};
+        opacity: 1 !important;
+        }
     &:hover  {
         border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
     }
@@ -68,9 +69,7 @@ const StyledInput = styled.input`
     @media (max-width: 868px) {
         width: 93%;
     }
-    &::placeholder {
-        color: ${props => props.theme.textAlt}; // This line sets the placeholder color
-    }
+
 `;
 
 const ErrorText = styled.span`
