@@ -34,6 +34,7 @@ export const lightTheme = {
     homeBackground: 'rgb(194 231 254 / 40%)',
     backgroundIMG: `url(${flowerIMG})`, // Light mode background image URL
     buttonHover: '#1565c0',
+    buttonHover: '#074ebc',
     buttonSubtle: '#eaecf2',
     buttonSubtleHover: '#e5e6eb',
     tabHoverColor: 'rgb(234 236 239)',
