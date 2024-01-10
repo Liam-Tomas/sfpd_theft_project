@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project represents an advanced analysis of incident data reported to the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand local crime dynamics. The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
+This project represents an advanced analysis of incident data reported by the San Francisco Police Department (SFPD), focusing on creating an interactive experience for users to understand local crime dynamics. The goal is to both visualize and quantify crime patterns across San Francisco, providing an interactive experience that combines advanced data analysis with a practical, user-centric application.
 
 ### Technologies Used:
 
