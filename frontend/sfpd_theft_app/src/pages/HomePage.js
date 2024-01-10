@@ -17,6 +17,7 @@ import LargeButton from '../components/utility/LargeButton';
 import Footer from '../components/utility/Footer';
 import RiskCalcHome from '../components/charts/RiskCalcHome';
 import Select from 'react-select';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'; // Import the search icon
 
 const HomeContainer = styled.div`
     background: ${props => props.theme.backgroundOpp};
@@ -260,6 +261,32 @@ const FooterContainer = styled.div`
       }
 `
 
+const SearchButton = styled.div`
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    padding: 18px 20px;
+    background-color: ${props => props.theme.searchColor};
+    color: ${props => props.theme.textAlt};
+    border-radius: 20px; // Rounded corners
+    cursor: pointer; // Change cursor on hover
+    display: flex; // Center icon and text
+    align-items: center; // Center items vertically
+    justify-content: center; // Center items horizontally
+    z-index: 10; // Ensure it's above other elements
+    font-size: 20px;
+    &:hover {
+        background-color: ${props => props.theme.searchHover};
+    }
+    @media (max-width: 868px) {
+        top: 15px; 
+        right: 15px; 
+        font-size: 16px;
+        padding: 14px 19px;
+
+      }
+`;
+
 const SquigglyLine = ({ color = 'black', width = 2 }) => (
     <svg width="100%" height="20" viewBox="0 0 2000 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,10 Q25,-10 50,10 T100,10 T150,10 T200,10 T250,10 T300,10 T350,10 T400,10 T450,10 T500,10 T550,10 T600,10 T650,10 T700,10 T750,10 T800,10 T850,10 T900,10 T950,10 T1000,10 T1050,10 T1100,10 T1150,10 T1200,10 T1250,10 T1300,10 T1350,10 T1400,10 T1450,10 T1500,10 T1550,10 T1600,10 T1650,10 T1700,10 T1750,10 T1800,10 T1850,10 T1900,10 T1950,10 T2000,10" stroke={color} fill="none" strokeWidth={width} />
@@ -272,8 +299,13 @@ function HomePage() {
     return (
         <HomeContainer>
             <MainContainer>
+                <StyledLink to="/search">
+                    <SearchButton>
+                        <FontAwesomeIcon icon={faSearch} /> 
+                        {/* <span style={{ marginLeft: '8px' }}>Search Address</span>  */}
+                    </SearchButton>
+                </StyledLink>
                 <ContentContainer>
-
                     <HomeHeader>
                         <TextContent>
                             <HomeTitle>SF Crime Map</HomeTitle>
@@ -354,6 +386,7 @@ function HomePage() {
                             </div>
                         </Button>
                     </StyledLink>
+
                 </ButtonContainer>
             </DashContainer>
 

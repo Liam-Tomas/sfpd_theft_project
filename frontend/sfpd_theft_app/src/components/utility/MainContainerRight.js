@@ -9,7 +9,7 @@ const  MainContainerRight = styled.div`
     @media (max-width: 900px) {
         margin: 10px 0px 10px 0px;
         padding: 10px 10px 10px 10px;
-                background-color:transparent;
+        background-color:transparent;
         box-shadow: none;
     }
     `

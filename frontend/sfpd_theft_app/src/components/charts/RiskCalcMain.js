@@ -11,7 +11,7 @@ import { useTheme } from 'styled-components';
 const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 60vh;
+    // min-height: 60vh;
     gap: 30px;
     // background-color: ${props => props.theme.card};
     align-items: center;
@@ -188,7 +188,7 @@ const Dropdown = styled.select`
 
 
 
-function RiskCalcHome() {
+function RiskCalcMain() {
     const theme = useTheme();
     const [address, setAddress] = useState('');
     const [zipcode, setZipcode] = useState('');
@@ -331,12 +331,12 @@ function RiskCalcHome() {
 
     return <MainContainer>
 
-        <CalcHeader>
+        {/* <CalcHeader>
             <CalcTitle>Crime Risk Calculator</CalcTitle>
             <CalcSub>
                 Select a type of crime from below, then enter an address in SF to recieve a crime assessment for the immediate neighborhood, within 0.2km (0.1mi) radius of the location.
             </CalcSub>
-        </CalcHeader>
+        </CalcHeader> */}
         {
             isMobile ? (
                 <Dropdown onChange={(e) => handleCrimeSelection(e.target.value)} value={selectedCrime}>
@@ -425,5 +425,5 @@ function RiskCalcHome() {
 
 }
 
-export default RiskCalcHome;
+export default RiskCalcMain;
 

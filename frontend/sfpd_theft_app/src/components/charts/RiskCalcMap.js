@@ -3,8 +3,6 @@ import axios from 'axios';
 import { categorizeRisk, getRiskCategoryColor } from './RiskUtils';
 import styled from "styled-components";
 import Button from '../utility/Button';
-import Input from '../utility/Input';
-import InputMap from '../utility/InputMap'
 import RiskResultsModal from './RiskResultsModal';
 
 const MainContainer = styled.div`

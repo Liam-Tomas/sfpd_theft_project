@@ -4,7 +4,7 @@ import flowerDarkIMG from '../../images/flowerDarkIMG.jpg'
 export const lightTheme = {
     mode: 'light',
     primary:'#1976d2',
-    // primary: '#0957d0',
+    primary: '#0957d0',
     secondary: 'rgb(1 99 155)',
     text: 'rgb(31 31 31)',
     textOpp: '#ffffff',
@@ -38,7 +38,8 @@ export const lightTheme = {
     buttonSubtleHover: '#e5e6eb',
     tabHoverColor: 'rgb(234 236 239)',
     activeText: 'rgb(0 29 53)',
-    
+    searchColor: '#c4eed0',
+    searchHover: '#b7dec2',
 
 }
 
@@ -46,7 +47,6 @@ export const darkTheme = {
     mode: 'dark',
     backgroundColor: '#1f1f1f',
     primary:'#1976d2',
-    // primary: '#0957d0',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',
     text: '#e3e3e4',
@@ -78,6 +78,8 @@ export const darkTheme = {
     buttonSubtleHover: '#3d3f42',
     tabHoverColor: 'rgb(52 54 54)',
     activeText: '#c2e7fe',
+    searchColor: '#0d5223',
+    searchHover: '#0c431d',
     // --mio-theme-color-surface-variant: #444746;
     // --mio-theme-color-inverse-surface: #e3e3e3;
     // --mio-theme-color-inverse-on-surface: #303030;

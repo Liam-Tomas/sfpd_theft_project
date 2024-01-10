@@ -1,17 +1,15 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faCircleInfo, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import Toggle from './Toggler';
 import { Link } from 'react-router-dom';
-import { faChartBar, faSquarePollVertical } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faMap } from '@fortawesome/free-solid-svg-icons';
 import { HomeIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import SFLogo from '../../images/sf_logo.png'
-import SFLogo2 from '../../images/siteLogo.png'
-import SFLogo3 from '../../images/SFLogo3.png'
 
 const NavbarContainer = styled.div`
   z-index:1000;

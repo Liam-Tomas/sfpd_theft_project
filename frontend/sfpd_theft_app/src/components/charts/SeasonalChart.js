@@ -25,7 +25,7 @@ const SeasonalChart = ({ apiEndpoint }) => {
                 const response = await axios.get(apiEndpoint);
                 const data = response.data;
 
-                // Assuming data is in the format: [{season: 'Spring', year: '2018', count: 37642}, ...]
+                // assumes data is in the format: [{season: 'Spring', year: '2018', count: 37642}, ...]
                 // Extract unique years and seasons
                 const years = [...new Set(data.map(item => item.Year))];
                 const seasons = [...new Set(data.map(item => item.Season))];

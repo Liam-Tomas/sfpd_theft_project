@@ -9,6 +9,7 @@ import AssaultPage from './pages/AssaultPage';
 import AboutPage from './pages/AboutPage';
 import DrugsPage from './pages/DrugPage';
 import ContactPage from './pages/ContactPage';
+import SearchPage from './pages/SearchPage';
 import Map from './pages/Map';
 import { GlobalStyles } from './components/theme/GlobalStyles';
 import { useDarkMode } from './components/theme/DarkMode';
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/drugs" element={<DrugsPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/map" element={<Map />} />
+                <Route path="/search" element={<SearchPage />} />
               </Routes>
             </ErrorBoundary>
           </MainContent>

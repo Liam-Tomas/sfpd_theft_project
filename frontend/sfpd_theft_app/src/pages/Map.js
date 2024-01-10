@@ -217,49 +217,42 @@ const FullHeatmap = () => {
             cursor: 'pointer', // Setting cursor here
 
             "&:hover": {
-                borderColor: theme.hoverShadowColor, // Change to the lighter color you want on hover
-                // backgroundColor: theme.card,
+                borderColor: theme.hoverShadowColor, 
             },
 
 
             ":focus": {
-                outline: 'none', // Remove default browser focus outline
-                backgroundColor: theme.card, // Change this to the color you want on focus
+                outline: 'none', 
+                backgroundColor: theme.card,
             },
     
-            // other styles...
         }),
         option: (provided, state) => ({
             ...provided,
             backgroundColor: state.isFocused ? theme.card2 : theme.card,
             color: state.isSelected ? theme.primary : theme.text,
-            cursor: 'pointer', // Set cursor to pointer for options
+            cursor: 'pointer', 
             ':active': {
-                backgroundColor: theme.buttonHoverBackground, // Replace with your desired color
+                backgroundColor: theme.buttonHoverBackground, 
               },
-            // other styles...
         }),
         singleValue: (provided, state) => ({
             ...provided,
             color: theme.text,
-            // other styles...
         }),
         menuList: (provided, state) => ({
             ...provided,
-            maxHeight: '212px', // Adjust this value to suit your needs
-            // Add other styles like padding, if necessary
+            maxHeight: '212px', 
         }),
         menu: (provided, state) => ({
             ...provided,
             zIndex: '10000',
 
-            cursor: 'pointer', // Setting cursor here
+            cursor: 'pointer', 
 
             backgroundColor: theme.card,
 
-            // other styles...
         }),
-        // Add other parts like menuList, indicatorsContainer, etc., if needed
     };
 
 
@@ -267,17 +260,17 @@ const FullHeatmap = () => {
     const apiLocalURL = 'http://127.0.0.1:5000'
     const [selectedMap, setSelectedMap] = useState('vehicle-theft');
     const [mapType, setMapType] = useState('HeatMap'); // Track the selected map type
-    const [timeFilter, setTimeFilter] = useState('last_year'); // Set initial state to 'last_year'
+    const [timeFilter, setTimeFilter] = useState('last_year'); 
     const [showHeatmapLegend, setShowHeatmapLegend] = useState(false);
     const [showClusterLegend, setShowClusterLegend] = useState(false);
     const [selectedOption, setSelectedOption] = React.useState(null);
     const [selectedCrimeType, setSelectedCrimeType] = useState({ value: 'vehicle-theft', label: 'Car Break-ins' });
     const [selectedTimeFilter, setSelectedTimeFilter] = useState({ value: 'last_year', label: 'Past Year' });
+    
     // Handle selection
     const handleChange = (option) => {
         setSelectedOption(option);
     };
-
 
     // Toggle functions for each legend
     const toggleHeatmapLegend = () => {
@@ -301,8 +294,8 @@ const FullHeatmap = () => {
     // Function to handle time filter selection
     const handleTimeFilterSelection = (selectedOption) => {
         if (selectedOption) {
-            setSelectedTimeFilter(selectedOption); // Update the state with the new selected option
-            setTimeFilter(selectedOption.value); // Update the time filter state with the new value
+            setSelectedTimeFilter(selectedOption); // Update the state with  new selected option
+            setTimeFilter(selectedOption.value); // Update time filter state with the new value
         }
     };
 
@@ -464,13 +457,13 @@ const FullHeatmap = () => {
                 <InputContainer>
                     <SelectWrapper>
                         <SelectTitle>Select Crime Type:</SelectTitle>
-                        <div style={{ width: '100%' }}> {/* Use a div to enforce width */}
+                        <div style={{ width: '100%' }}>
                             <Select
                                 styles={customStyles} // 
-                                value={selectedCrimeType} // Make sure this matches the state you're updating
+                                value={selectedCrimeType} 
                                 onChange={handleDropdownSelection}
                                 options={crimeTypeOptions}
-                                isSearchable={false} // Add this line to disable the text box on mobile
+                                isSearchable={false}
                             />
                         </div>
                     </SelectWrapper>
@@ -479,13 +472,13 @@ const FullHeatmap = () => {
                     <InputContainer>
                         <SelectWrapper>
                             <SelectTitle>Select Time Filter:</SelectTitle>
-                            <div style={{ width: '100%' }}> {/* Use a div to enforce width */}
+                            <div style={{ width: '100%' }}> 
                                 <Select
                                     styles={customStyles}
-                                    value={selectedTimeFilter} // State for this selection
+                                    value={selectedTimeFilter}
                                     onChange={handleTimeFilterSelection}
                                     options={timeFilterOptions}
-                                    isSearchable={false} // Add this line to disable the text box on mobile
+                                    isSearchable={false} 
 
                                 />
                             </div>
