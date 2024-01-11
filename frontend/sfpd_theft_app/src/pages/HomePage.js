@@ -55,7 +55,10 @@ const MainContainer = styled.div`
   
   @media (max-width: 868px) {
     @media (max-height: 750px) {
-        min-height: 85vh;
+        min-height: 70vh;
+    }
+    @media (max-height: 700px) {
+        min-height: 75vh;
     }
     margin: 70px 15px 10px 15px;
     &:before {
@@ -165,6 +168,7 @@ const HomeHeader = styled.div`
 
     @media (max-width: 868px) {
         margin: 0px;
+        margin-top:10px;
         
     }
 
