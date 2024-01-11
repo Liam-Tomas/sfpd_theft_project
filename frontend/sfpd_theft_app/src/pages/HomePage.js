@@ -54,6 +54,9 @@ const MainContainer = styled.div`
 //   }
   
   @media (max-width: 868px) {
+    @media (max-height: 750px) {
+        min-height: 85vh;
+    }
     margin: 70px 15px 10px 15px;
     &:before {
         display: none; // Remove the overlay for mobile devices

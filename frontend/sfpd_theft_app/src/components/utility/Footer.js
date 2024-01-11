@@ -44,6 +44,11 @@ const SquigglyLine = ({ color = 'black', width = 2 }) => (
     </svg>
 );
 
+const StyledLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const Footer = () => {
     const theme = useTheme();
 
@@ -55,7 +60,13 @@ const Footer = () => {
 
                 <FooterFlex>
                     <p>&copy; {new Date().getFullYear()} Created and Designed by Liam Armstrong; ltarmstrong94@gmail.com</p>
+                    <StyledLink
+            href="https://github.com/Liam-Tomas"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
                     <StyledIcon icon={faGithub} />
+                    </StyledLink>
                 </FooterFlex>
             </FooterContent>
         </FooterContainer>

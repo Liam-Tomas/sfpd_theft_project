@@ -34,6 +34,10 @@ const MainContainer = styled.div`
 
 
 const ContentContainer = styled.div`
+    @media (max-width: 900px) {
+        margin: 70px 0px 0px 0px;
+    }
+
 
 `;
 
