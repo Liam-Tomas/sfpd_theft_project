@@ -8,11 +8,40 @@ This project represents an advanced analysis of incident data reported by the Sa
 
 Flask (backend), React (frontend), Geopandas (geospatial analysis), MySQL, Leaflet, Chart.js, Pandas, OpenCage Geocoder, Matplotlib.
 
+## Project Directory Navigation
+
+This project is organized into several directories, each with a specific purpose. Below is a guide to help you navigate through these directories and understand the structure of the project.
+
+### Root Directory: `sfpd_theft_project`
+
+#### [`/backend`](/sfpd_theft_project/backend)
+- **Description**: Hosts the Flask backend of the application, managing APIs, data processing, and server-side logic.
+- **Key Components**:
+  - `app.py`: Main Flask application file.
+  - Various scripts for backend processing and API endpoints.
+
+#### [`/frontend/sfpd_theft_app`](sfpd_theft_project/frontend/sfpd_theft_app)
+- **Description**: Contains the React front-end of the application, including user interface components and client-side logic.
+- **Key Components**:
+  - `RiskCalc`: Component for risk calculation based on user input.
+  - `LeafletMap`: Component for displaying the interactive heatmap.
+
+#### [`/geo_grid`](/sfpd_theft_project/geo_grid)
+- **Description**: Contains scripts and files for geospatial analysis and creating the heatmap grid over San Francisco.
+- **Key Files**:
+  - `sf_grid.py`: Generates the geospatial grid.
+  - `heatmap_generation.py`, `cluster_generation.py`: Processes and maps incident data to the grid.
+
+#### [`/sql`](/sfpd_theft_project/sql)
+- **Description**: Includes SQL scripts for database management and query operations related to the SFPD incident reports.
+- **Key Files**:
+  - `sfpd_incidents.sql`: SQL queries for exploring and creating the incident report database.
+
 ## Key Features
 
 ### Interactive Maps: 
 
-The project offers interactive cluster and heat maps showcasing different types of crime. The cluster map enables users to zoom in and explore geo-tagged incident locations in SF. Upon zooming, clusters disperse to show precise locations, and clicking on any point reveals detailed information about each reported incident.In the heat map, users can click on specific regions to view crime rates and statistics for the selected crime type within that grid cell. 
+The project offers interactive cluster and heat maps showcasing different types of crime. The cluster map enables users to zoom in and explore geo-tagged incident locations in SF. Upon zooming, clusters disperse to show precise locations, and clicking on any point reveals detailed information about each reported incident. In the heat map, users can click on specific regions to view crime rates and statistics for the selected crime type within that grid cell. 
 
 ### Local Crime Assessment: 
 

@@ -201,7 +201,7 @@ const StyledButton = styled.button`
   font-family: 'Metropolis', sans-serif;
 
   &:hover {
-    background-color: #1565c0; // Darken color on hover
+    background-color: ${(props) => props.theme.buttonHover}; // Darken color on hover
   }
 
   &:disabled {

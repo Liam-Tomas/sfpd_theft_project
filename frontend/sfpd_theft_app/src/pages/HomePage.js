@@ -270,19 +270,19 @@ const FooterContainer = styled.div`
 
 const SearchButton = styled.div`
     position: absolute; 
-    top: 20px; 
-    right: 20px;
-    padding: 18px 20px;
+    top: 15px; 
+    right: 15px;
+    padding: 19px 21px;
     background-color: ${props => props.theme.searchColor};
     color: ${props => props.theme.textAlt};
-    border-radius: 20px; 
+    border-radius: 18px; 
     cursor: pointer; 
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
     transition: 0.15s;
-    font-size: 20px;
+    font-size: 17px;
     &:hover {
         background-color: ${props => props.theme.searchHover};
     }
