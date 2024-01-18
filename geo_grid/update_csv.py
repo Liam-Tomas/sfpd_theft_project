@@ -1,5 +1,7 @@
 import requests
 import os
+import time
+
 
 def download_csv(url, file_name):
     # Ensure the file name ends with .csv
@@ -22,8 +24,11 @@ def download_csv(url, file_name):
 # URL of the CSV file
 csv_url = 'https://data.sfgov.org/api/views/wg3w-h783/rows.csv?accessType=DOWNLOAD'
 
+# Append a unique cache-buster parameter
+csv_url_with_cache_buster = f"{csv_url}&t={int(time.time())}"
+
 # Name of the CSV file
 csv_file_name = 'sfpd_incident_data_new'
 
 # Run the download function
-download_csv(csv_url, csv_file_name)
+download_csv(csv_url_with_cache_buster, csv_file_name)

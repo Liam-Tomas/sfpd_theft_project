@@ -434,7 +434,7 @@ const FullHeatmap = () => {
     return (
         <FullPageContainer>
             <TextContainer>
-                <UpdateDate>Last Updated: 01.04.2024</UpdateDate>
+                <UpdateDate>Last Updated: 01.18.2024</UpdateDate>
                 <TitleContainer>
                     <HomeTitle>Interactive Map</HomeTitle>
                     {mapType === 'HeatMap' ? (
