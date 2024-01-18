@@ -77,17 +77,6 @@ Overall, the project leverages the strengths of SQL, Python and Reacht to perfor
 
 ## Repository Contents
 
-### Structure
-
-#### `/geo_grid`
-- **Description**: Contains files for creating the geojson files for the heatmap grid over SF.
-#### `/backend`
-- **Description**: Contains main Flask backend. 
-#### `/frontend`
-- **Description**: Contains React frontend.
-#### `/sql`
-- **Description**: Contains SQL queries for exploring and creating the SPFD incident report database.
-
 ### `/geo_grid`
 
 #### `sf_grid.py`
@@ -100,7 +89,7 @@ Overall, the project leverages the strengths of SQL, Python and Reacht to perfor
   - **Setting Coordinate Reference System (CRS)**: The script sets the coordinate reference system (CRS) of the grid to EPSG:4326, which is a common geographic coordinate system that uses latitude and longitude.
   - **GeoJSON File Output**: Finally, the script saves the grid as a GeoJSON file. This format is chosen because it's compatible with a wide range of GIS (Geographic Information System) software and can be easily used for further spatial analysis or visualization.
 
-#### `theft_incident_probability.py`
+#### `heatmap_generation.py`
 
 - **Description**: Calculates and visualizes the relative rate of theft incidents within each grid cell of San Francisco. The key output of this script is a heatmap, which is later integrated into the `LeafletMap` React component for interactive web visualization.
 - **Features**:
@@ -135,6 +124,8 @@ Overall, the project leverages the strengths of SQL, Python and Reacht to perfor
   - **Customizable Layers**: Offers the capability to toggle between different map layers for personalized viewing preferences.
 
 ### `/backend`
+
+#### `app.py`
 
 - **Endpoints**:
   - `/get_probability`: A endpoint that calculates the relative rate of vehicle theft by a given location.
