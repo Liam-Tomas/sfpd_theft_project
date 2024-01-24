@@ -89,7 +89,7 @@ function ClusterMap({ geojsonUrl }) {
         id: getMapboxTileLayerId(),
         tileSize: 512,
         zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoibHRhcm1zdHJvbmciLCJhIjoiY2xxYWtwZzdnMjFidDJrbzFyd3h2ZzF5ciJ9.1_OaoYb9KYnYACgcKNYohA' // Replace with your Mapbox access token
+        accessToken: process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
       }).addTo(mapRef.current);
     }
   };
