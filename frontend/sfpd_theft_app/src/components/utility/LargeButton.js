@@ -20,9 +20,9 @@ const RippleSpan = styled.span`
 `;
 
 const StyledButton = styled.button`
-    padding: ${({ $padding }) => $padding || '25px 35px'};
+    padding: ${({ $padding }) => $padding || '23px 33px'};
     font-family: 'Metropolis', sans-serif;
-    font-size: ${({ $fontSize }) => $fontSize || '1.5rem'};
+    font-size: ${({ $fontSize }) => $fontSize || '1.4rem'};
     font-weight: 500;
     background-color: ${({ $backgroundColor, theme }) => $backgroundColor || theme.buttonColor};
     color: ${({ $color, theme }) => $color || theme.textOpp};

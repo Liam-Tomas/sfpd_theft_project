@@ -182,7 +182,7 @@ const TextContent = styled.div`
 `;
 
 const HomeTitle = styled.h1`
-    font-size: 112px;
+    font-size: 104px;
     margin-top: 0px;
     margin-bottom: 0px;
     z-index: 2; // Higher z-index than overlay
@@ -197,8 +197,8 @@ const HomeSubText = styled.p`
     font-weight: 400;
     font-size: 22px;
     line-height:1.5;
-    margin: 5px 0px 25px 0px;
-    padding: 0px 40px 0px 20px;
+    margin: 8px 0px 29px 0px;
+    padding: 0px 20px 0px 20px;
 
     @media (max-width: 868px) {
         font-size: 1.1rem;
