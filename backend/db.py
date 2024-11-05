@@ -10,4 +10,3 @@ def get_db_connection():
         port=int(os.getenv('DB_PORT'))  # Assuming PlanetScale provides a port
     )
     return conn
-

@@ -183,7 +183,6 @@ const LegendLink = styled.div`
 
 
 
-
 const crimeTypeOptions = [
     { value: 'vehicle-theft', label: 'Car Break-ins' },
     { value: 'assault', label: 'Assault' },
@@ -311,27 +310,27 @@ const FullHeatmap = () => {
     const getHeatmapGeoJsonUrl = () => {
         switch (selectedMap) {
             case 'vehicle-theft':
-                return '/sf_heatmap_theft_new.geojson';
+                return '/heatmaps/sf_heatmap_theft_new.geojson';
             case 'mental-health':
-                return '/sf_heatmap_mental_new.geojson';
+                return '/heatmaps/sf_heatmap_mental_health_new.geojson';
             case 'assault':
-                return '/sf_heatmap_assault_new.geojson';
+                return '/heatmaps/sf_heatmap_assault_new.geojson';
             case 'drugs':
-                return '/sf_heatmap_drugs_new.geojson';
+                return '/heatmaps/sf_heatmap_drugs_new.geojson';
             case 'burglary':
-                return '/sf_heatmap_burglary_new.geojson';
+                return '/heatmaps/sf_heatmap_burglary_new.geojson';
             case 'robbery':
-                return '/sf_heatmap_robbery_new.geojson';
+                return '/heatmaps/sf_heatmap_robbery_new.geojson';
             case 'homicide':
-                return '/sf_heatmap_homicide_new.geojson';
+                return '/heatmaps/sf_heatmap_homicide_new.geojson';
             case 'prostitution':
-                return '/sf_heatmap_prostitution_new.geojson';
+                return '/heatmaps/sf_heatmap_prostitution_new.geojson';
             case 'car-robbery':
-                return '/sf_heatmap_car-robbery_new.geojson';
+                return '/heatmaps/sf_heatmap_car-robbery_new.geojson';
             case 'disorderly':
-                return '/sf_heatmap_disorderly_new.geojson';
+                return '/heatmaps/sf_heatmap_disorderly_new.geojson';
             default:
-                return '/sf_heatmap_theft_new.geojson';
+                return '/heatmaps/sf_heatmap_theft_new.geojson';
         }
     };
 
@@ -351,7 +350,7 @@ const FullHeatmap = () => {
 
     // Function to get the correct GeoJSON URL based on the selected map and time filter
     const getClusterGeoJsonUrl = () => {
-        let baseName = '/sfpd_cluster_';
+        let baseName = '/clustermaps/sfpd_cluster_';
         switch (selectedMap) {
             case 'vehicle-theft':
                 baseName += 'theft';

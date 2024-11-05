@@ -1,9 +1,0 @@
-{
-"type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-12-22T00:00:00", "Incident Time": "20:50", "Resolution": "Cite or Arrest Adult", "Police District": "Mission", "Incident Description": "Solicits For Act Of Prostitution" }, "geometry": { "type": "Point", "coordinates": [ -122.415928746768074, 37.760433260443833 ] } },
-{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-12-22T00:00:00", "Incident Time": "12:10", "Resolution": "Cite or Arrest Adult", "Police District": "Mission", "Incident Description": "Soliciting or Engaging In Lewd Conduct" }, "geometry": { "type": "Point", "coordinates": [ -122.411206839765995, 37.762972726235517 ] } },
-{ "type": "Feature", "properties": { "Incident Category": "Prostitution", "Incident Date": "2023-12-22T00:00:00", "Incident Time": "12:10", "Resolution": "Cite or Arrest Adult", "Police District": "Mission", "Incident Description": "Solicits For Act Of Prostitution" }, "geometry": { "type": "Point", "coordinates": [ -122.411206839765995, 37.762972726235517 ] } }
-]
-}

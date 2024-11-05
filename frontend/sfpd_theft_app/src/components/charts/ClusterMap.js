@@ -163,7 +163,7 @@ function ClusterMap({ geojsonUrl }) {
             pointToLayer: function (feature, latlng) {
               // Use the SVG as a custom icon
               var customIcon = L.icon({
-                iconUrl: '/icons/customIcon.svg', // URL to your SVG file in the public directory
+                iconUrl: '/icons/customIcon.svg', // URL to the SVG file in the public directory
                 iconSize: [24, 24], // Size of the icon
                 iconAnchor: [12, 12] // Point of the icon which will correspond to marker's location
               });
@@ -185,7 +185,6 @@ function ClusterMap({ geojsonUrl }) {
       <GlobalStyle />
 
       <TitleContainer>
-        {/* Additional content can be placed here */}
       </TitleContainer>
       <StyledLeaflet id="map" />
     </div>

@@ -493,3 +493,182 @@ def drug_type():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+
+    
+
+
+
+# app.py
+# from dotenv import load_dotenv
+# load_dotenv()
+# import os
+# import json
+# import logging
+# import redis
+# import geopandas as gpd
+
+# from flask import Flask, request, jsonify
+# from flask_cors import CORS
+# from opencage.geocoder import OpenCageGeocode
+# from shapely.geometry import Point
+
+# from queries import (
+#     get_top_theft_locations, get_price_breakdown, get_year_breakdown,
+#     get_status_breakdown, get_time_breakdown, get_supervisor_breakdown
+# )
+# from mental_queries import (
+#     get_top_mental_locations, get_mental_year, get_mental_resolution,
+#     get_mental_time, get_mental_supervisor, get_mental_seasons
+# )
+# from assault_queries import (
+#     get_top_assault_locations, get_assault_year, get_assault_resolution,
+#     get_assault_time, get_assault_supervisor, get_assault_type
+# )
+# from drug_queries import (
+#     get_drug_locations, get_drug_year, get_drug_resolution,
+#     get_drug_time, get_drug_supervisor, get_drug_type
+# )
+
+# app = Flask(__name__)
+# CORS(app)
+# app.logger.setLevel(logging.INFO)
+
+# # Redis configuration
+# redis_client = redis.Redis(
+#     host=os.getenv('REDIS_HOST'),
+#     port=os.getenv('REDIS_PORT', '6379'),
+#     password=os.getenv('REDIS_PASSWORD', ''),
+#     decode_responses=True
+# )
+
+# # Constants
+# NINETY_DAYS_IN_SECONDS = 90 * 24 * 60 * 60
+
+# # Load GeoJSON files into a dictionary
+# GRID_FILES = {
+#     'theft': 'heatmaps/sf_heatmap_theft_new.geojson',
+#     'mental_health': 'heatmaps/sf_heatmap_mental_new.geojson',
+#     'assault': 'heatmaps/sf_heatmap_assault_new.geojson',
+#     'drugs': 'heatmaps/sf_heatmap_drugs_new.geojson',
+#     'burglary': 'heatmaps/sf_heatmap_burglary_new.geojson',
+#     'robbery': 'heatmaps/sf_heatmap_robbery_new.geojson',
+#     'prostitution': 'heatmaps/sf_heatmap_prostitution_new.geojson',
+#     'disorderly': 'heatmaps/sf_heatmap_disorderly_new.geojson',
+#     'car_robbery': 'heatmaps/sf_heatmap_car-robbery_new.geojson',
+#     'homicide': 'heatmaps/sf_heatmap_homicide_new.geojson',
+# }
+
+# grids = {name: gpd.read_file(path) for name, path in GRID_FILES.items()}
+
+# # Initialize OpenCage Geocoder
+# geocoder = OpenCageGeocode(os.getenv('OPENCAGE_API_KEY'))
+
+# @app.route('/')
+# def index():
+#     return "Welcome to the SFPD Theft Analysis Project!"
+
+# @app.route('/test', methods=['GET'])
+# def test():
+#     return jsonify({"message": "Test successful"})
+
+# def calculate_rate(grid, data):
+#     """Calculate risk rate based on user location."""
+#     latitude = data.get('latitude')
+#     longitude = data.get('longitude')
+#     address = data.get('address')
+
+#     if not (latitude and longitude) and not address:
+#         return {"error": "Missing latitude/longitude or address."}
+
+#     if address:
+#         location_results = geocoder.geocode(address)
+#         if not location_results:
+#             return {"error": "Address could not be geocoded."}
+#         first_result = location_results[0]
+#         latitude = first_result['geometry']['lat']
+#         longitude = first_result['geometry']['lng']
+#         city = first_result['components'].get('city', '').lower()
+#         state = first_result['components'].get('state', '').lower()
+#         if 'san francisco' not in city or 'california' not in state:
+#             return {"error": "Address is not in San Francisco, CA."}
+
+#     user_location = Point(float(longitude), float(latitude))
+#     nearest_cell = grid.distance(user_location).idxmin()
+#     grid_row = grid.loc[nearest_cell]
+
+#     return {
+#         "latitude": latitude,
+#         "longitude": longitude,
+#         "probability": grid_row.get('probability'),
+#         "incident_count": grid_row.get('incident_count'),
+#         "incident_day_of_week": grid_row.get('Incident Day of Week'),
+#         "police_district": grid_row.get('Police District'),
+#         "average_incidents_per_month": grid_row.get('average_incidents_per_month')
+#     }
+
+# def cache_response(cache_key, data_fetch_function):
+#     """Helper function to handle caching."""
+#     cached_data = redis_client.get(cache_key)
+#     if cached_data:
+#         app.logger.info(f"Serving from cache: {cache_key}")
+#         return jsonify(json.loads(cached_data))
+
+#     data = data_fetch_function()
+#     redis_client.setex(
+#         cache_key,
+#         NINETY_DAYS_IN_SECONDS,
+#         json.dumps([dict(row) for row in data])
+#     )
+#     app.logger.info(f"Fetched and cached data for: {cache_key}")
+#     return jsonify([dict(row) for row in data])
+
+# # Risk Rate Calculator Routes
+# @app.route('/get_probability', methods=['POST'])
+# def get_probability():
+#     return jsonify(calculate_rate(grids['theft'], request.json))
+
+# @app.route('/get_rate/<incident_type>', methods=['POST'])
+# def get_rate(incident_type):
+#     if incident_type not in grids:
+#         return jsonify({"error": "Invalid incident type."}), 400
+#     return jsonify(calculate_rate(grids[incident_type], request.json))
+
+# # Mapping of endpoints to their corresponding functions
+# DATA_ENDPOINTS = {
+#     'top-theft-locations': get_top_theft_locations,
+#     'get-price-breakdown': get_price_breakdown,
+#     'get-year-breakdown': get_year_breakdown,
+#     'get-status-breakdown': get_status_breakdown,
+#     'get-time-breakdown': get_time_breakdown,
+#     'get-supervisor-breakdown': get_supervisor_breakdown,
+#     'get-mental-locations': get_top_mental_locations,
+#     'get-mental-year': get_mental_year,
+#     'get-mental-resolution': get_mental_resolution,
+#     'get-mental-time': get_mental_time,
+#     'get-mental-supervisor': get_mental_supervisor,
+#     'get-mental-seasons': get_mental_seasons,
+#     'get-assault-locations': get_top_assault_locations,
+#     'get-assault-year': get_assault_year,
+#     'get-assault-resolution': get_assault_resolution,
+#     'get-assault-time': get_assault_time,
+#     'get-assault-supervisor': get_assault_supervisor,
+#     'get-assault-type': get_assault_type,
+#     'get-drug-locations': get_drug_locations,
+#     'get-drug-year': get_drug_year,
+#     'get-drug-resolution': get_drug_resolution,
+#     'get-drug-time': get_drug_time,
+#     'get-drug-supervisor': get_drug_supervisor,
+#     'get-drug-type': get_drug_type,
+# }
+
+# @app.route('/<endpoint>', methods=['GET'])
+# def data_endpoint(endpoint):
+#     if endpoint not in DATA_ENDPOINTS:
+#         return jsonify({"error": "Invalid endpoint."}), 404
+#     return cache_response(endpoint, DATA_ENDPOINTS[endpoint])
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
