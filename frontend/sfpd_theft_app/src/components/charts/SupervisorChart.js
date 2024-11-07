@@ -1,9 +1,8 @@
-
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ResponsiveTreeMap } from '@nivo/treemap';
-import axios from 'axios';
 import MainContainer from '../utility/MainContainer';
 import { ThemeContext } from 'styled-components';
+import { CrimeData } from '../charts/CrimeData'; // Adjust the path as necessary
 
 // Neighborhoods in each Supervisor District
 const neighborhoodsByDistrict = {
@@ -21,30 +20,23 @@ const neighborhoodsByDistrict = {
   "4": ["Sunset District", "Parkside", "Outer Sunset"]
 };
 
-const SupervisorChart = ({ apiEndpoint }) => {
+const SupervisorChart = ({ chartData }) => {
     const theme = useContext(ThemeContext);
-    const [data, setData] = useState({ children: [] });
 
-    useEffect(() => {
-        axios.get(apiEndpoint)
-            .then(response => {
-                setData({
-                    name: 'All Districts',
-                    children: response.data.map(item => ({
-                        name: `District ${item.Supervisor_District} - ${neighborhoodsByDistrict[item.Supervisor_District.toString()].join(', ')}`,
-                        value: item.Total_Incidents
-                    }))
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, [apiEndpoint]);
+    const formattedData = {
+        name: 'All Districts',
+        children: chartData.map(item => ({
+            name: `District ${item.Supervisor_District} - ${neighborhoodsByDistrict[item.Supervisor_District.toString()].join(', ')}`,
+            value: item.Total_Incidents
+        }))
+    };
 
     return (
         <MainContainer>
             <h3>Breakdown by Supervisor District</h3>
             <div style={{ height: 380, color: 'black' }}>
                 <ResponsiveTreeMap
-                    data={data}
+                    data={formattedData}
                     identity="name"
                     value="value"
                     margin={{ top: 10, right: 10, bottom: 10, left: 10 }}

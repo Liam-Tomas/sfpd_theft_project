@@ -9,6 +9,8 @@ import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
 import SeasonalChart from '../components/charts/SeasonalChart';
 import PriceBreakdownChart from '../components/charts/PriceBreakdownChart';
+import { CrimeData } from '../components/charts/CrimeData'; // Adjust the path as necessary
+import { MentalHealthData } from '../components/data/MentalHealthData'
 
 const MainContainer = styled.div`
     padding: 5px 21px;
@@ -66,36 +68,30 @@ function MentalPage() {
       <StyledGrid>
         <FirstRowLeft>
           <RiskCalc apiEndpoint={`${apiBaseUrl}/get_rate_mental_health`} />
-          <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-mental-locations`} />
+          <TopLocationsChart chartData={MentalHealthData.mentalTopLocations} />
         </FirstRowLeft>
         <FirstRowRight>
-          <LeafletMap geojsonUrl="/sf_heatmap_mental_new.geojson" />
+          <LeafletMap geojsonUrl="/heatmaps/sf_heatmap_mental_health_new.geojson" />
         </FirstRowRight>
         <SecondRowItem>
-          <YearChart
-            apiEndpoint={`${apiBaseUrl}/get-mental-year`}
-            chartLabel="Total Incidents per Year"
-          />
+        <YearChart chartData={MentalHealthData.mentalYear} chartLabel="Total Incidents per Year" />
+
         </SecondRowItem>
         <SecondRowItem2>
-          <TimeOfDayChart 
-            apiEndpoint={`${apiBaseUrl}/get-mental-time`} 
-            chartHeight={245} 
-            chartWidth={50} />
+        <TimeOfDayChart chartData={MentalHealthData.mentalTimeOfDay} chartHeight={245} chartWidth={50} />
+
           {/* <PriceBreakdownChart/> */}
         </SecondRowItem2>
         <SecondRowItemSmall>
-          <ResolutionStatusChart 
-            apiEndpoint={`${apiBaseUrl}/get-mental-resolution`} 
-            resolutionField="Resolution" />
+          <ResolutionStatusChart chartData={MentalHealthData.mentalResolution} resolutionField="Resolution" />
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart 
-            apiEndpoint={`${apiBaseUrl}/get-mental-supervisor`} />
+          <SupervisorChart chartData={CrimeData.mentalSupervisorIncidents} />
+
         </ThirdRowItem>
         <ThirdRowItem>
-          <SeasonalChart 
-            apiEndpoint={`${apiBaseUrl}/get-mental-seasons`} /> 
+          <SeasonalChart chartData={MentalHealthData.mentalSeasons} />
+
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>

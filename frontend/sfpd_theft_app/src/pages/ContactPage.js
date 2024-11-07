@@ -78,7 +78,8 @@ const HomeSubText = styled.p`
         font-size: 1.1rem;
         margin-top: 15px;
 
-    }`
+    }
+        `
 
 
 const MyButtonContainer = styled.p`

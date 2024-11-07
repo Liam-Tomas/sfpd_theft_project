@@ -11,7 +11,7 @@ import { useTheme } from 'styled-components';
 const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 60vh;
+    min-height: 70vh;
     gap: 30px;
     // background-color: ${props => props.theme.card};
     align-items: center;
@@ -44,6 +44,7 @@ const FormField = styled.div`
 
 const CalcHeader = styled.div`
     text-align: center;
+    max-width: 1400px;
     @media (max-width: 868px) {
         text-align: left;
         margin: 10px 10px
@@ -151,7 +152,7 @@ const StyledInput = styled.input`
         border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
     }
     &:focus {
-        border-color: #1976d2; // Highlight color on focus
+        border-color: ${props => props.theme.secondary};
         box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); // Adds focus ring
     }
     font-family: 'Metropolis', sans-serif;
@@ -334,7 +335,7 @@ function RiskCalcHome() {
         <CalcHeader>
             <CalcTitle>Crime Risk Calculator</CalcTitle>
             <CalcSub>
-                Select a type of crime from below, then enter an address in SF to recieve a crime assessment for the immediate neighborhood, within 0.2km (0.1mi) radius of the location.
+                Select a type of crime, then enter an address in SF to recieve a crime assessment for the immediate neighborhood, within 0.2km (0.1mi) radius of the location.
             </CalcSub>
         </CalcHeader>
         {

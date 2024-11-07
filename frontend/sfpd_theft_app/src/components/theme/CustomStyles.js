@@ -5,12 +5,15 @@ export const lightTheme = {
     mode: 'light',
     primary:'#1976d2',
     primary: '#0957d0',
+    primaryText: '#fff',
+
     secondary: 'rgb(1 99 155)',
     text: 'rgb(31 31 31)',
     textOpp: '#ffffff',
     buttonColor: '#2564d4',
     buttonColorOpp: '#c2e7fe',
     textAlt: 'rgb(69 71 70)',
+
     textGrey: '#afb8c4',
     backgroundColor: '#f8fafd',
     backgroundColor: '#ffffff',
@@ -49,15 +52,28 @@ export const darkTheme = {
     backgroundColor: '#1f1f1f',
     backgroundColor: '#141314',
     primary:'#1976d2',
-    // primary: '#9f86ff',
+    // purple version:
+    primary: '#9f86ff',
     secondary:'#afcbfb',
     secondary:'#c2e7fe',
+    secondary: '#ccb7ff',
     text: '#e3e3e4',
+
+    // Main button text color:
+    // blue version:
+    primaryText: '#fff',
+    // purple version:
+    primaryText: '#1a0056',
     textOpp: '#072e6f',
     textOpp: '#ffff',
+    textOpp:'#1a0056',
     buttonColor: '#aeccfb',
     buttonColorOpp: '#2564d4',
+    buttonColorOpp: '#46455a',
+
     textAlt: 'rgb(197 199 197)',
+    // purple versoin: 
+    textAlt: '#cbc4cd',
     textGrey: '#afb8c4',
     homeBackground: '',
     backgroundOpp: '#141314',
@@ -69,27 +85,31 @@ export const darkTheme = {
     cardTab: '#2d2f31',
     cardLighter: '#211f21',
     cardLight: '#454746',
+    cardLight: '#4d4356',
     cardFaint: '#454746',
     borderColor: '#28292a',
     borderColor2: 'rgb(197 199 197)',
     hoverShadowColor: '#afb8c4', 
+
+    // blue version:
     buttonHoverBackground: '#004a77',
+    // purple versoin:
+    buttonHoverBackground: '#46455a',
     OppHoverBackground: 'rgb(194 231 254)',
     homeBackground: '#262626',
     backgroundIMG: `url(${flowerDarkIMG})`, // Dark mode background image URL
     buttonHover: '#1565c0',
-    buttonSubtle: '#36393b',
-    buttonSubtleHover: '#3d3f42',
+    // purple version:
+    buttonHover: '#a893ff',
+    buttonSubtle: '#2a292b',
+    buttonSubtleHover: '#323133',
     tabHoverColor: 'rgb(52 54 54)',
+    tabHoverColor: '#2e2c2e',
     activeText: '#c2e7fe',
+    activeText: '#e2e0fb',
     searchColor: '#0d5223',
+    searchColor: '#553f5e',
     searchHover: '#0c431d',
-    // --mio-theme-color-surface-variant: #444746;
-    // --mio-theme-color-inverse-surface: #e3e3e3;
-    // --mio-theme-color-inverse-on-surface: #303030;
-    // --mio-theme-color-surface-1: #28292a;
-    // --mio-theme-color-surface-2: #2d2f31;
-    // --mio-theme-color-surface-3: #333438;
-    // --mio-theme-color-surface-4: #34363a;
-    // --mio-theme-color-surface-5: #383a3e;
+    //puirple version
+    searchHover: '#4a374f',
 }

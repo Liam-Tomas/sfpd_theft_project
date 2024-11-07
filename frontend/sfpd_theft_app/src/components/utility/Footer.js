@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components';
 
 const FooterContainer = styled.footer`
 // margin: 30px 110px 0px 110px;
+
 `;
 
 const Divider = styled.div`
@@ -17,6 +18,10 @@ const Divider = styled.div`
 const FooterContent = styled.div`
   padding: 15px 5px;
   font-weight: 400;
+    user-select: text;
+  -webkit-autofill: off; /* Prevent autofill highlight */
+  -webkit-text-fill-color: inherit;user-select: text; /* Ensures selectable text but no odd highlights */
+
   font-size: 16px;
   color: ${props => props.theme.cardFaint};
   @media (max-width: 868px) {

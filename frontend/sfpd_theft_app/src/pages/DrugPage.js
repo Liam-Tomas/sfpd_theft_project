@@ -8,47 +8,46 @@ import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
 import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
 import AssaultTypesChart from '../components/charts/AssaultTypeCharts';
-
+import { CrimeData } from '../components/charts/CrimeData'; // Adjust the path as necessary
+import { DrugData } from '../components/data/DrugData'
+ 
 const MainContainer = styled.div`
   padding: 5px 20px;
 `;
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 6 columns for easier division */
+  grid-template-columns: repeat(10, 1fr); 
   
   @media (max-width: 1300px) {
-    grid-template-columns: 1fr; /* Use a single column on smaller screens */
+    grid-template-columns: 1fr; 
   }
- `;
+`;
 
 const FirstRowLeft = styled.div`
-  grid-column: span 5; /* Span 3 columns */
+  grid-column: span 5; 
 `;
 
 const FirstRowRight = styled.div`
-  grid-column: span 5; /* Span 3 columns */
+  grid-column: span 5; 
 `;
 
 const SecondRowItem = styled.div`
-  grid-column: span 4; /* Span 2 columns */
+  grid-column: span 4; 
 `;
 
 const SecondRowItem2 = styled.div`
-  grid-column: span 4; /* Span 2 columns */
+  grid-column: span 4; 
   margin-right: 20px;
-
 `;
 
-
 const SecondRowItemSmall = styled.div`
-  grid-column: span 2; /* Span 2 columns */
+  grid-column: span 2; 
 `;
 
 const ThirdRowItem = styled.div`
-  grid-column: span 5; /* Span 2 columns */
-
-`
+  grid-column: span 5; 
+`;
 
 const DashTitle = styled.h1`
   @media (max-width: 880px) {
@@ -57,6 +56,7 @@ const DashTitle = styled.h1`
 `;
 
 function DrugPage() {
+
   const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
 
   return (
@@ -64,44 +64,40 @@ function DrugPage() {
       <DashTitle>San Francisco Drug Arrest Dashboard</DashTitle>
       <StyledGrid>
         <FirstRowLeft>
-          <RiskCalc apiEndpoint={`${apiBaseUrl}/get-rate-drugs`} />
-          <TopLocationsChart apiEndpoint={`${apiBaseUrl}/get-drug-locations`} />
+        <RiskCalc apiEndpoint={`${apiBaseUrl}/get_rate_drugs`} />
+          <TopLocationsChart chartData={DrugData.drugTopLocations} />
         </FirstRowLeft>
         <FirstRowRight>
-          <LeafletMap geojsonUrl="/sf_heatmap_drugs_new.geojson" />
+          <LeafletMap geojsonUrl="/heatmaps/sf_heatmap_drugs_new.geojson" />
         </FirstRowRight>
         <SecondRowItem>
           <YearChart
-            apiEndpoint={`${apiBaseUrl}/get-drug-year`}
+            chartData={DrugData.drugYear} // Replace with specific Year data for drugs if available
             chartLabel="Total Incidents per Year"
           />
         </SecondRowItem>
         <SecondRowItem2>
           <TimeOfDayChart 
-          apiEndpoint = {`${apiBaseUrl}/get-drug-time`}  
-          chartHeight={245} 
-          chartWidth={50}/>
-          {/* <MainContainer>derp</MainContainer> */}
+            chartData={DrugData.drugTimeOfDay} // Replace with specific Time of Day data for drugs if available
+            chartHeight={245} 
+            chartWidth={50}
+          />
         </SecondRowItem2>
         <SecondRowItemSmall>
           <ResolutionStatusChart 
-            apiEndpoint={`${apiBaseUrl}/get-drug-resolution`}
-            resolutionField="Resolution"/>
+            chartData={DrugData.drugResolution} // Replace with specific Resolution data for drugs if available
+            resolutionField="Resolution"
+          />
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart 
-            apiEndpoint={`${apiBaseUrl}/get-drug-supervisor`} />
+          <SupervisorChart chartData={CrimeData.drugSupervisorIncidents} /> 
         </ThirdRowItem>
         <ThirdRowItem>
-          <AssaultTypesChart 
-            apiEndpoint={`${apiBaseUrl}/get-drug-type`} />
-
+          <AssaultTypesChart chartData={CrimeData.assaultTypes} />
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>
   );
 }
-{/* <TimeOfDayChart apiEndpoint="http://127.0.0.1:5000/get-drug-time" chartHeight={390} chartWidth={400} /> */}
-
 
 export default DrugPage;

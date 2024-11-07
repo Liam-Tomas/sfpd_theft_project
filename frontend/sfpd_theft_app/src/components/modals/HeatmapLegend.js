@@ -82,7 +82,7 @@ const HeatmapLegend = ({ onClose }) => {
         <ColorBox color="#fdad8f" />
         <Description>0.8% - 1.0% Relative Rate</Description>
       </LegendItem>
-      {/* Add more legend items as needed based on your getColor function */}
+      {/* Add more legend items as needed based on getColor function */}
       <div>
       </div>
     </LegendContainer>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import LeafletMap from '../components/charts/LeafletMap';
 import RiskCalc from '../components/charts/RiskCalc';
@@ -9,6 +8,8 @@ import ResolutionStatusChart from '../components/charts/ResolutionStatusChart';
 import TimeOfDayChart from '../components/charts/TimeOfDayChart';
 import SupervisorChart from '../components/charts/SupervisorChart';
 import styled from 'styled-components';
+import { CrimeData } from '../components/charts/CrimeData'; // Adjust the path as necessary
+import { BreakInData } from '../components/data/BreakInData';
 
 const MainContainer = styled.div`
   padding: 5px 21px;
@@ -70,49 +71,46 @@ function useMobileScreen(query = '(max-width: 880px)') {
 
 function HomePage() {
   const isMobile = useMobileScreen();
-  //   const apiURL = 'http://127.0.0.1:5000'
-
   const apiBaseUrl = 'https://sfpd-theft-project-flask.onrender.com';
 
   return (
     <MainContainer>
       <DashTitle>San Francisco Vehicle Break-in Analysis</DashTitle>
       <StyledGrid>
-      <FirstRowLeft>
-          <RiskCalc apiEndpoint={`${apiBaseUrl}/get_probability`} />
-          {!isMobile && (
-            <TopLocationsChart apiEndpoint={`${apiBaseUrl}/top-theft-locations`} />
-          )}
+        <FirstRowLeft>
+        <RiskCalc apiEndpoint={`${apiBaseUrl}/get_probability`} />
+        {!isMobile && <TopLocationsChart chartData={CrimeData.carBreakIns} />}
         </FirstRowLeft>
+
         {isMobile && (
           <FirstRowRight>
-            <LeafletMap geojsonUrl="/sf_heatmap_theft_new.geojson" />
+            <LeafletMap geojsonUrl="/heatmaps/sf_heatmap_theft_new.geojson" />
           </FirstRowRight>
         )}
         {!isMobile && (
           <FirstRowRight>
-            <LeafletMap geojsonUrl="/sf_heatmap_theft_new.geojson" />
+            <LeafletMap geojsonUrl="/heatmaps/sf_heatmap_theft_new.geojson" />
           </FirstRowRight>
         )}
         {isMobile && (
           <FirstRowLeft>
-            <TopLocationsChart apiEndpoint={`${apiBaseUrl}/top-theft-locations`} />
+            <TopLocationsChart chartData={CrimeData.carBreakIns} />
           </FirstRowLeft>
         )}
         <SecondRowItem>
-          <YearChart apiEndpoint={`${apiBaseUrl}/get-year-breakdown`} chartLabel="Total Incidents per Year" />
+          <YearChart chartData={BreakInData.breakInYearly} chartLabel="Total Incidents per Year" />
         </SecondRowItem>
         <SecondRowItem>
-          <PriceBreakdownChart apiEndpoint={`${apiBaseUrl}/get-price-breakdown`} />
+          <PriceBreakdownChart chartData={BreakInData.breakInPrice} />
         </SecondRowItem>
         <SecondRowItemSmall>
-          <ResolutionStatusChart apiEndpoint={`${apiBaseUrl}/get-status-breakdown`} resolutionField="Resolution_Status" />
+          <ResolutionStatusChart chartData={BreakInData.breakInResolution} resolutionField="Resolution_Status" />
         </SecondRowItemSmall>
         <ThirdRowItem>
-          <SupervisorChart apiEndpoint={`${apiBaseUrl}/get-supervisor-breakdown`} />
+          <SupervisorChart chartData={CrimeData.breakInSupervisorIncidents} />
         </ThirdRowItem>
         <ThirdRowItem>
-          <TimeOfDayChart apiEndpoint={`${apiBaseUrl}/get-time-breakdown`} chartHeight={390} chartWidth={400} />
+          <TimeOfDayChart chartData={BreakInData.breakInTimeOfDay} chartHeight={390} chartWidth={400} />
         </ThirdRowItem>
       </StyledGrid>
     </MainContainer>

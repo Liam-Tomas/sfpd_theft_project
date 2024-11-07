@@ -60,7 +60,7 @@ const StyledInput = styled.input`
         border-color: ${props => props.theme.hoverShadowColor}; // Highlight color on hover
     }
     &:focus {
-        border-color: #1976d2; // Highlight color on focus
+        border-color: ${props => props.theme.secondary};
         box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.3); // Adds focus ring
     }
 

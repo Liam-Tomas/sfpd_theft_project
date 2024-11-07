@@ -54,34 +54,6 @@ function LeafletMap({ geojsonUrl }) {
         accessToken: 'pk.eyJ1IjoibHRhcm1zdHJvbmciLCJhIjoiY2xxYWtwZzdnMjFidDJrbzFyd3h2ZzF5ciJ9.1_OaoYb9KYnYACgcKNYohA' // Replace with your Mapbox access token
       }).addTo(map);
 
-      // Function to determine color based on probability
-      // function getColor(probability) {
-      //   // Adjusted color thresholds to capture a broader range of probabilities
-      //   return probability > 0.1 ? '#67000d' :   // Very dark red for the highest probabilities
-      //     probability > 0.075 ? '#a50f15' :
-      //       probability > 0.05 ? '#7f0000' :   // Dark red for very high probabilities
-      //         probability > 0.04 ? '#de2d26' :     // Slightly lighter red
-      //           probability > 0.03 ? '#fb6a4a' :     // Orange-red
-      //             probability > 0.02 ? '#b30000' :
-      //               probability > 0.01 ? '#d7301f' :
-      //                 probability > 0.005 ? '#ef6548' :
-      //                   probability > 0.002 ? '#fc8d59' :
-      //                     probability > 0.001 ? '#fdbb84' :
-      //                       probability > 0.0005 ? '#fdd49e' :
-      //                         probability > 0.0001 ? '#fee8c8' :
-      //                           '#fff7ec'; // Very low probability, almost off-white
-      // }
-
-      // function getColor(probability) {
-      //   return probability > .030 ? '#b30000' : // Dark red for the highest probabilities
-      //          probability > .020 ? '#d7301f' :
-      //          probability > .015 ? '#ef6548' :
-      //          probability > .010 ? '#fc8d59' :
-      //          probability > .005 ? '#fdbb84' : // Medium orange
-      //          probability > .002 ? '#fdd49e' :
-      //          probability > .001 ? '#fee8c8' :
-      //          '#fff7ec'; // Light off-white for the lowest probabilities
-      // }
       function getColor(probability) {
         return probability > .030 ? '#b30000' : // Dark red for the highest probabilities
           probability > .020 ? '#d7301f' :

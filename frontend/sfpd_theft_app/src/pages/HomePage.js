@@ -184,8 +184,8 @@ const HomeSubText = styled.p`
     font-size: 22px;
     line-height: 1.5;
     margin: 8px 0px 29px 0px;
-    max-width: 1000px; // Sets a maximum width
-    padding: 0 5%; // Adds responsive padding on left and right
+    max-width: 900px; // Sets a maximum width
+    // padding: 0 5%; // Adds responsive padding on left and right
     text-align: center; // Centers text
 
     @media (max-width: 868px) {
@@ -239,7 +239,7 @@ const HomeButtonContainer = styled.div`
 `
 
 const DashContainer = styled.div`
-    margin: 115px 110px 130px 110px;
+    margin: 140px 110px 155px 110px;
 
     @media (max-width: 868px) {
         margin: 0px;
@@ -271,7 +271,7 @@ const SearchButton = styled.div`
     justify-content: center;
     z-index: 10;
     transition: 0.15s;
-    font-size: 17px;
+    font-size: 15px;
     &:hover {
         background-color: ${props => props.theme.searchHover};
     }
@@ -284,7 +284,15 @@ const SearchButton = styled.div`
       }
 `;
 
-const SquigglyLine = ({ color = 'black', width = 2 }) => (
+
+const SearchText = styled.span`
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+
+`
+
+const SquigglyLine = ({ color = 'black', width = 1.5 }) => (
     <svg width="100%" height="20" viewBox="0 0 2000 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M0,10 Q25,-10 50,10 T100,10 T150,10 T200,10 T250,10 T300,10 T350,10 T400,10 T450,10 T500,10 T550,10 T600,10 T650,10 T700,10 T750,10 T800,10 T850,10 T900,10 T950,10 T1000,10 T1050,10 T1100,10 T1150,10 T1200,10 T1250,10 T1300,10 T1350,10 T1400,10 T1450,10 T1500,10 T1550,10 T1600,10 T1650,10 T1700,10 T1750,10 T1800,10 T1850,10 T1900,10 T1950,10 T2000,10" stroke={color} fill="none" strokeWidth={width} />
     </svg>
@@ -297,11 +305,12 @@ function HomePage() {
         <HomeContainer>
             <MainContainer>
                 <StyledLink to="/search">
-                    <SearchButton>
+                     <SearchButton>
                         <FontAwesomeIcon icon={faSearch} /> 
-                        {/* <span style={{ marginLeft: '8px' }}>Search Address</span>  */}
+                        <SearchText>Search Address</SearchText>
                     </SearchButton>
                 </StyledLink>
+
                 <ContentContainer>
                     <HomeHeader>
                         <TextContent>
@@ -314,7 +323,7 @@ function HomePage() {
 
                                 <LargeButton
                                     backgroundColor={theme.primary}
-                                    color="#ffff"
+                                    color={theme.primaryText}
                                 >
                                     View Map
 

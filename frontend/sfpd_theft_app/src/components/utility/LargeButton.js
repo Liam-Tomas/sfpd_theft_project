@@ -15,12 +15,13 @@ const RippleSpan = styled.span`
     transform: translate(-50%, -50%) scale(0);
     animation: ${rippleAnimation} 0.6s linear;
     background-color: rgba(255, 255, 255, 0.3);
+    // background-color: #ccc;
     width: 100%;
     height: 100%;
 `;
 
 const StyledButton = styled.button`
-    padding: ${({ $padding }) => $padding || '23px 33px'};
+    padding: ${({ $padding }) => $padding || '24px 37px'};
     font-family: 'Metropolis', sans-serif;
     font-size: ${({ $fontSize }) => $fontSize || '1.4rem'};
     font-weight: 500;
@@ -37,7 +38,6 @@ const StyledButton = styled.button`
     &:hover {
         background-color: ${({ $hoverBackgroundColor, theme }) => $hoverBackgroundColor || theme.buttonHover};
 
-        // background: ${props => props.theme.buttonHover};
     }
 
     &:disabled {

@@ -54,7 +54,7 @@ const MapLegend = ({ onClose }) => {
       <ModalContainer>
         <CloseButton onClick={onClose}>×</CloseButton>
         <LegendContent>
-          {/* Your legend content goes here */}
+          {/* legend content goes here */}
           <h2>Map Legend</h2>
           <p>Details about the map symbols and colors...</p>
           {/* Add more content as needed */}

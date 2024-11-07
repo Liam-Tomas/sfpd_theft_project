@@ -32,7 +32,6 @@ const MainContainer = styled.div`
 
 `;
 
-
 const ContentContainer = styled.div`
     @media (max-width: 900px) {
         margin: 70px 0px 0px 0px;
@@ -40,7 +39,6 @@ const ContentContainer = styled.div`
 
 
 `;
-
 
 const HomeHeader = styled.div`
     margin: 0px 10px;
@@ -92,9 +90,6 @@ const StyledEmail = styled.span`
     font-weight: 600;
 
 `
-
-
-
 
 function SearchPage() {
     const theme = useTheme();

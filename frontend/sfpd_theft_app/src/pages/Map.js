@@ -121,6 +121,10 @@ const InputContainer = styled.div`
     border-radius: 8px;
     margin: 0px 0;
     margin-top: 0px;
+        @media (min-width: 1800px) {
+        width: 97%;
+        
+      }
 `;
 
 const SelectTitle = styled.span`
@@ -132,6 +136,12 @@ const SelectTitle = styled.span`
     @media (max-width: 868px) {
         display: none;
       }
+
+    @media (min-width: 1800px) {
+        width: 45%;
+        
+      }
+
 `;
 
 const SelectWrapper = styled.div`
@@ -433,7 +443,7 @@ const FullHeatmap = () => {
     return (
         <FullPageContainer>
             <TextContainer>
-                <UpdateDate>Last Updated: 01.18.2024</UpdateDate>
+                <UpdateDate>Last Updated: 11.05.2024</UpdateDate>
                 <TitleContainer>
                     <HomeTitle>Interactive Map</HomeTitle>
                     {mapType === 'HeatMap' ? (

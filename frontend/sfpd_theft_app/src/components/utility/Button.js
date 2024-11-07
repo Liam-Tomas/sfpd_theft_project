@@ -191,7 +191,7 @@ const StyledButton = styled.button`
   position: relative;
   overflow: hidden;
   background-color: ${(props) => props.theme.primary};
-  color: white; // Text color
+  color: ${(props) => props.theme.primaryText};
   border: none;
   border-radius: ${props => props.$borderRadius || '5px'};
   cursor: pointer;
